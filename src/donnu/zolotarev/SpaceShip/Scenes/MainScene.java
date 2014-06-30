@@ -1,12 +1,16 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
+import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
+import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.util.color.Color;
 
 public class MainScene extends Scene {
     private final Hero hero;
@@ -36,8 +40,49 @@ public class MainScene extends Scene {
         analogOnScreenControl.getControlBase().setScale(1.25f);
         analogOnScreenControl.getControlKnob().setScale(1.25f);
         analogOnScreenControl.refreshControlKnobPosition();
-
         setChildScene(analogOnScreenControl);
+
+
+        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCAMERA_WIDTH()-130,SpaceShipActivity.getCAMERA_HEIGHT()-230,
+                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(pSceneTouchEvent.isActionDown()){
+                            Toast.makeText(shipActivity,"Огонь!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                return true;
+            }
+        };
+
+        Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCAMERA_WIDTH()-230,SpaceShipActivity.getCAMERA_HEIGHT()-130,
+                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+            @Override
+            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(pSceneTouchEvent.isActionDown()){
+                            Toast.makeText(shipActivity,"БУ!!",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                return true;
+            }
+        };
+
+        btnFire.setColor(Color.BLACK);
+        btnFire.setAlpha(0.5f);
+        btnFire2.setColor(Color.BLACK);
+        btnFire2.setAlpha(0.5f);
+        attachChild(btnFire);
+        attachChild(btnFire2);
+        registerTouchArea(btnFire);
+        registerTouchArea(btnFire2);
     }
 
 
