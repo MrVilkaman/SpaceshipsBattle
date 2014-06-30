@@ -5,10 +5,6 @@ import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
-import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
-import org.andengine.engine.handler.physics.PhysicsHandler;
-import org.andengine.entity.modifier.ScaleModifier;
-import org.andengine.entity.modifier.SequenceEntityModifier;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 
@@ -24,30 +20,16 @@ public class MainScene extends Scene {
         hero = new Hero(shipActivity.getEngine());
         hero.attachToScene(this);
 
-        qwe();
+        addHeroMoveControl();
     }
 
-    private void qwe() {
-        final PhysicsHandler physicsHandler = new PhysicsHandler(hero.getSprite());
-        hero.getSprite().registerUpdateHandler(physicsHandler);
-        final AnalogOnScreenControl analogOnScreenControl = new AnalogOnScreenControl(0,
-                SpaceShipActivity.getCAMERA_HEIGHT() - TextureLoader.getScreenControlBaseTextureRegion().getHeight(),
+    private void addHeroMoveControl() {
+        final AnalogOnScreenControl analogOnScreenControl = new AnalogOnScreenControl(30,
+                SpaceShipActivity.getCAMERA_HEIGHT() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 30,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
                 shipActivity.getEngine().getVertexBufferObjectManager(),
-                new AnalogOnScreenControl.IAnalogOnScreenControlListener() {
-                    @Override
-                    public void onControlChange(final BaseOnScreenControl pBaseOnScreenControl, final float pValueX,
-                            final float pValueY) {
-                        physicsHandler.setVelocity(pValueX * 100, pValueY * 100);
-                    }
-
-                    @Override
-                    public void onControlClick(final AnalogOnScreenControl pAnalogOnScreenControl) {
-                        hero.getSprite().registerEntityModifier(new SequenceEntityModifier(new ScaleModifier(0.25f, 1, 1.5f),
-                                new ScaleModifier(0.25f, 1.5f, 1)));
-                    }
-                });
+                hero.getCallback());
         analogOnScreenControl.getControlBase().setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         analogOnScreenControl.getControlBase().setAlpha(0.5f);
         analogOnScreenControl.getControlBase().setScaleCenter(0, 128);

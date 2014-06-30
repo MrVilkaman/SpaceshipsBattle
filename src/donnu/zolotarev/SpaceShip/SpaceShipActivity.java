@@ -15,8 +15,8 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 public class SpaceShipActivity extends SimpleBaseGameActivity {
 
 
-    private static int CAMERA_WIDTH;
-    private static int CAMERA_HEIGHT;
+    private static int CAMERA_WIDTH = 1280;
+    private static int CAMERA_HEIGHT = 720;
     private Camera camera;
     private MainScene mainScene;
     private static SpaceShipActivity instance;
@@ -37,8 +37,8 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     @Override
     public EngineOptions onCreateEngineOptions() {
         Resources res = getResources();
-        CAMERA_WIDTH = res.getDisplayMetrics().widthPixels;
-        CAMERA_HEIGHT = res.getDisplayMetrics().heightPixels;
+//        CAMERA_WIDTH = res.getDisplayMetrics().widthPixels;
+//        CAMERA_HEIGHT = res.getDisplayMetrics().heightPixels;
         camera = new Camera(0,0,CAMERA_WIDTH,CAMERA_HEIGHT);
         EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
                           new RatioResolutionPolicy(CAMERA_WIDTH,CAMERA_HEIGHT)
