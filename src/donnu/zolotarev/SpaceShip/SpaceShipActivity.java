@@ -13,6 +13,8 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegion
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class SpaceShipActivity extends SimpleBaseGameActivity {
+
+
     private static int CAMERA_WIDTH;
     private static int CAMERA_HEIGHT;
     private Camera camera;
@@ -57,5 +59,17 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         mainScene = new MainScene();
         return mainScene;
     }
+
+    public static int getCAMERA_WIDTH() {
+        return CAMERA_WIDTH;
+    }
+
+    public static int getCAMERA_HEIGHT() {
+        return CAMERA_HEIGHT;
+    }
+    public Camera getCamera() {
+        return camera;
+    }
+
 
 }

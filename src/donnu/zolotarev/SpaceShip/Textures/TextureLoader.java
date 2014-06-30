@@ -11,16 +11,33 @@ import org.andengine.opengl.texture.region.TextureRegion;
 public class TextureLoader {
 
     private static TextureRegion ship;
+    private static TextureRegion screenControlKnobTextureRegion;
+    private static TextureRegion screenControlBaseTextureRegion;
 
-    public static void loadTexture(Context context,Engine engine){
+    public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
-        BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768,
-                                                             TextureOptions.NEAREST_PREMULTIPLYALPHA);
+        BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
         ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
         tm.loadTexture(mTexture);
+        BitmapTextureAtlas mOnScreenControlTexture = new BitmapTextureAtlas(tm, 256, 128,
+                TextureOptions.BILINEAR);
+        screenControlBaseTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+                mOnScreenControlTexture, context, "onscreen_control_base.png", 0, 0);
+        screenControlKnobTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+                mOnScreenControlTexture, context, "onscreen_control_knob.png", 130, 0);
+        mOnScreenControlTexture.load();
+
     }
 
     public static TextureRegion getShip() {
         return ship;
+    }
+
+    public static TextureRegion getScreenControlBaseTextureRegion() {
+        return screenControlBaseTextureRegion;
+    }
+
+    public static TextureRegion getScreenControlKnobTextureRegion() {
+        return screenControlKnobTextureRegion;
     }
 }
