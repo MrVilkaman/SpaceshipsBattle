@@ -2,7 +2,6 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.widget.Toast;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -15,32 +14,20 @@ import org.andengine.util.color.Color;
 
 public class MainScene extends Scene {
     private final Hero hero;
+    private final MainScene context;
 
     private SpaceShipActivity shipActivity;
 
     public MainScene() {
         //super();
+        context = this;
         shipActivity = SpaceShipActivity.getInstance();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         hero = new Hero(shipActivity.getEngine());
         hero.attachToScene(this);
 
         addHeroMoveControl();
-        SimpleBullet simpleBullet = new SimpleBullet(null,200,200);
-        simpleBullet.attachToScene(this);
-        simpleBullet.init(200, 200, 0);
 
-        simpleBullet = new SimpleBullet(null,210,230);
-        simpleBullet.init(300, 100, 90);
-        simpleBullet.attachToScene(this);
-
-        simpleBullet = new SimpleBullet(null,220,220);
-        simpleBullet.init(200, 100, 45);
-        simpleBullet.attachToScene(this);
-
-        simpleBullet = new SimpleBullet(null,220,220);
-        simpleBullet.init(200, 100, 30);
-        simpleBullet.attachToScene(this);
 
     }
 
@@ -68,6 +55,7 @@ public class MainScene extends Scene {
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
+                            hero.fire().attachToScene(context);
                             Toast.makeText(shipActivity,"Огонь!",Toast.LENGTH_SHORT).show();
                         }
                     }

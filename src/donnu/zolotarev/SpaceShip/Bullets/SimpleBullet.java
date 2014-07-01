@@ -43,7 +43,6 @@ public class SimpleBullet extends Sprite {
         setColor(Color.BLUE);
         physicsHandler = new PhysicsHandler(this);
         registerUpdateHandler(physicsHandler);
-
         setIgnoreUpdate(true);
 
 

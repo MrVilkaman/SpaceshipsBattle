@@ -1,17 +1,20 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
+import donnu.zolotarev.SpaceShip.Hero;
+import donnu.zolotarev.SpaceShip.WeaponPos;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleGun {
     private static SimpleGun instance;
 
     private static  GenericPool<SimpleBullet> bulletsPool;
+    private final Hero hero;
 
-    public SimpleGun(){
+    public SimpleGun(Hero h){
+        hero = h;
        instance = this;
         bulletsPool = new GenericPool<SimpleBullet>() {
-
             @Override
             protected SimpleBullet onAllocatePoolItem() {
                 return new SimpleBullet(instance);
@@ -23,6 +26,11 @@ public class SimpleGun {
         final SimpleBullet bullet = bulletsPool.obtainPoolItem();
         bullet.init(x, y, direction);
         return bullet;
+    }
+
+    public SimpleBullet fire(){
+        WeaponPos weaponPos = hero.getWeaponPos();
+       return GetNewBullet(weaponPos.x,weaponPos.y,weaponPos.anlge);
     }
 
     public void deleteBullet(SimpleBullet bullet){

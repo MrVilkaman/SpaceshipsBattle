@@ -1,7 +1,9 @@
 package donnu.zolotarev.SpaceShip;
 
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
@@ -15,6 +17,7 @@ public class Hero {
     private final Sprite sprite;
     private PhysicsHandler physicsHandler;
     private final int SPEED = 500;
+    private SimpleGun simpleGun;
 
     public Hero(Engine shipActivity) {
         sprite = new Sprite(300, 100, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
@@ -24,6 +27,7 @@ public class Hero {
             }
         };
         sprite.setScale(0.5f);
+        loadWeapon();
     }
 
     public void attachToScene(MainScene mainScene) {
@@ -31,6 +35,17 @@ public class Hero {
         mainScene.registerTouchArea(sprite);
     }
 
+    public WeaponPos getWeaponPos(){
+        return new WeaponPos(sprite.getX()+150,sprite.getY()+120,0);
+    }
+
+    public void loadWeapon(){
+        simpleGun =  new SimpleGun(this);
+    }
+
+    public SimpleBullet fire() {
+      return simpleGun.fire();
+    }
 
     public Sprite getSprite() {
         return sprite;
