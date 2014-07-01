@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.widget.Toast;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -25,6 +26,22 @@ public class MainScene extends Scene {
         hero.attachToScene(this);
 
         addHeroMoveControl();
+        SimpleBullet simpleBullet = new SimpleBullet(null,200,200);
+        simpleBullet.attachToScene(this);
+        simpleBullet.init(200, 200, 0);
+
+        simpleBullet = new SimpleBullet(null,210,230);
+        simpleBullet.init(300, 100, 90);
+        simpleBullet.attachToScene(this);
+
+        simpleBullet = new SimpleBullet(null,220,220);
+        simpleBullet.init(200, 100, 45);
+        simpleBullet.attachToScene(this);
+
+        simpleBullet = new SimpleBullet(null,220,220);
+        simpleBullet.init(200, 100, 30);
+        simpleBullet.attachToScene(this);
+
     }
 
     private void addHeroMoveControl() {

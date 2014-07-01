@@ -43,6 +43,7 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
                           new RatioResolutionPolicy(CAMERA_WIDTH,CAMERA_HEIGHT)
                 ,camera);
+        engineOptions.getTouchOptions().setNeedsMultiTouch(true);
         engineOptions.getAudioOptions().setNeedsMusic(true);
         engineOptions.getAudioOptions().setNeedsSound(true);
         return engineOptions;

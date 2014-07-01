@@ -13,6 +13,7 @@ public class TextureLoader {
     private static TextureRegion ship;
     private static TextureRegion screenControlKnobTextureRegion;
     private static TextureRegion screenControlBaseTextureRegion;
+    private static TextureRegion simpleBulletTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -27,6 +28,12 @@ public class TextureLoader {
                 mOnScreenControlTexture, context, "onscreen_control_knob.png", 130, 0);
         mOnScreenControlTexture.load();
 
+        BitmapTextureAtlas bulletTexture = new BitmapTextureAtlas(tm, 128, 128,
+                TextureOptions.BILINEAR);
+        simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
+                bulletTexture, context, "simpleBullet.png", 0, 0);
+
+
     }
 
     public static TextureRegion getShip() {
@@ -39,5 +46,9 @@ public class TextureLoader {
 
     public static TextureRegion getScreenControlKnobTextureRegion() {
         return screenControlKnobTextureRegion;
+    }
+
+    public static TextureRegion getSimpleBulletTextureRegion() {
+        return simpleBulletTextureRegion;
     }
 }
