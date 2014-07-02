@@ -33,15 +33,16 @@ public class SimpleGun {
         for (WeaponPos weaponPos : weaponsPos) {
             GetNewBullet(weaponPos.x,weaponPos.y,weaponPos.anlge);
         }
-
-
     }
 
     public void deleteBullet(BulletBase bullet){
         bullet.setVisible(false); //это не обязательно делать здесь.
         bullet.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
+        if (bullet.getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
+            bulletsPool.recyclePoolItem((SimpleBullet)bullet);
+        }
 
-        bulletsPool.recyclePoolItem((SimpleBullet)bullet);
+
     }
 
 
