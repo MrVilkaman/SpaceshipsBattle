@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip;
 
 import donnu.zolotarev.SpaceShip.Enemy.BaseUnit;
+import donnu.zolotarev.SpaceShip.Enemy.UnitShape;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.Engine;
@@ -15,25 +16,23 @@ public class Hero extends BaseUnit {
     private SimpleGun simpleGun;
 
     public Hero(Engine shipActivity) {
-        sprite = new Sprite(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
+        sprite = new UnitShape(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
             @Override
             public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
                 return true;
             }
         };
-        sprite.setScale(0.5f);
+     //   sprite.setScale(0.5f);
         loadWeapon();
         attachToScene();
-
-
     }
 
     public WeaponPos[] getWeaponPos(){
         WeaponPos[] weaponPoses = {
-                new WeaponPos(sprite.getX()+140,sprite.getY()+100,0),
-                new WeaponPos(sprite.getX()+140,sprite.getY()+124,0),
-                new WeaponPos(sprite.getX()+110,sprite.getY()+88,0),
-                new WeaponPos(sprite.getX()+110,sprite.getY()+136,0)
+                new WeaponPos(sprite.getX()+70,sprite.getY()+50,0),
+                new WeaponPos(sprite.getX()+70,sprite.getY()+62,0),
+                new WeaponPos(sprite.getX()+55,sprite.getY()+44,0),
+                new WeaponPos(sprite.getX()+55,sprite.getY()+68,0)
         };
         return weaponPoses;
     }
@@ -66,4 +65,6 @@ public class Hero extends BaseUnit {
             }
         };
     }
+
+
 }

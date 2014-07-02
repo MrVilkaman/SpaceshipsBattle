@@ -16,5 +16,9 @@ public class Enemy1  extends BaseUnit {
                 .getInstance().getEngine().getVertexBufferObjectManager());
         attachToScene();
         sprite.setRotation(180);
+
+        registerPhysicsHandler();
+       physicsHandler.setVelocityX(-100);
     }
+
 }

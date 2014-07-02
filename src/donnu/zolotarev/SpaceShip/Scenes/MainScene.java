@@ -36,13 +36,13 @@ public class MainScene extends Scene {
         addHeroMoveControl();
 
         Enemy1  enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(700,250) );
+        enemy1.setStartPosition(new Point(1200,250) );
         enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(800,300) );
+        enemy1.setStartPosition(new Point(1100,300) );
         enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(830,100) );
+        enemy1.setStartPosition(new Point(1200,100) );
         enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1000,270) );
+        enemy1.setStartPosition(new Point(1300,270) );
     }
 
     private void addHeroMoveControl() {

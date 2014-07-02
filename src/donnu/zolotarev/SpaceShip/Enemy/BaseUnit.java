@@ -15,6 +15,7 @@ public class BaseUnit {
         Scene mainScene = MainScene.getAcitveScene();
         mainScene.attachChild(sprite);
         mainScene.registerTouchArea(sprite);
+
     }
 
     public void setStartPosition(Point point){
@@ -27,4 +28,6 @@ public class BaseUnit {
         sprite.registerUpdateHandler(physicsHandler);
         return physicsHandler;
     }
+
+
 }
