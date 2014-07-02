@@ -14,11 +14,13 @@ public class TextureLoader {
     private static TextureRegion screenControlKnobTextureRegion;
     private static TextureRegion screenControlBaseTextureRegion;
     private static TextureRegion simpleBulletTextureRegion;
+    private static TextureRegion enemyShip;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
         BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
         ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
+        enemyShip = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
         tm.loadTexture(mTexture);
         BitmapTextureAtlas mOnScreenControlTexture = new BitmapTextureAtlas(tm, 256, 128,
                 TextureOptions.BILINEAR);
@@ -50,5 +52,9 @@ public class TextureLoader {
 
     public static TextureRegion getSimpleBulletTextureRegion() {
         return simpleBulletTextureRegion;
+    }
+
+    public static TextureRegion getEnemyShip() {
+        return enemyShip;
     }
 }

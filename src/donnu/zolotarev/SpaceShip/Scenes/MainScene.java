@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
+import donnu.zolotarev.SpaceShip.Enemy.Enemy1;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -34,7 +35,14 @@ public class MainScene extends Scene {
         hero.setStartPosition(new Point(0,250));
         addHeroMoveControl();
 
-
+        Enemy1  enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(700,250) );
+        enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(800,300) );
+        enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(830,100) );
+        enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(1000,270) );
     }
 
     private void addHeroMoveControl() {

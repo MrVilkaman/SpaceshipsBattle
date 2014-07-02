@@ -1,22 +1,16 @@
 package donnu.zolotarev.SpaceShip;
 
-import android.graphics.Point;
-import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import donnu.zolotarev.SpaceShip.Enemy.BaseUnit;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
-import org.andengine.engine.handler.physics.PhysicsHandler;
-import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.input.touch.TouchEvent;
 
-public class Hero {
+public class Hero extends BaseUnit {
 
-
-    private final Sprite sprite;
-    private PhysicsHandler physicsHandler;
     private final int SPEED = 500;
     private SimpleGun simpleGun;
 
@@ -32,17 +26,6 @@ public class Hero {
         attachToScene();
 
 
-    }
-
-    public void setStartPosition(Point point){
-        sprite.setX(point.x);
-        sprite.setY(point.y);
-    }
-
-    public void attachToScene() {
-        Scene mainScene = MainScene.getAcitveScene();
-        mainScene.attachChild(sprite);
-        mainScene.registerTouchArea(sprite);
     }
 
     public WeaponPos[] getWeaponPos(){
@@ -65,12 +48,6 @@ public class Hero {
 
     public Sprite getSprite() {
         return sprite;
-    }
-
-    public PhysicsHandler registerPhysicsHandler() {
-        physicsHandler = new PhysicsHandler(sprite);
-        sprite.registerUpdateHandler(physicsHandler);
-        return physicsHandler;
     }
 
     public AnalogOnScreenControl.IAnalogOnScreenControlListener getCallback() {
