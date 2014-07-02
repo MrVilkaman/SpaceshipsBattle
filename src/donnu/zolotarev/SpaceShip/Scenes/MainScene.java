@@ -1,10 +1,12 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
+import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
@@ -14,18 +16,22 @@ import org.andengine.util.color.Color;
 
 public class MainScene extends Scene {
     private final Hero hero;
-    private final MainScene context;
+
+
+
+    private static MainScene acitveScene;
+    private static Engine engine;
 
     private SpaceShipActivity shipActivity;
 
     public MainScene() {
         //super();
-        context = this;
+        acitveScene = this;
+        engine = getEngine();
         shipActivity = SpaceShipActivity.getInstance();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         hero = new Hero(shipActivity.getEngine());
-        hero.attachToScene(this);
-
+        hero.setStartPosition(new Point(0,250));
         addHeroMoveControl();
 
 
@@ -55,8 +61,7 @@ public class MainScene extends Scene {
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
-                            hero.fire().attachToScene(context);
-                            Toast.makeText(shipActivity,"Огонь!",Toast.LENGTH_SHORT).show();
+                            hero.fire();
                         }
                     }
                 });
@@ -88,6 +93,14 @@ public class MainScene extends Scene {
         attachChild(btnFire2);
         registerTouchArea(btnFire);
         registerTouchArea(btnFire2);
+    }
+
+    public static MainScene getAcitveScene() {
+        return acitveScene;
+    }
+
+    public static Engine getEngine() {
+        return engine;
     }
 
 

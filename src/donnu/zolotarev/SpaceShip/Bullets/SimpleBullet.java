@@ -19,12 +19,14 @@ public class SimpleBullet extends Sprite {
     public SimpleBullet(SimpleGun simpleGun) {
         super(0,0, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
         createSettings();
+        attachToScene();
     }
 
     public SimpleBullet(SimpleGun simpleGun,float x, float y) {
         super(x,y, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
 //      /  setColor(Color.BLUE);
         createSettings();
+        attachToScene();
     }
 
     public void init(float x, float y, float direction) {
@@ -35,8 +37,8 @@ public class SimpleBullet extends Sprite {
         setIgnoreUpdate(false);
     }
 
-    public void attachToScene(MainScene mainScene) {
-        mainScene.attachChild(this);
+    public void attachToScene() {
+        MainScene.getAcitveScene().attachChild(this);
     }
 
     public void createSettings() {
