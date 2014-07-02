@@ -28,9 +28,13 @@ public class SimpleGun {
         return bullet;
     }
 
-    public SimpleBullet fire(){
-        WeaponPos weaponPos = hero.getWeaponPos();
-       return GetNewBullet(weaponPos.x,weaponPos.y,weaponPos.anlge);
+    public void fire(){
+        WeaponPos[] weaponsPos = hero.getWeaponPos();
+        for (WeaponPos weaponPos : weaponsPos) {
+            GetNewBullet(weaponPos.x,weaponPos.y,weaponPos.anlge);
+        }
+
+
     }
 
     public void deleteBullet(SimpleBullet bullet){

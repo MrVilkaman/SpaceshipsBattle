@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip;
 
 import android.graphics.Point;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
@@ -44,16 +43,22 @@ public class Hero {
         mainScene.registerTouchArea(sprite);
     }
 
-    public WeaponPos getWeaponPos(){
-        return new WeaponPos(sprite.getX()+150,sprite.getY()+120,0);
+    public WeaponPos[] getWeaponPos(){
+        WeaponPos[] weaponPoses = {
+                new WeaponPos(sprite.getX()+140,sprite.getY()+100,0),
+                new WeaponPos(sprite.getX()+140,sprite.getY()+124,0),
+                new WeaponPos(sprite.getX()+110,sprite.getY()+88,0),
+                new WeaponPos(sprite.getX()+110,sprite.getY()+136,0)
+        };
+        return weaponPoses;
     }
 
     public void loadWeapon(){
         simpleGun =  new SimpleGun(this);
     }
 
-    public SimpleBullet fire() {
-      return simpleGun.fire();
+    public void fire() {
+       simpleGun.fire();
     }
 
     public Sprite getSprite() {
