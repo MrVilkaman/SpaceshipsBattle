@@ -61,11 +61,11 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         return mainScene;
     }
 
-    public static int getCAMERA_WIDTH() {
+    public static int getCameraWidth() {
         return CAMERA_WIDTH;
     }
 
-    public static int getCAMERA_HEIGHT() {
+    public static int getCameraHeight() {
         return CAMERA_HEIGHT;
     }
     public Camera getCamera() {

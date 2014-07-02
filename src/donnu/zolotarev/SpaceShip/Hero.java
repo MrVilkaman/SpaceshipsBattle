@@ -30,6 +30,8 @@ public class Hero {
         sprite.setScale(0.5f);
         loadWeapon();
         attachToScene();
+
+
     }
 
     public void setStartPosition(Point point){

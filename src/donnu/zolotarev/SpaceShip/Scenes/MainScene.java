@@ -39,7 +39,7 @@ public class MainScene extends Scene {
 
     private void addHeroMoveControl() {
         final AnalogOnScreenControl analogOnScreenControl = new AnalogOnScreenControl(30,
-                SpaceShipActivity.getCAMERA_HEIGHT() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 30,
+                SpaceShipActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 30,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
                 shipActivity.getEngine().getVertexBufferObjectManager(),
@@ -53,7 +53,7 @@ public class MainScene extends Scene {
         setChildScene(analogOnScreenControl);
 
 
-        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCAMERA_WIDTH()-130,SpaceShipActivity.getCAMERA_HEIGHT()-230,
+        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-230,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
@@ -69,7 +69,7 @@ public class MainScene extends Scene {
             }
         };
 
-        Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCAMERA_WIDTH()-230,SpaceShipActivity.getCAMERA_HEIGHT()-130,
+        Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCameraWidth()-230,SpaceShipActivity.getCameraHeight()-130,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {

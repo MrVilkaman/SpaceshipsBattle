@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
+import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.WeaponPos;
@@ -7,7 +8,6 @@ import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleGun {
     private static SimpleGun instance;
-
     private static  GenericPool<SimpleBullet> bulletsPool;
     private final Hero hero;
 
@@ -37,10 +37,11 @@ public class SimpleGun {
 
     }
 
-    public void deleteBullet(SimpleBullet bullet){
+    public void deleteBullet(BulletBase bullet){
         bullet.setVisible(false); //это не обязательно делать здесь.
         bullet.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
-        bulletsPool.recyclePoolItem(bullet);
+
+        bulletsPool.recyclePoolItem((SimpleBullet)bullet);
     }
 
 
