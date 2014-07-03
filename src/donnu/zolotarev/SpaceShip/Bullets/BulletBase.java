@@ -6,15 +6,22 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.util.adt.pool.GenericPool;
+import org.andengine.util.adt.pool.MultiPool;
 import org.andengine.util.color.Color;
 
 public abstract class BulletBase extends Sprite {
 
-//    private final SimpleGun gun;
+    public static final int TYPE_SIMPLE_BULLET = 0;
+    public static final int TYPE_SIMPLE_BULLET_2 = 1;
+
+    //    private final SimpleGun gun;
     protected int DEFAULT_SPEED;//1000;
     private PhysicsHandler physicsHandler;
-    protected static GenericPool bulletsPool;
+    protected static MultiPool bulletsPool;
+
+    public static void initPool(){
+        bulletsPool = new MultiPool();
+    }
 
     public BulletBase() {
         super(0,0, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
@@ -32,7 +39,7 @@ public abstract class BulletBase extends Sprite {
 
 
     public void init(float x, float y, float direction) {
-        setPosition(x,y);
+        setPosition(x, y);
         setRotation(direction);
         physicsHandler.setVelocityY((float)(DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
         physicsHandler.setVelocityX((float)(DEFAULT_SPEED * Math.cos(Utils.degreeToRad(direction))));
@@ -71,14 +78,12 @@ public abstract class BulletBase extends Sprite {
     public void deleteBullet(){
         setVisible(false); //это не обязательно делать здесь.
         setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
-      //  if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
-            bulletsPool.recyclePoolItem(this);
-      //  }
-
+        if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
+            bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
+        }else if (getClass().getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
+            bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET_2,(SimpleBullet2)this);
+        }
 
     }
 
-    public static SimpleBullet getBullet(){
-        return null;
-    }
 }

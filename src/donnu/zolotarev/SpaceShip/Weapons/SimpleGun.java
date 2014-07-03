@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
@@ -13,12 +14,17 @@ public class SimpleGun {
         hero = h;
        instance = this;
         SimpleBullet.initBullet();
+        SimpleBullet2.initBullet();
     }
 
-    private SimpleBullet GetNewBullet(final float x, final float y, final float direction){
-        final SimpleBullet bullet = SimpleBullet.getBullet();
-        bullet.init(x, y, direction);
-        return bullet;
+    private void GetNewBullet(final float x, final float y, final float direction){
+    //    final SimpleBullet bullet;
+        if (direction == 0){
+            SimpleBullet.getBullet().init(x, y, direction);
+        } else {
+            SimpleBullet2.getBullet().init(x, y, direction);
+        }
+
     }
 
     public void fire(){
