@@ -13,21 +13,6 @@ public class UnitShape extends Sprite {
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
-        if(this.mX < 0) {
-            mX +=10;
-        //    return;
-        } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
-            mX -=10;
-       //     return;
-        }
 
-        if(this.mY < 0) {
-            mY +=10;
-      //      return;
-        } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
-            mY -=10;
-      //      return;
-        }
-        super.onManagedUpdate(pSecondsElapsed);
     }
 }

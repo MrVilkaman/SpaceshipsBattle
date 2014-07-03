@@ -1,14 +1,12 @@
 package donnu.zolotarev.SpaceShip;
 
 import donnu.zolotarev.SpaceShip.Enemy.BaseUnit;
-import donnu.zolotarev.SpaceShip.Enemy.UnitShape;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
-import org.andengine.input.touch.TouchEvent;
 
 public class Hero extends BaseUnit {
 
@@ -16,10 +14,22 @@ public class Hero extends BaseUnit {
     private SimpleGun simpleGun;
 
     public Hero(Engine shipActivity) {
-        sprite = new UnitShape(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
+        sprite = new Sprite(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
+            public float xOld;
+            public float yOld;
+
             @Override
-            public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-                return true;
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                xOld = mX;
+                yOld = mY;
+                super.onManagedUpdate(pSecondsElapsed);
+                if(this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
+                    mX = xOld;
+                }
+
+                if(this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
+                    mY = yOld;
+                }
             }
         };
      //   sprite.setScale(0.5f);
