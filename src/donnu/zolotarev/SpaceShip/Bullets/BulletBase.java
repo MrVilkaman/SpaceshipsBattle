@@ -4,28 +4,28 @@ import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils;
-import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.color.Color;
 
-public class BulletBase extends Sprite {
+public abstract class BulletBase extends Sprite {
 
-    private final SimpleGun gun;
+//    private final SimpleGun gun;
     protected int DEFAULT_SPEED;//1000;
     private PhysicsHandler physicsHandler;
+    protected static GenericPool bulletsPool;
 
-
-    public BulletBase(SimpleGun simpleGun) {
+    public BulletBase() {
         super(0,0, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
-        gun = simpleGun;
+//        gun = simpleGun;
         createSettings();
         attachToScene();
     }
 
-    public BulletBase(SimpleGun simpleGun,float x, float y) {
+    public BulletBase(/*SimpleGun simpleGun,*/float x, float y) {
         super(x,y, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
-        gun = simpleGun;
+//        gun = simpleGun;
         createSettings();
         attachToScene();
     }
@@ -55,16 +55,30 @@ public class BulletBase extends Sprite {
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         if(this.mX < 0) {
-            gun.deleteBullet(this);
+            deleteBullet();
         } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
-            gun.deleteBullet(this);
+            deleteBullet();
         }
 
         if(this.mY < 0) {
-            gun.deleteBullet(this);
+            deleteBullet();
         } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
-            gun.deleteBullet(this);
+            deleteBullet();
         }
         super.onManagedUpdate(pSecondsElapsed);
+    }
+
+    public void deleteBullet(){
+        setVisible(false); //это не обязательно делать здесь.
+        setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
+      //  if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
+            bulletsPool.recyclePoolItem(this);
+      //  }
+
+
+    }
+
+    public static SimpleBullet getBullet(){
+        return null;
     }
 }
