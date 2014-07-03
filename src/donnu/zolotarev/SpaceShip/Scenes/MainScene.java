@@ -18,8 +18,6 @@ import org.andengine.util.color.Color;
 public class MainScene extends Scene {
     private final Hero hero;
 
-
-
     private static MainScene acitveScene;
     private static Engine engine;
 

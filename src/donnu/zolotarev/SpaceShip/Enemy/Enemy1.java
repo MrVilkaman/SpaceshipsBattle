@@ -13,7 +13,15 @@ public class Enemy1  extends BaseUnit {
     public Enemy1(){
         engine =  MainScene.getEngine();
         sprite = new Sprite(0, 0, TextureLoader.getEnemyShip(), SpaceShipActivity
-                .getInstance().getEngine().getVertexBufferObjectManager());
+                .getInstance().getEngine().getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(mX - getWidth()<500){
+                  destroy();
+                }
+                super.onManagedUpdate(pSecondsElapsed);
+            }
+        };
         attachToScene();
         sprite.setRotation(180);
 

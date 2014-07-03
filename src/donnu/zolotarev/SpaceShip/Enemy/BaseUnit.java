@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Enemy;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.sprite.Sprite;
@@ -14,8 +15,7 @@ public class BaseUnit {
     protected void attachToScene() {
         Scene mainScene = MainScene.getAcitveScene();
         mainScene.attachChild(sprite);
-        mainScene.registerTouchArea(sprite);
-
+//        mainScene.registerTouchArea(sprite);
     }
 
     public void setStartPosition(Point point){
@@ -29,5 +29,17 @@ public class BaseUnit {
         return physicsHandler;
     }
 
+    public void destroy(){
+        sprite.setVisible(false); //это не обязательно делать здесь.
+        sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
+        SpaceShipActivity.getInstance().runOnUpdateThread(new Runnable() {
+            @Override
+            public void run() {
+                Scene mainScene = MainScene.getAcitveScene();
+                mainScene.detachChild(sprite);
+            }});
+            //        mainScene.unregisterTouchArea(sprite);
+        }
 
-}
+
+    }
