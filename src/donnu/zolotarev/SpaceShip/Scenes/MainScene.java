@@ -3,7 +3,6 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
-import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.Enemy.Enemy1;
 import donnu.zolotarev.SpaceShip.Hero;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -27,7 +26,7 @@ public class MainScene extends Scene {
     public MainScene() {
         //super();
 
-        BulletBase.initPool();
+      //  BulletBase.initPool();
         /////////
         acitveScene = this;
         engine = getEngine();

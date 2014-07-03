@@ -14,7 +14,7 @@ public class SimpleBullet extends BulletBase {
     public static void initBullet() {
         if (!isRegistredPool){
             isRegistredPool = true;
-            bulletsPool.registerPool(BulletBase.TYPE_SIMPLE_BULLET,new GenericPool() {
+            registredPool(SimpleBullet.class,new GenericPool() {
                 @Override
                 protected SimpleBullet onAllocatePoolItem() {
                     return new SimpleBullet();

@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 import org.andengine.util.color.Color;
 
@@ -19,9 +20,21 @@ public abstract class BulletBase extends Sprite {
     private PhysicsHandler physicsHandler;
     protected static MultiPool bulletsPool;
 
-    public static void initPool(){
+   /* private static void initPool(){
         bulletsPool = new MultiPool();
+    }*/
+
+    protected static void registredPool(Class bulletBase,GenericPool genericPool){
+        if (bulletsPool == null){
+            bulletsPool = new MultiPool();
+        }
+        if (bulletBase.getSimpleName().equals(SimpleBullet.class.getSimpleName())){
+            bulletsPool.registerPool(TYPE_SIMPLE_BULLET ,genericPool);
+        }else if (bulletBase.getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
+            bulletsPool.registerPool(TYPE_SIMPLE_BULLET_2 ,genericPool);
+        }
     }
+
 
     public BulletBase() {
         super(0,0, TextureLoader.getSimpleBulletTextureRegion(), SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager());
