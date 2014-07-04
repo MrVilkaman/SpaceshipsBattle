@@ -1,16 +1,38 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
+import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleBullet2 extends BulletBase {
     private static boolean isRegistredPool = false;
 
-    public SimpleBullet2() {
-        //        super(simpleGun);
+    private SimpleBullet2() {
+        super();
         DEFAULT_SPEED = 1000;
+        sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
+                SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
+            @Override
+            protected void onManagedUpdate(float pSecondsElapsed) {
+                if(this.mX < 0) {
+                    deleteBullet();
+                } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
+                    deleteBullet();
+                }
+
+                if(this.mY < 0) {
+                    deleteBullet();
+                } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
+                    deleteBullet();
+                }
+                super.onManagedUpdate(pSecondsElapsed);
+            }
+        };
+        settings();
     }
 
-    public static void initBullet() {
+    private static void initBullet() {
         if (!isRegistredPool){
             isRegistredPool = true;
             registredPool(SimpleBullet2.class,new GenericPool() {
@@ -23,6 +45,7 @@ public class SimpleBullet2 extends BulletBase {
     }
 
     public static SimpleBullet2 getBullet() {
+        initBullet();
         return (SimpleBullet2) bulletsPool.obtainPoolItem(BulletBase.TYPE_SIMPLE_BULLET_2);
     }
 }

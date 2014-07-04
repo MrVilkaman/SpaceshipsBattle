@@ -13,8 +13,6 @@ public class SimpleGun {
     public SimpleGun(Hero h){
         hero = h;
        instance = this;
-        SimpleBullet.initBullet();
-        SimpleBullet2.initBullet();
     }
 
     private void GetNewBullet(final float x, final float y, final float direction){
@@ -24,7 +22,6 @@ public class SimpleGun {
         } else {
             SimpleBullet2.getBullet().init(x, y, direction);
         }
-
     }
 
     public void fire(){
