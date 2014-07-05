@@ -10,7 +10,7 @@ public class SimpleBullet2 extends BulletBase {
 
     private SimpleBullet2() {
         super();
-        DEFAULT_SPEED = 1000;
+        initCharacteristics(1000,40);
         sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override

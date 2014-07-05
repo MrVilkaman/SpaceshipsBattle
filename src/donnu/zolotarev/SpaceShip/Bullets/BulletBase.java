@@ -17,14 +17,12 @@ public abstract class BulletBase implements ICollisionObject {
     private static MainScene main;
 
     protected Sprite sprite;
-    //    private final SimpleGun gun;
-    protected int DEFAULT_SPEED;//1000;
     private PhysicsHandler physicsHandler;
     protected static MultiPool bulletsPool;
 
-   /* private static void initPool(){
-        bulletsPool = new MultiPool();
-    }*/
+
+    private int DEFAULT_SPEED;//1000;
+    private int damage;
 
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
@@ -80,6 +78,16 @@ public abstract class BulletBase implements ICollisionObject {
     @Override
     public IShape getShape() {
         return sprite;
+    }
+
+    public int getDamage(){
+      return damage;
+    }
+
+
+    protected  void initCharacteristics(int speed, int damage){
+        this.damage = damage;
+        this.DEFAULT_SPEED = speed;
     }
 
 }

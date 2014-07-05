@@ -15,6 +15,7 @@ public abstract class BaseUnit implements ICollisionObject {
     protected PhysicsHandler physicsHandler;
     private MainScene mainScene;
 
+
     protected void attachToScene() {
         mainScene = MainScene.getAcitveScene();
         mainScene.attachChild(sprite);

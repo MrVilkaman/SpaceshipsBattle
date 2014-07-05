@@ -96,9 +96,6 @@ public class MainScene extends Scene {
                 e.printStackTrace();
             }
 
-
-
-
             }
 
             @Override
