@@ -39,10 +39,10 @@ public class Hero extends BaseUnit {
 
     public WeaponPos[] getWeaponPos(){
         WeaponPos[] weaponPoses = {
-                new WeaponPos(sprite.getX()+70,sprite.getY()+50,0)/*,
+                new WeaponPos(sprite.getX()+70,sprite.getY()+50,0),
                 new WeaponPos(sprite.getX()+70,sprite.getY()+62,0),
                 new WeaponPos(sprite.getX()+55,sprite.getY()+44,-1),
-                new WeaponPos(sprite.getX()+55,sprite.getY()+68,1) */
+                new WeaponPos(sprite.getX()+55,sprite.getY()+68,1)
         };
         return weaponPoses;
     }
@@ -77,4 +77,8 @@ public class Hero extends BaseUnit {
     }
 
 
+    @Override
+    public boolean addDamageAndCheckDeath(int damage) {
+        return false;
+    }
 }

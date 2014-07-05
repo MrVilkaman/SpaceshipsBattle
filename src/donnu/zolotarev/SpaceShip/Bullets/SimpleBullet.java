@@ -10,7 +10,7 @@ public class SimpleBullet extends BulletBase {
     private static boolean isRegistredPool = false;
 
     private SimpleBullet() {
-        initCharacteristics(500,100);
+        initCharacteristics(700,50);
         sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override

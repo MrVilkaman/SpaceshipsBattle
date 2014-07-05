@@ -15,6 +15,7 @@ public abstract class BaseUnit implements ICollisionObject {
     protected PhysicsHandler physicsHandler;
     private MainScene mainScene;
 
+    protected int health;
 
     protected void attachToScene() {
         mainScene = MainScene.getAcitveScene();
@@ -50,4 +51,7 @@ public abstract class BaseUnit implements ICollisionObject {
     public IShape getShape() {
         return sprite;
     }
+
+
+    public abstract boolean addDamageAndCheckDeath(int damage);
 }

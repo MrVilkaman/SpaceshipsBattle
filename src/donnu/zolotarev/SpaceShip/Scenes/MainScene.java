@@ -85,8 +85,11 @@ public class MainScene extends Scene {
                     Iterator<BaseUnit>  col = enemyController.haveCollision(shape);
 
                     while (col.hasNext()){
-                        col.next().destroy();
-                        col.remove();
+                        BaseUnit unit = col.next();
+                        if (unit.addDamageAndCheckDeath(shape.getDamage())){
+                            unit.destroy();
+                            col.remove();
+                        }
                         shape.deleteBullet();
                         it.remove();
                     }
