@@ -1,17 +1,20 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
+import donnu.zolotarev.SpaceShip.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
+import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 import org.andengine.util.color.Color;
 
-public abstract class BulletBase {
+public abstract class BulletBase implements ICollisionObject {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = 1;
+    private static MainScene main;
 
     protected Sprite sprite;
     //    private final SimpleGun gun;
@@ -26,6 +29,7 @@ public abstract class BulletBase {
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
             bulletsPool = new MultiPool();
+            main = MainScene.getAcitveScene();
         }
         if (bulletBase.getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.registerPool(TYPE_SIMPLE_BULLET ,genericPool);
@@ -41,10 +45,11 @@ public abstract class BulletBase {
     public void init(float x, float y, float direction) {
         sprite.setPosition(x, y);
         sprite.setRotation(direction);
-        physicsHandler.setVelocityY((float)(DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
-        physicsHandler.setVelocityX((float)(DEFAULT_SPEED * Math.cos(Utils.degreeToRad(direction))));
+        physicsHandler.setVelocityY((float) (DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
+        physicsHandler.setVelocityX((float) (DEFAULT_SPEED * Math.cos(Utils.degreeToRad(direction))));
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
+        main.getBulletController().add(this);
     }
 
     protected void attachToScene() {
@@ -60,15 +65,21 @@ public abstract class BulletBase {
     }
 
 
-    protected void deleteBullet(){
+    public synchronized void deleteBullet(){
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
+     //   main.getBulletController().remove(this);
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
         }else if (getClass().getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET_2,(SimpleBullet2)this);
         }
 
+    }
+
+    @Override
+    public IShape getShape() {
+        return sprite;
     }
 
 }

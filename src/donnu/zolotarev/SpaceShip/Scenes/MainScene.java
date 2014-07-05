@@ -3,17 +3,24 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
+import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.Enemy.BaseUnit;
 import donnu.zolotarev.SpaceShip.Enemy.Enemy1;
 import donnu.zolotarev.SpaceShip.Hero;
+import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
+import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
+
+import java.util.Iterator;
+import java.util.Random;
 
 public class MainScene extends Scene {
     private final Hero hero;
@@ -21,7 +28,14 @@ public class MainScene extends Scene {
     private static MainScene acitveScene;
     private static Engine engine;
 
+    private final ObjectController enemyController;
+    private final ObjectController bulletController;
+
     private SpaceShipActivity shipActivity;
+
+    public  ObjectController  getBulletController() {
+        return bulletController;
+    }
 
     public MainScene() {
         //super();
@@ -36,14 +50,62 @@ public class MainScene extends Scene {
         hero.setStartPosition(new Point(0,250));
         addHeroMoveControl();
 
-        Enemy1  enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1200,250) );
-        enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1100,300) );
-        enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1200,100) );
-        enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1300,270) );
+        enemyController = new ObjectController<BaseUnit>();
+
+        Enemy1 enemy1;
+        for (int i=0; i<10 ; ++i) {
+            Random random = new Random();
+            enemy1 = new Enemy1();
+            enemy1.setStartPosition(new Point(1200 +i*300+ random.nextInt(5)*10, 250+ random.nextInt(5)*10));
+            enemyController.add(enemy1);
+
+            enemy1 = new Enemy1();
+            enemy1.setStartPosition(new Point(1100+i*340+ random.nextInt(5)*10, 300+ random.nextInt(5)*10));
+            enemyController.add(enemy1);
+
+            enemy1 = new Enemy1();
+            enemy1.setStartPosition(new Point(1200+i*290+ random.nextInt(5)*10, 100+ random.nextInt(5)*10));
+            enemyController.add(enemy1);
+
+            enemy1 = new Enemy1();
+            enemy1.setStartPosition(new Point(1300+i*300+ random.nextInt(5)*10, 270+ random.nextInt(5)*10));
+            enemyController.add(enemy1);
+        }
+
+        bulletController = new ObjectController<BulletBase>();
+
+        registerUpdateHandler(new IUpdateHandler() {
+            @Override
+            public void onUpdate(float pSecondsElapsed) {
+
+            try {
+                Iterator<BulletBase> it = bulletController.getObjects();
+                while (it.hasNext()){
+                    BulletBase shape = it.next();
+                    Iterator<BaseUnit>  col = enemyController.haveCollision(shape);
+
+                    while (col.hasNext()){
+                        col.next().destroy();
+                        col.remove();
+                        shape.deleteBullet();
+                        it.remove();
+                    }
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+
+
+            }
+
+            @Override
+            public void reset() {
+
+            }
+        });
     }
 
     private void addHeroMoveControl() {
@@ -112,5 +174,8 @@ public class MainScene extends Scene {
         return engine;
     }
 
+    public ObjectController getEnemyController() {
+        return enemyController;
+    }
 
 }

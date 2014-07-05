@@ -16,8 +16,9 @@ public class Enemy1  extends BaseUnit {
                 .getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
-                if(mX - getWidth()<500){
-                  destroy();
+                if(mX - getWidth()<200){
+                  //destroy();
+                    physicsHandler.setVelocityX(0);
                 }
                 super.onManagedUpdate(pSecondsElapsed);
             }
@@ -26,7 +27,7 @@ public class Enemy1  extends BaseUnit {
         sprite.setRotation(180);
 
         registerPhysicsHandler();
-       physicsHandler.setVelocityX(-100);
+       physicsHandler.setVelocityX(-50);
     }
 
 }

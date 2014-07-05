@@ -48,5 +48,6 @@ public class SimpleBullet extends BulletBase {
         initPool();
         return (SimpleBullet) bulletsPool.obtainPoolItem(BulletBase.TYPE_SIMPLE_BULLET);
     }
+
 }
 
