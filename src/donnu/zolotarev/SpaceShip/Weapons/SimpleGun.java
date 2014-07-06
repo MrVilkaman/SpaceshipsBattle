@@ -11,9 +11,14 @@ public class SimpleGun {
     private final Hero hero;
     private boolean isShoot = false;
 
+    protected int ATTACK_INTERVAL;
+    protected int shootDelay;
+
     public SimpleGun(Hero h){
         hero = h;
        instance = this;
+        ///
+        ATTACK_INTERVAL = 20;
     }
 
     private void GetNewBullet(final float x, final float y, final float direction){
@@ -38,6 +43,15 @@ public class SimpleGun {
     }
 
     public boolean isShoot() {
-        return isShoot;
+        if (isShoot){
+            shootDelay--;
+            if(shootDelay<0){
+                shootDelay = ATTACK_INTERVAL;
+                return true;
+            }
+        }else{
+            shootDelay = ATTACK_INTERVAL;
+        }
+        return false;
     }
 }
