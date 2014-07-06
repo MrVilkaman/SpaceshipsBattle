@@ -14,7 +14,7 @@ public abstract class BulletBase implements ICollisionObject {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = 1;
-    private static MainScene main;
+    protected static MainScene main;
 
     protected Sprite sprite;
     private PhysicsHandler physicsHandler;

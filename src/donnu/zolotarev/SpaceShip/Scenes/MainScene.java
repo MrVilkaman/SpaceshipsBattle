@@ -4,22 +4,20 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
-import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.Units.Enemy1;
-import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Units.Enemy1;
+import donnu.zolotarev.SpaceShip.Units.Hero;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
-import org.andengine.engine.handler.IUpdateHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class MainScene extends Scene {
@@ -73,39 +71,6 @@ public class MainScene extends Scene {
         }
 
         bulletController = new ObjectController<BulletBase>();
-
-        registerUpdateHandler(new IUpdateHandler() {
-            @Override
-            public void onUpdate(float pSecondsElapsed) {
-
-            try {
-                Iterator<BulletBase> it = bulletController.getObjects();
-                while (it.hasNext()){
-                    BulletBase shape = it.next();
-                    Iterator<BaseUnit>  col = enemyController.haveCollision(shape);
-
-                    while (col.hasNext()){
-                        BaseUnit unit = col.next();
-                        if (unit.addDamageAndCheckDeath(shape.getDamage())){
-                            unit.destroy();
-                            col.remove();
-                        }
-                        shape.deleteBullet();
-                        it.remove();
-                    }
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            }
-
-            @Override
-            public void reset() {
-
-            }
-        });
     }
 
     private void addHeroMoveControl() {
