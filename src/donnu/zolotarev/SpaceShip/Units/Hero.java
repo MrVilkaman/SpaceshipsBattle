@@ -4,6 +4,7 @@ import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
+import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
@@ -12,7 +13,7 @@ import org.andengine.entity.sprite.Sprite;
 public class Hero extends BaseUnit {
 
     private final int SPEED = 500;
-    private SimpleGun simpleGun;
+    private WeaponController weaponController;
 
     public Hero(Engine shipActivity) {
         sprite = new Sprite(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
@@ -33,8 +34,8 @@ public class Hero extends BaseUnit {
                     mY = yOld;
                 }
                 /// weapon cooldown
-                if (simpleGun.isShoot()){
-                    simpleGun.fire();
+                if (weaponController.isShoot()){
+                    weaponController.fire();
                 }
 
             }
@@ -44,22 +45,14 @@ public class Hero extends BaseUnit {
         attachToScene();
     }
 
-    public WeaponPos[] getWeaponPos(){
-        WeaponPos[] weaponPoses = {
-                new WeaponPos(sprite.getX()+70,sprite.getY()+50,0),
-                new WeaponPos(sprite.getX()+70,sprite.getY()+62,0),
-                new WeaponPos(sprite.getX()+55,sprite.getY()+44,-1),
-                new WeaponPos(sprite.getX()+55,sprite.getY()+68,1)
-        };
-        return weaponPoses;
-    }
-
     public void loadWeapon(){
-        simpleGun =  new SimpleGun(this);
+        weaponController = new WeaponController(this,
+                new WeaponPos[]{new WeaponPos(sprite.getX()+70,sprite.getY()+50,0)});
+        weaponController.loadWeapon(new SimpleGun(),0);
     }
 
     public void fire(boolean b) {
-        simpleGun.setShoot(b);
+        weaponController.setShoot(b);
     }
 
     public Sprite getSprite() {
