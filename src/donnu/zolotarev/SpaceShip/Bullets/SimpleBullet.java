@@ -2,11 +2,8 @@ package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
-
-import java.util.Iterator;
 
 public class SimpleBullet extends BulletBase {
 
@@ -14,7 +11,6 @@ public class SimpleBullet extends BulletBase {
 
     private SimpleBullet() {
         initCharacteristics(700, 40);
-        final SimpleBullet self = this;
         sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
@@ -31,24 +27,15 @@ public class SimpleBullet extends BulletBase {
                     deleteBullet();
                 }
 
+                checkHit();
 
-                Iterator<BaseUnit> col = main.getEnemyController().haveCollision(self);
-
-                while (col.hasNext()){
-                    BaseUnit unit = col.next();
-                    if (unit.addDamageAndCheckDeath(getDamage())){
-                        unit.destroy();
-                        col.remove();
-                    }
-                    self.deleteBullet();
-                    main.getBulletController().remove(self);
-                }
                 super.onManagedUpdate(pSecondsElapsed);
 
             }
         };
         settings();
     }
+
 
     private static void initPool() {
         if (!isRegistredPool){

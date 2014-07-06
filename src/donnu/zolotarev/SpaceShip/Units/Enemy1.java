@@ -19,9 +19,9 @@ public class Enemy1  extends BaseUnit {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if(mX - getWidth()<200){
-                  //destroy();
                     physicsHandler.setVelocityX(0);
                 }
+
                 super.onManagedUpdate(pSecondsElapsed);
             }
 
