@@ -72,5 +72,10 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         return camera;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
 
 }

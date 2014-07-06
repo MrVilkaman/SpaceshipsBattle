@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
-import donnu.zolotarev.SpaceShip.Hero;
+import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
 public class SimpleGun {

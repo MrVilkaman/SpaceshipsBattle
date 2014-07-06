@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip.Enemy;
+package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.ICollisionObject;

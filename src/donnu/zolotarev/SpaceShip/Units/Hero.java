@@ -1,7 +1,8 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Units;
 
-import donnu.zolotarev.SpaceShip.Enemy.BaseUnit;
+import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;

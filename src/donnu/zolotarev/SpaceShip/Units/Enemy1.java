@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip.Enemy;
+package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -24,12 +24,14 @@ public class Enemy1  extends BaseUnit {
                 }
                 super.onManagedUpdate(pSecondsElapsed);
             }
+
         };
         attachToScene();
         sprite.setRotation(180);
 
         registerPhysicsHandler();
        physicsHandler.setVelocityX(-100);
+
     }
 
     @Override
