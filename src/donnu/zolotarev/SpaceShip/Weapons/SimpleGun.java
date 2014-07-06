@@ -9,6 +9,7 @@ public class SimpleGun {
     private static SimpleGun instance;
 
     private final Hero hero;
+    private boolean isShoot = false;
 
     public SimpleGun(Hero h){
         hero = h;
@@ -32,6 +33,11 @@ public class SimpleGun {
     }
 
 
+    public void setShoot(boolean isShoot) {
+        this.isShoot = isShoot;
+    }
 
-
+    public boolean isShoot() {
+        return isShoot;
+    }
 }

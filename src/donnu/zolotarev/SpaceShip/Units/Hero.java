@@ -21,6 +21,7 @@ public class Hero extends BaseUnit {
 
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
+                // restriction of movement( walls )
                 xOld = mX;
                 yOld = mY;
                 super.onManagedUpdate(pSecondsElapsed);
@@ -31,6 +32,11 @@ public class Hero extends BaseUnit {
                 if(this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
                     mY = yOld;
                 }
+                /// weapon cooldown
+                if (simpleGun.isShoot()){
+                    simpleGun.fire();
+                }
+
             }
         };
      //   sprite.setScale(0.5f);
@@ -52,8 +58,8 @@ public class Hero extends BaseUnit {
         simpleGun =  new SimpleGun(this);
     }
 
-    public void fire() {
-       simpleGun.fire();
+    public void fire(boolean b) {
+        simpleGun.setShoot(b);
     }
 
     public Sprite getSprite() {

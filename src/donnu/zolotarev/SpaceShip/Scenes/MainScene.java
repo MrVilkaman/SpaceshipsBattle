@@ -132,7 +132,9 @@ public class MainScene extends Scene {
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
-                            hero.fire();
+                            hero.fire(true);
+                        } else if(pSceneTouchEvent.isActionUp()){
+                            hero.fire(false);
                         }
                     }
                 });
