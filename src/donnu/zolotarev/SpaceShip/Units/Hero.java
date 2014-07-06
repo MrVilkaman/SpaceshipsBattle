@@ -26,11 +26,11 @@ public class Hero extends BaseUnit {
                 xOld = mX;
                 yOld = mY;
                 super.onManagedUpdate(pSecondsElapsed);
-                if(this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
+                if (this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()){
                     mX = xOld;
                 }
 
-                if(this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
+                if (this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()){
                     mY = yOld;
                 }
                 /// weapon cooldown
@@ -40,15 +40,17 @@ public class Hero extends BaseUnit {
 
             }
         };
-     //   sprite.setScale(0.5f);
+        //   sprite.setScale(0.5f);
         loadWeapon();
         attachToScene();
     }
 
-    public void loadWeapon(){
-        weaponController = new WeaponController(this,
-                new WeaponPos[]{new WeaponPos(sprite.getX()+70,sprite.getY()+50,0)});
-        weaponController.loadWeapon(new SimpleGun(),0);
+    public void loadWeapon() {
+        weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
+                0), new WeaponPos(35, 70, 0)});
+        weaponController.loadWeapon(new SimpleGun(), 0);
+        weaponController.loadWeapon(new SimpleGun(), 1);
+        weaponController.loadWeapon(new SimpleGun(), 2);
     }
 
     public void fire(boolean b) {

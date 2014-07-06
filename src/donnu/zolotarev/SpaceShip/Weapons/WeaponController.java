@@ -30,10 +30,12 @@ public class WeaponController {
 
     public void fire(){
         for (int i = 0; i<weaponPoses.length;i++) {
-            SimpleGun gun =  guns[0];
+            SimpleGun gun =  guns[i];
             if(gun !=null){
                 changePos(weaponPoses[i]);
-                gun.fire(bufferWeaponPos);
+                if (gun.shoot()){
+                    gun.fire(bufferWeaponPos);
+                }
             }
         }
     }
@@ -47,6 +49,13 @@ public class WeaponController {
 
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
+        if(!shoot){
+            for (SimpleGun gun: guns){
+                if (gun != null){
+                    gun.reload();
+                }
+            }
+        }
     }
 
     public boolean isShoot() {

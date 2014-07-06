@@ -30,20 +30,16 @@ public class SimpleGun extends Guns {
         GetNewBullet(weaponPos.x, weaponPos.y+5, weaponPos.anlge);
     }
 
-    public boolean isShoot() {
-        if (isShoot){
-            shootDelay--;
-            if (shootDelay < 0){
-                shootDelay = ATTACK_INTERVAL;
-                return true;
-            }
-        } else {
-            shootDelay = 0;
+    public boolean shoot() {
+        shootDelay--;
+        if (shootDelay < 0){
+            shootDelay = ATTACK_INTERVAL;
+            return true;
         }
         return false;
     }
 
-    public void setShoot(boolean isShoot) {
-        this.isShoot = isShoot;
+    public void reload(){
+        shootDelay = 0;
     }
 }
