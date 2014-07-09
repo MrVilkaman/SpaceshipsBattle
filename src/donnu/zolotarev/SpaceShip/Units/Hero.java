@@ -5,7 +5,6 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
-import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
@@ -13,10 +12,10 @@ import org.andengine.entity.sprite.Sprite;
 public class Hero extends BaseUnit {
 
     private final int SPEED = 500;
-    private WeaponController weaponController;
 
-    public Hero(Engine shipActivity) {
-        sprite = new Sprite(0, 0, TextureLoader.getShip(), shipActivity.getVertexBufferObjectManager()) {
+    public Hero() {
+        super();
+        sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
             public float xOld;
             public float yOld;
 

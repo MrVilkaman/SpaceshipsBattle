@@ -4,6 +4,8 @@ import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
+import org.andengine.engine.Engine;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IShape;
@@ -13,12 +15,19 @@ public abstract class BaseUnit implements ICollisionObject {
 
     protected Sprite sprite;
     protected PhysicsHandler physicsHandler;
-    private MainScene mainScene;
+    protected WeaponController weaponController;
+    protected MainScene mainScene;
+    protected Engine engine;
 
     protected int health;
 
-    protected void attachToScene() {
+    public BaseUnit() {
         mainScene = MainScene.getAcitveScene();
+        engine = MainScene.getEngine();
+    }
+
+    protected void attachToScene() {
+
         mainScene.attachChild(sprite);
 //        mainScene.registerTouchArea(sprite);
     }

@@ -44,7 +44,7 @@ public class MainScene extends Scene {
         engine = getEngine();
         shipActivity = SpaceShipActivity.getInstance();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
-        hero = new Hero(shipActivity.getEngine());
+        hero = new Hero();
         hero.setStartPosition(new Point(0,250));
         addHeroMoveControl();
 
