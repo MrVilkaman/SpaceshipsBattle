@@ -18,9 +18,8 @@ import org.andengine.entity.scene.background.Background;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
 
-import java.util.Random;
-
 public class MainScene extends Scene {
+
     private final Hero hero;
 
     private static MainScene acitveScene;
@@ -41,8 +40,8 @@ public class MainScene extends Scene {
       //  BulletBase.initPool();
         /////////
         acitveScene = this;
-        engine = getEngine();
         shipActivity = SpaceShipActivity.getInstance();
+        engine = shipActivity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         hero = new Hero();
         hero.setStartPosition(new Point(0,250));
@@ -51,7 +50,13 @@ public class MainScene extends Scene {
         enemyController = new ObjectController<BaseUnit>();
 
         Enemy1 enemy1;
-        for (int i=0; i<10 ; ++i) {
+        enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(1200 , 250));
+        enemyController.add(enemy1);
+        enemy1 = new Enemy1();
+        enemy1.setStartPosition(new Point(1200 , 400));
+        enemyController.add(enemy1);
+        /*for (int i=0; i<10 ; ++i) {
             Random random = new Random();
             enemy1 = new Enemy1();
             enemy1.setStartPosition(new Point(1200 +i*300+ random.nextInt(5)*10, 250+ random.nextInt(5)*10));
@@ -68,7 +73,7 @@ public class MainScene extends Scene {
             enemy1 = new Enemy1();
             enemy1.setStartPosition(new Point(1300+i*300+ random.nextInt(5)*10, 270+ random.nextInt(5)*10));
             enemyController.add(enemy1);
-        }
+        }*/
 
         bulletController = new ObjectController<BulletBase>();
     }
@@ -97,9 +102,9 @@ public class MainScene extends Scene {
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
-                            hero.fire(true);
+                            hero.canFire(true);
                         } else if(pSceneTouchEvent.isActionUp()){
-                            hero.fire(false);
+                            hero.canFire(false);
                         }
                     }
                 });
@@ -145,4 +150,7 @@ public class MainScene extends Scene {
         return enemyController;
     }
 
+    public Hero getHero() {
+        return hero;
+    }
 }

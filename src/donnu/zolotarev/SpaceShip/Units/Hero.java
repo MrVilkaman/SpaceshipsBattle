@@ -33,9 +33,7 @@ public class Hero extends BaseUnit {
                     mY = yOld;
                 }
                 /// weapon cooldown
-                if (weaponController.isShoot()){
-                    weaponController.fire();
-                }
+               weaponController.weaponCooldown();
 
             }
         };
@@ -44,15 +42,17 @@ public class Hero extends BaseUnit {
         attachToScene();
     }
 
-    public void loadWeapon() {
+    @Override
+    protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
                 0), new WeaponPos(35, 70, 0)});
-        weaponController.loadWeapon(new SimpleGun(), 0);
-        weaponController.loadWeapon(new SimpleGun(), 1);
-        weaponController.loadWeapon(new SimpleGun(), 2);
+        weaponController.loadWeapon(new SimpleGun(true), 0);
+        weaponController.loadWeapon(new SimpleGun(true), 1);
+        weaponController.loadWeapon(new SimpleGun(true), 2);
     }
 
-    public void fire(boolean b) {
+    @Override
+    public void canFire(boolean b) {
         weaponController.setShoot(b);
     }
 

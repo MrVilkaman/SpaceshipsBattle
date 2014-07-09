@@ -8,6 +8,11 @@ public abstract class Guns {
     protected int ATTACK_INTERVAL;
     protected int shootDelay = 0;
     protected boolean isShoot = false;
+    private boolean targetUnit;
+
+    public Guns(boolean heroWeapon) {
+        targetUnit = heroWeapon;
+    }
 
     public void reload(){
         shootDelay = 0;
@@ -27,9 +32,9 @@ public abstract class Guns {
     protected void GetNewBullet(final float x, final float y, final float direction) {
         //    final SimpleBullet bullet;
         if (direction == 0){
-            SimpleBullet.getBullet().init(x, y, direction);
+            SimpleBullet.getBullet().init(x, y, direction, targetUnit);
         } else {
-            SimpleBullet2.getBullet().init(x, y, direction);
+            SimpleBullet2.getBullet().init(x, y, direction, targetUnit);
         }
     }
 }

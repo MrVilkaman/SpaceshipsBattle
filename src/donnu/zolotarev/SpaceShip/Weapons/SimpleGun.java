@@ -5,7 +5,8 @@ import donnu.zolotarev.SpaceShip.WeaponPos;
 public class SimpleGun extends Guns {
 
 
-    public SimpleGun() {
+    public SimpleGun(boolean heroWeapon) {
+        super(heroWeapon);
         ATTACK_INTERVAL = 5;
     }
 

@@ -28,7 +28,7 @@ public class WeaponController {
         return false;
     }
 
-    public void fire(){
+    private void fire(){
         for (int i = 0; i<weaponPoses.length;i++) {
             SimpleGun gun =  guns[i];
             if(gun !=null){
@@ -39,6 +39,7 @@ public class WeaponController {
             }
         }
     }
+
     private WeaponPos bufferWeaponPos;
 
     private void changePos(WeaponPos weaponPos){
@@ -58,7 +59,9 @@ public class WeaponController {
         }
     }
 
-    public boolean isShoot() {
-        return shoot;
+    public void weaponCooldown(){
+        if (shoot){
+            fire();
+        }
     }
 }

@@ -4,6 +4,7 @@ import donnu.zolotarev.SpaceShip.ICollisionObject;
 import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.shape.IShape;
@@ -21,6 +22,7 @@ public abstract class BulletBase implements ICollisionObject {
     protected static MainScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
+    private static Hero hero;
 
     protected Sprite sprite;
     private PhysicsHandler physicsHandler;
@@ -29,6 +31,7 @@ public abstract class BulletBase implements ICollisionObject {
 
     private int DEFAULT_SPEED;//1000;
     private int damage;
+    private boolean targetUnit;
 
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
@@ -36,6 +39,7 @@ public abstract class BulletBase implements ICollisionObject {
             main = MainScene.getAcitveScene();
             bulletController = main.getBulletController();
             enemyController = main.getEnemyController();
+            hero = main.getHero();
         }
         if (bulletBase.getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.registerPool(TYPE_SIMPLE_BULLET ,genericPool);
@@ -48,7 +52,7 @@ public abstract class BulletBase implements ICollisionObject {
         attachToScene();
     }
 
-    public void init(float x, float y, float direction) {
+    public void init(float x, float y, float direction, boolean unitTarget) {
         sprite.setPosition(x, y);
         sprite.setRotation(direction);
         physicsHandler.setVelocityY((float) (DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
@@ -56,6 +60,7 @@ public abstract class BulletBase implements ICollisionObject {
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         bulletController.add(this);
+        this.targetUnit = unitTarget;
     }
 
     protected void attachToScene() {
@@ -98,6 +103,24 @@ public abstract class BulletBase implements ICollisionObject {
     }
 
     protected void checkHit() {
+       if(targetUnit){
+           checkHitUnit();
+       }else{
+           checkHitHero();
+       }
+    }
+
+    private void checkHitHero() {
+        if (sprite.collidesWith(hero.getSprite())){
+            if (hero.addDamageAndCheckDeath(getDamage())){
+                hero.destroy();
+            }
+            deleteBullet();
+            bulletController.remove(this);
+        }
+    }
+
+    private void checkHitUnit() {
         Iterator<BaseUnit> col = enemyController.haveCollision(this);
         while (col.hasNext()){
             BaseUnit unit = col.next();

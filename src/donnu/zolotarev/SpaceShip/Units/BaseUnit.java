@@ -63,4 +63,8 @@ public abstract class BaseUnit implements ICollisionObject {
 
 
     public abstract boolean addDamageAndCheckDeath(int damage);
+
+    protected abstract void loadWeapon();
+
+    public abstract void canFire(boolean b);
 }
