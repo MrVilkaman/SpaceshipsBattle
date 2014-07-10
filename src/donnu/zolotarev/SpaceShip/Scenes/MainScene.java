@@ -125,7 +125,6 @@ public class MainScene extends Scene {
     }
 
 
-
     private void createHealthBar(){
         try {
             int y = SpaceShipActivity.getCameraHeight() - 32;

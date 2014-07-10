@@ -20,8 +20,9 @@ public class TextureLoader {
     private static TextureRegion simpleBulletTextureRegion;
     private static TextureRegion enemyShip;
 
-
     private static Font font;
+    private static TextureRegion menuResetTextureRegion;
+    private static TextureRegion menuQuitTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -42,10 +43,18 @@ public class TextureLoader {
                 TextureOptions.BILINEAR);
         simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
                 "simpleBullet.png", 0, 0);
+       // Шрифты
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
                 Typeface.DEFAULT, Typeface.BOLD), 32);
         font.load();
+        // Меню
 
+        BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 256, 128, TextureOptions.BILINEAR);
+        menuResetTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_reset.png", 0, 0);
+        menuQuitTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_quit.png", 0, 50);
+        menuTexture.load();
 
     }
 
@@ -71,5 +80,13 @@ public class TextureLoader {
 
     public static Font getFont() {
         return font;
+    }
+
+    public static TextureRegion getMenuResetTextureRegion() {
+        return menuResetTextureRegion;
+    }
+
+    public static TextureRegion getMenuQuitTextureRegion() {
+        return menuQuitTextureRegion;
     }
 }

@@ -2,7 +2,8 @@ package donnu.zolotarev.SpaceShip;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.Scenes.MainMenu;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
@@ -18,7 +19,7 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     private static int CAMERA_WIDTH = 1280;
     private static int CAMERA_HEIGHT = 720;
     private Camera camera;
-    private MainScene mainScene;
+    private MainMenu mainMenu;
     private static SpaceShipActivity instance;
 
     public static SpaceShipActivity getInstance() {
@@ -57,8 +58,8 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
 
     @Override
     protected Scene onCreateScene() {
-        mainScene = new MainScene();
-        return mainScene;
+        mainMenu = new MainMenu();
+        return mainMenu;
     }
 
     public static int getCameraWidth() {
@@ -76,6 +77,17 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     protected void onDestroy() {
         super.onDestroy();
         android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_MENU && event.getAction() == KeyEvent.ACTION_DOWN){
+            mainMenu.onKeyPressed(keyCode, event);
+            return true;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 
 }
