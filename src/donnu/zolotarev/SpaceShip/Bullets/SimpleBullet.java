@@ -49,7 +49,7 @@ public class SimpleBullet extends BulletBase {
         }
     }
 
-    public static SimpleBullet getBullet() {
+    public synchronized static SimpleBullet getBullet() {
         initPool();
         return (SimpleBullet) bulletsPool.obtainPoolItem(BulletBase.TYPE_SIMPLE_BULLET);
     }
