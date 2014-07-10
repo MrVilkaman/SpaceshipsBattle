@@ -1,7 +1,11 @@
 package donnu.zolotarev.SpaceShip.Textures;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import org.andengine.engine.Engine;
+import org.andengine.opengl.font.Font;
+import org.andengine.opengl.font.FontFactory;
+import org.andengine.opengl.font.FontManager;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
@@ -16,8 +20,12 @@ public class TextureLoader {
     private static TextureRegion simpleBulletTextureRegion;
     private static TextureRegion enemyShip;
 
+
+    private static Font font;
+
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
+        FontManager fm = engine.getFontManager();
         BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
         ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
         enemyShip = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
@@ -32,8 +40,11 @@ public class TextureLoader {
 
         BitmapTextureAtlas bulletTexture = new BitmapTextureAtlas(tm, 128, 128,
                 TextureOptions.BILINEAR);
-        simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
-                bulletTexture, context, "simpleBullet.png", 0, 0);
+        simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
+                "simpleBullet.png", 0, 0);
+        font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
+                Typeface.DEFAULT, Typeface.BOLD), 32);
+        font.load();
 
 
     }
@@ -56,5 +67,9 @@ public class TextureLoader {
 
     public static TextureRegion getEnemyShip() {
         return enemyShip;
+    }
+
+    public static Font getFont() {
+        return font;
     }
 }

@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.IHealthBar;
 import donnu.zolotarev.SpaceShip.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -16,7 +17,10 @@ import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
+import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
 
 import java.util.Random;
@@ -32,6 +36,7 @@ public class MainScene extends Scene {
     private final ObjectController bulletController;
 
     private SpaceShipActivity shipActivity;
+    private Text healthBar;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -46,7 +51,15 @@ public class MainScene extends Scene {
         shipActivity = SpaceShipActivity.getInstance();
         engine = shipActivity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
-        hero = new Hero();
+
+        createHealthBar();
+
+        hero = new Hero(new IHealthBar() {
+            @Override
+            public void updateHealthBar(int health) {
+               healthBar.setText(String.valueOf(health));
+            }
+        });
         hero.setStartPosition(new Point(0,250));
         addHeroMoveControl();
 
@@ -93,7 +106,39 @@ public class MainScene extends Scene {
                 });
             }
         });
+    }
 
+    public static MainScene getAcitveScene() {
+        return acitveScene;
+    }
+
+    public static Engine getEngine() {
+        return engine;
+    }
+
+    public ObjectController getEnemyController() {
+        return enemyController;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+
+
+    private void createHealthBar(){
+        try {
+            int y = SpaceShipActivity.getCameraHeight() - 32;
+            int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
+            Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            attachChild(text);
+            x += text.getWidth();
+            healthBar = new Text(x,y,TextureLoader.getFont(),"1234567890/",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            attachChild(healthBar);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void addHeroMoveControl() {
@@ -155,22 +200,4 @@ public class MainScene extends Scene {
         registerTouchArea(btnFire);
         registerTouchArea(btnFire2);
     }
-
-    public static MainScene getAcitveScene() {
-        return acitveScene;
-    }
-
-    public static Engine getEngine() {
-        return engine;
-    }
-
-    public ObjectController getEnemyController() {
-        return enemyController;
-    }
-
-    public Hero getHero() {
-        return hero;
-    }
-
-
 }

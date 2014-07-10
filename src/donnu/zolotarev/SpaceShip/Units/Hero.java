@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Units;
 
+import donnu.zolotarev.SpaceShip.IHealthBar;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.WeaponPos;
@@ -13,11 +14,17 @@ public class Hero extends BaseUnit {
 
     private final int SPEED = 500;
 
-   private boolean isAlive = true;
-    public Hero() {
+    private boolean isAlive = true;
+    private IHealthBar healthBar;
+
+    public Hero(IHealthBar healthBar) {
         super();
-        health = 100;
+        health = 1000;
         ///
+        this.healthBar = healthBar;
+
+        healthBar.updateHealthBar(health);
+
         sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
             public float xOld;
             public float yOld;
@@ -83,7 +90,11 @@ public class Hero extends BaseUnit {
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
         health -= damage;
-        return health < 0;
+        if(health < 0){
+            health = 0;
+        }
+        healthBar.updateHealthBar(health);
+        return health == 0;
     }
 
     public boolean isAlive() {
