@@ -13,8 +13,11 @@ public class Hero extends BaseUnit {
 
     private final int SPEED = 500;
 
+   private boolean isAlive = true;
     public Hero() {
         super();
+        health = 100;
+        ///
         sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
             public float xOld;
             public float yOld;
@@ -77,9 +80,19 @@ public class Hero extends BaseUnit {
         };
     }
 
-
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-        return false;
+        health -= damage;
+        return health < 0;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    @Override
+    public synchronized void destroy() {
+        isAlive = false;
+        super.destroy();
     }
 }

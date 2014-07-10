@@ -8,6 +8,8 @@ import org.andengine.entity.sprite.Sprite;
 
 public class Enemy1  extends BaseUnit {
 
+    private final int SPEED = 100;
+
     public Enemy1(){
         super();
         health = 500;
@@ -29,7 +31,7 @@ public class Enemy1  extends BaseUnit {
         sprite.setRotation(180);
 
         registerPhysicsHandler();
-       physicsHandler.setVelocityX(-100);
+       physicsHandler.setVelocityX(-1*SPEED);
 
     }
 
@@ -42,7 +44,7 @@ public class Enemy1  extends BaseUnit {
     @Override
     protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{
-                new WeaponPos(0,50,180)
+                new WeaponPos(5,45,180)
         });
         weaponController.setShoot(true);
         weaponController.loadWeapon(new SimpleGun(false), 0);

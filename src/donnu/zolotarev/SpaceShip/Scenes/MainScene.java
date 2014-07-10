@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -76,6 +77,21 @@ public class MainScene extends Scene {
         }*/
 
         bulletController = new ObjectController<BulletBase>();
+
+        BulletBase.setDieListener(new IHeroDieListener() {
+            @Override
+            public void heroDie() {
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(shipActivity,"ТЫ ПРОИГРАЛ!",Toast.LENGTH_SHORT).show();
+                        acitveScene.setIgnoreUpdate(true);
+                        bulletController.cleer();
+                    }
+                });
+            }
+        });
+
     }
 
     private void addHeroMoveControl() {
@@ -153,4 +169,6 @@ public class MainScene extends Scene {
     public Hero getHero() {
         return hero;
     }
+
+
 }

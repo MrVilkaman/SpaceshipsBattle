@@ -8,6 +8,9 @@ public class SimpleGun extends Guns {
     public SimpleGun(boolean heroWeapon) {
         super(heroWeapon);
         ATTACK_INTERVAL = 5;
+        if (!heroWeapon){
+            ATTACK_INTERVAL *= 20;
+        }
     }
 
     public void fire(WeaponPos weaponPos) {

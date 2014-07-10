@@ -1,16 +1,16 @@
 package donnu.zolotarev.SpaceShip;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ObjectController<E extends ICollisionObject> {
 
-    private HashSet<E> objects;
-    private HashSet<E> iShapes;
+    private ArrayList<E> objects;
+    private ArrayList<E> iShapes;
 
     public ObjectController() {
-       objects = new HashSet<E>();
-       iShapes = new HashSet<E>();
+       objects = new ArrayList<E>();
+       iShapes = new ArrayList<E>();
     }
 
     public Iterator<E> getObjects() {
@@ -22,13 +22,15 @@ public class ObjectController<E extends ICollisionObject> {
     }
 
     public synchronized void remove(E object){
+        object.destroy();
         objects.remove(object);
     }
 
     public synchronized void cleer(){
         Iterator<E> it = objects.iterator();
         while (it.hasNext()){
-           it.remove();
+            E obj = it.next();
+            obj.destroy();
         }
     }
 

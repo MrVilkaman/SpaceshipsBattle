@@ -16,15 +16,15 @@ public class SimpleBullet extends BulletBase {
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
                 if(this.mX < 0) {
-                    deleteBullet();
+                    destroy();
                 } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
-                    deleteBullet();
+                    destroy();
                 }
 
                 if(this.mY < 0) {
-                    deleteBullet();
+                    destroy();
                 } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
-                    deleteBullet();
+                    destroy();
                 }
 
                 checkHit();

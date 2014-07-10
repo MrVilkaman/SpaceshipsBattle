@@ -32,7 +32,7 @@ public abstract class BaseUnit implements ICollisionObject {
 //        mainScene.registerTouchArea(sprite);
     }
 
-    public void setStartPosition(Point point){
+    public  void setStartPosition(Point point){
         sprite.setX(point.x);
         sprite.setY(point.y);
     }
@@ -43,6 +43,7 @@ public abstract class BaseUnit implements ICollisionObject {
         return physicsHandler;
     }
 
+    @Override
     public synchronized void destroy(){
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
@@ -52,8 +53,7 @@ public abstract class BaseUnit implements ICollisionObject {
                 Scene mainScene = MainScene.getAcitveScene();
                 mainScene.detachChild(sprite);
             }});
-            //        mainScene.unregisterTouchArea(sprite);
-     //   mainScene.getEnemyController().remove(this);
+
     }
 
     @Override

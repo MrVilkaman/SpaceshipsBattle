@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.ICollisionObject;
+import donnu.zolotarev.SpaceShip.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
@@ -24,14 +25,20 @@ public abstract class BulletBase implements ICollisionObject {
     private static ObjectController enemyController;
     private static Hero hero;
 
+    private static IHeroDieListener dieListener;
+
     protected Sprite sprite;
     private PhysicsHandler physicsHandler;
     protected static MultiPool bulletsPool;
 
 
-    private int DEFAULT_SPEED;//1000;
+    private int DEFAULT_SPEED;
     private int damage;
     private boolean targetUnit;
+
+    public static void setDieListener(IHeroDieListener listener){
+        dieListener = listener;
+    }
 
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
@@ -72,14 +79,12 @@ public abstract class BulletBase implements ICollisionObject {
         physicsHandler = new PhysicsHandler(sprite);
         sprite.registerUpdateHandler(physicsHandler);
         sprite.setIgnoreUpdate(true);
-
     }
 
-
-    public synchronized void deleteBullet(){
-        sprite.setVisible(false); //это не обязательно делать здесь.
-        sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
-     //   main.getBulletController().remove(this);
+    @Override
+    public synchronized void destroy(){
+        sprite.setVisible(false);
+        sprite.setIgnoreUpdate(true);
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
         }else if (getClass().getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
@@ -112,10 +117,11 @@ public abstract class BulletBase implements ICollisionObject {
 
     private void checkHitHero() {
         if (sprite.collidesWith(hero.getSprite())){
-            if (hero.addDamageAndCheckDeath(getDamage())){
+            if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
+                dieListener.heroDie();
                 hero.destroy();
             }
-            deleteBullet();
+            destroy();
             bulletController.remove(this);
         }
     }
@@ -125,10 +131,10 @@ public abstract class BulletBase implements ICollisionObject {
         while (col.hasNext()){
             BaseUnit unit = col.next();
             if (unit.addDamageAndCheckDeath(getDamage())){
-                unit.destroy();
                 col.remove();
+                unit.destroy();
             }
-            deleteBullet();
+            destroy();
             bulletController.remove(this);
         }
     }
