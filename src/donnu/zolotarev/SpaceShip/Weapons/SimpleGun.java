@@ -2,6 +2,8 @@ package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
+import java.util.Random;
+
 public class SimpleGun extends Guns {
 
 
@@ -9,7 +11,8 @@ public class SimpleGun extends Guns {
         super(heroWeapon);
         ATTACK_INTERVAL = 5;
         if (!heroWeapon){
-            ATTACK_INTERVAL *= 20;
+            Random random = new Random(this.hashCode());
+            ATTACK_INTERVAL *= 18 + random.nextInt(5);
         }
     }
 

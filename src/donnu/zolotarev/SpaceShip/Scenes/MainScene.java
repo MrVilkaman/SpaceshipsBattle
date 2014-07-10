@@ -19,6 +19,8 @@ import org.andengine.entity.scene.background.Background;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.color.Color;
 
+import java.util.Random;
+
 public class MainScene extends Scene {
 
     private final Hero hero;
@@ -51,13 +53,13 @@ public class MainScene extends Scene {
         enemyController = new ObjectController<BaseUnit>();
 
         Enemy1 enemy1;
-        enemy1 = new Enemy1();
+        /*enemy1 = new Enemy1();
         enemy1.setStartPosition(new Point(1200 , 250));
         enemyController.add(enemy1);
         enemy1 = new Enemy1();
         enemy1.setStartPosition(new Point(1200 , 400));
-        enemyController.add(enemy1);
-        /*for (int i=0; i<10 ; ++i) {
+        enemyController.add(enemy1);*/
+        for (int i=0; i<3 ; ++i) {
             Random random = new Random();
             enemy1 = new Enemy1();
             enemy1.setStartPosition(new Point(1200 +i*300+ random.nextInt(5)*10, 250+ random.nextInt(5)*10));
@@ -74,7 +76,7 @@ public class MainScene extends Scene {
             enemy1 = new Enemy1();
             enemy1.setStartPosition(new Point(1300+i*300+ random.nextInt(5)*10, 270+ random.nextInt(5)*10));
             enemyController.add(enemy1);
-        }*/
+        }
 
         bulletController = new ObjectController<BulletBase>();
 
