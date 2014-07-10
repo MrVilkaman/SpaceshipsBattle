@@ -90,4 +90,7 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         }
     }
 
+    public void exit() {
+        onDestroy();
+    }
 }

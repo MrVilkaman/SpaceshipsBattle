@@ -17,6 +17,7 @@ public class MainMenu extends Scene {
 
     private final SpaceShipActivity activity;
     private final Engine engine;
+    private MainScene mainScene;
     private MenuScene menuScene;
 
     public MainMenu() {
@@ -25,6 +26,7 @@ public class MainMenu extends Scene {
         setBackground(new Background(0.9f, 0.9f, 0.9f));;
         createMenuScene();
         setChildScene(menuScene, false, true, true);
+
     }
 
     protected void createMenuScene() {
@@ -52,10 +54,13 @@ public class MainMenu extends Scene {
                     float pMenuItemLocalY) {
                 switch (pMenuItem.getID()){
                     case MENU_RESET:
-                    setChildScene(new MainScene());
+                        if (mainScene == null){
+                            mainScene = new MainScene();
+                        }
+                    setChildScene(mainScene,false,true,true);
                         break;
                     case MENU_QUIT:
-                        //
+                        activity.exit();
                         break;
                 }
                 return false;
@@ -64,12 +69,8 @@ public class MainMenu extends Scene {
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
-        /*if(hasChildScene()) {
-				*//* Remove the menu and reset it. *//*
-            this.menuScene.back();
-        } else {
-				*//* Attach the menu. *//*
-            setChildScene(this.menuScene, false, true, true);
-        }*/
+        if (mainScene != null){
+            mainScene.onKeyPressed(keyCode, event);
+        }
     }
 }

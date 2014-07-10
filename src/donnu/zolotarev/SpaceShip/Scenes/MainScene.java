@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
 import android.opengl.GLES20;
+import android.view.KeyEvent;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.IHealthBar;
@@ -17,6 +18,9 @@ import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.scene.menu.item.IMenuItem;
+import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
@@ -27,6 +31,8 @@ import java.util.Random;
 
 public class MainScene extends Scene {
 
+    private static final int MENU_RESET = 0;
+    private static final int MENU_QUIT = MENU_RESET + 1;
     private final Hero hero;
 
     private static MainScene acitveScene;
@@ -37,6 +43,7 @@ public class MainScene extends Scene {
 
     private SpaceShipActivity shipActivity;
     private Text healthBar;
+    private MenuScene menuScene;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -106,6 +113,8 @@ public class MainScene extends Scene {
                 });
             }
         });
+
+        createMenuScene();
     }
 
     public static MainScene getAcitveScene() {
@@ -199,4 +208,52 @@ public class MainScene extends Scene {
         registerTouchArea(btnFire);
         registerTouchArea(btnFire2);
     }
+
+    protected void createMenuScene() {
+        this.menuScene = new MenuScene(shipActivity.getCamera());
+
+        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_RESET, TextureLoader.getMenuResetTextureRegion(),
+                engine.getVertexBufferObjectManager());
+        resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+        this.menuScene.addMenuItem(resetMenuItem);
+
+        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_QUIT, TextureLoader.getMenuQuitTextureRegion(),
+                engine.getVertexBufferObjectManager());
+        quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+        this.menuScene.addMenuItem(quitMenuItem);
+
+        this.menuScene.buildAnimations();
+
+        this.menuScene.setBackgroundEnabled(false);
+
+        this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
+
+
+            @Override
+            public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
+                    float pMenuItemLocalY) {
+                switch (pMenuItem.getID()) {
+                    case MENU_RESET:
+                        /* Restart the animation. */
+                        acitveScene.reset();
+
+				/* Remove the menu and reset it. */
+                        acitveScene.clearChildScene();
+                        menuScene.reset();
+                        break;
+                    case MENU_QUIT:
+                        //  activity.exit();
+                        break;
+                }
+                return false;
+            }
+        });
+    }
+
+    public void onKeyPressed(int keyCode, KeyEvent event) {
+
+            acitveScene.setChildScene(menuScene, false, true, true);
+
+    }
+
 }
