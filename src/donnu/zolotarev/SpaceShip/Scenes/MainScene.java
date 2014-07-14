@@ -49,6 +49,7 @@ public class MainScene extends Scene implements IAddedEnemy {
     private AnalogOnScreenControl analogOnScreenControl;
     private boolean isShowMenuScene = false;
     private WaveController waveController;
+    private boolean isVictory = false;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -109,11 +110,11 @@ public class MainScene extends Scene implements IAddedEnemy {
     private void updateWave(float pSecondsElapsed) {
         if (!waveController.isEmpty()){
             if (_currentWave == null ){
-                //if ( UnitBase.enemiesOnMap < 3){
+                if ( BaseUnit.getEnemiesOnMap() < 3){
                     _currentWave  = waveController.getNextWave();
                     _currentWave.startWave();
 //                    _game.changeWaveInfo(_waveIndex,_waves.length);
-                //}
+                }
             } else {
                 _currentWave.update(pSecondsElapsed);
 
@@ -123,10 +124,17 @@ public class MainScene extends Scene implements IAddedEnemy {
                 }
             }
         } else {
-          /*  if (!UnitBase.enemiesOnMap && !_isVictory ){
-                _isVictory = true;
-                _game.dispatchEvent(new Event(Game.GAME_WIN));
-            }*/
+            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
+                isVictory = true;
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(shipActivity,"ТЫ выиграл!",Toast.LENGTH_SHORT).show();
+                        acitveScene.setIgnoreUpdate(true);
+                        bulletController.cleer();
+                    }
+                });
+            }
         }
     }
 

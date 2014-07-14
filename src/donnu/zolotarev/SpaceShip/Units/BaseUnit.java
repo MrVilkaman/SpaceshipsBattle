@@ -20,6 +20,7 @@ public abstract class BaseUnit implements ICollisionObject {
     protected Engine engine;
 
     protected int health;
+    private static int enemiesOnMap = -1; // -1 потому, что герой
 
     public BaseUnit() {
         mainScene = MainScene.getAcitveScene();
@@ -27,7 +28,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     protected void attachToScene() {
-
+        enemiesOnMap++;
         mainScene.attachChild(sprite);
 //        mainScene.registerTouchArea(sprite);
     }
@@ -45,6 +46,7 @@ public abstract class BaseUnit implements ICollisionObject {
 
     @Override
     public synchronized void destroy(){
+        enemiesOnMap--;
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
         SpaceShipActivity.getInstance().runOnUpdateThread(new Runnable() {
@@ -53,7 +55,6 @@ public abstract class BaseUnit implements ICollisionObject {
                 Scene mainScene = MainScene.getAcitveScene();
                 mainScene.detachChild(sprite);
             }});
-
     }
 
     @Override
@@ -67,4 +68,8 @@ public abstract class BaseUnit implements ICollisionObject {
     protected abstract void loadWeapon();
 
     public abstract void canFire(boolean b);
+
+    public static int getEnemiesOnMap() {
+        return enemiesOnMap;
+    }
 }
