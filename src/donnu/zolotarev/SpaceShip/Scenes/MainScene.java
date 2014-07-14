@@ -44,6 +44,7 @@ public class MainScene extends Scene {
     private MenuScene menuScene;
 
     private AnalogOnScreenControl analogOnScreenControl;
+    private boolean isShowMenuScene = false;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -132,7 +133,6 @@ public class MainScene extends Scene {
     public Hero getHero() {
         return hero;
     }
-
 
     private void createHealthBar(){
         try {
@@ -236,14 +236,12 @@ public class MainScene extends Scene {
                         /* Restart the animation. */
                        //acitveScene.reset();
                         acitveScene.detachChild(menuScene);
-				/* Remove the menu and reset it. */
-                      //  menuScene.reset();
                         acitveScene.setChildScene(analogOnScreenControl);
+                        isShowMenuScene = false;
                         //menuScene = null;
                         break;
                     case MENU_QUIT:
-                        //  activity.exit();
-                        parrentScene.returnToParentScene();
+                        returnToParentScene();
                         break;
                 }
                 return true;
@@ -251,8 +249,21 @@ public class MainScene extends Scene {
         });
     }
 
+    private void returnToParentScene(){
+        enemyController.cleer();
+        bulletController.cleer();
+        parrentScene.returnToParentScene();
+    }
+
     public void onKeyPressed(int keyCode, KeyEvent event) {
-        setChildScene(menuScene, false, true, true);
+        if (!isShowMenuScene){
+            isShowMenuScene = true;
+            setChildScene(menuScene, false, true, true);
+        }else{
+            isShowMenuScene = false;
+            acitveScene.detachChild(menuScene);
+            acitveScene.setChildScene(analogOnScreenControl);
+        }
     }
 
 }

@@ -82,7 +82,7 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_MENU && event.getAction() == KeyEvent.ACTION_DOWN){
+        if((keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_BACK ) && event.getAction() == KeyEvent.ACTION_DOWN){
             mainMenu.onKeyPressed(keyCode, event);
             return true;
         }else {

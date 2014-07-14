@@ -90,8 +90,12 @@ public class MainMenu extends Scene implements IParentScene {
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
+
         if (mainScene != null){
             mainScene.onKeyPressed(keyCode, event);
+        }else if(keyCode == KeyEvent.KEYCODE_BACK ){
+         // Диалог выхода
+            activity.finish();
         }
     }
 
