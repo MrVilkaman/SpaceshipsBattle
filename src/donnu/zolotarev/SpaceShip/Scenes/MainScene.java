@@ -28,8 +28,8 @@ import java.util.Random;
 
 public class MainScene extends Scene {
 
-    private static final int MENU_RESET = 0;
-    private static final int MENU_QUIT = MENU_RESET + 1;
+    private static final int MENU_RESUME = 0;
+    private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
     private final Hero hero;
 
     private static MainScene acitveScene;
@@ -211,12 +211,12 @@ public class MainScene extends Scene {
     protected void createMenuScene() {
         this.menuScene = new MenuScene(shipActivity.getCamera());
 
-        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_RESET, TextureLoader.getMenuResetTextureRegion(),
+        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_RESUME, TextureLoader.getMenuResumeTextureRegion(),
                 engine.getVertexBufferObjectManager());
         resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(resetMenuItem);
 
-        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_QUIT, TextureLoader.getMenuQuitTextureRegion(),
+        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_BACK_TO_MAIN, TextureLoader.getMenuBackToMainMenuTextureRegion(),
                 engine.getVertexBufferObjectManager());
         quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(quitMenuItem);
@@ -232,7 +232,7 @@ public class MainScene extends Scene {
             public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
                     float pMenuItemLocalY) {
                 switch (pMenuItem.getID()) {
-                    case MENU_RESET:
+                    case MENU_RESUME:
                         /* Restart the animation. */
                        //acitveScene.reset();
                         acitveScene.detachChild(menuScene);
@@ -240,7 +240,7 @@ public class MainScene extends Scene {
                         isShowMenuScene = false;
                         //menuScene = null;
                         break;
-                    case MENU_QUIT:
+                    case MENU_BACK_TO_MAIN:
                         returnToParentScene();
                         break;
                 }
