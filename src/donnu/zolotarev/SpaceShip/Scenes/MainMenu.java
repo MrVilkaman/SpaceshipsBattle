@@ -2,21 +2,28 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.IParentScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.Engine;
+import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
+import org.andengine.input.touch.TouchEvent;
+import org.andengine.util.HorizontalAlign;
 
-public class MainMenu extends Scene {
+public class MainMenu extends Scene implements IParentScene {
     private static final int MENU_RESET = 0;
     private static final int MENU_QUIT = MENU_RESET + 1;
 
     private final SpaceShipActivity activity;
     private final Engine engine;
+    private final Text text;
     private MainScene mainScene;
     private MenuScene menuScene;
 
@@ -25,7 +32,19 @@ public class MainMenu extends Scene {
         engine = activity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));;
         createMenuScene();
-        setChildScene(menuScene, false, true, true);
+
+
+        text = new Text(500,300,TextureLoader.getFont(),"Коснитесь для продолжения!",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+        attachChild(text);
+        text.setVisible(true);
+        setOnSceneTouchListener(new IOnSceneTouchListener() {
+            @Override
+            public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+                text.setVisible(false);
+                setChildScene(menuScene, false, true, true);
+                return true;
+            }
+        });
 
     }
 
@@ -46,6 +65,7 @@ public class MainMenu extends Scene {
 
         this.menuScene.setBackgroundEnabled(false);
 
+        final IParentScene self = this;
         this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
 
 
@@ -55,8 +75,9 @@ public class MainMenu extends Scene {
                 switch (pMenuItem.getID()){
                     case MENU_RESET:
                         if (mainScene == null){
-                            mainScene = new MainScene();
+                            mainScene = new MainScene(self);
                         }
+                        text.setVisible(true);
                     setChildScene(mainScene,false,true,true);
                         break;
                     case MENU_QUIT:
@@ -72,5 +93,14 @@ public class MainMenu extends Scene {
         if (mainScene != null){
             mainScene.onKeyPressed(keyCode, event);
         }
+    }
+
+    @Override
+    public void returnToParentScene() {
+        mainScene.clearTouchAreas();
+        mainScene.clearEntityModifiers();
+        mainScene.clearUpdateHandlers();
+        mainScene.back();
+        mainScene = null;
     }
 }

@@ -4,11 +4,8 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.view.KeyEvent;
 import android.widget.Toast;
+import donnu.zolotarev.SpaceShip.*;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
-import donnu.zolotarev.SpaceShip.IHealthBar;
-import donnu.zolotarev.SpaceShip.IHeroDieListener;
-import donnu.zolotarev.SpaceShip.ObjectController;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
@@ -40,6 +37,7 @@ public class MainScene extends Scene {
 
     private final ObjectController enemyController;
     private final ObjectController bulletController;
+    private final IParentScene parrentScene;
 
     private SpaceShipActivity shipActivity;
     private Text healthBar;
@@ -51,9 +49,9 @@ public class MainScene extends Scene {
         return bulletController;
     }
 
-    public MainScene() {
+    public MainScene(IParentScene self) {
         //super();
-
+        parrentScene = self;
       //  BulletBase.initPool();
         /////////
         acitveScene = this;
@@ -245,8 +243,7 @@ public class MainScene extends Scene {
                         break;
                     case MENU_QUIT:
                         //  activity.exit();
-                        acitveScene.detachChild(menuScene);
-                        acitveScene.back();
+                        parrentScene.returnToParentScene();
                         break;
                 }
                 return true;
@@ -255,9 +252,7 @@ public class MainScene extends Scene {
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
-
-            setChildScene(menuScene, false, true, true);
-
+        setChildScene(menuScene, false, true, true);
     }
 
 }
