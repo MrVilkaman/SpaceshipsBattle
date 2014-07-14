@@ -4,12 +4,15 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.view.KeyEvent;
 import android.widget.Toast;
-import donnu.zolotarev.SpaceShip.*;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.*;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
+import donnu.zolotarev.SpaceShip.Waves.UnitWave;
+import donnu.zolotarev.SpaceShip.Waves.WaveController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.entity.primitive.Rectangle;
@@ -26,7 +29,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Random;
 
-public class MainScene extends Scene {
+public class MainScene extends Scene implements IAddedEnemy {
 
     private static final int MENU_RESUME = 0;
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
@@ -45,6 +48,7 @@ public class MainScene extends Scene {
 
     private AnalogOnScreenControl analogOnScreenControl;
     private boolean isShowMenuScene = false;
+    private WaveController waveController;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -73,31 +77,7 @@ public class MainScene extends Scene {
 
         enemyController = new ObjectController<BaseUnit>();
 
-        Enemy1 enemy1;
-        /*enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1200 , 250));
-        enemyController.add(enemy1);
-        enemy1 = new Enemy1();
-        enemy1.setStartPosition(new Point(1200 , 400));
-        enemyController.add(enemy1);*/
-        for (int i=0; i<3 ; ++i) {
-            Random random = new Random();
-            enemy1 = new Enemy1();
-            enemy1.setStartPosition(new Point(1200 +i*300+ random.nextInt(5)*10, 250+ random.nextInt(5)*10));
-            enemyController.add(enemy1);
-
-            enemy1 = new Enemy1();
-            enemy1.setStartPosition(new Point(1100+i*340+ random.nextInt(5)*10, 300+ random.nextInt(5)*10));
-            enemyController.add(enemy1);
-
-            enemy1 = new Enemy1();
-            enemy1.setStartPosition(new Point(1200+i*290+ random.nextInt(5)*10, 100+ random.nextInt(5)*10));
-            enemyController.add(enemy1);
-
-            enemy1 = new Enemy1();
-            enemy1.setStartPosition(new Point(1300+i*300+ random.nextInt(5)*10, 270+ random.nextInt(5)*10));
-            enemyController.add(enemy1);
-        }
+        initWave();
 
         bulletController = new ObjectController<BulletBase>();
 
@@ -116,6 +96,57 @@ public class MainScene extends Scene {
         });
 
         createMenuScene();
+    }
+
+    @Override
+    protected void onManagedUpdate(float pSecondsElapsed) {
+       updateWave(pSecondsElapsed);
+        super.onManagedUpdate(pSecondsElapsed);
+    }
+
+
+    UnitWave _currentWave = null;
+    private void updateWave(float pSecondsElapsed) {
+        if (!waveController.isEmpty()){
+            if (_currentWave == null ){
+                //if ( UnitBase.enemiesOnMap < 3){
+                    _currentWave  = waveController.getNextWave();
+                    _currentWave.startWave();
+//                    _game.changeWaveInfo(_waveIndex,_waves.length);
+                //}
+            } else {
+                _currentWave.update(pSecondsElapsed);
+
+                if (_currentWave.isFinished()){
+                    waveController.waveEnds();
+                    _currentWave = null;
+                }
+            }
+        } else {
+          /*  if (!UnitBase.enemiesOnMap && !_isVictory ){
+                _isVictory = true;
+                _game.dispatchEvent(new Event(Game.GAME_WIN));
+            }*/
+        }
+    }
+
+    private void initWave() {
+        waveController = new WaveController();
+
+        UnitWave unitWave = new UnitWave(this);
+        unitWave.addEnemy(0,10,1);
+        unitWave.addDelay(5);
+        unitWave.addEnemy(0,10,0.1f);
+
+        waveController.addWave(unitWave);
+
+    }
+
+    public void addEnemy(int kind){
+        Enemy1 enemy1 = new Enemy1();
+        Random random = new Random();
+        enemy1.setStartPosition(new Point(1300, random.nextInt(65)*10));
+        enemyController.add(enemy1);
     }
 
     public static MainScene getAcitveScene() {
