@@ -45,6 +45,8 @@ public class MainScene extends Scene {
     private Text healthBar;
     private MenuScene menuScene;
 
+    private AnalogOnScreenControl analogOnScreenControl;
+
     public  ObjectController  getBulletController() {
         return bulletController;
     }
@@ -150,7 +152,7 @@ public class MainScene extends Scene {
     }
 
     private void addHeroMoveControl() {
-        final AnalogOnScreenControl analogOnScreenControl = new AnalogOnScreenControl(30,
+        analogOnScreenControl = new AnalogOnScreenControl(30,
                 SpaceShipActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 30,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
@@ -163,7 +165,6 @@ public class MainScene extends Scene {
         analogOnScreenControl.getControlKnob().setScale(1.25f);
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
-
 
         Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-230,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
@@ -203,10 +204,10 @@ public class MainScene extends Scene {
         btnFire.setAlpha(0.5f);
         btnFire2.setColor(Color.BLACK);
         btnFire2.setAlpha(0.5f);
-        attachChild(btnFire);
-        attachChild(btnFire2);
-        registerTouchArea(btnFire);
-        registerTouchArea(btnFire2);
+        analogOnScreenControl.attachChild(btnFire);
+        analogOnScreenControl.attachChild(btnFire2);
+        analogOnScreenControl.registerTouchArea(btnFire);
+        analogOnScreenControl.registerTouchArea(btnFire2);
     }
 
     protected void createMenuScene() {
@@ -235,24 +236,27 @@ public class MainScene extends Scene {
                 switch (pMenuItem.getID()) {
                     case MENU_RESET:
                         /* Restart the animation. */
-                        acitveScene.reset();
-
+                       //acitveScene.reset();
+                        acitveScene.detachChild(menuScene);
 				/* Remove the menu and reset it. */
-                        acitveScene.clearChildScene();
-                        menuScene.reset();
+                      //  menuScene.reset();
+                        acitveScene.setChildScene(analogOnScreenControl);
+                        //menuScene = null;
                         break;
                     case MENU_QUIT:
                         //  activity.exit();
+                        acitveScene.detachChild(menuScene);
+                        acitveScene.back();
                         break;
                 }
-                return false;
+                return true;
             }
         });
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
 
-            acitveScene.setChildScene(menuScene, false, true, true);
+            setChildScene(menuScene, false, true, true);
 
     }
 
