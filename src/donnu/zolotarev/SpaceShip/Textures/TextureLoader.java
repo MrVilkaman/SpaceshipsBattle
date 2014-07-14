@@ -21,8 +21,10 @@ public class TextureLoader {
     private static TextureRegion enemyShip;
 
     private static Font font;
-    private static TextureRegion menuResetTextureRegion;
-    private static TextureRegion menuQuitTextureRegion;
+    private static TextureRegion menuResumeTextureRegion;
+    private static TextureRegion menuExitTextureRegion;
+    private static TextureRegion menuNewGameTextureRegion;
+    private static TextureRegion menuBackToMainMenuTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -49,11 +51,15 @@ public class TextureLoader {
         font.load();
         // Меню
 
-        BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 256, 128, TextureOptions.BILINEAR);
-        menuResetTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
-                , "menu_reset.png", 0, 0);
-        menuQuitTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
-                , "menu_quit.png", 0, 50);
+        BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
+        menuResumeTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_resume.png", 0, 0);
+        menuExitTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_exit.png", 0, 51);
+        menuNewGameTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_new_game.png", 0, 102);
+        menuBackToMainMenuTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_to_mainmenu.png", 0, 153);
         menuTexture.load();
 
     }
@@ -82,11 +88,19 @@ public class TextureLoader {
         return font;
     }
 
-    public static TextureRegion getMenuResetTextureRegion() {
-        return menuResetTextureRegion;
+    public static TextureRegion getMenuResumeTextureRegion() {
+        return menuResumeTextureRegion;
     }
 
-    public static TextureRegion getMenuQuitTextureRegion() {
-        return menuQuitTextureRegion;
+    public static TextureRegion getMenuExitTextureRegion() {
+        return menuExitTextureRegion;
+    }
+
+    public static TextureRegion getMenuNewGameTextureRegion() {
+        return menuNewGameTextureRegion;
+    }
+
+    public static TextureRegion getMenuBackToMainMenuTextureRegion() {
+        return menuBackToMainMenuTextureRegion;
     }
 }

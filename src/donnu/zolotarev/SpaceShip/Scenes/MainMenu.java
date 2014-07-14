@@ -18,8 +18,8 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.HorizontalAlign;
 
 public class MainMenu extends Scene implements IParentScene {
-    private static final int MENU_RESET = 0;
-    private static final int MENU_QUIT = MENU_RESET + 1;
+    private static final int MENU_NEWGAME = 0;
+    private static final int MENU_EXIT = MENU_NEWGAME + 1;
 
     private final SpaceShipActivity activity;
     private final Engine engine;
@@ -30,11 +30,12 @@ public class MainMenu extends Scene implements IParentScene {
     public MainMenu() {
         activity = SpaceShipActivity.getInstance();
         engine = activity.getEngine();
-        setBackground(new Background(0.9f, 0.9f, 0.9f));;
+        setBackground(new Background(0.9f, 0.9f, 0.9f));
         createMenuScene();
 
 
-        text = new Text(500,300,TextureLoader.getFont(),"Коснитесь для продолжения!",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+        text = new Text(450,SpaceShipActivity.getCameraHeight()-100,
+                TextureLoader.getFont(),"Коснитесь для продолжения!",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
         attachChild(text);
         text.setVisible(true);
         setOnSceneTouchListener(new IOnSceneTouchListener() {
@@ -51,12 +52,12 @@ public class MainMenu extends Scene implements IParentScene {
     protected void createMenuScene() {
         this.menuScene = new MenuScene(activity.getCamera());
 
-        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_RESET, TextureLoader.getMenuResetTextureRegion(),
+        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_NEWGAME, TextureLoader.getMenuNewGameTextureRegion(),
                 engine.getVertexBufferObjectManager());
         resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(resetMenuItem);
 
-        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_QUIT, TextureLoader.getMenuQuitTextureRegion(),
+        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_EXIT, TextureLoader.getMenuExitTextureRegion(),
                 engine.getVertexBufferObjectManager());
         quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(quitMenuItem);
@@ -73,14 +74,14 @@ public class MainMenu extends Scene implements IParentScene {
             public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
                     float pMenuItemLocalY) {
                 switch (pMenuItem.getID()){
-                    case MENU_RESET:
+                    case MENU_NEWGAME:
                         if (mainScene == null){
                             mainScene = new MainScene(self);
                         }
                         text.setVisible(true);
                     setChildScene(mainScene,false,true,true);
                         break;
-                    case MENU_QUIT:
+                    case MENU_EXIT:
                         activity.exit();
                         break;
                 }

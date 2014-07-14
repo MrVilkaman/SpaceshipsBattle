@@ -28,7 +28,6 @@ public class Enemy1  extends BaseUnit {
         };
         attachToScene();
         loadWeapon();
-        sprite.setRotation(180);
 
         registerPhysicsHandler();
        physicsHandler.setVelocityX(-1*SPEED);
