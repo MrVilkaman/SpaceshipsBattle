@@ -6,9 +6,8 @@ import java.util.Random;
 
 public class SimpleGun extends Guns {
 
-
-    public SimpleGun(boolean heroWeapon) {
-        super(heroWeapon);
+    public SimpleGun(boolean heroWeapon, int bullitType) {
+        super(heroWeapon,bullitType);
         ATTACK_INTERVAL = 5;
         if (!heroWeapon){
             Random random = new Random(this.hashCode());

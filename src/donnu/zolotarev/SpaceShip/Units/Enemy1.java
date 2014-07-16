@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Units;
 
+import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
@@ -46,7 +47,7 @@ public class Enemy1  extends BaseUnit {
                 new WeaponPos(5,45,180)
         });
         weaponController.setShoot(true);
-        weaponController.loadWeapon(new SimpleGun(false), 0);
+        weaponController.loadWeapon(new SimpleGun(false, BulletBase.TYPE_SIMPLE_BULLET), 0);
     }
 
     @Override
