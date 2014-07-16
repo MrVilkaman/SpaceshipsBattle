@@ -55,7 +55,7 @@ public class Hero extends BaseUnit {
     @Override
     protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
-                0), new WeaponPos(35, 70, 0)});
+                -5), new WeaponPos(35, 70, 5)});
         weaponController.loadWeapon(new SimpleGun(true), 0);
         weaponController.loadWeapon(new SimpleGun(true), 1);
         weaponController.loadWeapon(new SimpleGun(true), 2);

@@ -35,7 +35,7 @@ public class SimpleBullet2 extends BulletBase {
         settings();
     }
 
-    private static void initBullet() {
+    public static void initPool() {
         if (!isRegistredPool){
             isRegistredPool = true;
             registredPool(SimpleBullet2.class,new GenericPool() {
@@ -47,8 +47,5 @@ public class SimpleBullet2 extends BulletBase {
         }
     }
 
-    public static SimpleBullet2 getBullet() {
-        initBullet();
-        return (SimpleBullet2) bulletsPool.obtainPoolItem(BulletBase.TYPE_SIMPLE_BULLET_2);
-    }
+
 }

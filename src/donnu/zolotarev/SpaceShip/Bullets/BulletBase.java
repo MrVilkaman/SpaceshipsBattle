@@ -139,4 +139,9 @@ public abstract class BulletBase implements ICollisionObject {
         }
     }
 
+    public static BulletBase getBullet(int bulletType) {
+
+        return (BulletBase)bulletsPool.obtainPoolItem(bulletType);
+    }
+
 }

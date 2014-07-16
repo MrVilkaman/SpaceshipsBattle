@@ -5,6 +5,8 @@ import android.opengl.GLES20;
 import android.view.KeyEvent;
 import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
 import donnu.zolotarev.SpaceShip.*;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
@@ -82,6 +84,8 @@ public class MainScene extends Scene implements IAddedEnemy {
 
         bulletController = new ObjectController<BulletBase>();
 
+        SimpleBullet.initPool();
+        SimpleBullet2.initPool();
         BulletBase.setDieListener(new IHeroDieListener() {
             @Override
             public void heroDie() {

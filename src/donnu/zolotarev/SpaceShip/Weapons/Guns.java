@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
+import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
 public abstract class Guns {
@@ -31,10 +30,12 @@ public abstract class Guns {
 
     protected void GetNewBullet(final float x, final float y, final float direction) {
         //    final SimpleBullet bullet;
+        int type;
         if (direction == 0){
-            SimpleBullet.getBullet().init(x, y, direction, targetUnit);
+            type = BulletBase.TYPE_SIMPLE_BULLET;
         } else {
-            SimpleBullet2.getBullet().init(x, y, direction, targetUnit);
+            type = BulletBase.TYPE_SIMPLE_BULLET_2;
         }
+        BulletBase.getBullet(type).init(x, y, direction, targetUnit);
     }
 }
