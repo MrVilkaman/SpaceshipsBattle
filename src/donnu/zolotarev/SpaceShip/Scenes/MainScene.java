@@ -130,8 +130,8 @@ public class MainScene extends Scene implements IAddedEnemy {
                     @Override
                     public void run() {
                         Toast.makeText(shipActivity,"ТЫ выиграл!",Toast.LENGTH_SHORT).show();
-                        acitveScene.setIgnoreUpdate(true);
-                        bulletController.cleer();
+                      //  acitveScene.setIgnoreUpdate(true);
+                      //  bulletController.cleer();
                     }
                 });
             }
@@ -144,7 +144,16 @@ public class MainScene extends Scene implements IAddedEnemy {
         UnitWave unitWave = new UnitWave(this);
         unitWave.addEnemy(0,10,1);
         unitWave.addDelay(5);
-        unitWave.addEnemy(0,10,0.1f);
+        unitWave.addEnemy(0,5,0.1f);
+        unitWave.addDelay(5);
+        unitWave.addEnemy(0,10,1);
+        unitWave.addDelay(5);
+        unitWave.addEnemy(0,5,0.2f);
+        unitWave.addDelay(5);
+        unitWave.addEnemy(0,15,0.4f);
+        unitWave.addDelay(5);
+        unitWave.addEnemy(0,40,0.9f);
+
 
         waveController.addWave(unitWave);
 
