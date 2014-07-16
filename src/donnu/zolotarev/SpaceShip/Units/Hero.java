@@ -5,6 +5,7 @@ import donnu.zolotarev.SpaceShip.IHealthBar;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.WeaponPos;
+import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
@@ -56,8 +57,8 @@ public class Hero extends BaseUnit {
     @Override
     protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
-                -5), new WeaponPos(35, 70, 5)});
-        weaponController.loadWeapon(new SimpleGun(true, BulletBase.TYPE_SIMPLE_BULLET_2), 0);
+                -2), new WeaponPos(35, 70, 2)});
+        weaponController.loadWeapon(new DoubleGun(true, BulletBase.TYPE_SIMPLE_BULLET_2), 0);
         weaponController.loadWeapon(new SimpleGun(true, BulletBase.TYPE_SIMPLE_BULLET), 1);
         weaponController.loadWeapon(new SimpleGun(true, BulletBase.TYPE_SIMPLE_BULLET), 2);
     }

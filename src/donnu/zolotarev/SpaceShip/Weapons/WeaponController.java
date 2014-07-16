@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
+import donnu.zolotarev.SpaceShip.Bullets.IGun;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
@@ -7,7 +8,7 @@ public class WeaponController {
 
     private final WeaponPos[] weaponPoses;
     private final BaseUnit carrier;
-    private SimpleGun[] guns;
+    private IGun[] guns;
     private boolean shoot;
 
     public WeaponController(BaseUnit carrier,WeaponPos[] weaponPoses){
@@ -16,11 +17,11 @@ public class WeaponController {
         }
         this.carrier = carrier;
         this.weaponPoses = weaponPoses;
-        guns = new SimpleGun[weaponPoses.length];
+        guns = new IGun[weaponPoses.length];
         bufferWeaponPos = new WeaponPos(0,0,0);
     }
 
-    public boolean loadWeapon(SimpleGun gun, int slot){
+    public boolean loadWeapon(IGun gun, int slot){
         if (weaponPoses.length>slot){
             guns[slot] = gun;
             return true;
@@ -30,7 +31,7 @@ public class WeaponController {
 
     private void fire(){
         for (int i = 0; i<weaponPoses.length;i++) {
-            SimpleGun gun =  guns[i];
+            IGun gun =  guns[i];
             if(gun !=null){
                 changePos(weaponPoses[i]);
                 if (gun.shoot()){
@@ -51,7 +52,7 @@ public class WeaponController {
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
         if(!shoot){
-            for (SimpleGun gun: guns){
+            for (IGun gun: guns){
                 if (gun != null){
                     gun.reload();
                 }

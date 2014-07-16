@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
-import donnu.zolotarev.SpaceShip.WeaponPos;
 
 public abstract class Guns {
     private final int bullitType;
@@ -27,8 +26,6 @@ public abstract class Guns {
         }
         return false;
     }
-
-    public abstract void fire(WeaponPos weaponPos);
 
     protected void GetNewBullet(final float x, final float y, final float direction) {
         BulletBase.getBullet(bullitType).init(x, y, direction, targetUnit);

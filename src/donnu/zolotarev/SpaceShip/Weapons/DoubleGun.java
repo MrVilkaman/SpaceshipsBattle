@@ -5,20 +5,21 @@ import donnu.zolotarev.SpaceShip.WeaponPos;
 
 import java.util.Random;
 
-public class SimpleGun extends Guns implements IGun {
+public class DoubleGun extends Guns implements IGun {
 
-    public SimpleGun(boolean heroWeapon, int bullitType) {
+    public DoubleGun(boolean heroWeapon, int bullitType) {
         super(heroWeapon,bullitType);
-        ATTACK_INTERVAL = 5;
+        ATTACK_INTERVAL = 3;
         if (!heroWeapon){
             Random random = new Random(this.hashCode());
-            ATTACK_INTERVAL *= 18 + random.nextInt(5);
+            ATTACK_INTERVAL *= 13 + random.nextInt(5);
         }
     }
 
     @Override
     public void fire(WeaponPos weaponPos) {
-        GetNewBullet(weaponPos.x, weaponPos.y, weaponPos.anlge);
+        GetNewBullet(weaponPos.x, weaponPos.y-5, weaponPos.anlge);
+        GetNewBullet(weaponPos.x, weaponPos.y+5, weaponPos.anlge);
     }
 
 
