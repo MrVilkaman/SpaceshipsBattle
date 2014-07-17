@@ -17,6 +17,8 @@ import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 import donnu.zolotarev.SpaceShip.Waves.WaveController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
+import org.andengine.engine.handler.timer.ITimerCallback;
+import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
@@ -25,6 +27,7 @@ import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
+import org.andengine.entity.util.FPSCounter;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
@@ -67,6 +70,7 @@ public class MainScene extends Scene implements IAddedEnemy {
         engine = shipActivity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
 
+        createFPSBase();
         createHealthBar();
 
         enemyController = new ObjectController<BaseUnit>();
@@ -106,6 +110,8 @@ public class MainScene extends Scene implements IAddedEnemy {
 
         createMenuScene();
     }
+
+
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
@@ -202,6 +208,20 @@ public class MainScene extends Scene implements IAddedEnemy {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void createFPSBase() {
+        final FPSCounter fpsCounter = new FPSCounter();
+        engine.registerUpdateHandler(fpsCounter);
+        final Text fpsText = new Text(0, 0, TextureLoader.getFont(), "FPS:", "FPS: 1234567890.".length(),engine.getVertexBufferObjectManager());
+        attachChild(fpsText);
+        registerUpdateHandler(new TimerHandler(1 / 20.0f, true, new ITimerCallback() {
+            @Override
+            public void onTimePassed(final TimerHandler pTimerHandler) {
+
+                fpsText.setText("FPS: " + String.valueOf(fpsCounter.getFPS()));
+            }
+        }));
     }
 
     private void addHeroMoveControl() {
