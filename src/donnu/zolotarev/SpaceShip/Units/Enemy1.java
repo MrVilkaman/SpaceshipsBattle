@@ -6,14 +6,17 @@ import donnu.zolotarev.SpaceShip.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.adt.pool.GenericPool;
 
 public class Enemy1  extends BaseUnit {
 
-    private final int SPEED = 100;
+    private static boolean isRegistredPool = false;
 
-    public Enemy1(){
+
+    private Enemy1(){
         super();
         health = 500;
+        SPEED = 100;
         ///
         sprite = new Sprite(0, 0, TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
             @Override
@@ -31,8 +34,6 @@ public class Enemy1  extends BaseUnit {
         loadWeapon();
 
         registerPhysicsHandler();
-       physicsHandler.setVelocityX(-1*SPEED);
-
     }
 
     @Override
@@ -54,4 +55,17 @@ public class Enemy1  extends BaseUnit {
     public void canFire(boolean b) {
 
     }
+
+    public static void initPool() {
+        if (!isRegistredPool){
+            isRegistredPool = true;
+            registredPool(Enemy1.class,new GenericPool() {
+                @Override
+                protected Enemy1 onAllocatePoolItem() {
+                    return new Enemy1();
+                }
+            });
+        }
+    }
+
 }

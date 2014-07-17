@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Units;
 
+import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.IHealthBar;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -66,6 +67,11 @@ public class Hero extends BaseUnit {
     @Override
     public void canFire(boolean b) {
         weaponController.setShoot(b);
+    }
+
+    @Override
+    public void init(Point point) {
+        setStartPosition(point);
     }
 
     public Sprite getSprite() {

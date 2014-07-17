@@ -17,7 +17,7 @@ public class ObjectController<E extends ICollisionObject> {
         return objects.iterator();
     }
 
-    public synchronized void add(E object){
+    public void add(E object){
         objects.add(object);
     }
 

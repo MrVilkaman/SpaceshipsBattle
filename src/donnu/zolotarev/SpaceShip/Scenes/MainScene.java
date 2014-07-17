@@ -69,20 +69,22 @@ public class MainScene extends Scene implements IAddedEnemy {
 
         createHealthBar();
 
-        hero = new Hero(new IHealthBar() {
-            @Override
-            public void updateHealthBar(int health) {
-               healthBar.setText(String.valueOf(health));
-            }
-        });
-        hero.setStartPosition(new Point(0,250));
-        addHeroMoveControl();
-
         enemyController = new ObjectController<BaseUnit>();
 
         initWave();
 
         bulletController = new ObjectController<BulletBase>();
+
+        Enemy1.initPool();
+
+        hero = new Hero(new IHealthBar() {
+            @Override
+            public void updateHealthBar(int health) {
+                healthBar.setText(String.valueOf(health));
+            }
+        });
+        hero.init(new Point(0, 250));
+        addHeroMoveControl();
 
         SimpleBullet.initPool();
         SimpleBullet2.initPool();
@@ -99,6 +101,8 @@ public class MainScene extends Scene implements IAddedEnemy {
                 });
             }
         });
+
+
 
         createMenuScene();
     }
@@ -164,10 +168,9 @@ public class MainScene extends Scene implements IAddedEnemy {
     }
 
     public void addEnemy(int kind){
-        Enemy1 enemy1 = new Enemy1();
+        BaseUnit enemy1 = BaseUnit.getBullet(kind);
         Random random = new Random();
-        enemy1.setStartPosition(new Point(1300, random.nextInt(65)*10));
-        enemyController.add(enemy1);
+        enemy1.init(new Point(1300, random.nextInt(65) * 10));
     }
 
     public static MainScene getAcitveScene() {

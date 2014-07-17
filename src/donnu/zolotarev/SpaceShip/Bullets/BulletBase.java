@@ -19,7 +19,7 @@ import java.util.Iterator;
 public abstract class BulletBase implements ICollisionObject {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
-    public static final int TYPE_SIMPLE_BULLET_2 = 1;
+    public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
     protected static MainScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
@@ -53,6 +53,7 @@ public abstract class BulletBase implements ICollisionObject {
             bulletsPool.registerPool(TYPE_SIMPLE_BULLET_2 ,genericPool);
         }
     }
+
     protected void settings(){
         createSettings();
         attachToScene();
@@ -99,7 +100,6 @@ public abstract class BulletBase implements ICollisionObject {
     public int getDamage(){
       return damage;
     }
-
 
     protected  void initCharacteristics(int speed, int damage){
         this.damage = damage;

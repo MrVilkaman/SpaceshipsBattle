@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.ICollisionObject;
+import donnu.zolotarev.SpaceShip.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
@@ -10,30 +11,54 @@ import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.adt.pool.GenericPool;
+import org.andengine.util.adt.pool.MultiPool;
 
 public abstract class BaseUnit implements ICollisionObject {
 
+    public static final int TYPE_ENEMY_1 = 0;
+    //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
+
+    private static MultiPool unitsPool;
+    private static ObjectController unitsController;
     protected Sprite sprite;
     protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
-    protected MainScene mainScene;
-    protected Engine engine;
+    protected static MainScene mainScene;
+    protected static Engine engine;
 
     protected int health;
-    private static int enemiesOnMap = -1; // -1 потому, что герой
+    protected int SPEED;
 
-    public BaseUnit() {
-        mainScene = MainScene.getAcitveScene();
-        engine = MainScene.getEngine();
+    private static int enemiesOnMap = -0;
+
+    protected static void registredPool(Class base,GenericPool genericPool){
+        if (unitsPool == null){
+            unitsPool = new MultiPool();
+            mainScene = MainScene.getAcitveScene();
+            engine = MainScene.getEngine();
+            unitsController = mainScene.getEnemyController();
+        }
+        if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
+            unitsPool.registerPool(TYPE_ENEMY_1, genericPool);
+        }
+    }
+
+    public void init(Point point){
+        setStartPosition(point);
+        physicsHandler.setVelocityX(-1*SPEED);
+        sprite.setIgnoreUpdate(false);
+        sprite.setVisible(true);
+        unitsController.add(this);
+
+        enemiesOnMap++;
     }
 
     protected void attachToScene() {
-        enemiesOnMap++;
         mainScene.attachChild(sprite);
-//        mainScene.registerTouchArea(sprite);
     }
 
-    public  void setStartPosition(Point point){
+    protected   void setStartPosition(Point point){
         sprite.setX(point.x);
         sprite.setY(point.y);
     }
@@ -55,6 +80,9 @@ public abstract class BaseUnit implements ICollisionObject {
                 Scene mainScene = MainScene.getAcitveScene();
                 mainScene.detachChild(sprite);
             }});
+        if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){
+            unitsPool.recyclePoolItem(TYPE_ENEMY_1,(Enemy1)this);
+        }
     }
 
     @Override
@@ -71,5 +99,10 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public static int getEnemiesOnMap() {
         return enemiesOnMap;
+    }
+
+
+    public static BaseUnit getBullet(int type) {
+        return ((BaseUnit)unitsPool.obtainPoolItem(type));
     }
 }
