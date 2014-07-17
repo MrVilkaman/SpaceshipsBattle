@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip.Bullets;
+package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.WeaponPos;
 

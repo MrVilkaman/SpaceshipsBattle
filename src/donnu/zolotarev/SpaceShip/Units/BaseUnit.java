@@ -45,7 +45,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     @Override
-    public synchronized void destroy(){
+    public void destroy(){
         enemiesOnMap--;
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()

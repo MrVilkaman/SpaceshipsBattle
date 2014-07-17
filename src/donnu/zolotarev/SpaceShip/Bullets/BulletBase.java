@@ -31,7 +31,6 @@ public abstract class BulletBase implements ICollisionObject {
     private PhysicsHandler physicsHandler;
     protected static MultiPool bulletsPool;
 
-
     private int DEFAULT_SPEED;
     private int damage;
     private boolean targetUnit;
@@ -82,7 +81,7 @@ public abstract class BulletBase implements ICollisionObject {
     }
 
     @Override
-    public synchronized void destroy(){
+    public  void destroy(){
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
@@ -139,9 +138,8 @@ public abstract class BulletBase implements ICollisionObject {
         }
     }
 
-    public static BulletBase getBullet(int bulletType) {
-
-        return (BulletBase)bulletsPool.obtainPoolItem(bulletType);
+    public static BulletBase getBullet(int type) {
+        return ((BulletBase)bulletsPool.obtainPoolItem(type));
     }
 
 }

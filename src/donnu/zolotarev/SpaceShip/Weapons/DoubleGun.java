@@ -1,6 +1,5 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
-import donnu.zolotarev.SpaceShip.Bullets.IGun;
 import donnu.zolotarev.SpaceShip.WeaponPos;
 
 import java.util.Random;
