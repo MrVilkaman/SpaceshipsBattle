@@ -132,6 +132,7 @@ public abstract class BulletBase implements ICollisionObject {
             if (unit.addDamageAndCheckDeath(getDamage())){
                 col.remove();
                 unit.destroy();
+                main.addToScore(10 + unit.hashCode()%10);
             }
             destroy();
             bulletController.remove(this);

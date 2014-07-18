@@ -34,7 +34,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Random;
 
-public class MainScene extends Scene implements IAddedEnemy {
+public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
     private static final int MENU_RESUME = 0;
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
@@ -45,16 +45,19 @@ public class MainScene extends Scene implements IAddedEnemy {
 
     private final ObjectController enemyController;
     private final ObjectController bulletController;
+    private WaveController waveController;
     private final IParentScene parrentScene;
 
     private SpaceShipActivity shipActivity;
     private Text healthBar;
     private MenuScene menuScene;
-
+    private Text scoreBar;
     private AnalogOnScreenControl analogOnScreenControl;
+    UnitWave _currentWave = null;
+
     private boolean isShowMenuScene = false;
-    private WaveController waveController;
     private boolean isVictory = false;
+    private int score = 0;
 
     public  ObjectController  getBulletController() {
         return bulletController;
@@ -72,6 +75,7 @@ public class MainScene extends Scene implements IAddedEnemy {
 
         createFPSBase();
         createHealthBar();
+        createScoreBar();
 
         enemyController = new ObjectController<BaseUnit>();
 
@@ -99,8 +103,8 @@ public class MainScene extends Scene implements IAddedEnemy {
                     @Override
                     public void run() {
                         Toast.makeText(shipActivity,"ТЫ ПРОИГРАЛ!",Toast.LENGTH_SHORT).show();
-                        acitveScene.setIgnoreUpdate(true);
-                        bulletController.cleer();
+                        //acitveScene.setIgnoreUpdate(true);
+                        //bulletController.cleer();
                     }
                 });
             }
@@ -112,15 +116,12 @@ public class MainScene extends Scene implements IAddedEnemy {
     }
 
 
-
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
        updateWave(pSecondsElapsed);
         super.onManagedUpdate(pSecondsElapsed);
     }
 
-
-    UnitWave _currentWave = null;
     private void updateWave(float pSecondsElapsed) {
         if (!waveController.isEmpty()){
             if (_currentWave == null ){
@@ -339,6 +340,23 @@ public class MainScene extends Scene implements IAddedEnemy {
             acitveScene.detachChild(menuScene);
             acitveScene.setChildScene(analogOnScreenControl);
         }
+    }
+
+    private void createScoreBar() {
+        try {
+            scoreBar = new Text(0,0,TextureLoader.getFont(),"000000000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
+            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth();
+            scoreBar.setPosition(x,0);
+            attachChild(scoreBar);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addToScore(int value){
+        score += value;
+        scoreBar.setText(String.format("%08d", score));
     }
 
 }
