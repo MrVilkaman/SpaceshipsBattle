@@ -14,8 +14,8 @@ import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
+import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
-import donnu.zolotarev.SpaceShip.Waves.WaveController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.handler.timer.ITimerCallback;
@@ -124,7 +124,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     }
 
     private void initWave() {
-        waveController = new WaveController(new IWaveBar() {
+        waveController = new InfinityWave(new IWaveBar() {
             @Override
             public void onNextWave() {
                 waveIndex++;
@@ -134,22 +134,20 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                         waveCountBar.setText(String.format("%02d", waveIndex));
                     }
                 });
-
             }
         });
 
         UnitWave unitWave = new UnitWave(this);
-        unitWave.addEnemy(0,1,1);
-//        unitWave.addDelay(3);
-        unitWave.addEnemy(0,1,0.1f);
-//        unitWave.addDelay(3);
-        unitWave.addEnemy(0,1,1);
-//        unitWave.addDelay(3);
-        unitWave.addEnemy(0,1,0.2f);
-//        unitWave.addDelay(3);
-        unitWave.addEnemy(0,1,0.4f);
-//        unitWave.addDelay(5);
-        unitWave.addEnemy(0,1,0.7f);
+        unitWave.addEnemy(0, 10, 1);
+        unitWave.addDelay(2);
+        unitWave.addEnemy(0, 7, 0.1f);
+        unitWave.addDelay(1);
+        unitWave.addEnemy(0,10,0.5f);
+        unitWave.addEnemy(0, 10, 0.2f);
+        unitWave.addDelay(2);
+        unitWave.addEnemy(0, 20, 0.4f);
+        unitWave.addDelay(1);
+        unitWave.addEnemy(0,20,0.7f);
 
         waveController.addWave(unitWave);
     }

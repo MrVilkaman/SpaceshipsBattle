@@ -3,11 +3,11 @@ package donnu.zolotarev.SpaceShip.Waves;
 import donnu.zolotarev.SpaceShip.IWaveBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 
-public class WaveController extends BaseWaveController implements IWaveController {
+public class InfinityWave extends BaseWaveController implements IWaveController {
 
     private final IWaveBar iWaveBar;
 
-    public WaveController(IWaveBar iWaveBar) {
+    public InfinityWave(IWaveBar iWaveBar) {
         super();
         this.iWaveBar = iWaveBar;
     }
@@ -29,7 +29,7 @@ public class WaveController extends BaseWaveController implements IWaveControlle
                 }
             }
         } else {
-            restart(2);
+            restart(1);
             //            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
             //isVictory = true;
 
