@@ -1,47 +1,49 @@
 package donnu.zolotarev.SpaceShip.Waves;
 
-import java.util.ArrayList;
+import donnu.zolotarev.SpaceShip.IWaveBar;
+import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 
-public class WaveController {
+public class WaveController extends BaseWaveController implements IWaveController {
 
-    private ArrayList<UnitWave> unitWaves;
-    private int currentIndex = 0;
+    private final IWaveBar iWaveBar;
 
-    public WaveController() {
-        unitWaves = new ArrayList<UnitWave>();
-        currentIndex = 0;
+    public WaveController(IWaveBar iWaveBar) {
+        super();
+        this.iWaveBar = iWaveBar;
     }
 
-    public void addWave(UnitWave unitWave){
-        unitWaves.add(unitWave);
-    }
-
-    public UnitWave getNextWave(){
+    public void updateWave(float pSecondsElapsed) {
         if (!isEmpty()){
-            return unitWaves.get(currentIndex);
-        }else{
-            return null;
+            if (_currentWave == null ){
+                if ( BaseUnit.getEnemiesOnMap() < 5){
+                    _currentWave  = getNextWave();
+                    _currentWave.startWave();
+                    iWaveBar.onNextWave();
+                }
+            } else {
+                _currentWave.update(pSecondsElapsed);
+
+                if (_currentWave.isFinished()){
+                    waveEnds();
+                    _currentWave = null;
+                }
+            }
+        } else {
+            restart(2);
+            //            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
+            //isVictory = true;
+
+           /* shipActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(shipActivity, "ТЫ выиграл!", Toast.LENGTH_SHORT).show();
+                    //  acitveScene.setIgnoreUpdate(true);
+                    //  bulletController.cleer();
+                }
+            });*/
+            //            }
         }
     }
 
-    public void waveEnds(){
-        currentIndex++;
-    }
-
-    public boolean isEmpty(){
-        return currentIndex >= unitWaves.size();
-    }
-
-    public void restart(){
-        restart(0);
-    }
-
-    public void restart(int vavleNumber ){
-        if (vavleNumber < unitWaves.size()){
-            currentIndex =  vavleNumber;
-        }else {
-            currentIndex = 0;
-        }
-    }
 
 }

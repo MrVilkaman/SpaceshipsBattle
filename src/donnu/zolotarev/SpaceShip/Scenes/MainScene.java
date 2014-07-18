@@ -13,6 +13,7 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
+import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 import donnu.zolotarev.SpaceShip.Waves.WaveController;
 import org.andengine.engine.Engine;
@@ -34,7 +35,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Random;
 
-public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar {
+public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
     private static final int MENU_RESUME = 0;
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
@@ -45,7 +46,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
 
     private final ObjectController enemyController;
     private final ObjectController bulletController;
-    private WaveController waveController;
+    private IWaveController waveController;
     private final IParentScene parrentScene;
 
     private SpaceShipActivity shipActivity;
@@ -117,48 +118,25 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         if (isActive){
-            updateWave(pSecondsElapsed);
+            waveController.updateWave(pSecondsElapsed);
         }
         super.onManagedUpdate(pSecondsElapsed);
     }
 
-    private void updateWave(float pSecondsElapsed) {
-        if (!waveController.isEmpty()){
-            if (_currentWave == null ){
-                if ( BaseUnit.getEnemiesOnMap() < 5){
-                    _currentWave  = waveController.getNextWave();
-                    _currentWave.startWave();
-                    waveIndex++;
-                    updateWaveInfo(waveIndex);
-//                    _game.changeWaveInfo(_waveIndex,_waves.length);
-                }
-            } else {
-                _currentWave.update(pSecondsElapsed);
-
-                if (_currentWave.isFinished()){
-                    waveController.waveEnds();
-                    _currentWave = null;
-                }
-            }
-        } else {
-            waveController.restart(2);
-//            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
-                //isVictory = true;
-
+    private void initWave() {
+        waveController = new WaveController(new IWaveBar() {
+            @Override
+            public void onNextWave() {
+                waveIndex++;
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(shipActivity,"ТЫ выиграл!",Toast.LENGTH_SHORT).show();
-                      //  acitveScene.setIgnoreUpdate(true);
-                      //  bulletController.cleer();
+                        waveCountBar.setText(String.format("%02d", waveIndex));
                     }
                 });
-//            }
-        }
-    }
 
-    private void initWave() {
-        waveController = new WaveController();
+            }
+        });
 
         UnitWave unitWave = new UnitWave(this);
         unitWave.addEnemy(0,1,1);
@@ -174,7 +152,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
         unitWave.addEnemy(0,1,0.7f);
 
         waveController.addWave(unitWave);
-
     }
 
     public void addEnemy(int kind){
@@ -380,8 +357,4 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
         return bulletController;
     }
 
-    @Override
-    public void updateWaveInfo(int value) {
-        waveCountBar.setText(String.format("%02d", value));
-    }
 }
