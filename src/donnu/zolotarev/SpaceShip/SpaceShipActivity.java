@@ -75,8 +75,9 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
 
     @Override
     protected void onDestroy() {
+        finish();
+//        android.os.Process.killProcess(android.os.Process.myPid());
         super.onDestroy();
-        android.os.Process.killProcess(android.os.Process.myPid());
     }
 
     @Override
@@ -92,5 +93,6 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
 
     public void exit() {
         onDestroy();
+//        android.os.Process.killProcess(android.os.Process.myPid());
     }
 }
