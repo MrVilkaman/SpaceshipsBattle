@@ -60,6 +60,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
     private boolean isVictory = false;
     private int score = 0;
     private int waveIndex = 0;
+    private boolean isActive = true;
 
     public MainScene(IParentScene self) {
         //super();
@@ -115,7 +116,9 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
-       updateWave(pSecondsElapsed);
+        if (isActive){
+            updateWave(pSecondsElapsed);
+        }
         super.onManagedUpdate(pSecondsElapsed);
     }
 
@@ -334,8 +337,10 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar
     public void onKeyPressed(int keyCode, KeyEvent event) {
         if (!isShowMenuScene){
             isShowMenuScene = true;
+            isActive = false;
             setChildScene(menuScene, false, true, true);
         }else{
+            isActive = true;
             isShowMenuScene = false;
             acitveScene.detachChild(menuScene);
             acitveScene.setChildScene(analogOnScreenControl);
