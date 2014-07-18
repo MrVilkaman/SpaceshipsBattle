@@ -34,7 +34,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Random;
 
-public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
+public class MainScene extends Scene implements IAddedEnemy, IScoreBar, IWaveBar {
 
     private static final int MENU_RESUME = 0;
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
@@ -54,14 +54,12 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private Text scoreBar;
     private AnalogOnScreenControl analogOnScreenControl;
     UnitWave _currentWave = null;
+    private Text waveCountBar;
 
     private boolean isShowMenuScene = false;
     private boolean isVictory = false;
     private int score = 0;
-
-    public  ObjectController  getBulletController() {
-        return bulletController;
-    }
+    private int waveIndex = 0;
 
     public MainScene(IParentScene self) {
         //super();
@@ -76,6 +74,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         createFPSBase();
         createHealthBar();
         createScoreBar();
+        createWaveCountBar();
 
         enemyController = new ObjectController<BaseUnit>();
 
@@ -110,8 +109,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             }
         });
 
-
-
         createMenuScene();
     }
 
@@ -125,9 +122,11 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private void updateWave(float pSecondsElapsed) {
         if (!waveController.isEmpty()){
             if (_currentWave == null ){
-                if ( BaseUnit.getEnemiesOnMap() < 3){
+                if ( BaseUnit.getEnemiesOnMap() < 5){
                     _currentWave  = waveController.getNextWave();
                     _currentWave.startWave();
+                    waveIndex++;
+                    updateWaveInfo(waveIndex);
 //                    _game.changeWaveInfo(_waveIndex,_waves.length);
                 }
             } else {
@@ -139,8 +138,10 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                 }
             }
         } else {
-            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
-                isVictory = true;
+            waveController.restart(2);
+//            if (BaseUnit.getEnemiesOnMap() == 0 && !isVictory){
+                //isVictory = true;
+
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -149,7 +150,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                       //  bulletController.cleer();
                     }
                 });
-            }
+//            }
         }
     }
 
@@ -157,18 +158,17 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         waveController = new WaveController();
 
         UnitWave unitWave = new UnitWave(this);
-        unitWave.addEnemy(0,10,1);
-        unitWave.addDelay(5);
-        unitWave.addEnemy(0,5,0.1f);
-        unitWave.addDelay(5);
-        unitWave.addEnemy(0,10,1);
-        unitWave.addDelay(5);
-        unitWave.addEnemy(0,5,0.2f);
-        unitWave.addDelay(5);
-        unitWave.addEnemy(0,15,0.4f);
-        unitWave.addDelay(5);
-        unitWave.addEnemy(0,40,0.9f);
-
+        unitWave.addEnemy(0,1,1);
+//        unitWave.addDelay(3);
+        unitWave.addEnemy(0,1,0.1f);
+//        unitWave.addDelay(3);
+        unitWave.addEnemy(0,1,1);
+//        unitWave.addDelay(3);
+        unitWave.addEnemy(0,1,0.2f);
+//        unitWave.addDelay(3);
+        unitWave.addEnemy(0,1,0.4f);
+//        unitWave.addDelay(5);
+        unitWave.addEnemy(0,1,0.7f);
 
         waveController.addWave(unitWave);
 
@@ -342,6 +342,18 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         }
     }
 
+    private void createWaveCountBar() {
+        try {
+            waveCountBar = new Text(0,0,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
+            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
+            waveCountBar.setPosition(x,0);
+            attachChild(waveCountBar);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void createScoreBar() {
         try {
             scoreBar = new Text(0,0,TextureLoader.getFont(),"000000000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
@@ -359,4 +371,12 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         scoreBar.setText(String.format("%08d", score));
     }
 
+    public  ObjectController  getBulletController() {
+        return bulletController;
+    }
+
+    @Override
+    public void updateWaveInfo(int value) {
+        waveCountBar.setText(String.format("%02d", value));
+    }
 }

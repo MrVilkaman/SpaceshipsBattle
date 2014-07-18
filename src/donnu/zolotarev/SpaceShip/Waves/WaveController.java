@@ -29,7 +29,19 @@ public class WaveController {
     }
 
     public boolean isEmpty(){
-        return currentIndex == unitWaves.size();
+        return currentIndex >= unitWaves.size();
+    }
+
+    public void restart(){
+        restart(0);
+    }
+
+    public void restart(int vavleNumber ){
+        if (vavleNumber < unitWaves.size()){
+            currentIndex =  vavleNumber;
+        }else {
+            currentIndex = 0;
+        }
     }
 
 }
