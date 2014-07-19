@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.IParentScene;
+import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.Engine;

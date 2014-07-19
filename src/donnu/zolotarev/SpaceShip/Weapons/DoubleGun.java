@@ -1,7 +1,5 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
-import donnu.zolotarev.SpaceShip.WeaponPos;
-
 import java.util.Random;
 
 public class DoubleGun extends Guns implements IGun {

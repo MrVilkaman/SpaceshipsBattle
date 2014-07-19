@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

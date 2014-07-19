@@ -1,8 +1,8 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
-import donnu.zolotarev.SpaceShip.ICollisionObject;
-import donnu.zolotarev.SpaceShip.ObjectController;
+import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
+import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;

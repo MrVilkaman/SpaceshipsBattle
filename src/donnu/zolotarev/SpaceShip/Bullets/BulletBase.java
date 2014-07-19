@@ -1,12 +1,12 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
-import donnu.zolotarev.SpaceShip.ICollisionObject;
-import donnu.zolotarev.SpaceShip.IHeroDieListener;
-import donnu.zolotarev.SpaceShip.ObjectController;
+import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
+import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
+import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Utils;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;

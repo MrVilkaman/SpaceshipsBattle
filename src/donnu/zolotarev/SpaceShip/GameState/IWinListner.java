@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.GameState;
 
 public interface IWinListner {
     public void onWinLevel();

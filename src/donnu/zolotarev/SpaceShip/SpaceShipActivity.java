@@ -15,7 +15,6 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class SpaceShipActivity extends SimpleBaseGameActivity {
 
-
     private static int CAMERA_WIDTH = 1280;
     private static int CAMERA_HEIGHT = 720;
     private Camera camera;
@@ -69,6 +68,7 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     public static int getCameraHeight() {
         return CAMERA_HEIGHT;
     }
+
     public Camera getCamera() {
         return camera;
     }

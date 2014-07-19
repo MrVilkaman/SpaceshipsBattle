@@ -2,10 +2,10 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
-import donnu.zolotarev.SpaceShip.IHealthBar;
+import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.WeaponPos;
+import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;

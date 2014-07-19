@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.WeaponPos;
+import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.entity.sprite.Sprite;

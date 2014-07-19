@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Weapons;
 
 public class WeaponPos {
     public float x;

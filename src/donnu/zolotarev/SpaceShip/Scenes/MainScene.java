@@ -7,11 +7,17 @@ import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
-import donnu.zolotarev.SpaceShip.*;
+import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
+import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
+import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.UI.IHealthBar;
+import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
@@ -128,10 +134,11 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             @Override
             public void onNextWave() {
                 waveIndex++;
+                waveCountBar.setText(String.format("%02d", waveIndex));
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        waveCountBar.setText(String.format("%02d", waveIndex));
+                     Toast.makeText(shipActivity,"asd",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -292,6 +299,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                         acitveScene.detachChild(menuScene);
                         acitveScene.setChildScene(analogOnScreenControl);
                         isShowMenuScene = false;
+                        isActive = true;
                         //menuScene = null;
                         break;
                     case MENU_BACK_TO_MAIN:
@@ -351,7 +359,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         scoreBar.setText(String.format("%08d", score));
     }
 
-    public  ObjectController  getBulletController() {
+    public ObjectController getBulletController() {
         return bulletController;
     }
 

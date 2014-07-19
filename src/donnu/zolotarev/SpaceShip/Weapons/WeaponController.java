@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.WeaponPos;
 
 public class WeaponController {
 

@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Utils;
 
 import org.andengine.entity.shape.IShape;
 
