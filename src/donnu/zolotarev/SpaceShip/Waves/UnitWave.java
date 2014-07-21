@@ -52,7 +52,7 @@ public class UnitWave {
         if(_enemyIndex < _enemies.size()){
             if(_enemy == null){
                 _enemy = _enemies.get(_enemyIndex);
-                _enemyCount =   _enemy.getCount();
+                _enemyCount = _enemy.getCount();
             }
             _instance.addEnemy(_enemy.getKind());
             _interval = _enemy.getDelay();

@@ -135,34 +135,34 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             public void onNextWave() {
                 waveIndex++;
                 waveCountBar.setText(String.format("%02d", waveIndex));
-                shipActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                     Toast.makeText(shipActivity,"asd",Toast.LENGTH_SHORT).show();
-                    }
-                });
             }
         });
 
         UnitWave unitWave = new UnitWave(this);
         unitWave.addEnemy(0, 10, 1);
-        unitWave.addDelay(2);
         unitWave.addEnemy(0, 7, 0.1f);
-        unitWave.addDelay(1);
         unitWave.addEnemy(0,10,0.5f);
+        waveController.addWave(unitWave);
+
+        unitWave = new UnitWave(this);
         unitWave.addEnemy(0, 10, 0.2f);
-        unitWave.addDelay(2);
+        unitWave.addDelay(1);
         unitWave.addEnemy(0, 20, 0.4f);
         unitWave.addDelay(1);
         unitWave.addEnemy(0,20,0.7f);
+        waveController.addWave(unitWave);
 
+        unitWave = new UnitWave(this);
+        unitWave.addEnemy(0, 10, 0.3f);
+        unitWave.addEnemy(0, 20, 0.4f);
+        unitWave.addEnemy(0, 20,0.8f);
         waveController.addWave(unitWave);
     }
 
     public void addEnemy(int kind){
         BaseUnit enemy1 = BaseUnit.getBullet(kind);
         Random random = new Random();
-        enemy1.init(new Point(1300, random.nextInt(65) * 10));
+        enemy1.init(new Point(1100, random.nextInt(65) * 10));
     }
 
     public static MainScene getAcitveScene() {

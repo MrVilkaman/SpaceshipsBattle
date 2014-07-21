@@ -5,6 +5,7 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 
 public class InfinityWave extends BaseWaveController implements IWaveController {
 
+    private static final int LIMIL_UNIT_IN_MAP_TO_NEXT_WAVE = 10;
     private final IWaveBar iWaveBar;
 
     public InfinityWave(IWaveBar iWaveBar) {
@@ -15,7 +16,7 @@ public class InfinityWave extends BaseWaveController implements IWaveController 
     public void updateWave(float pSecondsElapsed) {
         if (!isEmpty()){
             if (_currentWave == null ){
-                if ( BaseUnit.getEnemiesOnMap() < 5){
+                if ( BaseUnit.getEnemiesOnMap() < LIMIL_UNIT_IN_MAP_TO_NEXT_WAVE){
                     iWaveBar.onNextWave();
                     _currentWave  = getNextWave();
                     _currentWave.startWave();
