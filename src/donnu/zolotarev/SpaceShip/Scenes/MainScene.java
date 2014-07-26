@@ -88,6 +88,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
         initWave();
 
+
         bulletController = new ObjectController<BulletBase>();
 
         Enemy1.initPool();

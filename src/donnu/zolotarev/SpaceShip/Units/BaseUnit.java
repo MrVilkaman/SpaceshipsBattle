@@ -1,7 +1,9 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
+import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -16,9 +18,10 @@ import org.andengine.util.adt.pool.MultiPool;
 
 public abstract class BaseUnit implements ICollisionObject {
 
+    private static final int r = 50;
     public static final int TYPE_ENEMY_1 = 0;
-    //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
 
+    //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
     private static MultiPool unitsPool;
     private static ObjectController unitsController;
     protected Sprite sprite;
@@ -31,6 +34,7 @@ public abstract class BaseUnit implements ICollisionObject {
     protected int SPEED;
 
     private static int enemiesOnMap = -0;
+    private static float R = 0;
 
     protected static void registredPool(Class base,GenericPool genericPool){
         if (unitsPool == null){
@@ -38,6 +42,8 @@ public abstract class BaseUnit implements ICollisionObject {
             mainScene = MainScene.getAcitveScene();
             engine = MainScene.getEngine();
             unitsController = mainScene.getEnemyController();
+            R = r*r;
+
         }
         if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_1, genericPool);
@@ -90,6 +96,20 @@ public abstract class BaseUnit implements ICollisionObject {
         return sprite;
     }
 
+    @Override
+    public boolean checkHit(ICollisionObject2 object) {
+        PointF pos = object.getCenterCoords();
+         float cx =  sprite.getWidth()/2;
+         float cy =  sprite.getHeight()/2;
+        float xx = (sprite.getX() + cx) - pos.x;
+        float yy = (sprite.getY() + cy) - pos.y;
+
+        if (xx*xx +yy*yy < R){
+            return true;
+        }
+
+        return false;
+    }
 
     public abstract boolean addDamageAndCheckDeath(int damage);
 

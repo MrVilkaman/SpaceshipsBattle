@@ -1,11 +1,13 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
-import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
-import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
+import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
+import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.shape.IShape;
@@ -16,7 +18,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Iterator;
 
-public abstract class BulletBase implements ICollisionObject {
+public abstract class BulletBase implements ICollisionObject, ICollisionObject2 {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
@@ -108,6 +110,7 @@ public abstract class BulletBase implements ICollisionObject {
 
     protected void checkHit() {
        if(targetUnit){
+           // todo слишком ресурсоемко(
            checkHitUnit();
        }else{
            checkHitHero();
@@ -115,7 +118,8 @@ public abstract class BulletBase implements ICollisionObject {
     }
 
     private void checkHitHero() {
-        if (sprite.collidesWith(hero.getSprite())){
+
+        if (/*sprite.collidesWith(hero.getSprite())*/hero.checkHit(this)){
             if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
                 dieListener.heroDie();
                 hero.destroy();
@@ -143,4 +147,8 @@ public abstract class BulletBase implements ICollisionObject {
         return ((BulletBase)bulletsPool.obtainPoolItem(type));
     }
 
+    @Override
+    public PointF getCenterCoords() {
+        return new PointF(sprite.getX() + sprite.getWidth(),sprite.getY() + sprite.getHeight());
+    }
 }
