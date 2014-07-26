@@ -21,8 +21,9 @@ public class Enemy1  extends BaseUnit {
         sprite = new Sprite(0, 0, TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
-                if(mX - getWidth()<200){
+                if(mX <250){
                     physicsHandler.setVelocityX(0);
+                    mX = 249;
                 }
                 super.onManagedUpdate(pSecondsElapsed);
 

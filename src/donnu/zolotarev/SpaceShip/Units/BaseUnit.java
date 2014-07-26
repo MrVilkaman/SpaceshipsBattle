@@ -31,7 +31,7 @@ public abstract class BaseUnit implements ICollisionObject {
     protected int health;
     protected int SPEED;
 
-    private static int enemiesOnMap = -0;
+    private static int enemiesOnMap = 0;
     private static float R = 0;
     private float cy;
     private float cx;
@@ -117,7 +117,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
 
-    public static BaseUnit getBullet(int type) {
+    public static BaseUnit getEnemy(int type) {
         return ((BaseUnit)unitsPool.obtainPoolItem(type));
     }
 }
