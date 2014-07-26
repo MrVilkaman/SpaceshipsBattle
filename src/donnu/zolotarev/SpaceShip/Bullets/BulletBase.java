@@ -1,6 +1,5 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
-import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
@@ -36,6 +35,8 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
     private int DEFAULT_SPEED;
     private int damage;
     private boolean targetUnit;
+    private float hw;
+    private float hh;
 
     public static void setDieListener(IHeroDieListener listener){
         dieListener = listener;
@@ -70,6 +71,9 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
         sprite.setVisible(true);
         bulletController.add(this);
         this.targetUnit = unitTarget;
+
+        hw = sprite.getWidth()/2;
+        hh = sprite.getHeight()/2;
     }
 
     protected void attachToScene() {
@@ -148,7 +152,12 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
     }
 
     @Override
-    public PointF getCenterCoords() {
-        return new PointF(sprite.getX() + sprite.getWidth(),sprite.getY() + sprite.getHeight());
+    public float getCenterX() {
+        return sprite.getX() + hw;
+    }
+
+    @Override
+    public float getCenterY() {
+        return sprite.getY() + hh;
     }
 }

@@ -1,12 +1,11 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
-import android.graphics.PointF;
+import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
-import donnu.zolotarev.SpaceShip.Scenes.MainScene;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.handler.physics.PhysicsHandler;
@@ -18,7 +17,6 @@ import org.andengine.util.adt.pool.MultiPool;
 
 public abstract class BaseUnit implements ICollisionObject {
 
-    private static final int r = 50;
     public static final int TYPE_ENEMY_1 = 0;
 
     //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
@@ -35,6 +33,8 @@ public abstract class BaseUnit implements ICollisionObject {
 
     private static int enemiesOnMap = -0;
     private static float R = 0;
+    private float cy;
+    private float cx;
 
     protected static void registredPool(Class base,GenericPool genericPool){
         if (unitsPool == null){
@@ -42,7 +42,7 @@ public abstract class BaseUnit implements ICollisionObject {
             mainScene = MainScene.getAcitveScene();
             engine = MainScene.getEngine();
             unitsController = mainScene.getEnemyController();
-            R = r*r;
+
 
         }
         if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
@@ -57,6 +57,9 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.setVisible(true);
         unitsController.add(this);
 
+        cx =  sprite.getWidth()/2;
+        cy =  sprite.getHeight()/2;
+        R = cy*cy/1.5f;
         enemiesOnMap++;
     }
 
@@ -98,17 +101,9 @@ public abstract class BaseUnit implements ICollisionObject {
 
     @Override
     public boolean checkHit(ICollisionObject2 object) {
-        PointF pos = object.getCenterCoords();
-         float cx =  sprite.getWidth()/2;
-         float cy =  sprite.getHeight()/2;
-        float xx = (sprite.getX() + cx) - pos.x;
-        float yy = (sprite.getY() + cy) - pos.y;
-
-        if (xx*xx +yy*yy < R){
-            return true;
-        }
-
-        return false;
+        float xx = (sprite.getX() + cx) - object.getCenterX();
+        float yy = (sprite.getY() + cy) - object.getCenterY();
+        return xx*xx +yy*yy < R;
     }
 
     public abstract boolean addDamageAndCheckDeath(int damage);
