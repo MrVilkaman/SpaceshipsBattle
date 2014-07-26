@@ -4,7 +4,7 @@ import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
-import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
+import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
@@ -100,7 +100,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     @Override
-    public boolean checkHit(ICollisionObject2 object) {
+    public boolean checkHit(IHaveCoords object) {
         float xx = (sprite.getX() + cx) - object.getCenterX();
         float yy = (sprite.getY() + cy) - object.getCenterY();
         return xx*xx +yy*yy < R;

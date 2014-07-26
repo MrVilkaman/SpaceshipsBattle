@@ -34,9 +34,8 @@ public class ObjectController<E extends ICollisionObject> {
         }
     }
 
-    public Iterator<E> haveCollision(ICollisionObject2 object){
+    public Iterator<E> haveCollision(IHaveCoords object){
         iShapes.clear();
-
         Iterator<E> it = objects.iterator();
         while (it.hasNext()){
             E shape = it.next();
@@ -44,17 +43,7 @@ public class ObjectController<E extends ICollisionObject> {
                 iShapes.add(shape);
                 break;
             }
-
         }
-
         return iShapes.iterator();
     }
-
-    private boolean haveCollision(E shape, E object) {
-        //return shape.getShape().collidesWith(object.getShape()); // todo Старая реализация
-
-        return  false;
-    }
-
-
 }

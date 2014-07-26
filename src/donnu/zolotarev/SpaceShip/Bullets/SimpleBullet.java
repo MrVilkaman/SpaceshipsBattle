@@ -2,7 +2,6 @@ package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
@@ -50,9 +49,5 @@ public class SimpleBullet extends BulletBase {
         }
     }
 
-    @Override
-    public boolean checkHit(ICollisionObject2 object) {
-        return false;
-    }
 }
 

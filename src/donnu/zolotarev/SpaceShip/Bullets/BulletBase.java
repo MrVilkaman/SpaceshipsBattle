@@ -5,7 +5,7 @@ import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
-import donnu.zolotarev.SpaceShip.Utils.ICollisionObject2;
+import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
@@ -17,7 +17,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Iterator;
 
-public abstract class BulletBase implements ICollisionObject, ICollisionObject2 {
+public abstract class BulletBase implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
@@ -114,7 +114,6 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
 
     protected void checkHit() {
        if(targetUnit){
-           // todo слишком ресурсоемко(
            checkHitUnit();
        }else{
            checkHitHero();
@@ -123,7 +122,7 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
 
     private void checkHitHero() {
 
-        if (/*sprite.collidesWith(hero.getSprite())*/hero.checkHit(this)){
+        if (hero.checkHit(this)){
             if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
                 dieListener.heroDie();
                 hero.destroy();
@@ -159,5 +158,10 @@ public abstract class BulletBase implements ICollisionObject, ICollisionObject2 
     @Override
     public float getCenterY() {
         return sprite.getY() + hh;
+    }
+
+    @Override
+    public boolean checkHit(IHaveCoords object) {
+        return false;
     }
 }
