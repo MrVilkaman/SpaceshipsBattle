@@ -61,7 +61,7 @@ public abstract class BaseUnit implements ICollisionObject {
 
         cx =  sprite.getWidth()/2;
         cy =  sprite.getHeight()/2;
-        R = cy*cy/1.5f;
+        R = cy*cy;
         enemiesOnMap++;
     }
 
