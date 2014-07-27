@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
-import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
@@ -59,10 +59,10 @@ public class Hero extends BaseUnit {
     protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
                 -2), new WeaponPos(35, 70, 2)});
-        weaponController.loadWeapon(new DoubleGun(true, BulletBase.TYPE_SIMPLE_BULLET_2), 0);
+        weaponController.loadWeapon(new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET_2), 0);
        // todo раскоментировать
-        weaponController.loadWeapon(new SimpleGun(true, BulletBase.TYPE_SIMPLE_BULLET), 1);
-        weaponController.loadWeapon(new SimpleGun(true, BulletBase.TYPE_SIMPLE_BULLET), 2);
+        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 1);
+        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 2);
     }
 
     @Override

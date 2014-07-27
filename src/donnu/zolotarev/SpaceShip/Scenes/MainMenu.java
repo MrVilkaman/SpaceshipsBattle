@@ -2,9 +2,11 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
@@ -78,7 +80,6 @@ public class MainMenu extends Scene implements IParentScene {
                         if (mainScene == null){
                             mainScene = new MainScene(self);
                         }
-                        text.setVisible(true);
                     setChildScene(mainScene,false,true,true);
                         break;
                     case MENU_EXIT:
@@ -102,10 +103,14 @@ public class MainMenu extends Scene implements IParentScene {
 
     @Override
     public void returnToParentScene() {
+        BaseUnit.resetPool();
+        BaseBullet.resetPool();
+        detachChild(mainScene);
         mainScene.clearTouchAreas();
         mainScene.clearEntityModifiers();
         mainScene.clearUpdateHandlers();
         mainScene.back();
         mainScene = null;
+        text.setVisible(true);
     }
 }

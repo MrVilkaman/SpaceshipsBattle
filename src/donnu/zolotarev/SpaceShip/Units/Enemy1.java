@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.Units;
 
-import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
@@ -49,7 +49,7 @@ public class Enemy1  extends BaseUnit {
                 new WeaponPos(5,45,180)
         });
         weaponController.setShoot(true);
-        weaponController.loadWeapon(new SimpleGun(false, BulletBase.TYPE_SIMPLE_BULLET), 0);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET), 0);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Enemy1  extends BaseUnit {
     }
 
     public static void initPool() {
-        if (!isRegistredPool){
+    //    if (!isRegistredPool){
             isRegistredPool = true;
             registredPool(Enemy1.class,new GenericPool() {
                 @Override
@@ -66,7 +66,7 @@ public class Enemy1  extends BaseUnit {
                     return new Enemy1();
                 }
             });
-        }
+     //   }
     }
 
 }

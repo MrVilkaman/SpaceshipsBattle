@@ -36,14 +36,16 @@ public abstract class BaseUnit implements ICollisionObject {
     private float cy;
     private float cx;
 
+    public static void resetPool(){
+        unitsPool = null;
+    }
+
     protected static void registredPool(Class base,GenericPool genericPool){
         if (unitsPool == null){
             unitsPool = new MultiPool();
-            mainScene = MainScene.getAcitveScene();
+            mainScene = MainScene.getActiveScene();
             engine = MainScene.getEngine();
             unitsController = mainScene.getEnemyController();
-
-
         }
         if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_1, genericPool);
@@ -86,7 +88,7 @@ public abstract class BaseUnit implements ICollisionObject {
         SpaceShipActivity.getInstance().runOnUpdateThread(new Runnable() {
             @Override
             public void run() {
-                Scene mainScene = MainScene.getAcitveScene();
+                Scene mainScene = MainScene.getActiveScene();
                 mainScene.detachChild(sprite);
             }});
         if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){

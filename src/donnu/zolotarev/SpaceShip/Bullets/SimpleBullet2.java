@@ -5,7 +5,7 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
-public class SimpleBullet2 extends BulletBase  {
+public class SimpleBullet2 extends BaseBullet {
     private static boolean isRegistredPool = false;
 
     private SimpleBullet2() {
@@ -36,7 +36,7 @@ public class SimpleBullet2 extends BulletBase  {
     }
 
     public static void initPool() {
-        if (!isRegistredPool){
+ //       if (!isRegistredPool){
             isRegistredPool = true;
             registredPool(SimpleBullet2.class,new GenericPool() {
                 @Override
@@ -44,6 +44,6 @@ public class SimpleBullet2 extends BulletBase  {
                     return new SimpleBullet2();
                 }
             });
-        }
+    //    }
     }
 }

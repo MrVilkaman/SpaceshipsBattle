@@ -17,7 +17,7 @@ import org.andengine.util.color.Color;
 
 import java.util.Iterator;
 
-public abstract class BulletBase implements ICollisionObject, IHaveCoords {
+public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
@@ -42,10 +42,14 @@ public abstract class BulletBase implements ICollisionObject, IHaveCoords {
         dieListener = listener;
     }
 
+    public static void resetPool(){
+        bulletsPool = null;
+    }
+
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
             bulletsPool = new MultiPool();
-            main = MainScene.getAcitveScene();
+            main = MainScene.getActiveScene();
             bulletController = main.getBulletController();
             enemyController = main.getEnemyController();
             hero = main.getHero();
@@ -77,7 +81,7 @@ public abstract class BulletBase implements ICollisionObject, IHaveCoords {
     }
 
     protected void attachToScene() {
-        MainScene.getAcitveScene().attachChild(sprite);
+        MainScene.getActiveScene().attachChild(sprite);
     }
 
     protected void createSettings() {
@@ -146,8 +150,8 @@ public abstract class BulletBase implements ICollisionObject, IHaveCoords {
         }
     }
 
-    public static BulletBase getBullet(int type) {
-        return ((BulletBase)bulletsPool.obtainPoolItem(type));
+    public static BaseBullet getBullet(int type) {
+        return ((BaseBullet)bulletsPool.obtainPoolItem(type));
     }
 
     @Override

@@ -4,7 +4,7 @@ import android.graphics.Point;
 import android.opengl.GLES20;
 import android.view.KeyEvent;
 import android.widget.Toast;
-import donnu.zolotarev.SpaceShip.Bullets.BulletBase;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
@@ -47,7 +47,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
     private final Hero hero;
 
-    private static MainScene acitveScene;
+    private static MainScene activeScene;
     private static Engine engine;
 
     private final ObjectController enemyController;
@@ -74,7 +74,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         parrentScene = self;
       //  BulletBase.initPool();
         /////////
-        acitveScene = this;
+        activeScene = this;
         shipActivity = SpaceShipActivity.getInstance();
         engine = shipActivity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
@@ -89,7 +89,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         initWave();
 
 
-        bulletController = new ObjectController<BulletBase>();
+        bulletController = new ObjectController<BaseBullet>();
 
         Enemy1.initPool();
 
@@ -104,14 +104,14 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
         SimpleBullet.initPool();
         SimpleBullet2.initPool();
-        BulletBase.setDieListener(new IHeroDieListener() {
+        BaseBullet.setDieListener(new IHeroDieListener() {
             @Override
             public void heroDie() {
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(shipActivity,"ТЫ ПРОИГРАЛ!",Toast.LENGTH_SHORT).show();
-                        //acitveScene.setIgnoreUpdate(true);
+                        Toast.makeText(shipActivity, "ТЫ ПРОИГРАЛ!", Toast.LENGTH_SHORT).show();
+                        //activeScene.setIgnoreUpdate(true);
                         //bulletController.cleer();
                     }
                 });
@@ -166,8 +166,8 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         enemy1.init(new Point(1300, random.nextInt(65) * 10));
     }
 
-    public static MainScene getAcitveScene() {
-        return acitveScene;
+    public static MainScene getActiveScene() {
+        return activeScene;
     }
 
     public static Engine getEngine() {
@@ -296,9 +296,9 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                 switch (pMenuItem.getID()) {
                     case MENU_RESUME:
                         /* Restart the animation. */
-                       //acitveScene.reset();
-                        acitveScene.detachChild(menuScene);
-                        acitveScene.setChildScene(analogOnScreenControl);
+                       //activeScene.reset();
+                        activeScene.detachChild(menuScene);
+                        activeScene.setChildScene(analogOnScreenControl);
                         isShowMenuScene = false;
                         isActive = true;
                         //menuScene = null;
@@ -313,9 +313,15 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     }
 
     private void returnToParentScene(){
+        activeScene.clearUpdateHandlers();
+        activeScene.clearChildScene();
+        activeScene.clearEntityModifiers();
+        activeScene.clearTouchAreas();
         enemyController.cleer();
         bulletController.cleer();
+        detachSelf();
         parrentScene.returnToParentScene();
+
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
@@ -326,8 +332,8 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         }else{
             isActive = true;
             isShowMenuScene = false;
-            acitveScene.detachChild(menuScene);
-            acitveScene.setChildScene(analogOnScreenControl);
+            activeScene.detachChild(menuScene);
+            activeScene.setChildScene(analogOnScreenControl);
         }
     }
 
