@@ -122,7 +122,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         createMenuScene();
     }
 
-
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         if (isActive){
@@ -229,19 +228,24 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
         Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-230,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+            boolean flag = false;
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
                             hero.canFire(true);
-                        } else if(pSceneTouchEvent.isActionUp()){
+                            flag = true;
+                        } else if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
                             hero.canFire(false);
+                            flag = true;
                         }
                     }
                 });
-                return true;
+
+                return flag;
             }
         };
 
