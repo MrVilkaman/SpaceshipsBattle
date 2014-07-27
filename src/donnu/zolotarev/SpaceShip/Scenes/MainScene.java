@@ -45,6 +45,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
     private static final int MENU_RESUME = 0;
     private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
+    private static final int MENU_RESTART = MENU_BACK_TO_MAIN + 1;
     private final Hero hero;
 
     private static MainScene activeScene;
@@ -278,15 +279,18 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(resetMenuItem);
 
+        final SpriteMenuItem restartMenuItem = new SpriteMenuItem(MENU_RESTART, TextureLoader.getMenuRestartTextureRegion(),
+                engine.getVertexBufferObjectManager());
+        restartMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+        this.menuScene.addMenuItem(restartMenuItem);
+
         final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_BACK_TO_MAIN, TextureLoader.getMenuBackToMainMenuTextureRegion(),
                 engine.getVertexBufferObjectManager());
         quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         this.menuScene.addMenuItem(quitMenuItem);
 
         this.menuScene.buildAnimations();
-
         this.menuScene.setBackgroundEnabled(false);
-
         this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
 
 
@@ -305,6 +309,10 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                         break;
                     case MENU_BACK_TO_MAIN:
                         returnToParentScene();
+                        break;
+                    case MENU_RESTART:
+                        returnToParentScene();
+                        parrentScene.restart();
                         break;
                 }
                 return true;

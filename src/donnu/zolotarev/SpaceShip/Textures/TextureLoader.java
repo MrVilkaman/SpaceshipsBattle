@@ -25,6 +25,7 @@ public class TextureLoader {
     private static TextureRegion menuExitTextureRegion;
     private static TextureRegion menuNewGameTextureRegion;
     private static TextureRegion menuBackToMainMenuTextureRegion;
+    private static TextureRegion menuRestartTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -60,6 +61,8 @@ public class TextureLoader {
                 , "menu_new_game.png", 0, 102);
         menuBackToMainMenuTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
                 , "menu_to_mainmenu.png", 0, 153);
+        menuRestartTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_restart.png", 0, 204);
         menuTexture.load();
 
     }
@@ -102,5 +105,8 @@ public class TextureLoader {
 
     public static TextureRegion getMenuBackToMainMenuTextureRegion() {
         return menuBackToMainMenuTextureRegion;
+    }
+    public static TextureRegion getMenuRestartTextureRegion() {
+        return menuRestartTextureRegion;
     }
 }

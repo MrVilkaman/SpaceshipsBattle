@@ -67,20 +67,14 @@ public class MainMenu extends Scene implements IParentScene {
         this.menuScene.buildAnimations();
 
         this.menuScene.setBackgroundEnabled(false);
-
-        final IParentScene self = this;
         this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
-
 
             @Override
             public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
                     float pMenuItemLocalY) {
                 switch (pMenuItem.getID()){
                     case MENU_NEWGAME:
-                        if (mainScene == null){
-                            mainScene = new MainScene(self);
-                        }
-                    setChildScene(mainScene,false,true,true);
+                       createGameScene();
                         break;
                     case MENU_EXIT:
                         activity.exit();
@@ -89,6 +83,13 @@ public class MainMenu extends Scene implements IParentScene {
                 return false;
             }
         });
+    }
+
+    private void createGameScene() {
+        if (mainScene == null){
+            mainScene = new MainScene(this);
+        }
+        setChildScene(mainScene,false,true,true);
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
@@ -112,5 +113,10 @@ public class MainMenu extends Scene implements IParentScene {
         mainScene.back();
         mainScene = null;
         text.setVisible(true);
+    }
+
+    @Override
+    public void restart() {
+        createGameScene();
     }
 }
