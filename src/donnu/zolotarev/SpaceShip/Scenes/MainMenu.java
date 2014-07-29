@@ -45,7 +45,6 @@ public class MainMenu extends Scene implements IParentScene {
                 return true;
             }
         });
-
     }
 
     protected void createMenuScene() {

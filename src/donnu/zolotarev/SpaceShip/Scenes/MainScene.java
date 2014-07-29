@@ -56,16 +56,19 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
 
     private SpaceShipActivity shipActivity;
     private Text healthBar;
-    private MenuScene menuScene;
     private Text scoreBar;
     private AnalogOnScreenControl analogOnScreenControl;
     private Text waveCountBar;
-
     private boolean isShowMenuScene = false;
+
     private boolean isVictory = false;
     private int score = 0;
     private int waveIndex = 0;
     private boolean isActive = true;
+
+    private MenuScene menuScene;
+    private MenuScene dieMenuScene;
+    private boolean enablePauseMenu = true;
 
     public MainScene(IParentScene self) {
         //super();
@@ -109,12 +112,33 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                     @Override
                     public void run() {
                         Toast.makeText(shipActivity, "ТЫ ПРОИГРАЛ!", Toast.LENGTH_SHORT).show();
-                        //activeScene.setIgnoreUpdate(true);
-                        //bulletController.cleer();
+                        isActive = false;
+                        enablePauseMenu = false;
+                        setChildScene(dieMenuScene, false, true, true);
                     }
                 });
             }
         });
+
+        createMenu();
+    }
+
+    private void createMenu() {
+
+        ISimpleClick restart = new ISimpleClick() {
+            @Override
+            public void onClick() {
+                returnToParentScene();
+                parrentScene.restart();
+            }
+        };
+
+        ISimpleClick exit = new ISimpleClick() {
+            @Override
+            public void onClick() {
+                returnToParentScene();
+            }
+        };
 
         menuScene = MenuFactory.createMenu()
                 .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
@@ -126,20 +150,14 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                         isActive = true;
                     }
                 })
-                .addedItem(TextureLoader.getMenuRestartTextureRegion(),new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        returnToParentScene();
-                        parrentScene.restart();
+                .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
+                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
+                .enableAnimation()
+                .build();
 
-                    }
-                })
-                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        returnToParentScene();
-                    }
-                })
+        dieMenuScene = MenuFactory.createMenu()
+                .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
+                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
                 .enableAnimation()
                 .build();
     }
@@ -306,19 +324,20 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         bulletController.cleer();
         detachSelf();
         parrentScene.returnToParentScene();
-
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
-        if (!isShowMenuScene){
-            isShowMenuScene = true;
-            isActive = false;
-            setChildScene(menuScene, false, true, true);
-        }else{
-            isActive = true;
-            isShowMenuScene = false;
-            activeScene.detachChild(menuScene);
-            activeScene.setChildScene(analogOnScreenControl);
+        if (enablePauseMenu){
+            if (!isShowMenuScene){
+                isShowMenuScene = true;
+                isActive = false;
+                setChildScene(menuScene, false, true, true);
+            }else{
+                isActive = true;
+                isShowMenuScene = false;
+                activeScene.detachChild(menuScene);
+                activeScene.setChildScene(analogOnScreenControl);
+            }
         }
     }
 

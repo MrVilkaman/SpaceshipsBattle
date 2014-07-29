@@ -49,7 +49,6 @@ public  class MenuFactory {
 
     public MenuScene build(){
         menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
-
             @Override
             public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
                     float pMenuItemLocalY) {
