@@ -95,6 +95,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public  void destroy(){
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
+        bulletController.remove(this);
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
         }else if (getClass().getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
@@ -132,7 +133,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
                 hero.destroy();
             }
             destroy();
-            bulletController.remove(this);
         }
     }
 
@@ -146,7 +146,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
                 main.addToScore(10 + unit.hashCode()%10);
             }
             destroy();
-            bulletController.remove(this);
         }
     }
 

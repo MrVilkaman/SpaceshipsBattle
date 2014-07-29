@@ -1,15 +1,14 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
+import android.util.Log;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.handler.physics.PhysicsHandler;
-import org.andengine.entity.scene.Scene;
 import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
@@ -18,26 +17,32 @@ import org.andengine.util.adt.pool.MultiPool;
 public abstract class BaseUnit implements ICollisionObject {
 
     public static final int TYPE_ENEMY_1 = 0;
+    private static final String TAG = "BaseUnit";
 
     //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
+    protected static MainScene mainScene;
+    protected static Engine engine;
     private static MultiPool unitsPool;
     private static ObjectController unitsController;
+    private static int enemiesOnMap = 0;
+
     protected Sprite sprite;
     protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
-    protected static MainScene mainScene;
-    protected static Engine engine;
+
+    protected int defaultHealth;
+    protected int defaultSpeed;
 
     protected int health;
-    protected int SPEED;
+    protected int speed;
 
-    private static int enemiesOnMap = 0;
-    private static float R = 0;
+    private float R = 0;
     private float cy;
     private float cx;
 
     public static void resetPool(){
         unitsPool = null;
+        enemiesOnMap = 0;
     }
 
     protected static void registredPool(Class base,GenericPool genericPool){
@@ -53,16 +58,23 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public void init(Point point){
+        health = defaultHealth;
+        speed = defaultSpeed;
+
         setStartPosition(point);
-        physicsHandler.setVelocityX(-1*SPEED);
+        physicsHandler.setVelocityX(-1* speed);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
+        setSize();
+        enemiesOnMap++;
+        Log.i(TAG,"enemiesOnMap -- " +enemiesOnMap);
+    }
 
+    protected void setSize(){
         cx =  sprite.getWidth()/2;
         cy =  sprite.getHeight()/2;
         R = cy*cy;
-        enemiesOnMap++;
     }
 
     protected void attachToScene() {
@@ -83,14 +95,11 @@ public abstract class BaseUnit implements ICollisionObject {
     @Override
     public void destroy(){
         enemiesOnMap--;
+        Log.i(TAG,"enemiesOnMap ++ " +enemiesOnMap);
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
-        SpaceShipActivity.getInstance().runOnUpdateThread(new Runnable() {
-            @Override
-            public void run() {
-                Scene mainScene = MainScene.getActiveScene();
-                mainScene.detachChild(sprite);
-            }});
+        unitsController.remove(this);
+
         if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_1,(Enemy1)this);
         }

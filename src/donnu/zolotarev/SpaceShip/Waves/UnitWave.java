@@ -62,6 +62,7 @@ public class UnitWave {
                 _enemy = null;
             }
             return true;
+
         }
         return false;
     }

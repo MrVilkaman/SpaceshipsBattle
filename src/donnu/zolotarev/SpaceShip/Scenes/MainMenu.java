@@ -104,7 +104,6 @@ public class MainMenu extends Scene implements IParentScene {
 
     @Override
     public void returnToParentScene() {
-        BaseUnit.resetPool();
         BaseBullet.resetPool();
         detachChild(mainScene);
         mainScene.clearTouchAreas();
@@ -112,6 +111,7 @@ public class MainMenu extends Scene implements IParentScene {
         mainScene.clearUpdateHandlers();
         mainScene.back();
         mainScene = null;
+        BaseUnit.resetPool();
         text.setVisible(true);
     }
 

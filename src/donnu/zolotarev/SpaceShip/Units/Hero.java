@@ -60,7 +60,6 @@ public class Hero extends BaseUnit {
         weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
                 -2), new WeaponPos(35, 70, 2)});
         weaponController.loadWeapon(new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET_2), 0);
-       // todo раскоментировать
         weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 1);
         weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 2);
     }
@@ -73,6 +72,7 @@ public class Hero extends BaseUnit {
     @Override
     public void init(Point point) {
         setStartPosition(point);
+        setSize();
     }
 
     public Sprite getSprite() {
@@ -98,6 +98,7 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
+       //todo убрать бессмертие!
         health -= damage;
         if(health < 0){
             health = 0;
