@@ -1,6 +1,5 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
-import android.opengl.GLES20;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -12,8 +11,6 @@ import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
-import org.andengine.entity.scene.menu.item.IMenuItem;
-import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
@@ -52,37 +49,21 @@ public class MainMenu extends Scene implements IParentScene {
     }
 
     protected void createMenuScene() {
-        this.menuScene = new MenuScene(activity.getCamera());
-
-        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_NEWGAME, TextureLoader.getMenuNewGameTextureRegion(),
-                engine.getVertexBufferObjectManager());
-        resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.menuScene.addMenuItem(resetMenuItem);
-
-        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_EXIT, TextureLoader.getMenuExitTextureRegion(),
-                engine.getVertexBufferObjectManager());
-        quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.menuScene.addMenuItem(quitMenuItem);
-
-        this.menuScene.buildAnimations();
-
-        this.menuScene.setBackgroundEnabled(false);
-        this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
-
-            @Override
-            public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
-                    float pMenuItemLocalY) {
-                switch (pMenuItem.getID()){
-                    case MENU_NEWGAME:
-                       createGameScene();
-                        break;
-                    case MENU_EXIT:
+        menuScene = MenuFactory.createMenu()
+                .addedItem(TextureLoader.getMenuNewGameTextureRegion(),new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        createGameScene();
+                    }
+                })
+                .addedItem(TextureLoader.getMenuExitTextureRegion(), new ISimpleClick() {
+                    @Override
+                    public void onClick() {
                         activity.exit();
-                        break;
-                }
-                return false;
-            }
-        });
+                    }
+                })
+                .enableAnimation()
+                .build();
     }
 
     private void createGameScene() {

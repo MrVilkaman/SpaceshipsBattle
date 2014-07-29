@@ -30,8 +30,6 @@ import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
-import org.andengine.entity.scene.menu.item.IMenuItem;
-import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.entity.util.FPSCounter;
@@ -61,7 +59,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private MenuScene menuScene;
     private Text scoreBar;
     private AnalogOnScreenControl analogOnScreenControl;
-    UnitWave _currentWave = null;
     private Text waveCountBar;
 
     private boolean isShowMenuScene = false;
@@ -119,7 +116,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             }
         });
 
-        //createMenuScene();
         menuScene = MenuFactory.createMenu()
                 .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
                     @Override
@@ -144,7 +140,8 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                         returnToParentScene();
                     }
                 })
-                .enableAnimation().build();
+                .enableAnimation()
+                .build();
     }
 
     @Override
@@ -298,55 +295,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         analogOnScreenControl.attachChild(btnFire2);
         analogOnScreenControl.registerTouchArea(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire2);
-    }
-
-    protected void createMenuScene() {
-        this.menuScene = new MenuScene(shipActivity.getCamera());
-
-        final SpriteMenuItem resetMenuItem = new SpriteMenuItem(MENU_RESUME, TextureLoader.getMenuResumeTextureRegion(),
-                engine.getVertexBufferObjectManager());
-        resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.menuScene.addMenuItem(resetMenuItem);
-
-        final SpriteMenuItem restartMenuItem = new SpriteMenuItem(MENU_RESTART, TextureLoader.getMenuRestartTextureRegion(),
-                engine.getVertexBufferObjectManager());
-        restartMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.menuScene.addMenuItem(restartMenuItem);
-
-        final SpriteMenuItem quitMenuItem = new SpriteMenuItem(MENU_BACK_TO_MAIN, TextureLoader.getMenuBackToMainMenuTextureRegion(),
-                engine.getVertexBufferObjectManager());
-        quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        this.menuScene.addMenuItem(quitMenuItem);
-
-        this.menuScene.buildAnimations();
-        this.menuScene.setBackgroundEnabled(false);
-        this.menuScene.setOnMenuItemClickListener(new MenuScene.IOnMenuItemClickListener() {
-
-
-            @Override
-            public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
-                    float pMenuItemLocalY) {
-                switch (pMenuItem.getID()) {
-                   /* case MENU_RESUME:
-                        *//* Restart the animation. *//*
-                       //activeScene.reset();
-                        activeScene.detachChild(menuScene);
-                        activeScene.setChildScene(analogOnScreenControl);
-                        isShowMenuScene = false;
-                        isActive = true;
-                        //menuScene = null;
-                        break;
-                    case MENU_BACK_TO_MAIN:
-                        returnToParentScene();
-                        break;
-                    case MENU_RESTART:
-                        returnToParentScene();
-                        parrentScene.restart();
-                        break;*/
-                }
-                return true;
-            }
-        });
     }
 
     private void returnToParentScene(){
