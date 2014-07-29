@@ -140,17 +140,17 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         });
 
         UnitWave unitWave = new UnitWave(this);
-        unitWave.addEnemy(0, 10, 1);
-        unitWave.addEnemy(0, 7, 0.1f);
-        unitWave.addEnemy(0,10,0.5f);
+        unitWave.addEnemy(0, 7, 1);
+        unitWave.addEnemy(0, 3, 0.1f);
+        unitWave.addEnemy(0,7,0.7f);
         waveController.addWave(unitWave);
 
         unitWave = new UnitWave(this);
-        unitWave.addEnemy(0, 10, 0.2f);
-        unitWave.addDelay(1);
-        unitWave.addEnemy(0, 20, 0.4f);
-        unitWave.addDelay(1);
-        unitWave.addEnemy(0,20,0.7f);
+        unitWave.addEnemy(0, 8, 0.3f);
+        unitWave.addDelay(2);
+        unitWave.addEnemy(0, 10, 0.5f);
+        unitWave.addDelay(3);
+        unitWave.addEnemy(0,20,0.8f);
         waveController.addWave(unitWave);
 
         unitWave = new UnitWave(this);

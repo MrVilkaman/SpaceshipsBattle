@@ -1,5 +1,8 @@
 package donnu.zolotarev.SpaceShip.Waves;
 
+import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
+
 import java.util.ArrayList;
 
 public class UnitWave {
@@ -50,16 +53,18 @@ public class UnitWave {
 
     public boolean nextEnemy(){
         if(_enemyIndex < _enemies.size()){
-            if(_enemy == null){
-                _enemy = _enemies.get(_enemyIndex);
-                _enemyCount = _enemy.getCount();
-            }
-            _instance.addEnemy(_enemy.getKind());
-            _interval = _enemy.getDelay();
+            if (BaseUnit.getEnemiesOnMap() < Constants.LIMIL_UNIT_IN_MAP_TO_NEXT_UNIT){
+                if(_enemy == null){
+                    _enemy = _enemies.get(_enemyIndex);
+                    _enemyCount = _enemy.getCount();
+                }
+                _instance.addEnemy(_enemy.getKind());
+                _interval = _enemy.getDelay();
 
-            if(--_enemyCount<= 0){
-                _enemyIndex++;
-                _enemy = null;
+                if(--_enemyCount<= 0){
+                    _enemyIndex++;
+                    _enemy = null;
+                }
             }
             return true;
 
