@@ -119,7 +119,32 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             }
         });
 
-        createMenuScene();
+        //createMenuScene();
+        menuScene = MenuFactory.createMenu()
+                .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        activeScene.detachChild(menuScene);
+                        activeScene.setChildScene(analogOnScreenControl);
+                        isShowMenuScene = false;
+                        isActive = true;
+                    }
+                })
+                .addedItem(TextureLoader.getMenuRestartTextureRegion(),new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        returnToParentScene();
+                        parrentScene.restart();
+
+                    }
+                })
+                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        returnToParentScene();
+                    }
+                })
+                .enableAnimation().build();
     }
 
     @Override
@@ -302,8 +327,8 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             public boolean onMenuItemClicked(MenuScene pMenuScene, IMenuItem pMenuItem, float pMenuItemLocalX,
                     float pMenuItemLocalY) {
                 switch (pMenuItem.getID()) {
-                    case MENU_RESUME:
-                        /* Restart the animation. */
+                   /* case MENU_RESUME:
+                        *//* Restart the animation. *//*
                        //activeScene.reset();
                         activeScene.detachChild(menuScene);
                         activeScene.setChildScene(analogOnScreenControl);
@@ -317,7 +342,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
                     case MENU_RESTART:
                         returnToParentScene();
                         parrentScene.restart();
-                        break;
+                        break;*/
                 }
                 return true;
             }
