@@ -98,7 +98,6 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-       //todo убрать бессмертие!
         health -= damage;
         if(health < 0){
             health = 0;

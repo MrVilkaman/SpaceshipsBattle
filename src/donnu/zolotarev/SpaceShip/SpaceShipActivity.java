@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Scenes.MainMenu;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -15,8 +16,7 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 
 public class SpaceShipActivity extends SimpleBaseGameActivity {
 
-    private static int CAMERA_WIDTH = 1280;
-    private static int CAMERA_HEIGHT = 720;
+
     private Camera camera;
     private MainMenu mainMenu;
     private static SpaceShipActivity instance;
@@ -39,9 +39,9 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         Resources res = getResources();
 //        CAMERA_WIDTH = res.getDisplayMetrics().widthPixels;
 //        CAMERA_HEIGHT = res.getDisplayMetrics().heightPixels;
-        camera = new Camera(0,0,CAMERA_WIDTH,CAMERA_HEIGHT);
+        camera = new Camera(0,0,Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT);
         EngineOptions engineOptions = new EngineOptions(true, ScreenOrientation.LANDSCAPE_FIXED,
-                          new RatioResolutionPolicy(CAMERA_WIDTH,CAMERA_HEIGHT)
+                          new RatioResolutionPolicy(Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT)
                 ,camera);
         engineOptions.getTouchOptions().setNeedsMultiTouch(true);
         engineOptions.getAudioOptions().setNeedsMusic(true);
@@ -62,11 +62,11 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     }
 
     public static int getCameraWidth() {
-        return CAMERA_WIDTH;
+        return Constants.CAMERA_WIDTH;
     }
 
     public static int getCameraHeight() {
-        return CAMERA_HEIGHT;
+        return Constants.CAMERA_HEIGHT;
     }
 
     public Camera getCamera() {
