@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.handler.physics.PhysicsHandler;
@@ -13,6 +14,8 @@ import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
+
+import java.util.Random;
 
 public abstract class BaseUnit implements ICollisionObject {
 
@@ -58,8 +61,9 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public void init(Point point){
+        Random random = new Random();
         health = defaultHealth;
-        speed = defaultSpeed;
+        speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
 
         setStartPosition(point);
         physicsHandler.setVelocityX(-1* speed);

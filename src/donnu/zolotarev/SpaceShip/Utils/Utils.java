@@ -5,4 +5,8 @@ public class Utils {
         return (degree* Math.PI)/180;
     }
 
+
+    public static float random(float lower, float upper){
+        return Math.round(Math.random() * (upper - lower)) + lower;
+    }
 }
