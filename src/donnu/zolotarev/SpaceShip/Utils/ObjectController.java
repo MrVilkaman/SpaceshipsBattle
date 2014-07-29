@@ -27,11 +27,11 @@ public class ObjectController<E extends ICollisionObject> {
     }
 
     public synchronized void cleer(){
-        Iterator<E> it = objects.iterator();
-        while (it.hasNext()){
-            E obj = it.next();
-            obj.destroy();
+        iShapes =  (ArrayList<E>)objects.clone();
+        for( E e :iShapes){
+            e.destroy();
         }
+        iShapes.clear();
     }
 
     public Iterator<E> haveCollision(IHaveCoords object){

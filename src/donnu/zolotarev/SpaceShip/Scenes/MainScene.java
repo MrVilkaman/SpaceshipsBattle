@@ -163,7 +163,7 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     public void addEnemy(int kind){
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
-        enemy1.init(new Point(1000, random.nextInt(65) * 10));
+        enemy1.init(new Point(1300, random.nextInt(65) * 10));
     }
 
     public static MainScene getActiveScene() {
