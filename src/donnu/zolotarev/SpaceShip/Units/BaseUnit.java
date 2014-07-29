@@ -53,6 +53,7 @@ public abstract class BaseUnit implements ICollisionObject {
             engine = MainScene.getEngine();
             unitsController = mainScene.getEnemyController();
         }
+
         if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_1, genericPool);
         }
