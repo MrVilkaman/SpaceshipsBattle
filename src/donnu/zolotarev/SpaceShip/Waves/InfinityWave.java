@@ -17,7 +17,7 @@ public class InfinityWave extends BaseWaveController implements IWaveController 
         if (!isEmpty()){
             if (_currentWave == null ){
                 if ( BaseUnit.getEnemiesOnMap() <= Constants.LIMIL_UNIT_IN_MAP_TO_NEXT_WAVE){
-                    iWaveBar.onNextWave();
+                    iWaveBar.onNextWave(0);
                     _currentWave  = getNextWave();
                     _currentWave.startWave();
                 }

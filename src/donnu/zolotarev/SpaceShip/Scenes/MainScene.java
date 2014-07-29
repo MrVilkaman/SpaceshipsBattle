@@ -13,58 +13,31 @@ import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
-import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
-import org.andengine.engine.handler.timer.ITimerCallback;
-import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.primitive.Rectangle;
-import org.andengine.entity.scene.Scene;
-import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
-import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
-import org.andengine.entity.util.FPSCounter;
 import org.andengine.input.touch.TouchEvent;
-import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
 
 import java.util.Random;
 
-public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
+public class MainScene extends BaseGameScene implements IAddedEnemy, IScoreBar {
 
-    private static final int MENU_RESUME = 0;
-    private static final int MENU_BACK_TO_MAIN = MENU_RESUME + 1;
-    private static final int MENU_RESTART = MENU_BACK_TO_MAIN + 1;
-    private final Hero hero;
-
-    private static MainScene activeScene;
-    private static Engine engine;
-
-    private final ObjectController enemyController;
-    private final ObjectController bulletController;
     private IWaveController waveController;
     private final IParentScene parrentScene;
 
-    private SpaceShipActivity shipActivity;
-    private Text healthBar;
-    private Text scoreBar;
     private AnalogOnScreenControl analogOnScreenControl;
-    private Text waveCountBar;
     private boolean isShowMenuScene = false;
 
-    private boolean isVictory = false;
-    private int score = 0;
     private int waveIndex = 0;
     private boolean isActive = true;
 
@@ -73,35 +46,13 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private boolean enablePauseMenu = true;
 
     public MainScene(IParentScene self) {
-        //super();
+        super();
         parrentScene = self;
-      //  BulletBase.initPool();
-        /////////
-        activeScene = this;
-        shipActivity = SpaceShipActivity.getInstance();
-        engine = shipActivity.getEngine();
-        setBackground(new Background(0.9f, 0.9f, 0.9f));
-
-        createFPSBase();
-        createHealthBar();
-        createScoreBar();
-        createWaveCountBar();
-
-        enemyController = new ObjectController<BaseUnit>();
-
         initWave();
-
-
-        bulletController = new ObjectController<BaseBullet>();
 
         Enemy1.initPool();
 
-        hero = new Hero(new IHealthBar() {
-            @Override
-            public void updateHealthBar(int health) {
-                healthBar.setText(String.valueOf(health));
-            }
-        });
+        hero = new Hero(textHealthBarCallback);
         hero.init(new Point(0, 250));
         addHeroMoveControl();
 
@@ -176,9 +127,9 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
     private void initWave() {
         waveController = new InfinityWave(new IWaveBar() {
             @Override
-            public void onNextWave() {
+            public void onNextWave(int count) {
                 waveIndex++;
-                waveCountBar.setText(String.format("%02d", waveIndex));
+                textWaveBarCallback.onNextWave(waveIndex);
             }
         });
 
@@ -207,51 +158,6 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
         enemy1.init(new Point(1300, random.nextInt(65) * 10));
-    }
-
-    public static MainScene getActiveScene() {
-        return activeScene;
-    }
-
-    public static Engine getEngine() {
-        return engine;
-    }
-
-    public ObjectController getEnemyController() {
-        return enemyController;
-    }
-
-    public Hero getHero() {
-        return hero;
-    }
-
-    private void createHealthBar(){
-        try {
-            int y = SpaceShipActivity.getCameraHeight() - 32;
-            int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
-            Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            attachChild(text);
-            x += text.getWidth();
-            healthBar = new Text(x,y,TextureLoader.getFont(),"1234567890/",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            attachChild(healthBar);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void createFPSBase() {
-        final FPSCounter fpsCounter = new FPSCounter();
-        engine.registerUpdateHandler(fpsCounter);
-        final Text fpsText = new Text(0, 0, TextureLoader.getFont(), "FPS:", "FPS: 1234567890.".length(),engine.getVertexBufferObjectManager());
-        attachChild(fpsText);
-        registerUpdateHandler(new TimerHandler(1 / 20.0f, true, new ITimerCallback() {
-            @Override
-            public void onTimePassed(final TimerHandler pTimerHandler) {
-
-                fpsText.setText("FPS: " + String.valueOf(fpsCounter.getFPS()));
-            }
-        }));
     }
 
     private void addHeroMoveControl() {
@@ -323,8 +229,8 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
         activeScene.clearChildScene();
         activeScene.clearEntityModifiers();
         activeScene.clearTouchAreas();
-        enemyController.cleer();
-        bulletController.cleer();
+        getBulletController().cleer();
+        getEnemyController().cleer();
         detachSelf();
         parrentScene.returnToParentScene();
     }
@@ -343,38 +249,4 @@ public class MainScene extends Scene implements IAddedEnemy, IScoreBar {
             }
         }
     }
-
-    private void createWaveCountBar() {
-        try {
-            waveCountBar = new Text(0,0,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
-            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
-            waveCountBar.setPosition(x,0);
-            attachChild(waveCountBar);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void createScoreBar() {
-        try {
-            scoreBar = new Text(0,0,TextureLoader.getFont(),"000000000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
-            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth();
-            scoreBar.setPosition(x,0);
-            attachChild(scoreBar);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void addToScore(int value){
-        score += value;
-        scoreBar.setText(String.format("%08d", score));
-    }
-
-    public ObjectController getBulletController() {
-        return bulletController;
-    }
-
 }

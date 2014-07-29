@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
+import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
@@ -21,7 +22,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
-    protected static MainScene main;
+    protected static BaseGameScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
     private static Hero hero;

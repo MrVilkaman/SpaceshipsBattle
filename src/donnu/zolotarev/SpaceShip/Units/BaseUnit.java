@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
-import android.util.Log;
+import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.MainScene;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
@@ -15,15 +15,13 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 
-import java.util.Random;
-
 public abstract class BaseUnit implements ICollisionObject {
 
     public static final int TYPE_ENEMY_1 = 0;
     private static final String TAG = "BaseUnit";
 
     //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
-    protected static MainScene mainScene;
+    protected static BaseGameScene mainScene;
     protected static Engine engine;
     private static MultiPool unitsPool;
     private static ObjectController unitsController;
@@ -61,18 +59,16 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public void init(Point point){
-        Random random = new Random();
         health = defaultHealth;
         speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
 
         setStartPosition(point);
-        physicsHandler.setVelocityX(-1* speed);
+        physicsHandler.setVelocityX(- 1 * speed);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
         setSize();
         enemiesOnMap++;
-        Log.i(TAG,"enemiesOnMap -- " +enemiesOnMap);
     }
 
     protected void setSize(){
@@ -99,7 +95,6 @@ public abstract class BaseUnit implements ICollisionObject {
     @Override
     public void destroy(){
         enemiesOnMap--;
-        Log.i(TAG,"enemiesOnMap ++ " +enemiesOnMap);
         sprite.setVisible(false); //это не обязательно делать здесь.
         sprite.setIgnoreUpdate(true); //можно в классе пули создать метод, например, kill()
         unitsController.remove(this);
