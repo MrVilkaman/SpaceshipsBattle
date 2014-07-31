@@ -3,14 +3,14 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.opengl.GLES20;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.engine.Engine;
+import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.TextMenuItem;
-import org.andengine.entity.text.TextOptions;
 import org.andengine.opengl.font.IFont;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.util.HorizontalAlign;
+import org.andengine.util.color.Color;
 
 import java.util.HashMap;
 
@@ -21,6 +21,7 @@ public  class MenuFactory {
 
     private HashMap<Integer,ISimpleClick> clicks;
     private Integer clickCounter;
+    private int lostIndex = -1;
 
     public static MenuFactory createMenu(){
 
@@ -33,41 +34,112 @@ public  class MenuFactory {
         this.menuScene = new MenuScene(shipActivity.getCamera());
         this.engine = shipActivity.getEngine();
         clicks = new HashMap<Integer, ISimpleClick>();
+        menuScene.setBackground(new Background(Color.RED));
     }
 
+    // Картинка с нажатием
     public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick){
-        clicks.put(clickCounter,simpleClick);
-         SpriteMenuItem resetMenuItem = new SpriteMenuItem(clickCounter, texture,
-                engine.getVertexBufferObjectManager());
-        resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        menuScene.addMenuItem(resetMenuItem);
-        clickCounter++;
-        return this;
+        reqFromClick(simpleClick);
+        return addMenuItem(createSpriteItem(texture));
     }
 
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale ){
+        reqFromClick(simpleClick);
+        return addMenuItem(createSpriteItem(texture,scale));
+    }
+
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y ){
+       reqFromClick(simpleClick);
+        return attachChild(createSpriteItem(texture,scale,x,y));
+    }
+
+    // Просто картинка
+    public MenuFactory addedItem(ITextureRegion texture){
+        return addMenuItem(createSpriteItem(texture));
+    }
+
+    public MenuFactory addedItem(ITextureRegion texture,int scale ){
+        return addMenuItem(createSpriteItem(texture,scale));
+    }
+
+    public MenuFactory addedItem(ITextureRegion texture,int scale, float x, float y ){
+        return attachChild(createSpriteItem(texture,scale,x,y));
+    }
+
+    // Текст с нажатием
+    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick){
+        reqFromClick(simpleClick);
+        return addMenuItem(createText(text, iFont));
+    }
+
+    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale){
+        reqFromClick(simpleClick);
+        return addMenuItem(createText(text, iFont, scale));
+    }
+
+    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y){
+        reqFromClick(simpleClick);
+        return attachChild(createText(text, iFont,scale,x,y));
+    }
+
+    // Текст без нажатиея
     public MenuFactory addedText(String text, IFont iFont){
-        return addedText(text, iFont, 1);
+        return addMenuItem(createText(text, iFont));
     }
 
     public MenuFactory addedText(String text, IFont iFont, int scale){
-        TextMenuItem textMenuItem = new TextMenuItem(-1,iFont, text,new TextOptions(HorizontalAlign.CENTER),engine.getVertexBufferObjectManager());
-        textMenuItem.setScale(scale);
-        textMenuItem.setIgnoreUpdate(true);
-        textMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        menuScene.addMenuItem(textMenuItem);
-        return this;
+        return addMenuItem(createText(text, iFont, scale));
     }
 
     public MenuFactory addedText(String text, IFont iFont, int scale, float x, float y){
-        TextMenuItem textMenuItem = new TextMenuItem(-1,iFont, text
-                ,engine.getVertexBufferObjectManager());
+        return attachChild(createText(text, iFont,scale,x,y));
+    }
 
-        textMenuItem.setHorizontalAlign(HorizontalAlign.CENTER);
-        textMenuItem.setIgnoreUpdate(true);
+    private IMenuItem createSpriteItem(ITextureRegion texture){
+        SpriteMenuItem resetMenuItem = new SpriteMenuItem(lostIndex, texture,
+                engine.getVertexBufferObjectManager());
+        resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+        return resetMenuItem;
+    }
+
+    private IMenuItem createSpriteItem(ITextureRegion texture, int scale){
+        IMenuItem resetMenuItem = createSpriteItem(texture);
+        resetMenuItem.setScale(scale);
+        return resetMenuItem;
+    }
+
+    private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y){
+        IMenuItem resetMenuItem = createSpriteItem(texture,scale);
+        resetMenuItem.setPosition(x - resetMenuItem.getWidth()/2,y);
+        return resetMenuItem;
+    }
+
+    private IMenuItem createText(String text, IFont iFont){
+        TextMenuItem textMenuItem = new TextMenuItem(lostIndex,iFont, text,engine.getVertexBufferObjectManager());
         textMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
-        textMenuItem.setPosition(x - textMenuItem.getWidth()/2,y);
+        return textMenuItem;
+    }
+
+    private IMenuItem createText(String text, IFont iFont,int scale){
+        IMenuItem textMenuItem = createText(text, iFont);
         textMenuItem.setScale(scale);
-        menuScene.attachChild(textMenuItem);
+        return textMenuItem;
+    }
+
+    private IMenuItem createText(String text, IFont iFont,int scale,float x, float y){
+        IMenuItem textMenuItem = createText(text, iFont,scale);
+        textMenuItem.setPosition(x,y);
+        return textMenuItem;
+    }
+
+    private MenuFactory addMenuItem(IMenuItem entity){
+        menuScene.addMenuItem(entity);
+        return this;
+    }
+
+    private MenuFactory attachChild(IMenuItem entity){
+        menuScene.registerTouchArea(entity);
+        menuScene.attachChild(entity);
         return this;
     }
 
@@ -75,6 +147,11 @@ public  class MenuFactory {
         this.menuScene.buildAnimations();
         this.menuScene.setBackgroundEnabled(false);
         return this;
+    }
+
+    private void reqFromClick(ISimpleClick simpleClick){
+        clicks.put(clickCounter,simpleClick);
+        lostIndex = clickCounter++;
     }
 
     public MenuScene build(){

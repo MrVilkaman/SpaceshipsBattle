@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
-import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
@@ -49,8 +49,8 @@ public abstract class BaseUnit implements ICollisionObject {
     protected static void registredPool(Class base,GenericPool genericPool){
         if (unitsPool == null){
             unitsPool = new MultiPool();
-            mainScene = MainScene.getActiveScene();
-            engine = MainScene.getEngine();
+            mainScene = InfinityGameScene.getActiveScene();
+            engine = InfinityGameScene.getEngine();
             unitsController = mainScene.getEnemyController();
         }
 

@@ -15,9 +15,9 @@ import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 
 import java.util.Random;
 
-public class MainScene extends BaseGameScene implements IAddedEnemy, IScoreBar {
+public class InfinityGameScene extends BaseGameScene implements IAddedEnemy, IScoreBar {
 
-    public MainScene(IParentScene self) {
+    public InfinityGameScene(IParentScene self) {
         super(self);
     }
 

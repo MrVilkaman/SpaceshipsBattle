@@ -23,7 +23,7 @@ public class MainMenu extends Scene implements IParentScene {
     private final SpaceShipActivity activity;
     private final Engine engine;
     private final Text text;
-    private MainScene mainScene;
+    private MyScene infinityGameScene;
     private MenuScene menuScene;
 
     public MainMenu() {
@@ -66,16 +66,17 @@ public class MainMenu extends Scene implements IParentScene {
     }
 
     private void createGameScene() {
-        if (mainScene == null){
-            mainScene = new MainScene(this);
+        if (infinityGameScene == null){
+            // todo вернуть
+            infinityGameScene = new SelectionLevelScene();//new InfinityGameScene(this);
         }
-        setChildScene(mainScene,false,true,true);
+        setChildScene(infinityGameScene,false,true,true);
     }
 
     public void onKeyPressed(int keyCode, KeyEvent event) {
 
-        if (mainScene != null){
-            mainScene.onKeyPressed(keyCode, event);
+        if (infinityGameScene != null){
+            infinityGameScene.onKeyPressed(keyCode, event);
         }else if(keyCode == KeyEvent.KEYCODE_BACK ){
          // Диалог выхода
             activity.finish();
@@ -85,12 +86,12 @@ public class MainMenu extends Scene implements IParentScene {
     @Override
     public void returnToParentScene() {
         BaseBullet.resetPool();
-        detachChild(mainScene);
-        mainScene.clearTouchAreas();
-        mainScene.clearEntityModifiers();
-        mainScene.clearUpdateHandlers();
-        mainScene.back();
-        mainScene = null;
+        detachChild(infinityGameScene);
+        infinityGameScene.clearTouchAreas();
+        infinityGameScene.clearEntityModifiers();
+        infinityGameScene.clearUpdateHandlers();
+        infinityGameScene.back();
+        infinityGameScene = null;
         BaseUnit.resetPool();
         text.setVisible(true);
     }

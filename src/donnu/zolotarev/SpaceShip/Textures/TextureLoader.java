@@ -27,6 +27,8 @@ public class TextureLoader {
     private static TextureRegion menuBackToMainMenuTextureRegion;
     private static TextureRegion menuRestartTextureRegion;
 
+    private static TextureRegion changeLevelLableTextureRegion1;
+
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
         FontManager fm = engine.getFontManager();
@@ -64,6 +66,12 @@ public class TextureLoader {
         menuRestartTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
                 , "menu_restart.png", 0, 204);
         menuTexture.load();
+
+        // Меню выбора уровня
+        BitmapTextureAtlas loadSceneTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
+        changeLevelLableTextureRegion1 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadSceneTexture, context
+                , "text/change_level_Lable_1.png", 0, 0);
+        loadSceneTexture.load();
 
     }
 
@@ -106,7 +114,12 @@ public class TextureLoader {
     public static TextureRegion getMenuBackToMainMenuTextureRegion() {
         return menuBackToMainMenuTextureRegion;
     }
+
     public static TextureRegion getMenuRestartTextureRegion() {
         return menuRestartTextureRegion;
+    }
+
+    public static TextureRegion getChangeLevelLableTextureRegion1() {
+        return changeLevelLableTextureRegion1;
     }
 }

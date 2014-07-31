@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
-import donnu.zolotarev.SpaceShip.Scenes.MainScene;
+import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
@@ -50,7 +50,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     protected static void registredPool(Class bulletBase,GenericPool genericPool){
         if (bulletsPool == null){
             bulletsPool = new MultiPool();
-            main = MainScene.getActiveScene();
+            main = InfinityGameScene.getActiveScene();
             bulletController = main.getBulletController();
             enemyController = main.getEnemyController();
             hero = main.getHero();
@@ -82,7 +82,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     protected void attachToScene() {
-        MainScene.getActiveScene().attachChild(sprite);
+        InfinityGameScene.getActiveScene().attachChild(sprite);
     }
 
     protected void createSettings() {
