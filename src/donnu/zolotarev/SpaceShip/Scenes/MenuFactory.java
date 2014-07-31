@@ -90,6 +90,11 @@ public  class MenuFactory {
         return attachChild(createText(text, iFont,scale,x,y));
     }
 
+    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        reqFromClick(simpleClick);
+        return attachChild(createText(text, iFont,scale,x,y,waligment,haligment));
+    }
+
     // Текст без нажатиея
     public MenuFactory addedText(String text, IFont iFont){
         return addMenuItem(createText(text, iFont));
@@ -101,6 +106,10 @@ public  class MenuFactory {
 
     public MenuFactory addedText(String text, IFont iFont, int scale, float x, float y){
         return attachChild(createText(text, iFont,scale,x,y));
+    }
+
+    public MenuFactory addedText(String text, IFont iFont, int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        return attachChild(createText(text, iFont,scale,x,y,waligment,haligment));
     }
 
     private IMenuItem createSpriteItem(ITextureRegion texture){
@@ -124,33 +133,7 @@ public  class MenuFactory {
 
     private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y,WALIGMENT waligment, HALIGMENT haligment ){
         IMenuItem resetMenuItem = createSpriteItem(texture,scale);
-        int dx = 0;
-        int dy = 0;
-        switch (waligment){
-            case LEFT:
-                dx = 0;
-                break;
-            case CENTER:
-                dx = (int)resetMenuItem.getWidth()/2;
-                break;
-            case RIGHT:
-                dx = (int)resetMenuItem.getWidth();
-                break;
-        }
-
-        switch (haligment){
-            case TOP:
-                dy = 0;
-                break;
-            case CENTER:
-                dy = (int)resetMenuItem.getHeight()/2;
-                break;
-            case BOTTOM:
-                dy = (int)resetMenuItem.getHeight();
-                break;
-        }
-        resetMenuItem.setPosition(x - dx,y - dy);
-        return resetMenuItem;
+        return alihment(resetMenuItem,x,y,waligment,haligment);
     }
 
     private IMenuItem createText(String text, IFont iFont){
@@ -170,6 +153,12 @@ public  class MenuFactory {
         textMenuItem.setPosition(x,y);
         return textMenuItem;
     }
+
+    private IMenuItem createText(String text, IFont iFont,int scale,float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        IMenuItem textMenuItem = createText(text, iFont,scale);
+        return alihment(textMenuItem,x,y,waligment,haligment);
+    }
+
 
     private MenuFactory addMenuItem(IMenuItem entity){
         menuScene.addMenuItem(entity);
@@ -207,6 +196,36 @@ public  class MenuFactory {
             }
         });
         return menuScene;
+    }
+
+    private IMenuItem alihment(IMenuItem iMenuItem,float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        int dx = 0;
+        int dy = 0;
+        switch (waligment){
+            case LEFT:
+                dx = 0;
+                break;
+            case CENTER:
+                dx = (int)iMenuItem.getWidth()/2;
+                break;
+            case RIGHT:
+                dx = (int)iMenuItem.getWidth();
+                break;
+        }
+
+        switch (haligment){
+            case TOP:
+                dy = 0;
+                break;
+            case CENTER:
+                dy = (int)iMenuItem.getHeight()/2;
+                break;
+            case BOTTOM:
+                dy = (int)iMenuItem.getHeight();
+                break;
+        }
+        iMenuItem.setPosition(x - dx,y - dy);
+        return iMenuItem;
     }
 
 }

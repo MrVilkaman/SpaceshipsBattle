@@ -27,7 +27,6 @@ public class SelectionLevelScene extends MyScene {
     private void initUI() {
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
-
         MenuScene menuFactory = MenuFactory.createMenu()
                 .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(),1,Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(),new ISimpleClick() {
@@ -36,17 +35,11 @@ public class SelectionLevelScene extends MyScene {
                         parentScene.returnToParentScene();
                     }
                 },1,Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
-
+                .enableAnimation().build();
+        MenuScene game = MenuFactory.createMenu()
                 .enableAnimation().build();
 
         setChildScene(menuFactory);
-
-       /* Sprite sprite = new Sprite(0,0, TextureLoader.getChangeLevelLableTextureRegion1()
-                ,engine.getVertexBufferObjectManager());
-        sprite.setPosition(x - sprite.getWidth()/2,y);
-        attachChild(sprite);*/
-
-
     }
 
     @Override
