@@ -17,6 +17,7 @@ import java.util.Random;
 
 public class InfinityGameScene extends BaseGameScene implements IAddedEnemy, IScoreBar {
 
+
     public InfinityGameScene(IParentScene self) {
         super(self);
     }

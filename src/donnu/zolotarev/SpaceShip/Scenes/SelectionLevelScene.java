@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
-import android.widget.Toast;
+import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
@@ -13,39 +13,33 @@ import org.andengine.util.color.Color;
 public class SelectionLevelScene extends MyScene {
     private final SpaceShipActivity shipActivity;
     private final Engine engine;
+    private final IParentScene parentScene;
 
-    public SelectionLevelScene() {
-       shipActivity = SpaceShipActivity.getInstance();
+    public SelectionLevelScene(IParentScene parentScene) {
+        super(parentScene);
+        this.parentScene = parentScene;
+        shipActivity = SpaceShipActivity.getInstance();
        engine = shipActivity.getEngine();
         setBackground(new Background(Color.WHITE));
        initUI();
-
     }
 
     private void initUI() {
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
 
-        final Runnable  runnable =  new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(shipActivity,"!!!",Toast.LENGTH_SHORT).show();
-            }
-        };
-        ISimpleClick iSimpleClick = new ISimpleClick() {
-            @Override
-            public void onClick() {
-                shipActivity.runOnUiThread(runnable);
-            }
-        };
-
         MenuScene menuFactory = MenuFactory.createMenu()
-                .addedText("Hello", TextureLoader.getFont())
-                .addedText("Hello,Mather Fucker", TextureLoader.getFont(), 1, 99, 100)
-                .addedText("Hello,Mather Fucker TOUCH",TextureLoader.getFont(), iSimpleClick, 1, 399, 100)
-                .addedItem(TextureLoader.getShip(), iSimpleClick)
-                .addedItem(TextureLoader.getShip(), iSimpleClick, 2, 1000, 500).enableAnimation().build();
-        setChildScene(menuFactory, false, true, true);
+                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(),1,Constants.CAMERA_WIDTH_HALF,0,MenuFactory.WALIGMENT.CENTER, MenuFactory.HALIGMENT.TOP )
+                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(),new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        parentScene.returnToParentScene();
+                    }
+                },1,Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT, MenuFactory.WALIGMENT.RIGHT, MenuFactory.HALIGMENT.BOTTOM)
+
+                .enableAnimation().build();
+
+        setChildScene(menuFactory);
 
        /* Sprite sprite = new Sprite(0,0, TextureLoader.getChangeLevelLableTextureRegion1()
                 ,engine.getVertexBufferObjectManager());
@@ -57,6 +51,6 @@ public class SelectionLevelScene extends MyScene {
 
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
-
+        parentScene.returnToParentScene();
     }
 }

@@ -1,11 +1,9 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
@@ -68,7 +66,7 @@ public class MainMenu extends Scene implements IParentScene {
     private void createGameScene() {
         if (infinityGameScene == null){
             // todo вернуть
-            infinityGameScene = new SelectionLevelScene();//new InfinityGameScene(this);
+            infinityGameScene = new SelectionLevelScene(this);//new InfinityGameScene(this);
         }
         setChildScene(infinityGameScene,false,true,true);
     }
@@ -85,15 +83,14 @@ public class MainMenu extends Scene implements IParentScene {
 
     @Override
     public void returnToParentScene() {
-        BaseBullet.resetPool();
         detachChild(infinityGameScene);
         infinityGameScene.clearTouchAreas();
         infinityGameScene.clearEntityModifiers();
         infinityGameScene.clearUpdateHandlers();
         infinityGameScene.back();
         infinityGameScene = null;
-        BaseUnit.resetPool();
-        text.setVisible(true);
+       // text.setVisible(true);
+        setChildScene(menuScene, false, true, true);
     }
 
     @Override

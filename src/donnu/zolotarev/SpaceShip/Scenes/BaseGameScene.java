@@ -71,6 +71,7 @@ public abstract class BaseGameScene extends MyScene {
 
 
     public BaseGameScene(IParentScene self) {
+        super(self);
         parentScene = self;
         activeScene = this;
         shipActivity = SpaceShipActivity.getInstance();
@@ -104,8 +105,6 @@ public abstract class BaseGameScene extends MyScene {
         initWave();
         createMenu();
     }
-
-
 
     protected abstract void addEnemy(int kind);
 
@@ -253,6 +252,8 @@ public abstract class BaseGameScene extends MyScene {
         getBulletController().cleer();
         getEnemyController().cleer();
         detachSelf();
+        BaseBullet.resetPool();
+        BaseUnit.resetPool();
         parentScene.returnToParentScene();
     }
 

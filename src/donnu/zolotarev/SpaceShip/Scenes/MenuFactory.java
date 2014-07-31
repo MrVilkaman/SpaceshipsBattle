@@ -23,6 +23,15 @@ public  class MenuFactory {
     private Integer clickCounter;
     private int lostIndex = -1;
 
+
+
+    public static enum WALIGMENT{
+        LEFT,CENTER,RIGHT
+    }
+    public static enum HALIGMENT{
+        TOP,CENTER,BOTTOM
+    }
+
     public static MenuFactory createMenu(){
 
         return new MenuFactory();
@@ -48,8 +57,12 @@ public  class MenuFactory {
         return addMenuItem(createSpriteItem(texture,scale));
     }
 
-    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y ){
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment ){
        reqFromClick(simpleClick);
+        return attachChild(createSpriteItem(texture,scale,x,y,waligment,haligment));
+    }
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y){
+        reqFromClick(simpleClick);
         return attachChild(createSpriteItem(texture,scale,x,y));
     }
 
@@ -64,6 +77,10 @@ public  class MenuFactory {
 
     public MenuFactory addedItem(ITextureRegion texture,int scale, float x, float y ){
         return attachChild(createSpriteItem(texture,scale,x,y));
+    }
+
+    public MenuFactory addedItem(ITextureRegion texture,int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment ) {
+        return attachChild(createSpriteItem(texture,scale,x,y,waligment,haligment));
     }
 
     // Текст с нажатием
@@ -110,7 +127,38 @@ public  class MenuFactory {
 
     private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y){
         IMenuItem resetMenuItem = createSpriteItem(texture,scale);
-        resetMenuItem.setPosition(x - resetMenuItem.getWidth()/2,y);
+        resetMenuItem.setPosition(x,y);
+        return resetMenuItem;
+    }
+
+    private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y,WALIGMENT waligment, HALIGMENT haligment ){
+        IMenuItem resetMenuItem = createSpriteItem(texture,scale);
+        int dx = 0;
+        int dy = 0;
+        switch (waligment){
+            case LEFT:
+                dx = 0;
+                break;
+            case CENTER:
+                dx = (int)resetMenuItem.getWidth()/2;
+                break;
+            case RIGHT:
+                dx = (int)resetMenuItem.getWidth();
+                break;
+        }
+
+        switch (haligment){
+            case TOP:
+                dy = 0;
+                break;
+            case CENTER:
+                dy = (int)resetMenuItem.getHeight()/2;
+                break;
+            case BOTTOM:
+                dy = (int)resetMenuItem.getHeight();
+                break;
+        }
+        resetMenuItem.setPosition(x - dx,y - dy);
         return resetMenuItem;
     }
 
