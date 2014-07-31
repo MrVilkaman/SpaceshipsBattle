@@ -29,13 +29,13 @@ public class SelectionLevelScene extends MyScene {
         int y = 0;
 
         MenuScene menuFactory = MenuFactory.createMenu()
-                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(),1,Constants.CAMERA_WIDTH_HALF,0,MenuFactory.WALIGMENT.CENTER, MenuFactory.HALIGMENT.TOP )
+                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(),1,Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(),new ISimpleClick() {
                     @Override
                     public void onClick() {
                         parentScene.returnToParentScene();
                     }
-                },1,Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT, MenuFactory.WALIGMENT.RIGHT, MenuFactory.HALIGMENT.BOTTOM)
+                },1,Constants.CAMERA_WIDTH,Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
 
                 .enableAnimation().build();
 

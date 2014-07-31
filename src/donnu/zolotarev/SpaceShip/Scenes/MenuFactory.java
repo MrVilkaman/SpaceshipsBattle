@@ -23,15 +23,6 @@ public  class MenuFactory {
     private Integer clickCounter;
     private int lostIndex = -1;
 
-
-
-    public static enum WALIGMENT{
-        LEFT,CENTER,RIGHT
-    }
-    public static enum HALIGMENT{
-        TOP,CENTER,BOTTOM
-    }
-
     public static MenuFactory createMenu(){
 
         return new MenuFactory();
