@@ -46,19 +46,23 @@ public class MainMenu extends Scene implements IParentScene {
     }
 
     protected void createMenuScene() {
-        menuScene = MenuFactory.createMenu()
-                .addedItem(TextureLoader.getMenuNewGameTextureRegion(),new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        createGameScene();
-                    }
-                })
-                .addedItem(TextureLoader.getMenuExitTextureRegion(), new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        activity.exit();
-                    }
-                })
+        ISimpleClick click = new ISimpleClick() {
+            @Override
+            public void onClick() {
+                createGameScene();
+            }
+        };
+
+        ISimpleClick click2 =  new ISimpleClick() {
+            @Override
+            public void onClick() {
+                activity.exit();
+            }
+        };
+
+        menuScene = MenuFactory.createMenu(engine,activity.getCamera())
+                .addedItem(TextureLoader.getMenuNewGameTextureRegion(), click)
+                .addedItem(TextureLoader.getMenuExitTextureRegion(), click2)
                 .enableAnimation()
                 .build();
     }

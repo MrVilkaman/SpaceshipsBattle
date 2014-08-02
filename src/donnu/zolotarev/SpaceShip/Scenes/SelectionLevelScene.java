@@ -32,16 +32,16 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
-        menuFactory = MenuFactory.createMenu()
-                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(),1,Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
+        menuFactory = MenuFactory.createMenu(engine,shipActivity.getCamera())
+                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
                     @Override
                     public void onClick() {
                         parentScene.returnToParentScene();
                     }
-                }, 1, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
+                }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
                 .enableAnimation().build();
-        MenuScene game = MenuFactory.createMenu()
+        MenuScene game = MenuFactory.createMenu(engine,shipActivity.getCamera())
                 .addedText("X", TextureLoader.getFont(), new ISimpleClick() {
                     @Override
                     public void onClick() {

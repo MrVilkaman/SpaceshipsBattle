@@ -1,40 +1,34 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.engine.Engine;
-import org.andengine.entity.scene.background.Background;
+import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.scene.menu.item.IMenuItem;
 import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.TextMenuItem;
 import org.andengine.opengl.font.IFont;
 import org.andengine.opengl.texture.region.ITextureRegion;
-import org.andengine.util.color.Color;
 
 import java.util.HashMap;
 
 public  class MenuFactory {
     private final Engine engine;
     private final MenuScene menuScene;
-    private final SpaceShipActivity shipActivity;
-
     private HashMap<Integer,ISimpleClick> clicks;
     private Integer clickCounter;
     private int lostIndex = -1;
 
-    public static MenuFactory createMenu(){
+    public static MenuFactory createMenu(Engine engine,Camera camera){
 
-        return new MenuFactory();
+        return new MenuFactory(engine, camera);
     }
 
-    private MenuFactory() {
-        shipActivity = SpaceShipActivity.getInstance();
+    private MenuFactory(Engine engine,Camera camera) {
         clickCounter = 0;
-        this.menuScene = new MenuScene(shipActivity.getCamera());
-        this.engine = shipActivity.getEngine();
+        this.menuScene = new MenuScene(camera);
+        this.engine = engine;
         clicks = new HashMap<Integer, ISimpleClick>();
-        menuScene.setBackground(new Background(Color.RED));
     }
 
     // Картинка с нажатием
@@ -43,18 +37,14 @@ public  class MenuFactory {
         return addMenuItem(createSpriteItem(texture));
     }
 
-    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale ){
-        reqFromClick(simpleClick);
-        return addMenuItem(createSpriteItem(texture,scale));
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick, float x, float y, WALIGMENT waligment, HALIGMENT haligment){
+       reqFromClick(simpleClick);
+        return attachChild(createSpriteItem(texture, x,y,waligment,haligment));
     }
 
-    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment ){
-       reqFromClick(simpleClick);
-        return attachChild(createSpriteItem(texture,scale,x,y,waligment,haligment));
-    }
-    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick,int scale, float x, float y){
+    public MenuFactory addedItem(ITextureRegion texture, ISimpleClick simpleClick, float x, float y){
         reqFromClick(simpleClick);
-        return attachChild(createSpriteItem(texture,scale,x,y));
+        return attachChild(createSpriteItem(texture, x,y));
     }
 
     // Просто картинка
@@ -62,16 +52,12 @@ public  class MenuFactory {
         return addMenuItem(createSpriteItem(texture));
     }
 
-    public MenuFactory addedItem(ITextureRegion texture,int scale ){
-        return addMenuItem(createSpriteItem(texture,scale));
+    public MenuFactory addedItem(ITextureRegion texture, float x, float y){
+        return attachChild(createSpriteItem(texture, x,y));
     }
 
-    public MenuFactory addedItem(ITextureRegion texture,int scale, float x, float y ){
-        return attachChild(createSpriteItem(texture,scale,x,y));
-    }
-
-    public MenuFactory addedItem(ITextureRegion texture,int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment ) {
-        return attachChild(createSpriteItem(texture,scale,x,y,waligment,haligment));
+    public MenuFactory addedItem(ITextureRegion texture, float x, float y, WALIGMENT waligment, HALIGMENT haligment) {
+        return attachChild(createSpriteItem(texture, x,y,waligment,haligment));
     }
 
     // Текст с нажатием
@@ -82,17 +68,17 @@ public  class MenuFactory {
 
     public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale){
         reqFromClick(simpleClick);
-        return addMenuItem(createText(text, iFont, scale));
+        return addMenuItem(createText(text, iFont));
     }
 
     public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y){
         reqFromClick(simpleClick);
-        return attachChild(createText(text, iFont,scale,x,y));
+        return attachChild(createText(text, iFont,x,y));
     }
 
     public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
         reqFromClick(simpleClick);
-        return attachChild(createText(text, iFont,scale,x,y,waligment,haligment));
+        return attachChild(createText(text, iFont,x,y,waligment,haligment));
     }
 
     // Текст без нажатиея
@@ -100,16 +86,12 @@ public  class MenuFactory {
         return addMenuItem(createText(text, iFont));
     }
 
-    public MenuFactory addedText(String text, IFont iFont, int scale){
-        return addMenuItem(createText(text, iFont, scale));
+    public MenuFactory addedText(String text, IFont iFont, float x, float y){
+        return attachChild(createText(text, iFont,x,y));
     }
 
-    public MenuFactory addedText(String text, IFont iFont, int scale, float x, float y){
-        return attachChild(createText(text, iFont,scale,x,y));
-    }
-
-    public MenuFactory addedText(String text, IFont iFont, int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
-        return attachChild(createText(text, iFont,scale,x,y,waligment,haligment));
+    public MenuFactory addedText(String text, IFont iFont,  float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        return attachChild(createText(text, iFont,x,y,waligment,haligment));
     }
 
     private IMenuItem createSpriteItem(ITextureRegion texture){
@@ -119,46 +101,34 @@ public  class MenuFactory {
         return resetMenuItem;
     }
 
-    private IMenuItem createSpriteItem(ITextureRegion texture, int scale){
+    private IMenuItem createSpriteItem(ITextureRegion texture, float x, float y){
         IMenuItem resetMenuItem = createSpriteItem(texture);
-        resetMenuItem.setScale(scale);
-        return resetMenuItem;
-    }
-
-    private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y){
-        IMenuItem resetMenuItem = createSpriteItem(texture,scale);
         resetMenuItem.setPosition(x,y);
         return resetMenuItem;
     }
 
-    private IMenuItem createSpriteItem(ITextureRegion texture, int scale,float x, float y,WALIGMENT waligment, HALIGMENT haligment ){
-        IMenuItem resetMenuItem = createSpriteItem(texture,scale);
+    private IMenuItem createSpriteItem(ITextureRegion texture, float x, float y, WALIGMENT waligment, HALIGMENT haligment){
+        IMenuItem resetMenuItem = createSpriteItem(texture);
         return alihment(resetMenuItem,x,y,waligment,haligment);
     }
 
     private IMenuItem createText(String text, IFont iFont){
         TextMenuItem textMenuItem = new TextMenuItem(lostIndex,iFont, text,engine.getVertexBufferObjectManager());
         textMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
+
         return textMenuItem;
     }
 
-    private IMenuItem createText(String text, IFont iFont,int scale){
+    private IMenuItem createText(String text, IFont iFont,float x, float y){
         IMenuItem textMenuItem = createText(text, iFont);
-        textMenuItem.setScale(scale);
-        return textMenuItem;
-    }
-
-    private IMenuItem createText(String text, IFont iFont,int scale,float x, float y){
-        IMenuItem textMenuItem = createText(text, iFont,scale);
         textMenuItem.setPosition(x,y);
         return textMenuItem;
     }
 
-    private IMenuItem createText(String text, IFont iFont,int scale,float x, float y,WALIGMENT waligment, HALIGMENT haligment){
-        IMenuItem textMenuItem = createText(text, iFont,scale);
+    private IMenuItem createText(String text, IFont iFont,float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+        IMenuItem textMenuItem = createText(text, iFont);
         return alihment(textMenuItem,x,y,waligment,haligment);
     }
-
 
     private MenuFactory addMenuItem(IMenuItem entity){
         menuScene.addMenuItem(entity);

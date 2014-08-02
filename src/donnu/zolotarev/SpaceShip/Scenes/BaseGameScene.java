@@ -133,7 +133,7 @@ public abstract class BaseGameScene extends MyScene {
             }
         };
 
-        menuScene = MenuFactory.createMenu()
+        menuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
                 .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
                     @Override
                     public void onClick() {
@@ -148,9 +148,9 @@ public abstract class BaseGameScene extends MyScene {
                 .enableAnimation()
                 .build();
 
-        dieMenuScene = MenuFactory.createMenu()
-                .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(), 2,
-                        Constants.CAMERA_WIDTH_HALF,100)
+        dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
+                .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
+                        Constants.CAMERA_WIDTH_HALF,100,WALIGMENT.CENTER,HALIGMENT.CENTER)
                 .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
                 .enableAnimation()
