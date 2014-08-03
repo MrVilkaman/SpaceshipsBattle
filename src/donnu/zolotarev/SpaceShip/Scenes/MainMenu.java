@@ -1,7 +1,10 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.engine.Engine;
@@ -56,7 +59,7 @@ public class MainMenu extends Scene implements IParentScene {
         ISimpleClick click2 =  new ISimpleClick() {
             @Override
             public void onClick() {
-                activity.exit();
+                showExitDialog();
             }
         };
 
@@ -80,9 +83,32 @@ public class MainMenu extends Scene implements IParentScene {
         if (infinityGameScene != null){
             infinityGameScene.onKeyPressed(keyCode, event);
         }else if(keyCode == KeyEvent.KEYCODE_BACK ){
-         // Диалог выхода
-            activity.finish();
+            showExitDialog();
         }
+    }
+
+    private void showExitDialog() {
+        // Диалог выхода
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(activity)
+                        .setMessage(R.string.dialog_text_exit_message)
+                        .setPositiveButton(R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                activity.finish();
+                            }
+                        })
+                        .setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).show();
+            }
+        });
+
     }
 
     @Override

@@ -55,7 +55,13 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
-        parentScene.returnToParentScene();
+        if (infinityGameScene != null){
+            infinityGameScene.onKeyPressed(keyCode, event);
+        }else{
+            if(keyCode == KeyEvent.KEYCODE_BACK ){
+                parentScene.returnToParentScene();
+            }
+        }
     }
 
     private void createGameScene() {
