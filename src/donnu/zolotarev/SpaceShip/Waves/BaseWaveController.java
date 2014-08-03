@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Waves;
 
 import java.util.ArrayList;
 
-public abstract class BaseWaveController {
+public abstract class BaseWaveController implements IWaveController {
     protected ArrayList<UnitWave> unitWaves;
     protected int currentIndex = 0;
     protected UnitWave _currentWave = null;

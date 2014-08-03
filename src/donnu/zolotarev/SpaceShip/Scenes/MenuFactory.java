@@ -66,17 +66,12 @@ public  class MenuFactory {
         return addMenuItem(createText(text, iFont));
     }
 
-    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale){
-        reqFromClick(simpleClick);
-        return addMenuItem(createText(text, iFont));
-    }
-
-    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y){
+    public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, float x, float y){
         reqFromClick(simpleClick);
         return attachChild(createText(text, iFont,x,y));
     }
 
-    public MenuFactory addedText(String text, IFont iFont,ISimpleClick simpleClick, int scale, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+    public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, float x, float y, WALIGMENT waligment, HALIGMENT haligment){
         reqFromClick(simpleClick);
         return attachChild(createText(text, iFont,x,y,waligment,haligment));
     }

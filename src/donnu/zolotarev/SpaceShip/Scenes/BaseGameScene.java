@@ -11,10 +11,12 @@ import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
+import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
+import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
@@ -30,7 +32,7 @@ import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
 
-public abstract class BaseGameScene extends MyScene {
+public abstract class BaseGameScene extends MyScene implements IAddedEnemy, IScoreBar {
 
     protected static BaseGameScene activeScene;
     protected static Engine engine;
@@ -106,7 +108,6 @@ public abstract class BaseGameScene extends MyScene {
         createMenu();
     }
 
-    protected abstract void addEnemy(int kind);
 
     protected abstract void initWave();
 
@@ -333,6 +334,15 @@ public abstract class BaseGameScene extends MyScene {
 
     public static BaseGameScene getActiveScene() {
         return activeScene;
+    }
+
+    public void toast(final String msg){
+       shipActivity.runOnUiThread(new Runnable() {
+           @Override
+           public void run() {
+               Toast.makeText(shipActivity,msg,Toast.LENGTH_SHORT).show();
+           }
+       });
     }
 
 }

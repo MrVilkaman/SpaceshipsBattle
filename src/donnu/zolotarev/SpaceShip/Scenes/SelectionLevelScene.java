@@ -11,12 +11,16 @@ import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.util.color.Color;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
+    private static final int LEVEL_INFINITY = 0;
+    private static final int LEVEL_1 = 1;
+
     private final SpaceShipActivity shipActivity;
     private final Engine engine;
     private final IParentScene parentScene;
     private final SelectionLevelScene self;
-    private MyScene infinityGameScene;
+    private BaseGameScene  gameScene;
     private MenuScene menuFactory;
+    private int activeLevel;
 
     public SelectionLevelScene(IParentScene parentScene) {
         super(parentScene);
@@ -42,12 +46,18 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
                 .enableAnimation().build();
         MenuScene game = MenuFactory.createMenu(engine,shipActivity.getCamera())
-                .addedText("X", TextureLoader.getFont(), new ISimpleClick() {
+                .addedText("Inf", TextureLoader.getFontBig(), new ISimpleClick() {
                     @Override
                     public void onClick() {
-                        createGameScene();
+                        createGameScene(LEVEL_INFINITY);
                     }
-                }, 3, 100, 100)
+                }, 100, 100)
+                .addedText("X", TextureLoader.getFontBig(), new ISimpleClick() {
+                    @Override
+                    public void onClick() {
+                        createGameScene(LEVEL_1);
+                    }
+                }, 200, 300)
                 .enableAnimation().build();
         menuFactory.setChildScene(game);
         setChildScene(menuFactory);
@@ -55,8 +65,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
-        if (infinityGameScene != null){
-            infinityGameScene.onKeyPressed(keyCode, event);
+        if (gameScene != null){
+            gameScene.onKeyPressed(keyCode, event);
         }else{
             if(keyCode == KeyEvent.KEYCODE_BACK ){
                 parentScene.returnToParentScene();
@@ -64,27 +74,41 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         }
     }
 
-    private void createGameScene() {
-        if (infinityGameScene == null){
-            infinityGameScene = new InfinityGameScene(this);
+    private void createGameScene(int type) {
+        if (gameScene != null){
+            deactive();
         }
-        setChildScene(infinityGameScene,false,true,true);
+        switch (type){
+            case LEVEL_INFINITY:
+                gameScene = new InfinityGameScene(this);
+                break;
+            case LEVEL_1:
+                gameScene = new FirstGameScene(this);
+                break;
+
+        }
+        activeLevel = type;
+        setChildScene(gameScene,false,true,true);
     }
 
     @Override
     public void returnToParentScene() {
-        detachChild(infinityGameScene);
-        infinityGameScene.clearTouchAreas();
-        infinityGameScene.clearEntityModifiers();
-        infinityGameScene.clearUpdateHandlers();
-        infinityGameScene.back();
-        infinityGameScene = null;
+        deactive();
         // text.setVisible(true);
         setChildScene(menuFactory, false, true, true);
     }
 
+    private void deactive(){
+        detachChild(gameScene);
+        gameScene.clearTouchAreas();
+        gameScene.clearEntityModifiers();
+        gameScene.clearUpdateHandlers();
+        gameScene.back();
+        gameScene = null;
+    }
+
     @Override
     public void restart() {
-        createGameScene();
+        createGameScene(activeLevel);
     }
 }

@@ -29,6 +29,8 @@ public class TextureLoader {
 
     private static TextureRegion changeLevelLableTextureRegion1;
 
+    private static Font fontBig;
+
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
         FontManager fm = engine.getFontManager();
@@ -52,6 +54,9 @@ public class TextureLoader {
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
                 Typeface.DEFAULT, Typeface.BOLD), 32);
         font.load();
+        fontBig = FontFactory.create(fm, tm, 512, 256, Typeface.create(
+                Typeface.DEFAULT, Typeface.BOLD), 64);
+        fontBig.load();
         // Меню
 
         BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
@@ -97,6 +102,10 @@ public class TextureLoader {
 
     public static Font getFont() {
         return font;
+    }
+
+    public static Font getFontBig() {
+        return fontBig;
     }
 
     public static TextureRegion getMenuResumeTextureRegion() {
