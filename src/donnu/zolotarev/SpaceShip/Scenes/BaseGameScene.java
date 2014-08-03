@@ -70,6 +70,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             waveCountBar.setText(String.format("%02d", count));
         }
     };
+    private int status;
 
 
     public BaseGameScene(IParentScene self) {
@@ -100,12 +101,14 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                         isActive = false;
                         enablePauseMenu = false;
                         setChildScene(dieMenuScene, false, true, true);
+                        status = IParentScene.EXIT_DIE;
                     }
                 });
             }
         });
         initWave();
         createMenu();
+        status = IParentScene.EXIT_USER;
     }
 
 
@@ -121,23 +124,23 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         ISimpleClick restart = new ISimpleClick() {
             @Override
-            public void onClick() {
-                returnToParentScene();
+            public void onClick(int id) {
+                clearItem();
                 parentScene.restart();
             }
         };
 
         ISimpleClick exit = new ISimpleClick() {
             @Override
-            public void onClick() {
-                returnToParentScene();
+            public void onClick(int id) {
+                returnToParentScene(status);
             }
         };
 
         menuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
                 .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
                     @Override
-                    public void onClick() {
+                    public void onClick(int id) {
                         activeScene.detachChild(menuScene);
                         activeScene.setChildScene(analogOnScreenControl);
                         isShowMenuScene = false;
@@ -245,17 +248,21 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         }
     }
 
-    protected void returnToParentScene(){
+    protected void returnToParentScene(int statusCode){
+        clearItem();
+        parentScene.returnToParentScene(statusCode);
+    }
+
+    protected void clearItem(){
         activeScene.clearUpdateHandlers();
         activeScene.clearChildScene();
         activeScene.clearEntityModifiers();
         activeScene.clearTouchAreas();
-        getBulletController().cleer();
         getEnemyController().cleer();
+        getBulletController().cleer();
         detachSelf();
         BaseBullet.resetPool();
         BaseUnit.resetPool();
-        parentScene.returnToParentScene();
     }
 
     public void addToScore(int value){

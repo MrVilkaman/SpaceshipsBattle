@@ -2,6 +2,8 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.LevelController;
+import donnu.zolotarev.SpaceShip.LevelInfo;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
@@ -9,6 +11,8 @@ import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.util.color.Color;
+
+import java.util.Iterator;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
     private static final int LEVEL_INFINITY = 0;
@@ -21,6 +25,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private BaseGameScene  gameScene;
     private MenuScene menuFactory;
     private int activeLevel;
+    private LevelController levels;
+    private int lastSceneId;
 
     public SelectionLevelScene(IParentScene parentScene) {
         super(parentScene);
@@ -28,38 +34,56 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         this.parentScene = parentScene;
         shipActivity = SpaceShipActivity.getInstance();
        engine = shipActivity.getEngine();
-        setBackground(new Background(Color.WHITE));
+       setBackground(new Background(Color.WHITE));
+       initLevels();
        initUI();
     }
 
-    private void initUI() {
+    private void initLevels() {
+        levels = new LevelController();
+        levels.addLevel(LEVEL_INFINITY, 100, 100, true);
+        levels.addLevel(LEVEL_1,200,300,false);
+        levels.addLevel(LEVEL_1, 300, 350, false);
+        levels.addLevel(LEVEL_1,400,180,false);
+    }
 
+    private void initUI() {
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
         menuFactory = MenuFactory.createMenu(engine,shipActivity.getCamera())
                 .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
                     @Override
-                    public void onClick() {
-                        parentScene.returnToParentScene();
+                    public void onClick(int id) {
+                        parentScene.returnToParentScene(- 1);
                     }
                 }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
                 .enableAnimation().build();
-        MenuScene game = MenuFactory.createMenu(engine,shipActivity.getCamera())
-                .addedText("Inf", TextureLoader.getFontBig(), new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        createGameScene(LEVEL_INFINITY);
-                    }
-                }, 100, 100)
-                .addedText("X", TextureLoader.getFontBig(), new ISimpleClick() {
-                    @Override
-                    public void onClick() {
-                        createGameScene(LEVEL_1);
-                    }
-                }, 200, 300)
-                .enableAnimation().build();
-        menuFactory.setChildScene(game);
+        MenuFactory qq = MenuFactory.createMenu(engine, shipActivity.getCamera());
+
+        Iterator<LevelInfo> iter = levels.getIterator();
+        while(iter.hasNext()){
+            final LevelInfo item = iter.next();
+            String name;
+            if(item.getLevelId() != LEVEL_INFINITY){
+                if (item.isWin()){
+                    name = "X";
+                }else {
+                    name = "O";
+                }
+            }else{
+                name = "Inf";
+            }
+            qq.addedText(name, TextureLoader.getFontBig(), new ISimpleClick() {
+                @Override
+                public void onClick(int id) {
+                    createGameScene(item.getLevelId());
+                    lastSceneId = id;
+                }
+            }, item.getX(), item.getY());
+        }
+        qq.enableAnimation().build();
+        menuFactory.setChildScene(qq.build());
         setChildScene(menuFactory);
     }
 
@@ -69,7 +93,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             gameScene.onKeyPressed(keyCode, event);
         }else{
             if(keyCode == KeyEvent.KEYCODE_BACK ){
-                parentScene.returnToParentScene();
+                parentScene.returnToParentScene(- 1);
             }
         }
     }
@@ -92,10 +116,21 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     }
 
     @Override
-    public void returnToParentScene() {
+    public void returnToParentScene(int statusCode) {
         deactive();
-        // text.setVisible(true);
+        processResault(statusCode);
         setChildScene(menuFactory, false, true, true);
+    }
+
+    private void processResault(int statusCode) {
+       switch (statusCode){
+           case IParentScene.EXIT_USER:
+               break;
+           case IParentScene.EXIT_DIE:
+              break;
+           case IParentScene.EXIT_WIN:
+               break;
+       }
     }
 
     private void deactive(){

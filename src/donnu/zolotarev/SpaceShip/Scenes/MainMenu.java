@@ -51,14 +51,14 @@ public class MainMenu extends Scene implements IParentScene {
     protected void createMenuScene() {
         ISimpleClick click = new ISimpleClick() {
             @Override
-            public void onClick() {
+            public void onClick(int id) {
                 createGameScene();
             }
         };
 
         ISimpleClick click2 =  new ISimpleClick() {
             @Override
-            public void onClick() {
+            public void onClick(int id) {
                 showExitDialog();
             }
         };
@@ -112,7 +112,7 @@ public class MainMenu extends Scene implements IParentScene {
     }
 
     @Override
-    public void returnToParentScene() {
+    public void returnToParentScene(int statusCode) {
         detachChild(infinityGameScene);
         infinityGameScene.clearTouchAreas();
         infinityGameScene.clearEntityModifiers();

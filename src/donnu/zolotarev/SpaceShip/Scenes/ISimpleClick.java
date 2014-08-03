@@ -1,5 +1,5 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 public interface ISimpleClick {
-    public void onClick();
+    public void onClick(int id);
 }

@@ -66,6 +66,7 @@ public  class MenuFactory {
         return addMenuItem(createText(text, iFont));
     }
 
+
     public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, float x, float y){
         reqFromClick(simpleClick);
         return attachChild(createText(text, iFont,x,y));
@@ -154,7 +155,7 @@ public  class MenuFactory {
                     float pMenuItemLocalY) {
                 ISimpleClick d = clicks.get(pMenuItem.getID());
                 if (d != null){
-                    d.onClick();
+                    d.onClick(pMenuItem.getID());
                     return true;
                 }
                 return false;

@@ -32,7 +32,7 @@ public class FirstGameScene extends BaseGameScene {
             @Override
             public void onWinLevel() {
                 toast("Победа!");
-                returnToParentScene();
+                returnToParentScene(IParentScene.EXIT_WIN);
             }
         });
 
