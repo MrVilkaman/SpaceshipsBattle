@@ -1,12 +1,21 @@
 package donnu.zolotarev.SpaceShip;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 public class LevelController {
 
 
     private final ArrayList<LevelInfo> levels;
+
+    public LevelController(String s){
+        Gson gson = new Gson();
+        levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
+    }
 
     public LevelController() {
         levels = new ArrayList<LevelInfo>();
@@ -28,5 +37,8 @@ public class LevelController {
         }
     }
 
-
+    public String toJson(){
+        Gson gson = new Gson();
+        return gson.toJson(levels);
+    }
 }
