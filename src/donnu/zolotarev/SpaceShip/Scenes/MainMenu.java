@@ -5,8 +5,10 @@ import android.content.DialogInterface;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
@@ -63,7 +65,7 @@ public class MainMenu extends Scene implements IParentScene {
             }
         };
 
-        menuScene = MenuFactory.createMenu(engine,activity.getCamera())
+        menuScene = MenuFactory.createMenu(engine, activity.getCamera())
                 .addedItem(TextureLoader.getMenuNewGameTextureRegion(), click)
                 .addedItem(TextureLoader.getMenuExitTextureRegion(), click2)
                 .enableAnimation()

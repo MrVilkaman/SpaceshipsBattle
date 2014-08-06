@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Levels;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

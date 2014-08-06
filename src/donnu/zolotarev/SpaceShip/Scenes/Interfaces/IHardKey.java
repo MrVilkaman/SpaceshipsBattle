@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip.Scenes;
+package donnu.zolotarev.SpaceShip.Scenes.Interfaces;
 
 import android.view.KeyEvent;
 

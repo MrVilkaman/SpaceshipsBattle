@@ -3,11 +3,15 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.content.Context;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
-import donnu.zolotarev.SpaceShip.LevelController;
-import donnu.zolotarev.SpaceShip.LevelInfo;
+import donnu.zolotarev.SpaceShip.Levels.LevelController;
+import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
+import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
+import donnu.zolotarev.SpaceShip.Utils.WALIGMENT;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -61,8 +65,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private void initUI() {
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
-        menuFactory = MenuFactory.createMenu(engine,shipActivity.getCamera())
-                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,0,WALIGMENT.CENTER, HALIGMENT.TOP )
+        menuFactory = MenuFactory.createMenu(engine, shipActivity.getCamera())
+                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,0, WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
                     @Override
                     public void onClick(int id) {

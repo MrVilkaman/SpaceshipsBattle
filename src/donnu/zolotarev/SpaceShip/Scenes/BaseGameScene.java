@@ -8,14 +8,14 @@ import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Utils.ObjectController;
+import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import org.andengine.engine.Engine;
@@ -137,7 +137,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             }
         };
 
-        menuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
+        menuScene = MenuFactory.createMenu(engine, shipActivity.getCamera())
                 .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
                     @Override
                     public void onClick(int id) {
@@ -154,7 +154,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
                 .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
-                        Constants.CAMERA_WIDTH_HALF,100,WALIGMENT.CENTER,HALIGMENT.CENTER)
+                        Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
                 .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
                 .enableAnimation()

@@ -1,6 +1,7 @@
-package donnu.zolotarev.SpaceShip.Scenes;
+package donnu.zolotarev.SpaceShip.Utils;
 
 import android.opengl.GLES20;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.scene.menu.MenuScene;
