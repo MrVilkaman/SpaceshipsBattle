@@ -7,7 +7,7 @@ public class LevelInfo {
     private int y;
     private boolean isInfinity;
     private boolean isWin;
-
+    private boolean isNew;
 
     public int getLevelId() {
         return levelId;
@@ -26,6 +26,7 @@ public class LevelInfo {
         this.x = x;
         this.y = y;
         this.isInfinity = isInfinity;
+        isNew = true;
     }
 
     public boolean isWin() {
@@ -40,6 +41,13 @@ public class LevelInfo {
         this.isWin = isWin;
     }
 
+    public boolean isNew() {
+        return isNew;
+    }
+
+    public void setNew(boolean isNew) {
+        this.isNew = isNew;
+    }
 
 
     //

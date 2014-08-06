@@ -20,5 +20,13 @@ public class LevelController {
         return levels.iterator();
     }
 
+    public void changeStateById(int id, boolean win){
+        LevelInfo item = levels.get(id);
+        if (!item.isInfinity()){
+            item.setWin(win);
+            item.setNew(false);
+        }
+    }
+
 
 }

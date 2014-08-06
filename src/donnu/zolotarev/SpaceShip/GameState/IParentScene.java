@@ -5,7 +5,6 @@ public interface IParentScene {
     public static final int EXIT_USER = -1;
     public static final int EXIT_DIE= 1;
 
-
     public void returnToParentScene(int statusCode);
     public void restart();
 }

@@ -59,17 +59,28 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                     }
                 }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
                 .enableAnimation().build();
-        MenuFactory qq = MenuFactory.createMenu(engine, shipActivity.getCamera());
 
+
+        setChildScene(menuFactory);
+        redrawLevelsUI();
+    }
+
+    private void redrawLevelsUI() {
+        menuFactory.clearChildScene();
+        MenuFactory qq = MenuFactory.createMenu(engine, shipActivity.getCamera());
         Iterator<LevelInfo> iter = levels.getIterator();
         while(iter.hasNext()){
             final LevelInfo item = iter.next();
             String name;
             if(item.getLevelId() != LEVEL_INFINITY){
-                if (item.isWin()){
-                    name = "X";
+                if (item.isNew()){
+                    name = "N";
                 }else {
-                    name = "O";
+                    if (item.isWin()){
+                        name = "X";
+                    } else {
+                        name = "O";
+                    }
                 }
             }else{
                 name = "Inf";
@@ -84,8 +95,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         }
         qq.enableAnimation().build();
         menuFactory.setChildScene(qq.build());
-        setChildScene(menuFactory);
     }
+
 
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
@@ -119,6 +130,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     public void returnToParentScene(int statusCode) {
         deactive();
         processResault(statusCode);
+        redrawLevelsUI();
         setChildScene(menuFactory, false, true, true);
     }
 
@@ -127,8 +139,10 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
            case IParentScene.EXIT_USER:
                break;
            case IParentScene.EXIT_DIE:
+               levels.changeStateById(lastSceneId,false);
               break;
            case IParentScene.EXIT_WIN:
+               levels.changeStateById(lastSceneId,true);
                break;
        }
     }
