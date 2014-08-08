@@ -19,7 +19,7 @@ import org.andengine.entity.text.TextOptions;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.HorizontalAlign;
 
-public class MainMenu extends Scene implements IParentScene {
+public class MainMenu extends MyScene implements IParentScene {
     private static final int MENU_NEWGAME = 0;
     private static final int MENU_EXIT = MENU_NEWGAME + 1;
 
@@ -30,11 +30,11 @@ public class MainMenu extends Scene implements IParentScene {
     private MenuScene menuScene;
 
     public MainMenu() {
+        super(null);
         activity = SpaceShipActivity.getInstance();
         engine = activity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         createMenuScene();
-
 
         text = new Text(450,SpaceShipActivity.getCameraHeight()-100,
                 TextureLoader.getFont(),"Коснитесь для продолжения!",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
@@ -70,6 +70,7 @@ public class MainMenu extends Scene implements IParentScene {
                 .addedItem(TextureLoader.getMenuExitTextureRegion(), click2)
                 .enableAnimation()
                 .build();
+
     }
 
     private void createGameScene() {
@@ -80,6 +81,7 @@ public class MainMenu extends Scene implements IParentScene {
         setChildScene(infinityGameScene,false,true,true);
     }
 
+    @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
 
         if (infinityGameScene != null){

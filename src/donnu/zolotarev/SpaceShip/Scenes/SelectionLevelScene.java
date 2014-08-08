@@ -1,6 +1,5 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
-import android.content.Context;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
@@ -20,11 +19,6 @@ import org.andengine.util.color.Color;
 import java.util.Iterator;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
-    private static final int LEVEL_INFINITY = 0;
-    private static final int LEVEL_1 = 1;
-    private static final String FILE_LEVELS = "file_levels";
-    private static final String PREF_LEVELS = "pref_levels";
-
     private final SpaceShipActivity shipActivity;
     private final Engine engine;
     private final IParentScene parentScene;
@@ -47,19 +41,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     }
 
     private void initLevels() {
-        String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .getString(PREF_LEVELS,"");
-        if (!levelsJson.isEmpty()){
-            levels = new LevelController(levelsJson);
-        } else {
-            levels = new LevelController();
-            levels.addLevel(LEVEL_INFINITY, 100, 100, true);
-            levels.addLevel(LEVEL_1, 200,300, false);
-            levels.addLevel(LEVEL_1, 300,350, false);
-            levels.addLevel(LEVEL_1, 400,180, false);
-        }
-
-
+        loadGame();
+        levels = loadLevels();
     }
 
     private void initUI() {
@@ -110,10 +93,9 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         }
         qq.enableAnimation().build();
 
-        shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,levels.toJson())
-                .commit();
-
+        // todo savegame
+        saveLevels(levels);
+        saveGameState();
         menuFactory.setChildScene(qq.build());
     }
 
