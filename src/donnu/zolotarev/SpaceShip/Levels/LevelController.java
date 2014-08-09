@@ -37,6 +37,11 @@ public class LevelController {
         }
     }
 
+    public boolean newestById(int id){
+        LevelInfo item = levels.get(id);
+        return item.isNew() && !item.isInfinity();
+    }
+
     public String toJson(){
         Gson gson = new Gson();
         return gson.toJson(levels);

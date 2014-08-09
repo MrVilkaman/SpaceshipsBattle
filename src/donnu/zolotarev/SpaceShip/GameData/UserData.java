@@ -34,7 +34,7 @@ public class UserData {
         return money;
     }
 
-    public void setMoney(int money) {
+    void setMoney(int money) {
         this.money = money;
     }
 }

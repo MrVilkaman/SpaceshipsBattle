@@ -1,6 +1,8 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.GameData.UserData;
+import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
@@ -14,6 +16,9 @@ import donnu.zolotarev.SpaceShip.Utils.WALIGMENT;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.text.Text;
+import org.andengine.entity.text.TextOptions;
+import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
 
 import java.util.Iterator;
@@ -23,11 +28,15 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private final Engine engine;
     private final IParentScene parentScene;
     private final SelectionLevelScene self;
+    private final UserDataProcessor dataProcessor;
+
     private BaseGameScene  gameScene;
     private MenuScene menuFactory;
     private int activeLevel;
     private LevelController levels;
     private int lastSceneId;
+
+    private Text goldBar;
 
     public SelectionLevelScene(IParentScene parentScene) {
         super(parentScene);
@@ -36,7 +45,9 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         shipActivity = SpaceShipActivity.getInstance();
        engine = shipActivity.getEngine();
        setBackground(new Background(Color.WHITE));
+
        initLevels();
+        dataProcessor = UserDataProcessor.get();
        initUI();
     }
 
@@ -46,6 +57,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     }
 
     private void initUI() {
+        createGoldBar();
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
         menuFactory = MenuFactory.createMenu(engine, shipActivity.getCamera())
@@ -61,6 +73,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
         setChildScene(menuFactory);
         redrawLevelsUI();
+
+
     }
 
     private void redrawLevelsUI() {
@@ -92,11 +106,13 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             }, item.getX(), item.getY());
         }
         qq.enableAnimation().build();
+        menuFactory.setChildScene(qq.build());
+
+        updateInfo();
 
         // todo savegame
         saveLevels(levels);
         saveGameState();
-        menuFactory.setChildScene(qq.build());
     }
 
 
@@ -142,9 +158,11 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                break;
            case IParentScene.EXIT_DIE:
                levels.changeStateById(lastSceneId,false);
+               dataProcessor.processGold(levels.newestById(lastSceneId),false);
               break;
            case IParentScene.EXIT_WIN:
                levels.changeStateById(lastSceneId,true);
+               dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
        }
     }
@@ -161,5 +179,28 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     @Override
     public void restart() {
         createGameScene(activeLevel);
+    }
+
+    private void createGoldBar(){
+        try {
+            int y = 0;
+            int x = SpaceShipActivity.getCameraWidth()-5;
+            goldBar = new Text(x,y,TextureLoader.getFont(),"000000",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            x = SpaceShipActivity.getCameraWidth() - (int)goldBar.getWidth();
+            goldBar.setPosition(x,0);
+            attachChild(goldBar);
+            Text text = new Text(x,y,TextureLoader.getFont(),"Деньги: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            attachChild(text);
+            x -= (text.getWidth()+10);
+            text.setPosition(x,0);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateInfo(){
+        UserData userData = UserData.get();
+        goldBar.setText(String.valueOf(userData.getMoney()));
     }
 }
