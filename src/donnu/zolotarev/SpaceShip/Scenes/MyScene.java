@@ -13,6 +13,7 @@ public abstract class MyScene extends Scene implements IHardKey {
 
     protected static final int LEVEL_INFINITY = 0;
     protected static final int LEVEL_1 = 1;
+    protected static final int LEVEL_TEST = 99;
 
     protected static final String FILE_GAME_DATA = "file_game_data";
     protected static final String FILE_LEVELS = "file_levels";
@@ -61,6 +62,7 @@ public abstract class MyScene extends Scene implements IHardKey {
             levels.addLevel(LEVEL_1, 200,300, false);
             levels.addLevel(LEVEL_1, 300,350, false);
             levels.addLevel(LEVEL_1, 400,180, false);
+            levels.addLevel(LEVEL_TEST, 700,180, false);
         }
 
         return levels;

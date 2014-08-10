@@ -5,10 +5,17 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 
 public class SimpleWave extends BaseWaveController {
-    private final IStatusGameInfo winListner;
+    private IStatusGameInfo winListner;
 
     public SimpleWave(IStatusGameInfo winListner) {
         super();
+        this.winListner = winListner;
+    }
+
+    public SimpleWave() {
+    }
+
+    public void addListener(IStatusGameInfo winListner){
         this.winListner = winListner;
     }
 

@@ -52,7 +52,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private MenuScene dieMenuScene;
     private boolean isShowMenuScene = false;
     private boolean enablePauseMenu = true;
-    private boolean isActive = true;
+    private boolean isActive = false;
 
     private int score;
     protected int waveIndex = 0;
@@ -352,4 +352,12 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
        });
     }
 
+    public void start(){
+        isActive = true;
+    }
+
+    public void addNewWaveController(IWaveController controller){
+        waveController = controller;
+        start();
+    }
 }

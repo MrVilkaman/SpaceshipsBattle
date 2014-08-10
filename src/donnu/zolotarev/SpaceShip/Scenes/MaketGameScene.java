@@ -8,22 +8,20 @@ import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
-import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 
 import java.util.Random;
 
-public class FirstGameScene extends BaseGameScene {
+public class MaketGameScene extends BaseGameScene {
 
-    public FirstGameScene(IParentScene self) {
+    public MaketGameScene(IParentScene self) {
         super(self);
-        start();
     }
 
-
     @Override
-    protected void initWave() {
-        waveController = new SimpleWave(new IStatusGameInfo() {
+    public void addNewWaveController(IWaveController controller) {
+        ((SimpleWave)controller).addListener(new IStatusGameInfo() {
             @Override
             public void onNextWave(int count) {
                 waveIndex++;
@@ -36,13 +34,11 @@ public class FirstGameScene extends BaseGameScene {
                 returnToParentScene(IParentScene.EXIT_WIN);
             }
         });
+        super.addNewWaveController(controller);
+    }
 
-        UnitWave unitWave = new UnitWave(this);
-        unitWave.addEnemy(0, 7, 1.2f);
-        unitWave.addEnemy(0, 4, 0.2f);
-        unitWave.addEnemy(0,7,0.8f);
-        waveController.addWave(unitWave);
-
+    @Override
+    protected void initWave() {
     }
 
     @Override

@@ -18,6 +18,7 @@ public class InfinityGameScene extends BaseGameScene  {
 
     public InfinityGameScene(IParentScene self) {
         super(self);
+        start();
     }
 
     @Override

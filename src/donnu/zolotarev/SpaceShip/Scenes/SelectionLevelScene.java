@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
+import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -138,6 +139,12 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             case LEVEL_1:
                 gameScene = new FirstGameScene(this);
                 break;
+            case LEVEL_TEST:
+                gameScene = new MaketGameScene(this);
+                gameScene.addNewWaveController( WaveContainer.getWaveControllerById(1,gameScene));
+                break;
+            default:
+                new Exception("Undefine type game scene!");
 
         }
         activeLevel = type;
