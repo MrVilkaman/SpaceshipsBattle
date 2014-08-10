@@ -111,8 +111,9 @@ public class Hero extends BaseUnit {
     }
 
     @Override
-    public synchronized void destroy() {
+    public  void destroy() {
         isAlive = false;
+        weaponController.setShoot(false);
         super.destroy();
     }
 }
