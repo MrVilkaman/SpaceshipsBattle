@@ -85,7 +85,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         while(iter.hasNext()){
             final LevelInfo item = iter.next();
             String name;
-            if(item.getLevelId() != LEVEL_INFINITY){
+            if(item.getLevelId() != WaveContainer.LEVEL_INFINITY){
                 if (item.isNew()){
                     name = "N";
                 }else {
@@ -133,19 +133,13 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             deactive();
         }
         switch (type){
-            case LEVEL_INFINITY:
+            case WaveContainer.LEVEL_INFINITY:
                 gameScene = new InfinityGameScene(this);
                 break;
-            case LEVEL_1:
-                gameScene = new FirstGameScene(this);
-                break;
-            case LEVEL_TEST:
-                gameScene = new MaketGameScene(this);
-                gameScene.addNewWaveController( WaveContainer.getWaveControllerById(1,gameScene));
-                break;
             default:
-                new Exception("Undefine type game scene!");
-
+                gameScene = new MaketGameScene(this);
+                gameScene.addNewWaveController( WaveContainer.getWaveControllerById(type,gameScene));
+                break;
         }
         activeLevel = type;
         setChildScene(gameScene,false,true,true);

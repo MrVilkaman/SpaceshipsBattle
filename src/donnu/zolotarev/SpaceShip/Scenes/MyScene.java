@@ -5,15 +5,12 @@ import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
+import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.IHardKey;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.entity.scene.Scene;
 
 public abstract class MyScene extends Scene implements IHardKey {
-
-    protected static final int LEVEL_INFINITY = 0;
-    protected static final int LEVEL_1 = 1;
-    protected static final int LEVEL_TEST = 99;
 
     protected static final String FILE_GAME_DATA = "file_game_data";
     protected static final String FILE_LEVELS = "file_levels";
@@ -58,11 +55,11 @@ public abstract class MyScene extends Scene implements IHardKey {
             levels = new LevelController(levelsJson);
         } else {
             levels = new LevelController();
-            levels.addLevel(LEVEL_INFINITY, 100, 100, true);
-            levels.addLevel(LEVEL_1, 200,300, false);
-            levels.addLevel(LEVEL_1, 300,350, false);
-            levels.addLevel(LEVEL_1, 400,180, false);
-            levels.addLevel(LEVEL_TEST, 700,180, false);
+            levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
+            levels.addLevel(WaveContainer.LEVEL_1, 200,300, false);
+            levels.addLevel(WaveContainer.LEVEL_2, 300,350, false);
+            levels.addLevel(WaveContainer.LEVEL_3, 400,180, false);
+            levels.addLevel(WaveContainer.LEVEL_TEST, 700,180, false);
         }
 
         return levels;
