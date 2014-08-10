@@ -51,6 +51,11 @@ public class MainMenu extends MyScene implements IParentScene {
     }
 
     protected void createMenuScene() {
+        if (menuScene != null){
+            menuScene.detachSelf();
+            menuScene = null;
+        }
+
         ISimpleClick click = new ISimpleClick() {
             @Override
             public void onClick(int id) {
@@ -65,11 +70,23 @@ public class MainMenu extends MyScene implements IParentScene {
             }
         };
 
-        menuScene = MenuFactory.createMenu(engine, activity.getCamera())
-                .addedItem(TextureLoader.getMenuNewGameTextureRegion(), click)
+        ISimpleClick click3 = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                clearCurrentGame();
+                createGameScene();
+            }
+        };
+
+
+        MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
+        if (haveCurrentGame()){
+            m.addedItem(TextureLoader.getMenuResumeTextureRegion(), click);
+        }
+        m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), click3)
                 .addedItem(TextureLoader.getMenuExitTextureRegion(), click2)
-                .enableAnimation()
-                .build();
+                .enableAnimation();
+        menuScene = m.build();
 
     }
 
@@ -124,6 +141,7 @@ public class MainMenu extends MyScene implements IParentScene {
         infinityGameScene.back();
         infinityGameScene = null;
        // text.setVisible(true);
+        createMenuScene();
         setChildScene(menuScene, false, true, true);
     }
 

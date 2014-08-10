@@ -45,6 +45,24 @@ public abstract class MyScene extends Scene implements IHardKey {
                 .commit();
     }
 
+    public boolean haveCurrentGame(){
+        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
+                .getString(PREF_LEVELS,"");
+        return !levelsJson.isEmpty();
+    }
+
+    public void clearCurrentGame(){
+        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
+                .edit().putString(PREF_USER_STATS,"")
+                .commit();
+        shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
+                .edit().putString(PREF_LEVELS,"")
+                .commit();
+    }
+
+
     public LevelController loadLevels(){
         LevelController levels;
         SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
