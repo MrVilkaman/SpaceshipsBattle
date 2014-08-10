@@ -85,17 +85,24 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         while(iter.hasNext()){
             final LevelInfo item = iter.next();
             String name;
+            Color color;
             if(item.getLevelId() != WaveContainer.LEVEL_INFINITY){
+                name = String.valueOf(item.getLevelId());
                 if (item.isNew()){
-                    name = "N";
+                    color = Color.BLACK;
+                   // name = "N";
                 }else {
                     if (item.isWin()){
-                        name = "X";
+                        color = Color.GREEN;
+                      //  name = "X";
                     } else {
-                        name = "O";
+                        color = Color.RED;
+                      //  name = "O";
                     }
                 }
             }else{
+                color = Color.BLACK;
+
                 name = "Inf";
             }
             qq.addedText(name, TextureLoader.getFontBig(), new ISimpleClick() {
@@ -104,7 +111,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                     createGameScene(item.getLevelId());
                     lastSceneId = id;
                 }
-            }, item.getX(), item.getY());
+            }, color, item.getX(), item.getY());
         }
         qq.enableAnimation().build();
         menuFactory.setChildScene(qq.build());

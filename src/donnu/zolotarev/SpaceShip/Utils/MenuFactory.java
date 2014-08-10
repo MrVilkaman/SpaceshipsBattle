@@ -10,6 +10,7 @@ import org.andengine.entity.scene.menu.item.SpriteMenuItem;
 import org.andengine.entity.scene.menu.item.TextMenuItem;
 import org.andengine.opengl.font.IFont;
 import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.util.color.Color;
 
 import java.util.HashMap;
 
@@ -68,9 +69,9 @@ public  class MenuFactory {
     }
 
 
-    public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, float x, float y){
+    public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, Color color, float x, float y){
         reqFromClick(simpleClick);
-        return attachChild(createText(text, iFont,x,y));
+        return attachChild(createText(text, iFont, color, x,y));
     }
 
     public MenuFactory addedText(String text, IFont iFont, ISimpleClick simpleClick, float x, float y, WALIGMENT waligment, HALIGMENT haligment){
@@ -84,10 +85,10 @@ public  class MenuFactory {
     }
 
     public MenuFactory addedText(String text, IFont iFont, float x, float y){
-        return attachChild(createText(text, iFont,x,y));
+        return attachChild(createText(text, iFont, Color.BLACK, x,y));
     }
 
-    public MenuFactory addedText(String text, IFont iFont,  float x, float y,WALIGMENT waligment, HALIGMENT haligment){
+    public MenuFactory addedText(String text, IFont iFont, float x, float y,WALIGMENT waligment, HALIGMENT haligment){
         return attachChild(createText(text, iFont,x,y,waligment,haligment));
     }
 
@@ -116,9 +117,10 @@ public  class MenuFactory {
         return textMenuItem;
     }
 
-    private IMenuItem createText(String text, IFont iFont,float x, float y){
+    private IMenuItem createText(String text, IFont iFont, Color color, float x, float y){
         IMenuItem textMenuItem = createText(text, iFont);
         textMenuItem.setPosition(x,y);
+        textMenuItem.setColor(color);
         return textMenuItem;
     }
 

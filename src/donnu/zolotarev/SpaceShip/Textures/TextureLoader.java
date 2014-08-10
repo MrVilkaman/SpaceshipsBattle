@@ -11,6 +11,7 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.util.color.Color;
 
 public class TextureLoader {
 
@@ -55,7 +56,7 @@ public class TextureLoader {
                 Typeface.DEFAULT, Typeface.BOLD), 32);
         font.load();
         fontBig = FontFactory.create(fm, tm, 512, 256, Typeface.create(
-                Typeface.DEFAULT, Typeface.BOLD), 64);
+                Typeface.DEFAULT, Typeface.BOLD), 64, Color.WHITE_ABGR_PACKED_INT);
         fontBig.load();
         // Меню
 
