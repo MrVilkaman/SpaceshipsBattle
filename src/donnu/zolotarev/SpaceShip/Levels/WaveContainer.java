@@ -26,12 +26,11 @@ public  class WaveContainer {
         switch (id){
             case LEVEL_1:
                 waveController = new SimpleWave();
-                 //todo убрать коментарии
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(0, 1, 0.4f);
-               /* unitWave.addEnemy(0, 7, 1.2f);
+                unitWave.addEnemy(0, 7, 1.2f);
                 unitWave.addEnemy(0, 4, 0.2f);
-                unitWave.addEnemy(0,7,0.8f);*/
+                unitWave.addEnemy(0,7,0.8f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_2:
@@ -39,9 +38,9 @@ public  class WaveContainer {
 
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(0, 1, 0.4f);
-               /* unitWave.addEnemy(0, 8, 1.1f);
+                unitWave.addEnemy(0, 8, 1.1f);
                 unitWave.addEnemy(0, 7, 0.3f);
-                unitWave.addEnemy(0,10,0.9f);*/
+                unitWave.addEnemy(0,10,0.9f);
                 waveController.addWave(unitWave);
                 return waveController;
            // case LEVEL_3:
@@ -50,14 +49,16 @@ public  class WaveContainer {
 
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(0, 1, 0.4f);
-               /* unitWave.addEnemy(0, 10, 1.2f);
+                unitWave.addEnemy(0, 10, 1.2f);
                 unitWave.addEnemy(0, 10, 0.4f);
-                unitWave.addEnemy(0,5,0.9f);*/
+                unitWave.addEnemy(0,5,0.9f);
                 waveController.addWave(unitWave);
 
-                /*unitWave = new UnitWave(iAddedEnemy);
+                unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(0, 15, 1.5f);
-                waveController.addWave(unitWave);*/
+                unitWave.addEnemy(0, 15, 1.5f);
+                unitWave.addEnemy(0, 15, 1.5f);
+                waveController.addWave(unitWave);
 
                 return waveController;
             /*default:

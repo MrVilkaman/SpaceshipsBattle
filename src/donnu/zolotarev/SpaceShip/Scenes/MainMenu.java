@@ -92,8 +92,7 @@ public class MainMenu extends MyScene implements IParentScene {
 
     private void createGameScene() {
         if (infinityGameScene == null){
-            // todo вернуть
-            infinityGameScene = new SelectionLevelScene(this);//new InfinityGameScene(this);
+            infinityGameScene = new SelectionLevelScene(this);
         }
         setChildScene(infinityGameScene,false,true,true);
     }

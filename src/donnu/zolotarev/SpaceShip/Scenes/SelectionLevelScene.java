@@ -127,7 +127,6 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
         updateInfo();
 
-        // todo savegame
         saveLevels(levels);
         saveGameState();
     }

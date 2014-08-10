@@ -68,7 +68,6 @@ public abstract class MyScene extends Scene implements IHardKey {
         SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
         String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
-                 //todo убрать коментарий
         if (!levelsJson.isEmpty()){
             levels = new LevelController(levelsJson);
         } else {
