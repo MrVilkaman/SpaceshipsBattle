@@ -51,7 +51,7 @@ public abstract class MyScene extends Scene implements IHardKey {
         String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
                  //todo убрать коментарий
-        if (false/*!levelsJson.isEmpty()*/){
+        if (!levelsJson.isEmpty()){
             levels = new LevelController(levelsJson);
         } else {
             levels = new LevelController();
@@ -59,6 +59,9 @@ public abstract class MyScene extends Scene implements IHardKey {
             levels.addLevel(WaveContainer.LEVEL_1, 200,300, false);
             levels.addLevel(WaveContainer.LEVEL_2, 300,350, false);
             levels.addLevel(WaveContainer.LEVEL_3, 400,180, false);
+            levels.addLevel(WaveContainer.LEVEL_4, 500,180, false);
+            levels.addLevel(WaveContainer.LEVEL_5, 600,300, false);
+            levels.addLevel(WaveContainer.LEVEL_6, 800,400, false);
             levels.addLevel(WaveContainer.LEVEL_TEST, 700,180, false);
             levels.changeEnabled();
         }

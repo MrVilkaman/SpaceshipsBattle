@@ -49,9 +49,9 @@ public class LevelController {
     }
 
     public void changeEnabled(){
+        int counter = 0;
         for (int i = 0;i<levels.size();i++){
-            int index = i-2;
-            int index2 = i-1;
+            int index = i-1;
            if(0<index){
               /*if (levels.get(index2).isWin()){
                   levels.get(i).setEnabled(true);
@@ -60,7 +60,7 @@ public class LevelController {
                    levels.get(i).setEnabled(false);
                }*/
 
-               levels.get(i).setEnabled((levels.get(index2).isWin()|| levels.get(index).isWin()) && levels.get(i-3).isWin());
+               levels.get(i).setEnabled(levels.get(index).isWin());
            }else{
                levels.get(i).setEnabled(true);
            }
