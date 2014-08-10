@@ -29,6 +29,7 @@ public class TextureLoader {
     private static TextureRegion menuRestartTextureRegion;
 
     private static TextureRegion changeLevelLableTextureRegion1;
+    private static TextureRegion changeLevelIconShop;
 
     private static Font fontBig;
 
@@ -77,6 +78,8 @@ public class TextureLoader {
         BitmapTextureAtlas loadSceneTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
         changeLevelLableTextureRegion1 = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadSceneTexture, context
                 , "text/change_level_Lable_1.png", 0, 0);
+        changeLevelIconShop = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadSceneTexture, context
+                , "Level_Shop.png", 401, 0);
         loadSceneTexture.load();
 
     }
@@ -131,5 +134,9 @@ public class TextureLoader {
 
     public static TextureRegion getChangeLevelLableTextureRegion1() {
         return changeLevelLableTextureRegion1;
+    }
+
+    public static TextureRegion getChangeLevelIconShop() {
+        return changeLevelIconShop;
     }
 }

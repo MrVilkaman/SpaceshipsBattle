@@ -38,6 +38,12 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private int lastSceneId;
 
     private Text goldBar;
+    private ISimpleClick shopListner = new ISimpleClick() {
+        @Override
+        public void onClick(int id) {
+
+        }
+    };
 
     public SelectionLevelScene(IParentScene parentScene) {
         super(parentScene);
@@ -62,13 +68,14 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;
         menuFactory = MenuFactory.createMenu(engine, shipActivity.getCamera())
-                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,0, WALIGMENT.CENTER, HALIGMENT.TOP )
+                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,5, WALIGMENT.CENTER, HALIGMENT.TOP )
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
                     @Override
                     public void onClick(int id) {
                         parentScene.returnToParentScene(- 1);
                     }
                 }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
+                .addedItem(TextureLoader.getChangeLevelIconShop(),shopListner,Constants.CAMERA_WIDTH -Constants.CAMERA_WIDTH_HALF/2,0, WALIGMENT.CENTER, HALIGMENT.TOP)
                 .enableAnimation().build();
 
 
@@ -200,16 +207,16 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
     private void createGoldBar(){
         try {
-            int y = 0;
+            int y = 12;
             int x = SpaceShipActivity.getCameraWidth()-5;
             goldBar = new Text(x,y,TextureLoader.getFont(),"000000",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             x = SpaceShipActivity.getCameraWidth() - (int)goldBar.getWidth();
-            goldBar.setPosition(x,0);
+            goldBar.setPosition(x,y);
             attachChild(goldBar);
             Text text = new Text(x,y,TextureLoader.getFont(),"Деньги: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
             x -= (text.getWidth()+10);
-            text.setPosition(x,0);
+            text.setPosition(x,y);
 
         } catch (Exception e) {
             e.printStackTrace();
