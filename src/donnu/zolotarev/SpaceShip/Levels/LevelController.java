@@ -15,6 +15,7 @@ public class LevelController {
     public LevelController(String s){
         Gson gson = new Gson();
         levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
+        changeEnabled();
     }
 
     public LevelController() {
@@ -45,5 +46,24 @@ public class LevelController {
     public String toJson(){
         Gson gson = new Gson();
         return gson.toJson(levels);
+    }
+
+    public void changeEnabled(){
+        for (int i = 0;i<levels.size();i++){
+            int index = i-2;
+            int index2 = i-1;
+           if(0<index){
+              /*if (levels.get(index2).isWin()){
+                  levels.get(i).setEnabled(true);
+              }
+               if (!levels.get(index).isWin()){
+                   levels.get(i).setEnabled(false);
+               }*/
+
+               levels.get(i).setEnabled((levels.get(index2).isWin()|| levels.get(index).isWin()) && levels.get(i-3).isWin());
+           }else{
+               levels.get(i).setEnabled(true);
+           }
+        }
     }
 }

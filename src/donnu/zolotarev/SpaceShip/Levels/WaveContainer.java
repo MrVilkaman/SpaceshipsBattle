@@ -6,8 +6,8 @@ import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 
 public  class WaveContainer {
-    public static final int LEVEL_INFINITY = 0;
-    public static final int LEVEL_1 = LEVEL_INFINITY+1;
+    public static final int LEVEL_INFINITY = 99;
+    public static final int LEVEL_1 = 1;
     public static final int LEVEL_2 = LEVEL_1+1;
     public static final int LEVEL_3 = LEVEL_2+1;
 
@@ -24,34 +24,37 @@ public  class WaveContainer {
         switch (id){
             case LEVEL_1:
                 waveController = new SimpleWave();
-
+                 //todo убрать коментарии
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 7, 1.2f);
+                unitWave.addEnemy(0, 1, 0.4f);
+               /* unitWave.addEnemy(0, 7, 1.2f);
                 unitWave.addEnemy(0, 4, 0.2f);
-                unitWave.addEnemy(0,7,0.8f);
+                unitWave.addEnemy(0,7,0.8f);*/
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_2:
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 8, 1.1f);
+                unitWave.addEnemy(0, 1, 0.4f);
+               /* unitWave.addEnemy(0, 8, 1.1f);
                 unitWave.addEnemy(0, 7, 0.3f);
-                unitWave.addEnemy(0,10,0.9f);
+                unitWave.addEnemy(0,10,0.9f);*/
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_3:
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 10, 1.2f);
+                unitWave.addEnemy(0, 1, 0.4f);
+               /* unitWave.addEnemy(0, 10, 1.2f);
                 unitWave.addEnemy(0, 10, 0.4f);
-                unitWave.addEnemy(0,5,0.9f);
+                unitWave.addEnemy(0,5,0.9f);*/
                 waveController.addWave(unitWave);
 
-                unitWave = new UnitWave(iAddedEnemy);
+                /*unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(0, 15, 1.5f);
-                waveController.addWave(unitWave);
+                waveController.addWave(unitWave);*/
 
                 return waveController;
             default:

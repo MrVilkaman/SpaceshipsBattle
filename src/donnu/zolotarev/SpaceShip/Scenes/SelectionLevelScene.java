@@ -88,30 +88,39 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             Color color;
             if(item.getLevelId() != WaveContainer.LEVEL_INFINITY){
                 name = String.valueOf(item.getLevelId());
-                if (item.isNew()){
-                    color = Color.BLACK;
-                   // name = "N";
-                }else {
-                    if (item.isWin()){
-                        color = Color.GREEN;
-                      //  name = "X";
-                    } else {
-                        color = Color.RED;
-                      //  name = "O";
+                if (item.isEnabled()){
+                    if (item.isNew()){
+                        color = Color.BLACK;
+                       // name = "N";
+                    }else {
+                        if (item.isWin()){
+                            color = Color.GREEN;
+                          //  name = "X";
+                        } else {
+                            color = Color.RED;
+                          //  name = "O";
+                        }
                     }
+                } else {
+                    color = new Color(184/255f,  183/255f,  183/255f, 1);
                 }
             }else{
                 color = Color.BLACK;
-
+                item.setEnabled(true);
+                item.setWin(true);
                 name = "Inf";
             }
-            qq.addedText(name, TextureLoader.getFontBig(), new ISimpleClick() {
-                @Override
-                public void onClick(int id) {
-                    createGameScene(item.getLevelId());
-                    lastSceneId = id;
-                }
-            }, color, item.getX(), item.getY());
+            ISimpleClick click = null;
+            if (item.isEnabled()){
+                click = new ISimpleClick() {
+                    @Override
+                    public void onClick(int id) {
+                        createGameScene(item.getLevelId());
+                        lastSceneId = id;
+                    }
+                };
+            }
+            qq.addedText(name, TextureLoader.getFontBig(), click, color, item.getX(), item.getY());
         }
         qq.enableAnimation().build();
         menuFactory.setChildScene(qq.build());
@@ -170,6 +179,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
               break;
            case IParentScene.EXIT_WIN:
                levels.changeStateById(lastSceneId,true);
+               levels.changeEnabled();
                dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
        }

@@ -8,6 +8,7 @@ public class LevelInfo {
     private boolean isInfinity;
     private boolean isWin;
     private boolean isNew;
+    private boolean isEnabled = false;
 
     public int getLevelId() {
         return levelId;
@@ -49,6 +50,23 @@ public class LevelInfo {
         this.isNew = isNew;
     }
 
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void setEnabled(boolean isEnabled) {
+        this.isEnabled = isEnabled;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("levelId= ")
+                .append(levelId).append(" x= ").append(x).append(" y= ").append(y)
+                .append(" isEnabled= ").append(isEnabled).append(" isWin=").append(isWin).append(" isInfinity= ").append(isInfinity)
+                .append(" isNew= ").append(isNew);
+        return builder.toString();
+    }
 
     //
     /*
