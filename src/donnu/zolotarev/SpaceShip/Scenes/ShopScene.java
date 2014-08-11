@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
@@ -16,6 +17,7 @@ public class ShopScene extends MyScene {
     private final Scene entity;
     private final IParentScene parentScene;
     private MenuScene scene;
+    private ISimpleClick lAddHealth;
 
     public ShopScene(Scene entity,IParentScene parentScene) {
         super(parentScene);
@@ -26,12 +28,25 @@ public class ShopScene extends MyScene {
     }
 
     private void createUI() {
+        lAddHealth = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+
+            }
+        };
+
         SpaceShipActivity activity =  SpaceShipActivity.getInstance();
         scene = MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
                 .addedText("Магазин", TextureLoader.getFont(), Constants.CAMERA_WIDTH_HALF, 50, WALIGMENT.CENTER,
                         HALIGMENT.CENTER)
+                .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 100, WALIGMENT.LEFT,
+                        HALIGMENT.CENTER)
+                .addedText("+", TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 100, WALIGMENT.LEFT,
+                        HALIGMENT.CENTER)
                 .enableAnimation()
                 .build();
+
+
         sceneMain.setBackgroundEnabled(false);
         entity.setChildScene(sceneMain);
         show();

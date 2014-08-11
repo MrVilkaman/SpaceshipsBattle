@@ -188,9 +188,6 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                levels.changeEnabled();
                dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
-           case IParentScene.EXIT_SHOP:
-
-              break;
        }
     }
 
