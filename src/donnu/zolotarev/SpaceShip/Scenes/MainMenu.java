@@ -28,6 +28,7 @@ public class MainMenu extends MyScene implements IParentScene {
     private final Text text;
     private MyScene infinityGameScene;
     private MenuScene menuScene;
+    private Runnable runnableAbout;
 
     public MainMenu() {
         super(null);
@@ -56,35 +57,42 @@ public class MainMenu extends MyScene implements IParentScene {
             menuScene = null;
         }
 
-        ISimpleClick click = new ISimpleClick() {
+        ISimpleClick clickNewGame = new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 createGameScene();
             }
         };
 
-        ISimpleClick click2 =  new ISimpleClick() {
+        ISimpleClick clickExit =  new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 showExitDialog();
             }
         };
 
-        ISimpleClick click3 = new ISimpleClick() {
+        ISimpleClick clickResumeGame = new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 clearCurrentGame();
                 createGameScene();
             }
         };
+        ISimpleClick clickAbout = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                showAboutDialog();
+            }
+        };
 
 
         MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
         if (haveCurrentGame()){
-            m.addedItem(TextureLoader.getMenuResumeTextureRegion(), click);
+            m.addedItem(TextureLoader.getMenuResumeTextureRegion(), clickNewGame);
         }
-        m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), click3)
-                .addedItem(TextureLoader.getMenuExitTextureRegion(), click2)
+        m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), clickResumeGame)
+                .addedItem(TextureLoader.getMenuAboutTextureRegion(),clickAbout)
+                .addedItem(TextureLoader.getMenuExitTextureRegion(), clickExit)
                 .enableAnimation();
         menuScene = m.build();
 
@@ -147,5 +155,25 @@ public class MainMenu extends MyScene implements IParentScene {
     @Override
     public void restart() {
         createGameScene();
+    }
+
+    private void showAboutDialog(){
+
+        if (runnableAbout == null){
+            runnableAbout =  new Runnable(){
+               @Override
+               public void run() {
+                   AlertDialog.Builder builderAbout = new AlertDialog.Builder(activity);
+                   builderAbout.setTitle(R.string.msg_about)
+                           .setView(activity.getLayoutInflater().inflate(R.layout.about, null))
+                           .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialogInterface, int i) {
+                               }
+                           }).show();
+               }
+           };
+        }
+        activity.runOnUiThread(runnableAbout);
     }
 }

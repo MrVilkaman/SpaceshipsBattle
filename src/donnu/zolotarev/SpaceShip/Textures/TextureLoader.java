@@ -27,6 +27,7 @@ public class TextureLoader {
     private static TextureRegion menuNewGameTextureRegion;
     private static TextureRegion menuBackToMainMenuTextureRegion;
     private static TextureRegion menuRestartTextureRegion;
+    private static TextureRegion menuAboutTextureRegion;
 
     private static TextureRegion changeLevelLableTextureRegion1;
     private static TextureRegion changeLevelIconShop;
@@ -61,7 +62,7 @@ public class TextureLoader {
         fontBig.load();
         // Меню
 
-        BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
+        BitmapTextureAtlas menuTexture = new BitmapTextureAtlas(tm, 512, 512, TextureOptions.BILINEAR);
         menuResumeTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
                 , "menu_resume.png", 0, 0);
         menuExitTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
@@ -72,6 +73,8 @@ public class TextureLoader {
                 , "menu_to_mainmenu.png", 0, 153);
         menuRestartTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
                 , "menu_restart.png", 0, 204);
+        menuAboutTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
+                , "menu_about.png", 0, 255);
         menuTexture.load();
 
         // Меню выбора уровня
@@ -138,5 +141,9 @@ public class TextureLoader {
 
     public static TextureRegion getChangeLevelIconShop() {
         return changeLevelIconShop;
+    }
+
+    public static TextureRegion getMenuAboutTextureRegion() {
+        return menuAboutTextureRegion;
     }
 }

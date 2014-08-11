@@ -5,4 +5,5 @@
     <string name = "dialog_text_exit_message">Вы уверены, что хотите выйти?</string>
     <string name = "dialog_text_yes">Да</string>
     <string name = "dialog_text_no">Нет</string>
+    <string name = "msg_about">О программе</string>
 </resources>
