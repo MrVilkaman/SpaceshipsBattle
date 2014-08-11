@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
@@ -19,10 +20,12 @@ public class Hero extends BaseUnit {
 
     private boolean isAlive = true;
     private IHealthBar healthBar;
+    private HeroFeatures heroFeatures;
 
     public Hero(IHealthBar healthBar) {
         super();
-        health = 1000;
+        heroFeatures = HeroFeatures.get();
+        health = heroFeatures.getMaxHealth();
         ///
         this.healthBar = healthBar;
 

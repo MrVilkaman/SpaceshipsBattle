@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -31,7 +32,8 @@ public class ShopScene extends MyScene {
         lAddHealth = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-
+                HeroFeatures heroFeatures =  HeroFeatures.get();
+                heroFeatures.setMaxHealth(heroFeatures.getMaxHealth()+200);
             }
         };
 

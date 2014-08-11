@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.content.Context;
 import com.google.gson.Gson;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
@@ -35,6 +36,9 @@ public abstract class MyScene extends Scene implements IHardKey {
         SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
         UserData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_USER_STATS,""));
+
+        // ToDo загрузка данных
+        HeroFeatures.create("");
 
     }
 
