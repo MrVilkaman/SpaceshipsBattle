@@ -31,7 +31,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private final SelectionLevelScene self;
     private final UserDataProcessor dataProcessor;
 
-    private BaseGameScene  gameScene;
+    private MyScene  gameScene;
     private MenuScene menuFactory;
     private int activeLevel;
     private LevelController levels;
@@ -41,7 +41,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private ISimpleClick shopListner = new ISimpleClick() {
         @Override
         public void onClick(int id) {
-
+            gameScene =  new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
         }
     };
 
@@ -160,7 +160,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 break;
             default:
                 gameScene = new MaketGameScene(this);
-                gameScene.addNewWaveController( WaveContainer.getWaveControllerById(type,gameScene));
+                ((MaketGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MaketGameScene)gameScene));
                 break;
         }
         activeLevel = type;
@@ -188,6 +188,9 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                levels.changeEnabled();
                dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
+           case IParentScene.EXIT_SHOP:
+
+              break;
        }
     }
 
