@@ -17,18 +17,20 @@ public abstract class MyScene extends Scene implements IHardKey {
     protected static final String FILE_LEVELS = "file_levels";
 
     protected static final String PREF_USER_STATS = "pref_user_stats";
+    protected static final String PREF_HERO_STATS = "pref_hero_stats";
     protected static final String PREF_LEVELS = "pref_levels";
 
     public MyScene(IParentScene parentScene) {
     }
 
     public void saveGameState(){
-        UserData data =  UserData.get();
         Gson gson = new Gson();
 
         SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
         shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
-                .edit().putString(PREF_USER_STATS,gson.toJson(data))
+                .edit()
+                .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
+                .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
                 .commit();
     }
 
@@ -37,8 +39,8 @@ public abstract class MyScene extends Scene implements IHardKey {
         UserData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_USER_STATS,""));
 
-        // ToDo загрузка данных
-        HeroFeatures.create("");
+        HeroFeatures.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
+                getString(PREF_HERO_STATS,""));
 
     }
 
@@ -59,7 +61,9 @@ public abstract class MyScene extends Scene implements IHardKey {
     public void clearCurrentGame(){
         SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
         shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
-                .edit().putString(PREF_USER_STATS,"")
+                .edit()
+                .putString(PREF_USER_STATS,"")
+                .putString(PREF_HERO_STATS,"")
                 .commit();
         shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_LEVELS,"")
