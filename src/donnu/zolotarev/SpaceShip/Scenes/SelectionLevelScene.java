@@ -38,12 +38,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private int lastSceneId;
 
     private Text goldBar;
-    private ISimpleClick shopListner = new ISimpleClick() {
-        @Override
-        public void onClick(int id) {
-            gameScene =  new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
-        }
-    };
+    private ISimpleClick shopListner;
 
     public SelectionLevelScene(IParentScene parentScene) {
         super(parentScene);
@@ -64,6 +59,13 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     }
 
     private void initUI() {
+        shopListner = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                gameScene =  new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
+            }
+        };
+
         createGoldBar();
         int x = Constants.CAMERA_WIDTH_HALF;
         int y = 0;

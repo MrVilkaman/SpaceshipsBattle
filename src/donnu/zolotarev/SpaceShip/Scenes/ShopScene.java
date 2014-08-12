@@ -25,59 +25,67 @@ public class ShopScene extends MyScene {
     private Text healthMaxBar;
     private SpaceShipActivity activity;
 
+    private ShopData shopData;
+    private UserDataProcessor processor;
+    private HeroFeatures heroFeatures;
+
     public ShopScene(Scene entity,IParentScene parentScene) {
         super(parentScene);
         this.parentScene = parentScene;
         this.entity = entity;
+        activity =  SpaceShipActivity.getInstance();
         sceneMain = new Scene();
         createUI();
+
     }
 
-    private void createUI() {
-        lAddHealth = new ISimpleClick() {
-            @Override
-            public void onClick(int id) {
-                HeroFeatures heroFeatures =  HeroFeatures.get();
-                ShopData shopData = ShopData.get();
-                // TODO отнимать деньги
-                UserDataProcessor processor = UserDataProcessor.get();
-                if (processor.buy(shopData.getPriceMaxHealth())){
-                    int h = heroFeatures.getMaxHealth()+shopData.getEffectMaxHealth();
-                    heroFeatures.setMaxHealth(h);
-                    healthMaxBar.setText(String.valueOf(h));
-                    shopData.nextLevelMaxHealth();
-                }else{
-                 toast("Мало денег(");
-                }
-            }
-        };
-
-        activity =  SpaceShipActivity.getInstance();
+    private void updateUI() {
         scene = MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
                 .addedText("Магазин", TextureLoader.getFont(), Constants.CAMERA_WIDTH_HALF, 50, WALIGMENT.CENTER,
                         HALIGMENT.CENTER)
                 .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 100, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
-                .addedText("+", TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 100, WALIGMENT.LEFT,
+                .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 120, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
                 .enableAnimation()
                 .build();
 
+        show();
+    }
 
+    private void createUI() {
+        heroFeatures =  HeroFeatures.get();
+        shopData = ShopData.get();
+        processor = UserDataProcessor.get();
+        lAddHealth = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                if (processor.buy(shopData.getPriceMaxHealth())){
+                    int h = heroFeatures.getMaxHealth()+shopData.getEffectMaxHealth();
+                    heroFeatures.setMaxHealth(h);
+                    healthMaxBar.setText(String.valueOf(h));
+                    shopData.nextLevelMaxHealth();
+                    updateUI();
+                }else{
+                 toast("Мало денег(");
+                }
+            }
+        };
+        updateUI();
         sceneMain.setBackgroundEnabled(false);
-        createGoldBar();
         entity.setChildScene(sceneMain);
+        createHealthBar();
         show();
     }
 
     //todo переделать
-    private void createGoldBar(){
+    private void createHealthBar(){
         try {
             int y = 100;
             int x = Constants.CAMERA_WIDTH/4+100;
             healthMaxBar = new Text(x,y,TextureLoader.getFont(),"0000",activity.getEngine().getVertexBufferObjectManager());
             healthMaxBar.setPosition(x,y);
-            scene.attachChild(healthMaxBar);
+            entity.attachChild(healthMaxBar);
             healthMaxBar.setText(String.valueOf(HeroFeatures.get().getMaxHealth()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,12 +99,12 @@ public class ShopScene extends MyScene {
 
     public void hide(){
         sceneMain.back();
-
     }
 
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
        // hide();
         parentScene.returnToParentScene(IParentScene.EXIT_SHOP);
+        entity.detachChild(healthMaxBar);
     }
 }
