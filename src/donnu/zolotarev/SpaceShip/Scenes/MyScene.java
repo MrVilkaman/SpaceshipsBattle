@@ -34,6 +34,7 @@ public abstract class MyScene extends Scene implements IHardKey {
                 .edit()
                 .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
                 .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
+                .putString(PREF_SHOP_ITEMS,gson.toJson(ShopData.get()))
                 .commit();
     }
 
