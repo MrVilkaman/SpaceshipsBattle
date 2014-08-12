@@ -1,8 +1,10 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.content.Context;
+import android.widget.Toast;
 import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
@@ -19,6 +21,7 @@ public abstract class MyScene extends Scene implements IHardKey {
     protected static final String PREF_USER_STATS = "pref_user_stats";
     protected static final String PREF_HERO_STATS = "pref_hero_stats";
     protected static final String PREF_LEVELS = "pref_levels";
+    private static final String PREF_SHOP_ITEMS = "pref_shop_items";
 
     public MyScene(IParentScene parentScene) {
     }
@@ -41,6 +44,8 @@ public abstract class MyScene extends Scene implements IHardKey {
 
         HeroFeatures.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_HERO_STATS,""));
+        ShopData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
+                getString(PREF_SHOP_ITEMS,""));
 
     }
 
@@ -64,6 +69,7 @@ public abstract class MyScene extends Scene implements IHardKey {
                 .edit()
                 .putString(PREF_USER_STATS,"")
                 .putString(PREF_HERO_STATS,"")
+                .putString(PREF_SHOP_ITEMS,"")
                 .commit();
         shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_LEVELS,"")
@@ -92,6 +98,16 @@ public abstract class MyScene extends Scene implements IHardKey {
         }
 
         return levels;
+    }
+
+    public void toast(final String msg){
+        final SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        shipActivity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(shipActivity, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

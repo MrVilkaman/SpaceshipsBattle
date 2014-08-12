@@ -2,6 +2,8 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.ShopData;
+import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
@@ -20,7 +22,7 @@ public class ShopScene extends MyScene {
     private final IParentScene parentScene;
     private MenuScene scene;
     private ISimpleClick lAddHealth;
-    private Text goldBar;
+    private Text healthMaxBar;
     private SpaceShipActivity activity;
 
     public ShopScene(Scene entity,IParentScene parentScene) {
@@ -36,10 +38,17 @@ public class ShopScene extends MyScene {
             @Override
             public void onClick(int id) {
                 HeroFeatures heroFeatures =  HeroFeatures.get();
+                ShopData shopData = ShopData.get();
                 // TODO отнимать деньги
-                int h = heroFeatures.getMaxHealth()+200;
-                heroFeatures.setMaxHealth(h);
-                goldBar.setText( String.valueOf(h));
+                UserDataProcessor processor = UserDataProcessor.get();
+                if (processor.buy(shopData.getPriceMaxHealth())){
+                    int h = heroFeatures.getMaxHealth()+shopData.getEffectMaxHealth();
+                    heroFeatures.setMaxHealth(h);
+                    healthMaxBar.setText(String.valueOf(h));
+                    shopData.nextLevelMaxHealth();
+                }else{
+                 toast("Мало денег(");
+                }
             }
         };
 
@@ -66,10 +75,10 @@ public class ShopScene extends MyScene {
         try {
             int y = 100;
             int x = Constants.CAMERA_WIDTH/4+100;
-            goldBar = new Text(x,y,TextureLoader.getFont(),"0000",activity.getEngine().getVertexBufferObjectManager());
-            goldBar.setPosition(x,y);
-            scene.attachChild(goldBar);
-            goldBar.setText(String.valueOf(HeroFeatures.get().getMaxHealth()));
+            healthMaxBar = new Text(x,y,TextureLoader.getFont(),"0000",activity.getEngine().getVertexBufferObjectManager());
+            healthMaxBar.setPosition(x,y);
+            scene.attachChild(healthMaxBar);
+            healthMaxBar.setText(String.valueOf(HeroFeatures.get().getMaxHealth()));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -344,15 +344,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         return activeScene;
     }
 
-    public void toast(final String msg){
-       shipActivity.runOnUiThread(new Runnable() {
-           @Override
-           public void run() {
-               Toast.makeText(shipActivity,msg,Toast.LENGTH_SHORT).show();
-           }
-       });
-    }
-
     public void start(){
         isActive = true;
     }

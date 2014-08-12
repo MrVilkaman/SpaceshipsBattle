@@ -23,4 +23,14 @@ public class UserDataProcessor {
         }
          return instance;
     }
+
+    public boolean buy(int priceItem){
+        UserData userData = UserData.get();
+        int lostMoney = userData.getMoney() - priceItem;
+        if (lostMoney >= 0){
+           userData.setMoney(lostMoney);
+           return true;
+        }
+        return false;
+    }
 }
