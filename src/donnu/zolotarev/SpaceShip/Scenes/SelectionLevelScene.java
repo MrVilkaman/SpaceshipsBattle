@@ -207,6 +207,15 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         createGameScene(activeLevel);
     }
 
+    @Override
+    public void callback(int statusCode) {
+        switch (statusCode){
+            case ShopScene.CALLBACK_UPDATE_MONEY:
+                updateInfo();
+                break;
+        }
+    }
+
     private void createGoldBar(){
         try {
             int y = 12;

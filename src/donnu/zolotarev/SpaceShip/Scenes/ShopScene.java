@@ -17,6 +17,8 @@ import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.text.Text;
 
 public class ShopScene extends MyScene {
+    public final static int CALLBACK_UPDATE_MONEY = 0;
+
     private final Scene sceneMain;
     private final Scene entity;
     private final IParentScene parentScene;
@@ -49,7 +51,7 @@ public class ShopScene extends MyScene {
                         HALIGMENT.CENTER)
                 .enableAnimation()
                 .build();
-
+        parentScene.callback(CALLBACK_UPDATE_MONEY);
         show();
     }
 

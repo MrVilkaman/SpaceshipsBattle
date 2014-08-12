@@ -157,6 +157,11 @@ public class MainMenu extends MyScene implements IParentScene {
         createGameScene();
     }
 
+    @Override
+    public void callback(int statusCode) {
+
+    }
+
     private void showAboutDialog(){
 
         if (runnableAbout == null){

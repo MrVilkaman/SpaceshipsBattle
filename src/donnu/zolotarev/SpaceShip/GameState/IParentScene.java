@@ -8,4 +8,5 @@ public interface IParentScene {
 
     public void returnToParentScene(int statusCode);
     public void restart();
+    public void callback(int statusCode);
 }
