@@ -213,7 +213,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     }
 
     @Override
-    public void restart() {
+    public void restart(int statusCode) {
+        processResault(statusCode);
         createGameScene(activeLevel);
     }
 

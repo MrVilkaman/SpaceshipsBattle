@@ -72,6 +72,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         }
     };
     private int status;
+    private ISimpleClick exit;
+    private ISimpleClick restart;
 
 
     public BaseGameScene(IParentScene self) {
@@ -96,13 +98,29 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         BaseBullet.setDieListener(new IHeroDieListener() {
             @Override
             public void heroDie() {
+                status = IParentScene.EXIT_DIE;
+                beforeReturnToParent(IParentScene.EXIT_DIE);
+                dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
+                        .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
+                                Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
+                        .addedText("но ты заработал "+score+"$",TextureLoader.getFont())
+                        .addedItem(TextureLoader.getMenuRestartTextureRegion(), new ISimpleClick() {
+                            @Override
+                            public void onClick(int id) {
+
+                                restart.onClick(id);
+                            }
+                        }/*restart*/)
+                        .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
+                        .enableAnimation()
+                        .build();
+
                 shipActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         isActive = false;
                         enablePauseMenu = false;
                         setChildScene(dieMenuScene, false, true, true);
-                        status = IParentScene.EXIT_DIE;
                     }
                 });
             }
@@ -125,15 +143,15 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createMenu() {
 
-        ISimpleClick restart = new ISimpleClick() {
+        restart = new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 clearItem();
-                parentScene.restart();
+                parentScene.restart(status);
             }
         };
 
-        ISimpleClick exit = new ISimpleClick() {
+        exit = new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 returnToParentScene(status);
@@ -150,14 +168,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                         isActive = true;
                     }
                 })
-                .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
-                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
-                .enableAnimation()
-                .build();
-
-        dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
-                .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
-                        Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
                 .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
                 .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
                 .enableAnimation()

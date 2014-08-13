@@ -7,6 +7,6 @@ public interface IParentScene {
     int EXIT_SHOP = 2;
 
     public void returnToParentScene(int statusCode);
-    public void restart();
+    public void restart(int statusCode);
     public void callback(int statusCode);
 }

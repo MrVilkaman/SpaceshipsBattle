@@ -16,10 +16,11 @@ public class UserDataProcessor {
         userData.setMoney(userData.getMoney()+money);
     }
 
-    public void processGold(int score,boolean isWin){
+    public int processGold(int score,boolean isWin){
         UserData userData = UserData.get();
         int money = score/3 *(isWin?2:1);
         userData.setMoney(userData.getMoney()+money);
+        return money;
     }
 
     public static UserDataProcessor get(){

@@ -64,7 +64,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     protected void beforeReturnToParent(int status) {
         UserDataProcessor dataProcessor = UserDataProcessor.get();
         if (status == IParentScene.EXIT_WIN || status == IParentScene.EXIT_DIE){
-            dataProcessor.processGold(score,status == IParentScene.EXIT_WIN);
+            score =  dataProcessor.processGold(score,status == IParentScene.EXIT_WIN);
         }
     }
 

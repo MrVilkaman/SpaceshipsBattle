@@ -153,7 +153,7 @@ public class MainMenu extends MyScene implements IParentScene {
     }
 
     @Override
-    public void restart() {
+    public void restart(int statusCode) {
         createGameScene();
     }
 
