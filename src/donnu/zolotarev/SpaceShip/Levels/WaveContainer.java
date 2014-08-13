@@ -7,13 +7,14 @@ import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 
 public  class WaveContainer {
     public static final int LEVEL_INFINITY = 99;
+    public static final int LEVEL_TEST = 100;
+
     public static final int LEVEL_1 = 1;
     public static final int LEVEL_2 = LEVEL_1+1;
     public static final int LEVEL_3 = LEVEL_2+1;
     public static final int LEVEL_4 = LEVEL_3+1;
     public static final int LEVEL_5 = LEVEL_4+1;
     public static final int LEVEL_6 = LEVEL_5+1;
-    public static final int LEVEL_TEST = LEVEL_6+1;
 
 
     public static IWaveController getWaveControllerById(int id,IAddedEnemy iAddedEnemy){
@@ -24,6 +25,12 @@ public  class WaveContainer {
         SimpleWave waveController;
         UnitWave unitWave;
         switch (id){
+            case LEVEL_TEST:
+                waveController = new SimpleWave();
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addEnemy(0, 10, 0.4f);
+                waveController.addWave(unitWave);
+                return waveController;
             case LEVEL_1:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);

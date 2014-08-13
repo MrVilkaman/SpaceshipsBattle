@@ -95,29 +95,34 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             final LevelInfo item = iter.next();
             String name;
             Color color;
-            if(item.getLevelId() != WaveContainer.LEVEL_INFINITY){
+            if(item.getLevelId() == WaveContainer.LEVEL_INFINITY){
+                color = Color.BLACK;
+                item.setEnabled(true);
+                item.setWin(true);
+                name = "Inf";
+            }else if(item.getLevelId() == WaveContainer.LEVEL_TEST){
+                color = Color.BLACK;
+                item.setEnabled(true);
+                item.setWin(true);
+                name = "TEST";
+            } else {
                 name = String.valueOf(item.getLevelId());
                 if (item.isEnabled()){
                     if (item.isNew()){
                         color = Color.BLACK;
-                       // name = "N";
+                        // name = "N";
                     }else {
                         if (item.isWin()){
                             color = Color.GREEN;
-                          //  name = "X";
+                            //  name = "X";
                         } else {
                             color = Color.RED;
-                          //  name = "O";
+                            //  name = "O";
                         }
                     }
                 } else {
                     color = new Color(184/255f,  183/255f,  183/255f, 1);
                 }
-            }else{
-                color = Color.BLACK;
-                item.setEnabled(true);
-                item.setWin(true);
-                name = "Inf";
             }
             ISimpleClick click = null;
             if (item.isEnabled()){
@@ -159,6 +164,11 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         switch (type){
             case WaveContainer.LEVEL_INFINITY:
                 gameScene = new InfinityGameScene(this);
+                break;
+            case WaveContainer.LEVEL_TEST:
+                gameScene = new TestGameScene(this);
+                ((TestGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(TestGameScene)gameScene));
+
                 break;
             default:
                 gameScene = new MaketGameScene(this);
