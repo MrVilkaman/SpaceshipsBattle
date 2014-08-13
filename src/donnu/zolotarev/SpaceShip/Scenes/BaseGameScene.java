@@ -34,6 +34,7 @@ import org.andengine.util.color.Color;
 
 public abstract class BaseGameScene extends MyScene implements IAddedEnemy, IScoreBar {
 
+
     protected static BaseGameScene activeScene;
     protected static Engine engine;
     protected final SpaceShipActivity shipActivity;
@@ -54,7 +55,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private boolean enablePauseMenu = true;
     private boolean isActive = false;
 
-    private int score;
+    protected int score;
     protected int waveIndex = 0;
 
     protected IHealthBar textHealthBarCallback = new IHealthBar() {
@@ -119,6 +120,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected abstract void initBulletsPools();
 
     protected abstract void initUnitsPools();
+
+    protected abstract void beforeReturnToParent(int status);
 
     private void createMenu() {
 
@@ -249,6 +252,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     }
 
     protected void returnToParentScene(int statusCode){
+        beforeReturnToParent(statusCode);
         clearItem();
         parentScene.returnToParentScene(statusCode);
     }
@@ -344,7 +348,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         return activeScene;
     }
 
-    public void start(){
+    protected void start(){
         isActive = true;
     }
 

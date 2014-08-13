@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
+import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
@@ -21,7 +22,6 @@ import java.util.Iterator;
 public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
-    public static final int TYPE_SIMPLE_BULLET_2 = TYPE_SIMPLE_BULLET + 1;
     protected static BaseGameScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
@@ -38,9 +38,14 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     private boolean targetUnit;
     private float hw;
     private float hh;
+    private static IAmDie iAmDie;
 
     public static void setDieListener(IHeroDieListener listener){
         dieListener = listener;
+    }
+
+    public static void setUnitDieListener(IAmDie iAmDie){
+        BaseBullet.iAmDie = iAmDie;
     }
 
     public static void resetPool(){
@@ -57,8 +62,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         }
         if (bulletBase.getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.registerPool(TYPE_SIMPLE_BULLET ,genericPool);
-        }else if (bulletBase.getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
-            bulletsPool.registerPool(TYPE_SIMPLE_BULLET_2 ,genericPool);
         }
     }
 
@@ -99,8 +102,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         bulletController.remove(this);
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
-        }else if (getClass().getSimpleName().equals(SimpleBullet2.class.getSimpleName())){
-            bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET_2,(SimpleBullet2)this);
         }
     }
 
@@ -144,7 +145,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
             if (unit.addDamageAndCheckDeath(getDamage())){
                 col.remove();
                 unit.destroy();
-                main.addToScore(10 + unit.hashCode()%10);
+                if (iAmDie != null){
+                    iAmDie.destroyed(unit.getClass());
+                }
             }
             destroy();
         }

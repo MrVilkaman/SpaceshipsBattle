@@ -193,12 +193,12 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                break;
            case IParentScene.EXIT_DIE:
                levels.changeStateById(lastSceneId,false);
-               dataProcessor.processGold(levels.newestById(lastSceneId),false);
+//               dataProcessor.processGold(levels.newestById(lastSceneId),false);
               break;
            case IParentScene.EXIT_WIN:
                levels.changeStateById(lastSceneId,true);
                levels.changeEnabled();
-               dataProcessor.processGold(levels.newestById(lastSceneId),true);
+//               dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
        }
     }

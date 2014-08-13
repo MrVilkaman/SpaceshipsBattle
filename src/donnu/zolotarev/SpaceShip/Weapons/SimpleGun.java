@@ -9,7 +9,7 @@ public class SimpleGun extends Guns implements IGun {
         ATTACK_INTERVAL = 5;
         if (!heroWeapon){
             Random random = new Random(this.hashCode());
-            ATTACK_INTERVAL *= 18 + random.nextInt(5);
+            ATTACK_INTERVAL *= 13 + random.nextInt(5);
         }
     }
 

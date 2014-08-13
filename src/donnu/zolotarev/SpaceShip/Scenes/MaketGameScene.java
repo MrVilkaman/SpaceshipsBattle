@@ -1,8 +1,10 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet2;
+import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
+import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
@@ -13,7 +15,7 @@ import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
 import java.util.Random;
 
-public class MaketGameScene extends BaseGameScene {
+public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     public MaketGameScene(IParentScene self) {
         super(self);
@@ -50,7 +52,7 @@ public class MaketGameScene extends BaseGameScene {
     @Override
     protected void initBulletsPools() {
         SimpleBullet.initPool();
-        SimpleBullet2.initPool();
+        BaseBullet.setUnitDieListener(this);
     }
 
     @Override
@@ -63,5 +65,18 @@ public class MaketGameScene extends BaseGameScene {
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
         enemy1.init(new Point(1300, random.nextInt(65) * 10));
+    }
+
+    @Override
+    protected void beforeReturnToParent(int status) {
+        UserDataProcessor dataProcessor = UserDataProcessor.get();
+        if (status == IParentScene.EXIT_WIN || status == IParentScene.EXIT_DIE){
+            dataProcessor.processGold(score,status == IParentScene.EXIT_WIN);
+        }
+    }
+
+    @Override
+    public void destroyed(Class o) {
+        addToScore(10+o.hashCode()%10);
     }
 }
