@@ -15,7 +15,7 @@ public class Enemy1  extends BaseUnit {
 
     private Enemy1(){
         super();
-        defaultHealth = 500;
+        defaultHealth = 200;
         defaultSpeed = 100;
         ///
         sprite = new Sprite(0, 0, TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){

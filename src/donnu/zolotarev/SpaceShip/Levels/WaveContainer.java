@@ -34,20 +34,18 @@ public  class WaveContainer {
             case LEVEL_1:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 1, 0.4f);
-                unitWave.addEnemy(0, 7, 1.2f);
-                unitWave.addEnemy(0, 4, 0.2f);
-                unitWave.addEnemy(0,7,0.8f);
+                unitWave.addEnemy(0, 5, 2.0f);
+                unitWave.addEnemy(0, 4, 1.4f);
+                unitWave.addEnemy(0, 3, 0.2f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_2:
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 1, 0.4f);
-                unitWave.addEnemy(0, 8, 1.1f);
-                unitWave.addEnemy(0, 7, 0.3f);
-                unitWave.addEnemy(0,10,0.9f);
+                unitWave.addEnemy(0, 5, 1.5f);
+                unitWave.addEnemy(0, 5, 1.4f);
+                unitWave.addEnemy(0, 3, 0.3f);
                 waveController.addWave(unitWave);
                 return waveController;
            // case LEVEL_3:
@@ -55,17 +53,19 @@ public  class WaveContainer {
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 1, 0.4f);
-                unitWave.addEnemy(0, 10, 1.2f);
-                unitWave.addEnemy(0, 10, 0.4f);
-                unitWave.addEnemy(0,5,0.9f);
+                unitWave.addEnemy(0, 1 + id, 1f+(id%2/5f));
+                unitWave.addEnemy(0, 5, 1.2f);
+                unitWave.addEnemy(0,5 + id,0.9f);
                 waveController.addWave(unitWave);
-
-                unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 15, 1.5f);
-                unitWave.addEnemy(0, 15, 1.5f);
-                unitWave.addEnemy(0, 15, 1.5f);
-                waveController.addWave(unitWave);
+                int waveCount = id%3;
+                for (int i = 0; i<waveCount; i++) {
+                    unitWave = new UnitWave(iAddedEnemy);
+                    unitWave.addEnemy(0, 2 + i, 1.5f - i/10f);
+                    unitWave.addEnemy(0, 5*i, 1.5f - i/10f);
+                    unitWave.addEnemy(0, 2 + 2*i, 1.5f - i/10f);
+                    unitWave.addEnemy(0, 0, 5f + i);
+                    waveController.addWave(unitWave);
+                }
 
                 return waveController;
             /*default:
