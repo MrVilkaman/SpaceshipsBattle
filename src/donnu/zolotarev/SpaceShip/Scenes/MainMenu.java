@@ -57,7 +57,7 @@ public class MainMenu extends MyScene implements IParentScene {
             menuScene = null;
         }
 
-        ISimpleClick clickNewGame = new ISimpleClick() {
+        ISimpleClick clickResumeGame = new ISimpleClick() {
             @Override
             public void onClick(int id) {
                 createGameScene();
@@ -71,11 +71,36 @@ public class MainMenu extends MyScene implements IParentScene {
             }
         };
 
-        ISimpleClick clickResumeGame = new ISimpleClick() {
+        ISimpleClick clickNewGame = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                clearCurrentGame();
-                createGameScene();
+                if (haveCurrentGame()){
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            new AlertDialog.Builder(activity)
+                                    .setMessage(R.string.dialog_text_new_game_message)
+                                    .setPositiveButton(R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            clearCurrentGame();
+                                            createGameScene();
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    }).show();
+                        }
+                    });
+                    activity.runOnUiThread(runnableAbout);
+                } else {
+                    clearCurrentGame();
+                    createGameScene();
+                }
+
             }
         };
         ISimpleClick clickAbout = new ISimpleClick() {
@@ -88,9 +113,9 @@ public class MainMenu extends MyScene implements IParentScene {
 
         MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
         if (haveCurrentGame()){
-            m.addedItem(TextureLoader.getMenuResumeTextureRegion(), clickNewGame);
+            m.addedItem(TextureLoader.getMenuResumeTextureRegion(), clickResumeGame);
         }
-        m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), clickResumeGame)
+        m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), clickNewGame)
                 .addedItem(TextureLoader.getMenuAboutTextureRegion(),clickAbout)
                 .addedItem(TextureLoader.getMenuExitTextureRegion(), clickExit)
                 .enableAnimation();
