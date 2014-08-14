@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -14,9 +15,10 @@ import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
 
 public class Hero extends BaseUnit {
-
+    private final int MAX_ANGLE = 15;
     private final int SPEED = 500;
 
+    private float angle = 0;
     private boolean isAlive = true;
     private IHealthBar healthBar;
     private HeroFeatures heroFeatures;
@@ -47,6 +49,13 @@ public class Hero extends BaseUnit {
                 if (this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()){
                     mY = yOld;
                 }
+                if (! Utils.equals(mRotation, angle,0.1f)){
+                    //todo влияет на скорость поворота
+                    mRotation -= Utils.dAngleDegree(mRotation,angle)/10;
+                }else{
+                    mRotation = angle;
+                }
+
                 /// weapon cooldown
                weaponController.weaponCooldown();
 
@@ -86,6 +95,8 @@ public class Hero extends BaseUnit {
             public void onControlChange(final BaseOnScreenControl pBaseOnScreenControl, final float pValueX,
                     final float pValueY) {
                 physicsHandler.setVelocity(pValueX * SPEED, pValueY * SPEED);
+               // float ang = (pValueY <= 0.5f) ?  pValueY: 0.5f ;
+                angle = pValueY*MAX_ANGLE;
             }
 
             @Override
