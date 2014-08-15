@@ -2,11 +2,10 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -18,7 +17,6 @@ public class Hero extends BaseUnit {
     private final int MAX_ANGLE = 15;
     private final int SPEED = 500;
 
-    private float angle = 0;
     private boolean isAlive = true;
     private IHealthBar healthBar;
     private HeroFeatures heroFeatures;
@@ -31,8 +29,13 @@ public class Hero extends BaseUnit {
         this.healthBar = healthBar;
 
         healthBar.updateHealthBar(health);
-
-        sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
+        sprite =  new HeroAI(TextureLoader.getShip(), engine.getVertexBufferObjectManager()){
+            @Override
+            protected void doAfterUpdate() {
+                weaponController.weaponCooldown();
+            }
+        };
+       /* sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
             public float xOld;
             public float yOld;
 
@@ -60,7 +63,7 @@ public class Hero extends BaseUnit {
                weaponController.weaponCooldown();
 
             }
-        };
+        };*/
         //   sprite.setScale(0.5f);
         loadWeapon();
         attachToScene();
@@ -89,14 +92,14 @@ public class Hero extends BaseUnit {
     }
 
     public AnalogOnScreenControl.IAnalogOnScreenControlListener getCallback() {
-        registerPhysicsHandler();
+        //registerPhysicsHandler();
         return new AnalogOnScreenControl.IAnalogOnScreenControlListener() {
             @Override
             public void onControlChange(final BaseOnScreenControl pBaseOnScreenControl, final float pValueX,
                     final float pValueY) {
-                physicsHandler.setVelocity(pValueX * SPEED, pValueY * SPEED);
+                sprite.getPhysicsHandler().setVelocity(pValueX * SPEED, pValueY * SPEED);
                // float ang = (pValueY <= 0.5f) ?  pValueY: 0.5f ;
-                angle = pValueY*MAX_ANGLE;
+                sprite.setRotateAngle( pValueY*MAX_ANGLE);
             }
 
             @Override

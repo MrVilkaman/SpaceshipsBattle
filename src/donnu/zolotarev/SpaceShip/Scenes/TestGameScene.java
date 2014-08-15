@@ -72,7 +72,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     public void addEnemy(int kind) {
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
-        enemy1.init(new Point(1300, 250));
+        enemy1.init(new Point(1000, 250));
     }
 
     @Override

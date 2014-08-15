@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
+import donnu.zolotarev.SpaceShip.EnemyAI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
@@ -9,9 +10,7 @@ import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
-import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.shape.IShape;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 
@@ -27,8 +26,8 @@ public abstract class BaseUnit implements ICollisionObject {
     private static ObjectController unitsController;
     private static int enemiesOnMap = 0;
 
-    protected Sprite sprite;
-    protected PhysicsHandler physicsHandler;
+    protected SpriteAI sprite;
+   // protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
 
     protected int defaultHealth;
@@ -64,7 +63,7 @@ public abstract class BaseUnit implements ICollisionObject {
         speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
 
         setStartPosition(point);
-        physicsHandler.setVelocityX(- 1 * speed);
+        sprite.getPhysicsHandler().setVelocityX(- 1 * speed);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
@@ -87,11 +86,11 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.setY(point.y);
     }
 
-    public PhysicsHandler registerPhysicsHandler() {
+    /*public PhysicsHandler registerPhysicsHandler() {
         physicsHandler = new PhysicsHandler(sprite);
         sprite.registerUpdateHandler(physicsHandler);
         return physicsHandler;
-    }
+    }*/
 
     @Override
     public void destroy(){
