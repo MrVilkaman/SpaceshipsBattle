@@ -99,7 +99,7 @@ public class Hero extends BaseUnit {
                     final float pValueY) {
                 sprite.getPhysicsHandler().setVelocity(pValueX * SPEED, pValueY * SPEED);
                // float ang = (pValueY <= 0.5f) ?  pValueY: 0.5f ;
-                sprite.setRotateAngle( pValueY*MAX_ANGLE);
+                sprite.setRotateAngle(pValueY*MAX_ANGLE);
             }
 
             @Override

@@ -21,6 +21,10 @@ public class Utils {
         return (Math.abs(numb1 - numb2) <= accuracy);
     }
 
+    public static boolean inRadius(float numb1,float numb2){
+        return Math.abs(numb1)<= Math.abs(numb2) ;
+    }
+
     public static int getSign(float v){
          if (v>=0){
             return 1;

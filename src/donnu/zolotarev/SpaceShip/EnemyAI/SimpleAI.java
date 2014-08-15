@@ -7,7 +7,7 @@ public class SimpleAI extends SpriteAI {
 
     public SimpleAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
-
+     //   physicsHandler.setAccelerationY(10);
     }
 
     @Override
@@ -17,10 +17,10 @@ public class SimpleAI extends SpriteAI {
             physicsHandler.setVelocityX(0);
             mX = 249;
         }
+
+
         super.onManagedUpdate(pSecondsElapsed);
         doAfterUpdate();
-        // todo !!!
-       //
     }
 
 

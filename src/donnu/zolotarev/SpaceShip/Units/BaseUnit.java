@@ -63,7 +63,8 @@ public abstract class BaseUnit implements ICollisionObject {
         speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
 
         setStartPosition(point);
-        sprite.getPhysicsHandler().setVelocityX(- 1 * speed);
+        sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(sprite.getRotation()))));
+        sprite.getPhysicsHandler().setVelocityY((float)(speed * Math.sin(Utils.degreeToRad(sprite.getRotation()))));
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
