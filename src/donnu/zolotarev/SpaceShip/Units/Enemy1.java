@@ -1,8 +1,9 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.EnemyAI.SimpleAI;
+import donnu.zolotarev.SpaceShip.EnemyAI.Simple2AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -18,12 +19,15 @@ public class Enemy1  extends BaseUnit {
         defaultHealth = 200;
         defaultSpeed = 100;
         ///
-        sprite = new SimpleAI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
+        sprite = new Simple2AI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
+            private float oldAngle = -999;
             @Override
             protected void doAfterUpdate() {
-
-                /*sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(rotateAngle))));
-                sprite.getPhysicsHandler().setVelocityY((float)(speed * Math.sin(Utils.degreeToRad(rotateAngle))));*/
+                if (oldAngle != sprite.getRotation()){
+                    oldAngle =  sprite.getRotation();
+                    sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(oldAngle))));
+                    sprite.getPhysicsHandler().setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(oldAngle))));
+                }
                 weaponController.weaponCooldown();
             }
         };
