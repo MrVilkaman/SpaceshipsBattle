@@ -2,13 +2,18 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
 import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
+import donnu.zolotarev.SpaceShip.Utils.WALIGMENT;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.IOnSceneTouchListener;
 import org.andengine.entity.scene.Scene;
@@ -110,14 +115,22 @@ public class MainMenu extends MyScene implements IParentScene {
             }
         };
 
+        PackageInfo packinfo = null;
+
+        try {
+            packinfo = activity.getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
 
         MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
         if (haveCurrentGame()){
             m.addedItem(TextureLoader.getMenuResumeTextureRegion(), clickResumeGame);
         }
         m.addedItem(TextureLoader.getMenuNewGameTextureRegion(), clickNewGame)
-                .addedItem(TextureLoader.getMenuAboutTextureRegion(),clickAbout)
+                .addedItem(TextureLoader.getMenuAboutTextureRegion(), clickAbout)
                 .addedItem(TextureLoader.getMenuExitTextureRegion(), clickExit)
+                .addedText("v" + packinfo.versionName.toString(), TextureLoader.getFont(), 0, Constants.CAMERA_HEIGHT, WALIGMENT.LEFT,
+                        HALIGMENT.BOTTOM)
                 .enableAnimation();
         menuScene = m.build();
 
