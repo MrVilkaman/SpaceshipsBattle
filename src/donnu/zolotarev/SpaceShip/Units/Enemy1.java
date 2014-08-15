@@ -21,6 +21,9 @@ public class Enemy1  extends BaseUnit {
         sprite = new SimpleAI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
             @Override
             protected void doAfterUpdate() {
+
+                /*sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(rotateAngle))));
+                sprite.getPhysicsHandler().setVelocityY((float)(speed * Math.sin(Utils.degreeToRad(rotateAngle))));*/
                 weaponController.weaponCooldown();
             }
         };

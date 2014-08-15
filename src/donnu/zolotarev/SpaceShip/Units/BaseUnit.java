@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.EnemyAI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
@@ -59,12 +60,16 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public void init(Point point){
+        init(point, 180);
+    };
+
+    public void init(Point point, float angle){
         health = defaultHealth;
         speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
-
+        sprite.setRotation(angle);
         setStartPosition(point);
-        sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(sprite.getRotation()))));
-        sprite.getPhysicsHandler().setVelocityY((float)(speed * Math.sin(Utils.degreeToRad(sprite.getRotation()))));
+        sprite.getPhysicsHandler().setVelocityX((float) (speed * Math.cos(Utils.degreeToRad(angle))));
+        sprite.getPhysicsHandler().setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(angle))));
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
@@ -130,5 +135,9 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public static BaseUnit getEnemy(int type) {
         return ((BaseUnit)unitsPool.obtainPoolItem(type));
+    }
+
+    public PointF  getPosition(){
+        return new PointF(sprite.getX(),sprite.getY());
     }
 }

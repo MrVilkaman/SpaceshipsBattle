@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
@@ -10,6 +11,7 @@ import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
@@ -72,7 +74,9 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     public void addEnemy(int kind) {
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
-        enemy1.init(new Point(500, 100*random.nextInt(5)));
+        Point point = new Point(500, 100*random.nextInt(5));
+        PointF pointF =  activeScene.getHero().getPosition();
+        enemy1.init(point, Utils.getAngle(point.x,point.y,pointF.x,pointF.y));
     }
 
     @Override
