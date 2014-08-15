@@ -57,7 +57,7 @@ public  class WaveContainer {
                 unitWave.addEnemy(0, 5, 1.2f);
                 unitWave.addEnemy(0,5 + id,0.9f);
                 waveController.addWave(unitWave);
-                int waveCount = id%3;
+                int waveCount = (id+1)/3;
                 for (int i = 0; i<waveCount; i++) {
                     unitWave = new UnitWave(iAddedEnemy);
                     unitWave.addEnemy(0, 2 + i, 1.5f - i/10f);
