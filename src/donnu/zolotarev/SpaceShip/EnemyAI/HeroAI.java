@@ -13,7 +13,12 @@ public class HeroAI extends SpriteAI {
         super(pTextureRegion, pVertexBufferObjectManager);
     }
 
-  @Override
+    @Override
+    public void restart() {
+
+    }
+
+    @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         // restriction of movement( walls )
       doBeforeUpdate();

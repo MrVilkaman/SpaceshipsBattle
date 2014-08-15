@@ -30,6 +30,7 @@ public abstract class SpriteAI extends Sprite {
     }
 
     protected void doAfterUpdate(){
-
     }
+
+    public abstract void restart();
 }

@@ -103,6 +103,7 @@ public abstract class BaseUnit implements ICollisionObject {
         enemiesOnMap--;
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
+        sprite.restart();
         unitsController.remove(this);
 
         if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){

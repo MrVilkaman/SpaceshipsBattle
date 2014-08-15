@@ -17,6 +17,13 @@ public class Simple2AI extends SpriteAI {
     boolean flagFirstY = false;
 
     @Override
+    public void restart() {
+        rotateAngle = 15;
+        flagFirstX = false;
+        flagFirstY = false;
+    }
+
+    @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         doBeforeUpdate();
         super.onManagedUpdate(pSecondsElapsed);

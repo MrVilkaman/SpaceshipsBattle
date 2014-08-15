@@ -6,10 +6,19 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public class SimpleAI extends SpriteAI {
 
+    boolean flagFirstX = false;
+    boolean flagFirstY = false;
     public SimpleAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
      //   physicsHandler.setAccelerationY(10);
+
+    }
+
+    @Override
+    public void restart() {
         rotateAngle = 15;
+        flagFirstX = false;
+        flagFirstY = false;
     }
 
     @Override
@@ -17,15 +26,27 @@ public class SimpleAI extends SpriteAI {
         doBeforeUpdate();
         super.onManagedUpdate(pSecondsElapsed);
         if (this.mX < -this.getWidth() ){
-            mX = SpaceShipActivity.getCameraWidth();
+            if (flagFirstX){
+                mX = SpaceShipActivity.getCameraWidth();
+            }
         }else if (this.mX > SpaceShipActivity.getCameraWidth()){
-            mX = -this.getWidth();
+            if (flagFirstX){
+                mX = -this.getWidth();
+            }
+        }else{
+            flagFirstX = true;
         }
 
         if (this.mY < -this.getHeight()  ){
-            mY = SpaceShipActivity.getCameraHeight();
+            if (flagFirstY){
+                mY = SpaceShipActivity.getCameraHeight();
+            }
         } else if (this.mY > SpaceShipActivity.getCameraHeight()){
-            mY = -this.getHeight();
+            if (flagFirstY){
+                mY = -this.getHeight();
+            }
+        } else{
+            flagFirstY = true;
         }
 
        /* if (! Utils.equals(mRotation, 180 + rotateAngle, 0.1f)){
