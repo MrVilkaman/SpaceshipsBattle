@@ -12,30 +12,48 @@ public abstract class SimpleAI extends SpriteAI {
     boolean flagFirstX = false;
     boolean flagFirstY = false;
     private int timeScan = 0 ;
-    private int startTimeScan = 3;
+    private int timeScan2 = 0;
+    private int startTimeScan = 5;
+
+    private float dX;
+    private float dY;
+    //todo
+    private Hero hero = BaseGameScene.getActiveScene().getHero();
 
     public SimpleAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
-     //   physicsHandler.setAccelerationY(10);
-
     }
 
     @Override
     public void restart() {
         flagFirstX = false;
         flagFirstY = false;
+        dX = dY = 0;
     }
 
-    private Hero hero = BaseGameScene.getActiveScene().getHero();
+    float maxAndle = 3f;
 
     protected final void prosecutionHero(int minDist,int maxDist){
-
+        timeScan2-- ;
         float dist = Utils.distance(mX,mY,hero.getPosition().x,hero.getPosition().y);
+        if(timeScan2<0 ){
+            //todo заменить коэфициенты
+            if ( 100 < dist){
+                dX =  Utils.random(-50f,50f);
+                dY =  Utils.random(-50f,50f);
+            } else {
+                dX = dY = 0;
+            }
+            timeScan2 = startTimeScan*10;
+        }
+
         if (minDist <= dist && dist <= maxDist){
             timeScan--;
             if (timeScan<0){
-                float andle =  Utils.getAngle(mX+Utils.random(-20f,20f),mY+Utils.random(-20f,20f),hero.getPosition().x,hero.getPosition().y);
-                mRotation += Utils.dAngleDegree(andle,mRotation)*.1;
+                float angle =  Utils.getAngle(mX+dX,mY+dY,hero.getPosition().x,hero.getPosition().y);
+                angle = Utils.dAngleDegree(angle,mRotation);
+                angle = Utils.equals(0,angle,maxAndle)? angle: maxAndle*Utils.getSign(angle) ;
+                mRotation += angle;
                 timeScan = startTimeScan;
             }
         }
@@ -101,8 +119,6 @@ public abstract class SimpleAI extends SpriteAI {
             flagFirstY = true;
         }
     }
-
-
 
     protected final void turnonY(){
         if (this.mY < -this.getHeight()/2 || this.mY > SpaceShipActivity.getCameraHeight()-this.getHeight()/2 ){

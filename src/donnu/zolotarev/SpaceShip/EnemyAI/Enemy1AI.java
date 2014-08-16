@@ -11,11 +11,8 @@ public class Enemy1AI extends SimpleAI {
 
     @Override
     protected void doUpdate() {
-      /* reflectionFromX();
-       reflectionFromY();*/
         turnonX();
         turnonY();
-//       flyThroughY();
         prosecutionHero(400,700);
     }
 
