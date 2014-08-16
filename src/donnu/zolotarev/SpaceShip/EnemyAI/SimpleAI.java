@@ -1,10 +1,11 @@
 package donnu.zolotarev.SpaceShip.EnemyAI;
 
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
-public class SimpleAI extends SpriteAI {
+public abstract class SimpleAI extends SpriteAI {
 
     boolean flagFirstX = false;
     boolean flagFirstY = false;
@@ -16,15 +17,16 @@ public class SimpleAI extends SpriteAI {
 
     @Override
     public void restart() {
-        rotateAngle = 15;
         flagFirstX = false;
         flagFirstY = false;
     }
-
-    @Override
-    protected void onManagedUpdate(float pSecondsElapsed) {
-        doBeforeUpdate();
-        super.onManagedUpdate(pSecondsElapsed);
+    /* if (! Utils.equals(mRotation, 180 + rotateAngle, 0.1f)){
+            mRotation -= Utils.dAngleDegree(mRotation,180+ rotateAngle)/10f;
+        }else{
+            mRotation = 180+ rotateAngle;
+            rotateAngle*=-1;
+        }*/
+    protected final void flyThroughX(){
         if (this.mX < -this.getWidth() ){
             if (flagFirstX){
                 mX = SpaceShipActivity.getCameraWidth();
@@ -36,7 +38,9 @@ public class SimpleAI extends SpriteAI {
         }else{
             flagFirstX = true;
         }
+    }
 
+    protected final void flyThroughY(){
         if (this.mY < -this.getHeight()  ){
             if (flagFirstY){
                 mY = SpaceShipActivity.getCameraHeight();
@@ -48,18 +52,34 @@ public class SimpleAI extends SpriteAI {
         } else{
             flagFirstY = true;
         }
-
-       /* if (! Utils.equals(mRotation, 180 + rotateAngle, 0.1f)){
-            mRotation -= Utils.dAngleDegree(mRotation,180+ rotateAngle)/10f;
-        }else{
-            mRotation = 180+ rotateAngle;
-            rotateAngle*=-1;
-        }*/
-
-
-        doAfterUpdate();
     }
 
+    protected final void reflectionFromX(){
+        if (this.mX < -this.getWidth() ){
+            if (flagFirstX){
+                mRotation = -Utils.dAngleDegree(mRotation, 180);
+            }
+        }else if (this.mX > SpaceShipActivity.getCameraWidth()){
+            if (flagFirstX){
+                mRotation = 180 - Utils.dAngleDegree(mRotation, 0);
+            }
+        }else{
+            flagFirstX = true;
+        }
+    }
 
+    protected final void reflectionFromY(){
+        if (this.mY < -this.getHeight()  ){
+            if (flagFirstY){
+                mRotation = 90 - Utils.dAngleDegree(mRotation, 270);
+            }
+        } else if (this.mY > SpaceShipActivity.getCameraHeight()){
+            if (flagFirstY){
+                mRotation = 270 - Utils.dAngleDegree(mRotation, 90);
+            }
+        }else{
+            flagFirstY = true;
+        }
+    }
 
 }

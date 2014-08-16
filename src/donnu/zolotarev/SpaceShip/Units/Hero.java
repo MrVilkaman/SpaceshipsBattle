@@ -35,36 +35,7 @@ public class Hero extends BaseUnit {
                 weaponController.weaponCooldown();
             }
         };
-       /* sprite = new Sprite(0, 0, TextureLoader.getShip(), engine.getVertexBufferObjectManager()) {
-            public float xOld;
-            public float yOld;
 
-            @Override
-            protected void onManagedUpdate(float pSecondsElapsed) {
-                // restriction of movement( walls )
-                xOld = mX;
-                yOld = mY;
-                super.onManagedUpdate(pSecondsElapsed);
-                if (this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()){
-                    mX = xOld;
-                }
-
-                if (this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()){
-                    mY = yOld;
-                }
-                if (! Utils.equals(mRotation, angle,0.1f)){
-                    //todo влияет на скорость поворота
-                    mRotation -= Utils.dAngleDegree(mRotation,angle)/10;
-                }else{
-                    mRotation = angle;
-                }
-
-                /// weapon cooldown
-               weaponController.weaponCooldown();
-
-            }
-        };*/
-        //   sprite.setScale(0.5f);
         loadWeapon();
         attachToScene();
     }

@@ -14,17 +14,13 @@ public class HeroAI extends SpriteAI {
     }
 
     @Override
-    public void restart() {
-
+    protected void doBeforeUpdate() {
+        xOld = mX;
+        yOld = mY;
     }
 
     @Override
-    protected void onManagedUpdate(float pSecondsElapsed) {
-        // restriction of movement( walls )
-      doBeforeUpdate();
-        xOld = mX;
-        yOld = mY;
-        super.onManagedUpdate(pSecondsElapsed);
+    protected void doUpdate() {
         if (this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()){
             mX = xOld;
         }
@@ -38,11 +34,12 @@ public class HeroAI extends SpriteAI {
         }else{
             mRotation = rotateAngle;
         }
-        doAfterUpdate();
-        /// weapon cooldown
-       // todo !!!
-       // weaponController.weaponCooldown();
+    }
+
+    @Override
+    public void restart() {
 
     }
+
 
 }

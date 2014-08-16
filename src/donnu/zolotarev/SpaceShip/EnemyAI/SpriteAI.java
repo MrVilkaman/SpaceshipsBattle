@@ -24,7 +24,6 @@ public abstract class SpriteAI extends Sprite {
         this.rotateAngle = rotateAngle;
     }
 
-
     protected void doBeforeUpdate(){
 
     }
@@ -32,5 +31,15 @@ public abstract class SpriteAI extends Sprite {
     protected void doAfterUpdate(){
     }
 
+    protected abstract void doUpdate();
+
     public abstract void restart();
+
+    @Override
+    protected final void onManagedUpdate(float pSecondsElapsed) {
+        doBeforeUpdate();
+        super.onManagedUpdate(pSecondsElapsed);
+        doUpdate();
+        doAfterUpdate();
+    }
 }

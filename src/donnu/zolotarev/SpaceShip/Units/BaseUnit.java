@@ -92,12 +92,6 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.setY(point.y);
     }
 
-    /*public PhysicsHandler registerPhysicsHandler() {
-        physicsHandler = new PhysicsHandler(sprite);
-        sprite.registerUpdateHandler(physicsHandler);
-        return physicsHandler;
-    }*/
-
     @Override
     public void destroy(){
         enemiesOnMap--;

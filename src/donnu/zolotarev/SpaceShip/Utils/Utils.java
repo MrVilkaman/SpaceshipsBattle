@@ -60,5 +60,14 @@ public class Utils {
         return da;
     }
 
+    public static float dAngleDegree2(float a1,float a2){
+        float da = a1 - a2;
+        /*if (da > 180) {
+            da = -360 + da;
+        } else if (da < -180) {
+            da = 360 + da;
+        }*/
+        return da;
+    }
 
 }
