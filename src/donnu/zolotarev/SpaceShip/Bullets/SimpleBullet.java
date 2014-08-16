@@ -10,6 +10,7 @@ public class SimpleBullet extends BaseBullet {
     private static boolean isRegistredPool = false;
 
     private SimpleBullet() {
+
         initCharacteristics(1000, 40);
         sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){

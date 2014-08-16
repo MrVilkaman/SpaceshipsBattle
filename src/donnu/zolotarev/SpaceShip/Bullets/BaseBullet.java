@@ -115,7 +115,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     protected  void initCharacteristics(int speed, int damage){
-        this.damage = damage;
+        this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;
         this.DEFAULT_SPEED = speed;
     }
 

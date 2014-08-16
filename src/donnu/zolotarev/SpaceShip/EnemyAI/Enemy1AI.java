@@ -13,7 +13,7 @@ public class Enemy1AI extends SimpleAI {
     protected void doUpdate() {
         turnonX();
         turnonY();
-        prosecutionHero(400,700);
+        prosecutionHero(200,500);
     }
 
 }
