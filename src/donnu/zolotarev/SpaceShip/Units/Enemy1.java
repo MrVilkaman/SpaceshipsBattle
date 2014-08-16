@@ -17,7 +17,7 @@ public class Enemy1  extends BaseUnit {
     private Enemy1(){
         super();
         defaultHealth = 200;
-        defaultSpeed = 500;
+        defaultSpeed = 100;
         ///
         sprite = new Enemy1AI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
             private float oldAngle = -999;

@@ -11,7 +11,6 @@ import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
@@ -69,7 +68,8 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
         Point point = new Point(1300, random.nextInt(65) * 10);
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(point, Utils.getAngle(point.x, point.y, pointF.x, pointF.y));
+        // todo
+        enemy1.init(point, 180/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
     }
 
     @Override

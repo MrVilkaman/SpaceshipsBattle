@@ -70,4 +70,16 @@ public class Utils {
         return da;
     }
 
+
+    public static float distance(float x1, float y1, float x2, float y2){
+        dx = x2 - x1;
+        dy = y2 - y1;
+        return (float)Math.sqrt(dx * dx + dy * dy);
+    }
+
+    public static float distanceSqr(float x1, float y1, float x2, float y2){
+        dx = x2 - x1;
+        dy = y2 - y1;
+        return (dx * dx + dy * dy);
+    }
 }
