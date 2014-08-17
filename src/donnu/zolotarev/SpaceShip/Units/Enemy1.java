@@ -3,7 +3,6 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -18,16 +17,12 @@ public class Enemy1  extends BaseUnit {
         super();
         defaultHealth = 200;
         defaultSpeed = 100;
+        defaultMaxAngle = 3f;
         ///
         sprite = new Enemy1AI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
-            private float oldAngle = -999;
+
             @Override
             protected void doAfterUpdate() {
-                if (oldAngle != sprite.getRotation()){
-                    oldAngle =  sprite.getRotation();
-                    sprite.getPhysicsHandler().setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(oldAngle))));
-                    sprite.getPhysicsHandler().setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(oldAngle))));
-                }
                 weaponController.weaponCooldown();
             }
         };
@@ -38,7 +33,9 @@ public class Enemy1  extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-        health -= damage;
+
+        int health =  unitSpecifications.getHealth() - damage;
+        unitSpecifications.setHealth(health);
         return health < 0;
     }
 

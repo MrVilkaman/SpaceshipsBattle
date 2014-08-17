@@ -16,6 +16,7 @@ import org.andengine.entity.sprite.Sprite;
 public class Hero extends BaseUnit {
     private final int MAX_ANGLE = 15;
     private final int SPEED = 500;
+    private int health;
 
     private boolean isAlive = true;
     private IHealthBar healthBar;

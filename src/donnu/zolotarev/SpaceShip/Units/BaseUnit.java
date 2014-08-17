@@ -30,12 +30,11 @@ public abstract class BaseUnit implements ICollisionObject {
     protected SpriteAI sprite;
    // protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
+    protected UnitSpecifications unitSpecifications;
 
     protected int defaultHealth;
     protected int defaultSpeed;
-
-    protected int health;
-    protected int speed;
+    protected float defaultMaxAngle;
 
     private float R = 0;
     private float cy;
@@ -59,17 +58,22 @@ public abstract class BaseUnit implements ICollisionObject {
         }
     }
 
+    public void init(Point point, float angle, UnitSpecifications us){
+        unitSpecifications = us;
+        init(point, angle);
+    }
+
     public void init(Point point){
         init(point, 180);
     };
 
     public void init(Point point, float angle){
-        health = defaultHealth;
-        speed = (int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f);
-        sprite.setRotation(angle);
+        if (unitSpecifications == null){
+            unitSpecifications = new UnitSpecifications(defaultHealth,(int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
+        }
+        sprite.start(unitSpecifications);
         setStartPosition(point);
-        sprite.getPhysicsHandler().setVelocityX((float) (speed * Math.cos(Utils.degreeToRad(angle))));
-        sprite.getPhysicsHandler().setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(angle))));
+        sprite.setRotation(angle);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
@@ -99,7 +103,7 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.setIgnoreUpdate(true);
         sprite.restart();
         unitsController.remove(this);
-
+        unitSpecifications = null;
         if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_1,(Enemy1)this);
         }

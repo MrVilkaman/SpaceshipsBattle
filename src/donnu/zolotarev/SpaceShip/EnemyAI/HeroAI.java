@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.EnemyAI;
 
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
@@ -37,9 +38,17 @@ public class HeroAI extends SpriteAI {
     }
 
     @Override
+    protected final void doInternalUpdate() {
+
+    }
+
+    @Override
     public void restart() {
 
     }
 
+    @Override
+    public void start(UnitSpecifications unitSpecifications) {
 
+    }
 }

@@ -5,6 +5,7 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public class Enemy1AI extends SimpleAI {
 
+
     public Enemy1AI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
     }
@@ -15,5 +16,7 @@ public class Enemy1AI extends SimpleAI {
         turnonY();
         prosecutionHero(200,500);
     }
+
+
 
 }

@@ -3,11 +3,14 @@ package donnu.zolotarev.SpaceShip.EnemyAI;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public abstract class SimpleAI extends SpriteAI {
+
+    protected  UnitSpecifications specifications;
 
     boolean flagFirstX = false;
     boolean flagFirstY = false;
@@ -31,7 +34,15 @@ public abstract class SimpleAI extends SpriteAI {
         dX = dY = 0;
     }
 
-    float maxAndle = 3f;
+    @Override
+    protected final void doInternalUpdate() {
+        updateSpriteRotarion(specifications.getSpeed());
+    }
+
+    @Override
+    public void start(UnitSpecifications specifications) {
+        this.specifications = specifications;
+    }
 
     protected final void prosecutionHero(int minDist,int maxDist){
         timeScan2-- ;
@@ -52,7 +63,8 @@ public abstract class SimpleAI extends SpriteAI {
             if (timeScan<0){
                 float angle =  Utils.getAngle(mX+dX,mY+dY,hero.getPosition().x,hero.getPosition().y);
                 angle = Utils.dAngleDegree(angle,mRotation);
-                angle = Utils.equals(0,angle,maxAndle)? angle: maxAndle*Utils.getSign(angle) ;
+                angle = Utils.equals(0,angle,specifications.getMaxRotationAndle())?
+                        angle: specifications.getMaxRotationAndle()*Utils.getSign(angle) ;
                 mRotation += angle;
                 timeScan = startTimeScan;
             }
