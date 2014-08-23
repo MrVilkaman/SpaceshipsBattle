@@ -11,7 +11,6 @@ import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
-import org.andengine.entity.shape.IShape;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 
@@ -110,7 +109,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     @Override
-    public IShape getShape() {
+    public org.andengine.entity.sprite.Sprite getShape() {
         return sprite;
     }
 

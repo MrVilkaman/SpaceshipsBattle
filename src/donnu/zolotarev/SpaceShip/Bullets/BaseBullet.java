@@ -11,7 +11,6 @@ import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
-import org.andengine.entity.shape.IShape;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
@@ -106,7 +105,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     @Override
-    public IShape getShape() {
+    public Sprite getShape() {
         return sprite;
     }
 

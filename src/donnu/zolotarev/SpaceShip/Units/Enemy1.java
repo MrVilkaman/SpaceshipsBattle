@@ -42,10 +42,14 @@ public class Enemy1  extends BaseUnit {
     @Override
     protected void loadWeapon() {
         weaponController = new WeaponController(this, new WeaponPos[]{
-                new WeaponPos(105,37,0)
+                new WeaponPos(sprite, 115, 37 , 0),
+                new WeaponPos(sprite, 40, 14 , 0),
+                new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET), 0);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET), 1);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET), 2);
     }
 
     @Override

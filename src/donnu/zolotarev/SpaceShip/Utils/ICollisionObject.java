@@ -1,9 +1,9 @@
 package donnu.zolotarev.SpaceShip.Utils;
 
-import org.andengine.entity.shape.IShape;
+import donnu.zolotarev.SpaceShip.EnemyAI.SpriteAI;
 
 public interface ICollisionObject {
-    public IShape getShape();
+    public org.andengine.entity.sprite.Sprite getShape();
     public  void destroy();
     public boolean checkHit(IHaveCoords object);
 }

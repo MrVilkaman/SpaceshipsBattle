@@ -28,7 +28,7 @@ public  class WaveContainer {
             case LEVEL_TEST:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 1, 0.4f);
+                unitWave.addEnemy(0, 1, 0.2f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_1:

@@ -43,9 +43,13 @@ public class Hero extends BaseUnit {
 
     @Override
     protected void loadWeapon() {
-        weaponController = new WeaponController(this, new WeaponPos[]{new WeaponPos(70, 50, 0), new WeaponPos(35, 30,
-                -2), new WeaponPos(35, 70, 2)});
+        weaponController = new WeaponController(this,
+                new WeaponPos[]{new WeaponPos(sprite, 70, 50, 0),
+                        new WeaponPos(sprite, 35, 30, -2),
+                new WeaponPos(sprite    , 35, 70, 2)});
         weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 0);
+        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 1);
+        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 2);
     }
 
     @Override
@@ -84,7 +88,8 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-        health -= damage;
+       // todo вернуть
+       // health -= damage;
         if(health < 0){
             health = 0;
         }

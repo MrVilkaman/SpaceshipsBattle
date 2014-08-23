@@ -1,6 +1,8 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
+import org.andengine.entity.sprite.Sprite;
 
 public class WeaponController {
 
@@ -16,7 +18,7 @@ public class WeaponController {
         this.carrier = carrier;
         this.weaponPoses = weaponPoses;
         guns = new IGun[weaponPoses.length];
-        bufferWeaponPos = new WeaponPos(0,0,0);
+        bufferWeaponPos = new WeaponPos(null, 0, 0, 0);
     }
 
     public boolean loadWeapon(IGun gun, int slot){
@@ -42,9 +44,10 @@ public class WeaponController {
     private WeaponPos bufferWeaponPos;
 
     private void changePos(WeaponPos weaponPos){
+        Sprite sp =  carrier.getShape();
         float rad = carrier.getShape().getRotation();
-        bufferWeaponPos.x = weaponPos.x  + carrier.getShape().getX();
-        bufferWeaponPos.y = weaponPos.y  + carrier.getShape().getY();
+        bufferWeaponPos.x = weaponPos.rad*(float)Math.cos(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterX()  + sp.getX()-7;
+        bufferWeaponPos.y = weaponPos.rad*(float)Math.sin(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterY() + sp.getY();
         bufferWeaponPos.anlge = weaponPos.anlge + rad ;
     }
 
