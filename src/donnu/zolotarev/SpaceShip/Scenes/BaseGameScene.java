@@ -188,9 +188,10 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
 
-        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-150,
+        final Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
+            public int pId = -1;
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
@@ -198,11 +199,15 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     @Override
                     public void run() {
                         if(pSceneTouchEvent.isActionDown()){
+                            pId =  pSceneTouchEvent.getPointerID();
                             hero.canFire(true);
                             flag = true;
                         } else if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
-                            hero.canFire(false);
-                            flag = true;
+
+                            if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
+                                hero.canFire(false);
+                                flag = true;
+                            }
                         }
                     }
                 });
