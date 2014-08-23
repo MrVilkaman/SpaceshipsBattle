@@ -14,7 +14,7 @@ import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
 
 public class Hero extends BaseUnit {
-    private final int MAX_ANGLE = 15;
+    private final int MAX_ANGLE = 7;
     private final int SPEED = 500;
     private int health;
 
@@ -48,8 +48,6 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 35, 30, -2),
                 new WeaponPos(sprite    , 35, 70, 2)});
         weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 0);
-        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 1);
-        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 2);
     }
 
     @Override
@@ -88,8 +86,7 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-       // todo вернуть
-       // health -= damage;
+       health -= damage;
         if(health < 0){
             health = 0;
         }

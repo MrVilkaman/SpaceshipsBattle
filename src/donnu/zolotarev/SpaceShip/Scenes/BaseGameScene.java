@@ -2,7 +2,6 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
 import android.view.KeyEvent;
-import android.widget.Toast;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -175,8 +174,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     }
 
     protected void addHeroMoveControl() {
-        analogOnScreenControl = new AnalogOnScreenControl(30,
-                SpaceShipActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 30,
+        analogOnScreenControl = new AnalogOnScreenControl(70,
+                SpaceShipActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
                 shipActivity.getEngine().getVertexBufferObjectManager(),
@@ -189,7 +188,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
 
-        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-230,
+        Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             @Override
@@ -212,30 +211,11 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             }
         };
 
-        Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCameraWidth()-230,SpaceShipActivity.getCameraHeight()-130,
-                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
-            @Override
-            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-                shipActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(pSceneTouchEvent.isActionDown()){
-                            Toast.makeText(shipActivity, "БУ!!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                return true;
-            }
-        };
-
         btnFire.setColor(Color.BLACK);
         btnFire.setAlpha(0.5f);
-        btnFire2.setColor(Color.BLACK);
-        btnFire2.setAlpha(0.5f);
+
         analogOnScreenControl.attachChild(btnFire);
-        analogOnScreenControl.attachChild(btnFire2);
         analogOnScreenControl.registerTouchArea(btnFire);
-        analogOnScreenControl.registerTouchArea(btnFire2);
     }
 
     @Override

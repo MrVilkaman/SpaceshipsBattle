@@ -33,8 +33,8 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
             @Override
             public void onWinLevel() {
-                toast("Победа!");
                 returnToParentScene(IParentScene.EXIT_WIN);
+                toast("Победа! И ты заработал "+score+"$!" );
             }
         });
         super.addNewWaveController(controller);
