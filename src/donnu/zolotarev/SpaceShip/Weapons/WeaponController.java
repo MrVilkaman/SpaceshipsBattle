@@ -42,9 +42,10 @@ public class WeaponController {
     private WeaponPos bufferWeaponPos;
 
     private void changePos(WeaponPos weaponPos){
-        bufferWeaponPos.x = weaponPos.x + carrier.getShape().getX();
-        bufferWeaponPos.y = weaponPos.y + carrier.getShape().getY();
-        bufferWeaponPos.anlge = weaponPos.anlge + carrier.getShape().getRotation();
+        float rad = carrier.getShape().getRotation();
+        bufferWeaponPos.x = weaponPos.x  + carrier.getShape().getX();
+        bufferWeaponPos.y = weaponPos.y  + carrier.getShape().getY();
+        bufferWeaponPos.anlge = weaponPos.anlge + rad ;
     }
 
     public void setShoot(boolean shoot) {

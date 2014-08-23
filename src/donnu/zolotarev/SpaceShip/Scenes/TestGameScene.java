@@ -12,7 +12,6 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
@@ -75,9 +74,9 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     public void addEnemy(int kind) {
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
-        Point point = new Point(500, 100*random.nextInt(5));
+        Point point = new Point(600, 300);
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(point, Utils.getAngle(point.x, point.y, pointF.x, pointF.y), new UnitSpecifications(2000,180,5f));
+        enemy1.init(point, 0, new UnitSpecifications(2000,0,5f));
     }
 
     @Override

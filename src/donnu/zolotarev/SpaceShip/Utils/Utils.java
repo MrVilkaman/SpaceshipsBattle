@@ -82,4 +82,12 @@ public class Utils {
         dy = y2 - y1;
         return (dx * dx + dy * dy);
     }
+
+    public static double toDegrees(float radians){
+        return radians * 180 / Math.PI;
+    }
+
+    public static double toRadians(float degrees){
+        return degrees * Math.PI / 180;
+    }
 }
