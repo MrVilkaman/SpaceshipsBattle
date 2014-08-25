@@ -31,6 +31,7 @@ public class ShopScene extends MyScene {
     private UserDataProcessor processor;
     private HeroFeatures heroFeatures;
     private ISimpleClick lBuyDoubleGun;
+    private ISimpleClick lAddDamage;
 
     public ShopScene(Scene entity,IParentScene parentScene) {
         super(parentScene);
@@ -46,14 +47,18 @@ public class ShopScene extends MyScene {
         MenuFactory menuFactory =  MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
                 .addedText("Магазин", TextureLoader.getFont(), Constants.CAMERA_WIDTH_HALF, 50, WALIGMENT.CENTER,
                         HALIGMENT.CENTER)
-                .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 100, WALIGMENT.LEFT,
+                .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH / 4, 100, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
                 .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 120, WALIGMENT.LEFT,
+                        HALIGMENT.CENTER)
+                .addedText("Доп. урон: "+ shopData.getLevelBulletDamege()+" уровень", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 160, WALIGMENT.LEFT,
+                        HALIGMENT.TOP)
+                .addedText("$"+shopData.getPriceBulletDamege(), TextureLoader.getFontBig(),lAddDamage, (Constants.CAMERA_WIDTH*3)/4, 170, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
                 .enableAnimation();
         // todo
 
-            menuFactory.addedText("Двойные пушки", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 160, WALIGMENT.LEFT,
+            menuFactory.addedText("Двойные пушки", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 220, WALIGMENT.LEFT,
                     HALIGMENT.TOP);
         ISimpleClick click = null;
         String text = "Куплено";
@@ -61,7 +66,7 @@ public class ShopScene extends MyScene {
             click = lBuyDoubleGun;
             text = "$"+shopData.getPriceDoubleGun();
         }
-        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 170, WALIGMENT.LEFT,
+        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 230, WALIGMENT.LEFT,
                 HALIGMENT.CENTER);
 
 
@@ -88,6 +93,18 @@ public class ShopScene extends MyScene {
                 }
             }
         };
+        lAddDamage  = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                if (processor.buy(shopData.getPriceBulletDamege())){
+                    shopData.nextLevelBulletDamege();
+                    updateUI();
+                }else{
+                    toast("Мало денег(");
+                }
+            }
+        };
+
         lBuyDoubleGun = new ISimpleClick() {
             @Override
             public void onClick(int id) {

@@ -28,6 +28,10 @@ public class ShopData {
     private int effectMaxHealth = 150;
     private int levelMaxHealth = 0;
 
+    private int priceBulletDamege = 0;//300;
+    private int effectBulletDamege = 10;
+    private int levelBulletDamege = 0;
+
     private boolean haveDoubleGun = false;
     private int priceDoubleGun = 1000;
 
@@ -45,6 +49,22 @@ public class ShopData {
 
     public void nextLevelMaxHealth() {
         ++levelMaxHealth;
+    }
+
+    public int getPriceBulletDamege() {
+        return (int) (priceBulletDamege * (1+ levelBulletDamege));
+    }
+
+    public int getEffectBulletDamege(int baseDamage) {
+        return (int) baseDamage + (effectMaxHealth *levelMaxHealth);
+    }
+
+    public int getLevelBulletDamege() {
+        return levelBulletDamege;
+    }
+
+    public void nextLevelBulletDamege() {
+        ++levelBulletDamege;
     }
 
     public boolean isHaveDoubleGun() {
