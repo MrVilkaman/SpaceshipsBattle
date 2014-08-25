@@ -28,6 +28,9 @@ public class ShopData {
     private int effectMaxHealth = 150;
     private int levelMaxHealth = 0;
 
+    private boolean haveDoubleGun = false;
+    private int priceDoubleGun = 1000;
+
     public int getPriceMaxHealth() {
         return (int) (priceMaxHealth * (1+ levelMaxHealth));
     }
@@ -39,7 +42,20 @@ public class ShopData {
     public int getLevelMaxHealth() {
         return levelMaxHealth;
     }
+
     public void nextLevelMaxHealth() {
         ++levelMaxHealth;
+    }
+
+    public boolean isHaveDoubleGun() {
+        return haveDoubleGun;
+    }
+
+    public void buyDoubleGun() {
+        haveDoubleGun = true;
+    }
+
+    public int getPriceDoubleGun() {
+        return priceDoubleGun;
     }
 }

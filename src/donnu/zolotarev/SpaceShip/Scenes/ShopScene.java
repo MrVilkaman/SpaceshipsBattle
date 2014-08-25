@@ -30,6 +30,7 @@ public class ShopScene extends MyScene {
     private ShopData shopData;
     private UserDataProcessor processor;
     private HeroFeatures heroFeatures;
+    private ISimpleClick lBuyDoubleGun;
 
     public ShopScene(Scene entity,IParentScene parentScene) {
         super(parentScene);
@@ -42,15 +43,29 @@ public class ShopScene extends MyScene {
     }
 
     private void updateUI() {
-        scene = MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
+        MenuFactory menuFactory =  MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
                 .addedText("Магазин", TextureLoader.getFont(), Constants.CAMERA_WIDTH_HALF, 50, WALIGMENT.CENTER,
                         HALIGMENT.CENTER)
                 .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 100, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
                 .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 120, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
-                .enableAnimation()
-                .build();
+                .enableAnimation();
+        // todo
+
+            menuFactory.addedText("Двойные пушки", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 160, WALIGMENT.LEFT,
+                    HALIGMENT.TOP);
+        ISimpleClick click = null;
+        String text = "Куплено";
+        if (!shopData.isHaveDoubleGun()){
+            click = lBuyDoubleGun;
+            text = "$"+shopData.getPriceDoubleGun();
+        }
+        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 170, WALIGMENT.LEFT,
+                HALIGMENT.CENTER);
+
+
+        scene =  menuFactory.build();
         parentScene.callback(CALLBACK_UPDATE_MONEY);
         show();
     }
@@ -70,6 +85,18 @@ public class ShopScene extends MyScene {
                     updateUI();
                 }else{
                  toast("Мало денег(");
+                }
+            }
+        };
+        lBuyDoubleGun = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                if (processor.buy(shopData.getPriceDoubleGun())){
+                    shopData.buyDoubleGun();
+                    updateUI();
+                    toast("Теперь ты обладатель крутой пушки!");
+                }else{
+                    toast("Мало денег(");
                 }
             }
         };

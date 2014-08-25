@@ -4,11 +4,10 @@ import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
-import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
-import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
-import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
+import donnu.zolotarev.SpaceShip.Weapons.*;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
@@ -47,7 +46,14 @@ public class Hero extends BaseUnit {
                 new WeaponPos[]{new WeaponPos(sprite, 70, 50, 0),
                         new WeaponPos(sprite, 35, 30, -2),
                 new WeaponPos(sprite    , 35, 70, 2)});
-        weaponController.loadWeapon(new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET), 0);
+        ShopData shopData = ShopData.get();
+        IGun gun;
+        if (shopData.isHaveDoubleGun()){
+            gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET);
+        }else{
+            gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET);
+        }
+        weaponController.loadWeapon(gun, 0);
     }
 
     @Override
@@ -86,7 +92,7 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-       health -= damage;
+          health -= damage;
         if(health < 0){
             health = 0;
         }

@@ -11,6 +11,7 @@ import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
@@ -34,7 +35,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             @Override
             public void onWinLevel() {
                 returnToParentScene(IParentScene.EXIT_WIN);
-                toast("Победа! И ты заработал "+score+"$!" );
+                toast("Победа! И ты заработал " + score + "$!");
             }
         });
         super.addNewWaveController(controller);
@@ -69,7 +70,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         Point point = new Point(1300, random.nextInt(65) * 10);
         PointF pointF =  activeScene.getHero().getPosition();
         // todo
-        enemy1.init(point, 180/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
+        enemy1.init(point, Utils.getAngle(point.x, point.y, pointF.x, pointF.y));
     }
 
     @Override
