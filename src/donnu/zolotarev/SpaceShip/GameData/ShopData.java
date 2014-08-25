@@ -28,7 +28,7 @@ public class ShopData {
     private int effectMaxHealth = 150;
     private int levelMaxHealth = 0;
 
-    private int priceBulletDamege = 300;
+    private int priceBulletDamege = 200;
     private int effectBulletDamege = 10;
     private int levelBulletDamege = 0;
 
@@ -52,7 +52,7 @@ public class ShopData {
     }
 
     public int getPriceBulletDamege() {
-        return (int) (priceBulletDamege * (1+ levelBulletDamege));
+        return (int) (priceBulletDamege * (1+ levelBulletDamege*.7f));
     }
 
     public int getEffectBulletDamege() {

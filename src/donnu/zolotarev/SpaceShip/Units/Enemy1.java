@@ -15,7 +15,7 @@ public class Enemy1  extends BaseUnit {
 
     private Enemy1(){
         super();
-        defaultHealth = 200;
+        defaultHealth = 300;
         defaultSpeed = 100;
         defaultMaxAngle = 3f;
         ///

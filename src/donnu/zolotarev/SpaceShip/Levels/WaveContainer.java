@@ -15,6 +15,9 @@ public  class WaveContainer {
     public static final int LEVEL_4 = LEVEL_3+1;
     public static final int LEVEL_5 = LEVEL_4+1;
     public static final int LEVEL_6 = LEVEL_5+1;
+    public static final int LEVEL_7 = LEVEL_6+1;
+    public static final int LEVEL_8 = LEVEL_7+1;
+    public static final int LEVEL_9 = LEVEL_8+1;
 
 
     public static IWaveController getWaveControllerById(int id,IAddedEnemy iAddedEnemy){

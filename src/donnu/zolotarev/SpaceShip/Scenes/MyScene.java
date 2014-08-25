@@ -93,7 +93,10 @@ public abstract class MyScene extends Scene implements IHardKey {
             levels.addLevel(WaveContainer.LEVEL_3, 400,180, false);
             levels.addLevel(WaveContainer.LEVEL_4, 500,180, false);
             levels.addLevel(WaveContainer.LEVEL_5, 600,300, false);
-            levels.addLevel(WaveContainer.LEVEL_6, 800,400, false);
+            levels.addLevel(WaveContainer.LEVEL_6, 700,400, false);
+            levels.addLevel(WaveContainer.LEVEL_7, 750,300, false);
+            levels.addLevel(WaveContainer.LEVEL_8, 800,200, false);
+            levels.addLevel(WaveContainer.LEVEL_9, 900,200, false);
   //          levels.addLevel(WaveContainer.LEVEL_TEST, 200,500, false);
             levels.changeEnabled();
         }
