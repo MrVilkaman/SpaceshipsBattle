@@ -47,7 +47,7 @@ public class Enemy1  extends BaseUnit {
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
-        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET), 0);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
     }
 
     @Override

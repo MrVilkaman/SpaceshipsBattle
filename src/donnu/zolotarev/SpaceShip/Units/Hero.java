@@ -8,6 +8,8 @@ import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.Weapons.*;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
 import org.andengine.entity.sprite.Sprite;
@@ -47,11 +49,12 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 35, 30, -2),
                 new WeaponPos(sprite    , 35, 70, 2)});
         ShopData shopData = ShopData.get();
+        IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege());
         IGun gun;
         if (shopData.isHaveDoubleGun()){
-            gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET);
+            gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }else{
-            gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET);
+            gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }
         weaponController.loadWeapon(gun, 0);
     }

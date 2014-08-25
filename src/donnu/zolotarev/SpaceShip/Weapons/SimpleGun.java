@@ -1,11 +1,13 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
+
 import java.util.Random;
 
 public class SimpleGun extends Guns implements IGun {
 
-    public SimpleGun(boolean heroWeapon, int bullitType) {
-        super(heroWeapon,bullitType);
+    public SimpleGun(boolean heroWeapon, int bullitType,IWeaponModificator modificator) {
+        super(heroWeapon,bullitType,modificator);
         ATTACK_INTERVAL = 5;
         if (!heroWeapon){
             Random random = new Random(this.hashCode());

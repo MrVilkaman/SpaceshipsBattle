@@ -10,6 +10,7 @@ import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
@@ -33,6 +34,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     protected static MultiPool bulletsPool;
 
     private int DEFAULT_SPEED;
+    private int DEFAULT_DAMAGE;
     private int damage;
     private boolean targetUnit;
     private float hw;
@@ -69,7 +71,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         attachToScene();
     }
 
-    public void init(float x, float y, float direction, boolean unitTarget) {
+    public void init(float x, float y, float direction, boolean unitTarget,IWeaponModificator weaponModificator) {
         sprite.setPosition(x, y);
         sprite.setRotation(direction);
         physicsHandler.setVelocityY((float) (DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
@@ -81,6 +83,11 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         hw = sprite.getWidth()/2;
         hh = sprite.getHeight()/2;
+        damage = DEFAULT_DAMAGE;
+        if (weaponModificator != null){
+            damage = weaponModificator.addDamage(damage);
+        }
+        this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;
     }
 
     protected void attachToScene() {
@@ -114,7 +121,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     protected  void initCharacteristics(int speed, int damage){
-        this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;
+        this.DEFAULT_DAMAGE = damage ;
         this.DEFAULT_SPEED = speed;
     }
 
