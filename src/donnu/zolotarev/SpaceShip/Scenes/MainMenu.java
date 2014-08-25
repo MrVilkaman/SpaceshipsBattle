@@ -121,6 +121,16 @@ public class MainMenu extends MyScene implements IParentScene {
             packinfo = activity.getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
         } catch (PackageManager.NameNotFoundException e) {
         }
+        if (!actualCodeVersion() && haveCurrentGame()){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showAlert(activity, R.string.msg_sorry_message, "Упс(");
+                }
+            });
+            clearCurrentGame();
+        }
+
 
         MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
         if (haveCurrentGame()){
