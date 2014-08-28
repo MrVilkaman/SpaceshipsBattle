@@ -72,6 +72,11 @@ public abstract class BaseUnit implements ICollisionObject {
     };
 
     public void init(int level, Point point, float angle){
+        if (unitLevel != level){
+            unitLevel = level;
+            loadParam(unitLevel);
+            loadWeapon(unitLevel);
+        }
         if (unitSpecifications == null){
             unitSpecifications = new UnitSpecifications(defaultHealth,(int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
         }
@@ -83,11 +88,7 @@ public abstract class BaseUnit implements ICollisionObject {
         unitsController.add(this);
         setSize();
         enemiesOnMap++;
-        if (unitLevel != level){
-            unitLevel = level;
-            loadParam(unitLevel);
-            loadWeapon(unitLevel);
-        }
+
     }
 
     protected void setSize(){

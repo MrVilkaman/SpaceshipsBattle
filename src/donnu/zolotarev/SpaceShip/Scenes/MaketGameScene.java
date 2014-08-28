@@ -64,7 +64,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     public void addEnemy(int kind) {
-        BaseUnit enemy1 = BaseUnit.getEnemy(kind);
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (kind/Constants.MAX_UNIT_LEVEL));
         Random random = new Random();
 
         Point point = new Point(1300, random.nextInt(65) * 10);

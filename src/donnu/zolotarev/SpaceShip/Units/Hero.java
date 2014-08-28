@@ -26,8 +26,6 @@ public class Hero extends BaseUnit {
     public Hero(IHealthBar healthBar) {
         super();
         this.healthBar = healthBar;
-
-        healthBar.updateHealthBar(health);
         sprite =  new HeroAI(TextureLoader.getShip(), engine.getVertexBufferObjectManager()){
             @Override
             protected void doAfterUpdate() {
@@ -71,6 +69,7 @@ public class Hero extends BaseUnit {
         setSize();
         loadWeapon(level);
         loadParam(level);
+        healthBar.updateHealthBar(health);
     }
 
     public Sprite getSprite() {

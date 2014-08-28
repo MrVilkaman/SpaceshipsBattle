@@ -25,7 +25,7 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     public void addEnemy(int kind){
-        BaseUnit enemy1 = BaseUnit.getEnemy(kind);
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (kind/Constants.MAX_UNIT_LEVEL));
         Random random = new Random();
         enemy1.init(kind%Constants.MAX_UNIT_LEVEL, new Point(1300, random.nextInt(65) * 10));
     }
