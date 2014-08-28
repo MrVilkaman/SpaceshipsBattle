@@ -16,7 +16,7 @@ public abstract class BaseUnit implements ICollisionObject {
     public static final int TYPE_ENEMY_SINGLE_GUN_L_1 = 0;
     public static final int TYPE_ENEMY_SINGLE_GUN_L_2 = TYPE_ENEMY_SINGLE_GUN_L_1 + 1;
     public static final int TYPE_ENEMY_SINGLE_GUN_L_3 = TYPE_ENEMY_SINGLE_GUN_L_2 + 1;
-    public static final int TYPE_ENEMY_WITH_DOUBLE_GUN = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_MINIGUN_L_1 = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
 
     private static final String TAG = "BaseUnit";
 
@@ -58,7 +58,7 @@ public abstract class BaseUnit implements ICollisionObject {
         if (base.getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_SINGLE_GUN_L_1, genericPool);
         }else if (base.getSimpleName().equals(EnemyWithMiniGun.class.getSimpleName())){
-            unitsPool.registerPool(TYPE_ENEMY_WITH_DOUBLE_GUN, genericPool);
+            unitsPool.registerPool(TYPE_ENEMY_MINIGUN_L_1, genericPool);
         }
     }
 
