@@ -2,13 +2,12 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.Units.Enemy1;
+import donnu.zolotarev.SpaceShip.Units.EnemySingleGun;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
@@ -69,13 +68,13 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initBulletsPools() {
-        SimpleBullet.initPool();
+        BaseUnit.initPool();
         BaseBullet.setUnitDieListener(this);
     }
 
     @Override
     protected void initUnitsPools() {
-        Enemy1.initPool();
+        EnemySingleGun.initPool();
     }
 
     @Override

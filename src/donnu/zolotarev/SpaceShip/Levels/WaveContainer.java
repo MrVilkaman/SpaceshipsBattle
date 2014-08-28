@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Levels;
 
+import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -31,7 +32,7 @@ public  class WaveContainer {
             case LEVEL_TEST:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(0, 1, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_WITH_DOUBLE_GUN, 1, 0.2f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_1:

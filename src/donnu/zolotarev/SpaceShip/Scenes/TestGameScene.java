@@ -9,7 +9,6 @@ import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.Units.Enemy1;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
@@ -59,7 +58,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initUnitsPools() {
-        Enemy1.initPool();
+        BaseUnit.initPool();
     }
 
     @Override

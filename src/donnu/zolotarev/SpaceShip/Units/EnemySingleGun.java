@@ -8,12 +8,12 @@ import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import org.andengine.util.adt.pool.GenericPool;
 
-public class Enemy1  extends BaseUnit {
+public class EnemySingleGun extends BaseUnit {
 
     private static boolean isRegistredPool = false;
 
 
-    private Enemy1(){
+    private EnemySingleGun(){
         super();
         defaultHealth = 300;
         defaultSpeed = 100;
@@ -58,10 +58,10 @@ public class Enemy1  extends BaseUnit {
     public static void initPool() {
     //    if (!isRegistredPool){
             isRegistredPool = true;
-            registredPool(Enemy1.class,new GenericPool() {
+            registredPool(EnemySingleGun.class,new GenericPool() {
                 @Override
-                protected Enemy1 onAllocatePoolItem() {
-                    return new Enemy1();
+                protected EnemySingleGun onAllocatePoolItem() {
+                    return new EnemySingleGun();
                 }
             });
      //   }

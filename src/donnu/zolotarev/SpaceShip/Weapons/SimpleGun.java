@@ -16,10 +16,9 @@ public class SimpleGun extends Guns implements IGun {
     }
 
     @Override
-    public void fire(WeaponPos weaponPos) {
-        GetNewBullet(weaponPos.x, weaponPos.y, weaponPos.anlge);
+    protected void initGunPos() {
+        weaponPosIterator.add(new WeaponPos(null,0,0,0));
     }
-
 
 
 }

@@ -4,6 +4,8 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.entity.sprite.Sprite;
 
+import java.util.Iterator;
+
 public class WeaponController {
 
     private final WeaponPos[] weaponPoses;
@@ -33,9 +35,13 @@ public class WeaponController {
         for (int i = 0; i<weaponPoses.length;i++) {
             IGun gun =  guns[i];
             if(gun !=null){
-                changePos(weaponPoses[i]);
                 if (gun.shoot()){
-                    gun.fire(bufferWeaponPos);
+                    Iterator<WeaponPos> it = gun.getWeaponPos();
+                    while (it.hasNext()){
+                        WeaponPos weaponPos = it.next();
+                        changePos(weaponPoses[i].add(weaponPos));
+                        gun.fire(bufferWeaponPos);
+                    }
                 }
             }
         }

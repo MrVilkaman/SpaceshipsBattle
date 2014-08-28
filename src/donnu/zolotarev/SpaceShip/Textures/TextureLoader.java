@@ -42,8 +42,8 @@ public class TextureLoader {
         BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
         ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
         enemyShipLightBlue = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
-        enemyShipOrange = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster2.png", 0,300);
-        enemyShipGreen = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster3.png", 0,375);
+        enemyShipOrange = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster_2.png", 0,300);
+        enemyShipGreen = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster_3.png", 0,375);
         tm.loadTexture(mTexture);
         BitmapTextureAtlas mOnScreenControlTexture = new BitmapTextureAtlas(tm, 256, 128,
                 TextureOptions.BILINEAR);

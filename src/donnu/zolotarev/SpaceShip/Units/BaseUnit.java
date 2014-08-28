@@ -16,10 +16,11 @@ import org.andengine.util.adt.pool.MultiPool;
 
 public abstract class BaseUnit implements ICollisionObject {
 
-    public static final int TYPE_ENEMY_1 = 0;
+    public static final int TYPE_ENEMY_SINGLE_GUN = 0;
+    public static final int TYPE_ENEMY_WITH_DOUBLE_GUN = TYPE_ENEMY_SINGLE_GUN + 1;
+
     private static final String TAG = "BaseUnit";
 
-    //public static final int TYPE_SIMPLE_BULLET_2 = TYPE_ENEMY_1 + 1;
     protected static BaseGameScene mainScene;
     protected static Engine engine;
     private static MultiPool unitsPool;
@@ -52,8 +53,10 @@ public abstract class BaseUnit implements ICollisionObject {
             unitsController = mainScene.getEnemyController();
         }
 
-        if (base.getSimpleName().equals(Enemy1.class.getSimpleName())){
-            unitsPool.registerPool(TYPE_ENEMY_1, genericPool);
+        if (base.getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
+            unitsPool.registerPool(TYPE_ENEMY_SINGLE_GUN, genericPool);
+        }else if (base.getSimpleName().equals(EnemyWithDoubleGun.class.getSimpleName())){
+            unitsPool.registerPool(TYPE_ENEMY_WITH_DOUBLE_GUN, genericPool);
         }
     }
 
@@ -103,8 +106,8 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.restart();
         unitsController.remove(this);
         unitSpecifications = null;
-        if (getClass().getSimpleName().equals(Enemy1.class.getSimpleName())){
-            unitsPool.recyclePoolItem(TYPE_ENEMY_1,(Enemy1)this);
+        if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
+            unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN,(EnemySingleGun)this);
         }
     }
 
@@ -137,5 +140,10 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public PointF  getPosition(){
         return new PointF(sprite.getX(),sprite.getY());
+    }
+
+    public static void initPool() {
+        EnemySingleGun.initPool();
+        EnemyWithDoubleGun.initPool();
     }
 }

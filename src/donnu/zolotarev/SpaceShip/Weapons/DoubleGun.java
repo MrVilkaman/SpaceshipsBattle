@@ -4,7 +4,8 @@ import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 
 import java.util.Random;
 
-public class DoubleGun extends Guns implements IGun {
+public class DoubleGun extends Guns  {
+
 
     public DoubleGun(boolean heroWeapon, int bullitType,IWeaponModificator modificator) {
         super(heroWeapon,bullitType,modificator);
@@ -16,11 +17,8 @@ public class DoubleGun extends Guns implements IGun {
     }
 
     @Override
-    public void fire(WeaponPos weaponPos) {
-        GetNewBullet(weaponPos.x, weaponPos.y-5, weaponPos.anlge);
-        GetNewBullet(weaponPos.x, weaponPos.y+5, weaponPos.anlge);
+    protected void initGunPos() {
+        weaponPosIterator.add(new WeaponPos(null,0,-5,0));
+        weaponPosIterator.add(new WeaponPos(null,0,5,0));
     }
-
-
-
 }
