@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -15,10 +16,6 @@ public class EnemySingleGun extends BaseUnit {
 
     private EnemySingleGun(){
         super();
-        defaultHealth = 300;
-        defaultSpeed = 100;
-        defaultMaxAngle = 3f;
-        ///
         sprite = new Enemy1AI(TextureLoader.getEnemyShipLightBlue(), engine.getVertexBufferObjectManager()){
 
             @Override
@@ -26,9 +23,7 @@ public class EnemySingleGun extends BaseUnit {
                 weaponController.weaponCooldown();
             }
         };
-        loadWeapon();
         attachToScene();
-        //registerPhysicsHandler();
     }
 
     @Override
@@ -40,14 +35,47 @@ public class EnemySingleGun extends BaseUnit {
     }
 
     @Override
-    protected void loadWeapon() {
+    protected void loadWeapon(int level) {
         weaponController = new WeaponController(this, new WeaponPos[]{
                 new WeaponPos(sprite, 115, 37 , 0),
                 new WeaponPos(sprite, 40, 14 , 0),
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
-        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+        switch (level){
+            case 0:
+                weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+                break;
+            case 1:
+                weaponController.loadWeapon(new DoubleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+                break;
+            case 2:
+                weaponController.loadWeapon(new DoubleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+                weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 1);
+                weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 2);
+                break;
+        }
+
+    }
+
+    @Override
+    protected void loadParam(int level) {
+        defaultSpeed = 100;
+        defaultMaxAngle = 3f;
+        switch (level){
+            case 0:
+                defaultHealth = 300;
+                break;
+            case 1:
+                defaultHealth = 400;
+                break;
+            case 2:
+                defaultHealth = 500;
+                defaultSpeed = 80;
+                defaultMaxAngle = 2f;
+                break;
+        }
+
     }
 
     @Override
@@ -56,15 +84,13 @@ public class EnemySingleGun extends BaseUnit {
     }
 
     public static void initPool() {
-    //    if (!isRegistredPool){
-            isRegistredPool = true;
-            registredPool(EnemySingleGun.class,new GenericPool() {
-                @Override
-                protected EnemySingleGun onAllocatePoolItem() {
-                    return new EnemySingleGun();
-                }
-            });
-     //   }
+        isRegistredPool = true;
+        registredPool(EnemySingleGun.class,new GenericPool() {
+            @Override
+            protected EnemySingleGun onAllocatePoolItem() {
+                return new EnemySingleGun();
+            }
+        });
     }
 
 }

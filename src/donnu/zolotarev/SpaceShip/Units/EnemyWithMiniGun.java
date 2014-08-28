@@ -3,21 +3,19 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
+import donnu.zolotarev.SpaceShip.Weapons.Minigun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import org.andengine.util.adt.pool.GenericPool;
 
-public class EnemyWithDoubleGun extends BaseUnit {
+public class EnemyWithMiniGun extends BaseUnit {
 
     private static boolean isRegistredPool = false;
 
 
-    private EnemyWithDoubleGun(){
+    private EnemyWithMiniGun(){
         super();
-        defaultHealth = 500;
-        defaultSpeed = 100;
-        defaultMaxAngle = 3f;
+
         sprite = new Enemy1AI(TextureLoader.getEnemyShipOrange(), engine.getVertexBufferObjectManager()){
 
             @Override
@@ -25,7 +23,7 @@ public class EnemyWithDoubleGun extends BaseUnit {
                 weaponController.weaponCooldown();
             }
         };
-        loadWeapon();
+
         attachToScene();
     }
 
@@ -37,14 +35,21 @@ public class EnemyWithDoubleGun extends BaseUnit {
     }
 
     @Override
-    protected void loadWeapon() {
+    protected void loadWeapon(int level) {
         weaponController = new WeaponController(this, new WeaponPos[]{
                 new WeaponPos(sprite, 115, 37 , 0),
                 new WeaponPos(sprite, 40, 14 , 0),
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
-        weaponController.loadWeapon(new DoubleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+        weaponController.loadWeapon(new Minigun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
+    }
+
+    @Override
+    protected void loadParam(int level) {
+        defaultHealth = 500;
+        defaultSpeed = 100;
+        defaultMaxAngle = 3f;
     }
 
     @Override
@@ -55,10 +60,10 @@ public class EnemyWithDoubleGun extends BaseUnit {
     public static void initPool() {
     //    if (!isRegistredPool){
             isRegistredPool = true;
-            registredPool(EnemyWithDoubleGun.class,new GenericPool() {
+            registredPool(EnemyWithMiniGun.class,new GenericPool() {
                 @Override
-                protected EnemyWithDoubleGun onAllocatePoolItem() {
-                    return new EnemyWithDoubleGun();
+                protected EnemyWithMiniGun onAllocatePoolItem() {
+                    return new EnemyWithMiniGun();
                 }
             });
      //   }

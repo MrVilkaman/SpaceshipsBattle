@@ -10,6 +10,7 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -47,7 +48,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     @Override
     protected void initHero() {
         hero = new Hero(textHealthBarCallback);
-        hero.init(new Point(0, 250));
+        hero.init(0, new Point(0, 250));
     }
 
     @Override
@@ -69,7 +70,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         Point point = new Point(1300, random.nextInt(65) * 10);
         PointF pointF =  activeScene.getHero().getPosition();
         // todo
-        enemy1.init(point, Utils.getAngle(point.x, point.y, pointF.x, pointF.y));
+        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point, Utils.getAngle(point.x, point.y, pointF.x, pointF.y));
     }
 
     @Override

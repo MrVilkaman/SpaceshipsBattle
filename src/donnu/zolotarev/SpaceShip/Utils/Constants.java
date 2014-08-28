@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Utils;
 
 public  class Constants {
 
+    public static final int MAX_UNIT_LEVEL = 3;
     // Device const
     public static int CAMERA_WIDTH = 1280;
     public static int CAMERA_HEIGHT = 720;

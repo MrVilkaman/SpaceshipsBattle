@@ -32,6 +32,9 @@ public  class WaveContainer {
             case LEVEL_TEST:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 1, 0.2f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_WITH_DOUBLE_GUN, 1, 0.2f);
                 waveController.addWave(unitWave);
                 return waveController;

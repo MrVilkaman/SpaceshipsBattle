@@ -25,9 +25,6 @@ public class Hero extends BaseUnit {
 
     public Hero(IHealthBar healthBar) {
         super();
-        heroFeatures = HeroFeatures.get();
-        health = heroFeatures.getMaxHealth();
-        ///
         this.healthBar = healthBar;
 
         healthBar.updateHealthBar(health);
@@ -37,13 +34,11 @@ public class Hero extends BaseUnit {
                 weaponController.weaponCooldown();
             }
         };
-
-        loadWeapon();
         attachToScene();
     }
 
     @Override
-    protected void loadWeapon() {
+    protected void loadWeapon(int level) {
         weaponController = new WeaponController(this,
                 new WeaponPos[]{new WeaponPos(sprite, 70, 50, 0),
                         new WeaponPos(sprite, 35, 30, -2),
@@ -60,14 +55,22 @@ public class Hero extends BaseUnit {
     }
 
     @Override
+    protected void loadParam(int level) {
+        heroFeatures = HeroFeatures.get();
+        health = heroFeatures.getMaxHealth();
+    }
+
+    @Override
     public void canFire(boolean b) {
         weaponController.setShoot(b);
     }
 
     @Override
-    public void init(Point point) {
+    public void init(int level, Point point) {
         setStartPosition(point);
         setSize();
+        loadWeapon(level);
+        loadParam(level);
     }
 
     public Sprite getSprite() {

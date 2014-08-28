@@ -9,6 +9,7 @@ import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.EnemySingleGun;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
 import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 
@@ -26,7 +27,7 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
     public void addEnemy(int kind){
         BaseUnit enemy1 = BaseUnit.getEnemy(kind);
         Random random = new Random();
-        enemy1.init(new Point(1300, random.nextInt(65) * 10));
+        enemy1.init(kind%Constants.MAX_UNIT_LEVEL, new Point(1300, random.nextInt(65) * 10));
     }
 
     @Override
@@ -63,7 +64,7 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
     @Override
     protected void initHero() {
         hero = new Hero(textHealthBarCallback);
-        hero.init(new Point(0, 250));
+        hero.init(0, new Point(0, 250));
     }
 
     @Override

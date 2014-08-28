@@ -5,10 +5,7 @@ import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.EnemyAI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
-import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
-import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
-import donnu.zolotarev.SpaceShip.Utils.ObjectController;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
+import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
 import org.andengine.util.adt.pool.GenericPool;
@@ -16,8 +13,10 @@ import org.andengine.util.adt.pool.MultiPool;
 
 public abstract class BaseUnit implements ICollisionObject {
 
-    public static final int TYPE_ENEMY_SINGLE_GUN = 0;
-    public static final int TYPE_ENEMY_WITH_DOUBLE_GUN = TYPE_ENEMY_SINGLE_GUN + 1;
+    public static final int TYPE_ENEMY_SINGLE_GUN_L_1 = 0;
+    public static final int TYPE_ENEMY_SINGLE_GUN_L_2 = TYPE_ENEMY_SINGLE_GUN_L_1 + 1;
+    public static final int TYPE_ENEMY_SINGLE_GUN_L_3 = TYPE_ENEMY_SINGLE_GUN_L_2 + 1;
+    public static final int TYPE_ENEMY_WITH_DOUBLE_GUN = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
 
     private static final String TAG = "BaseUnit";
 
@@ -32,6 +31,8 @@ public abstract class BaseUnit implements ICollisionObject {
     protected WeaponController weaponController;
     protected UnitSpecifications unitSpecifications;
 
+    protected int unitLevel = -1;
+
     protected int defaultHealth;
     protected int defaultSpeed;
     protected float defaultMaxAngle;
@@ -39,6 +40,7 @@ public abstract class BaseUnit implements ICollisionObject {
     private float R = 0;
     private float cy;
     private float cx;
+
 
     public static void resetPool(){
         unitsPool = null;
@@ -54,22 +56,22 @@ public abstract class BaseUnit implements ICollisionObject {
         }
 
         if (base.getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
-            unitsPool.registerPool(TYPE_ENEMY_SINGLE_GUN, genericPool);
-        }else if (base.getSimpleName().equals(EnemyWithDoubleGun.class.getSimpleName())){
+            unitsPool.registerPool(TYPE_ENEMY_SINGLE_GUN_L_1, genericPool);
+        }else if (base.getSimpleName().equals(EnemyWithMiniGun.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_WITH_DOUBLE_GUN, genericPool);
         }
     }
 
-    public void init(Point point, float angle, UnitSpecifications us){
+    public void init(int level, Point point, float angle, UnitSpecifications us){
         unitSpecifications = us;
-        init(point, angle);
+        init(level, point, angle);
     }
 
-    public void init(Point point){
-        init(point, 180);
+    public void init(int level, Point point){
+        init(level, point, 180);
     };
 
-    public void init(Point point, float angle){
+    public void init(int level, Point point, float angle){
         if (unitSpecifications == null){
             unitSpecifications = new UnitSpecifications(defaultHealth,(int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
         }
@@ -81,6 +83,11 @@ public abstract class BaseUnit implements ICollisionObject {
         unitsController.add(this);
         setSize();
         enemiesOnMap++;
+        if (unitLevel != level){
+            unitLevel = level;
+            loadParam(unitLevel);
+            loadWeapon(unitLevel);
+        }
     }
 
     protected void setSize(){
@@ -107,7 +114,7 @@ public abstract class BaseUnit implements ICollisionObject {
         unitsController.remove(this);
         unitSpecifications = null;
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
-            unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN,(EnemySingleGun)this);
+            unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);
         }
     }
 
@@ -125,7 +132,9 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public abstract boolean addDamageAndCheckDeath(int damage);
 
-    protected abstract void loadWeapon();
+    protected abstract void loadWeapon(int level);
+
+    protected abstract void loadParam(int level);
 
     public abstract void canFire(boolean b);
 
@@ -144,6 +153,6 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public static void initPool() {
         EnemySingleGun.initPool();
-        EnemyWithDoubleGun.initPool();
+        EnemyWithMiniGun.initPool();
     }
 }
