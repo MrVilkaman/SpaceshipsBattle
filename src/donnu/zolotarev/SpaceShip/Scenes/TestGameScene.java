@@ -78,7 +78,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         Point point = new Point(600+ 200*i, 300);
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(point, 0+90*i, new UnitSpecifications(2000,0,5f));
+        enemy1.init(point,0, new UnitSpecifications(2000,0,5f));
         i++;
     }
 
