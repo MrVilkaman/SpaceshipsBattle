@@ -19,7 +19,7 @@ public class Enemy1  extends BaseUnit {
         defaultSpeed = 100;
         defaultMaxAngle = 3f;
         ///
-        sprite = new Enemy1AI(TextureLoader.getEnemyShip(), engine.getVertexBufferObjectManager()){
+        sprite = new Enemy1AI(TextureLoader.getEnemyShipLightBlue(), engine.getVertexBufferObjectManager()){
 
             @Override
             protected void doAfterUpdate() {

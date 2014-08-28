@@ -19,7 +19,9 @@ public class TextureLoader {
     private static TextureRegion screenControlKnobTextureRegion;
     private static TextureRegion screenControlBaseTextureRegion;
     private static TextureRegion simpleBulletTextureRegion;
-    private static TextureRegion enemyShip;
+    private static TextureRegion enemyShipLightBlue;
+    private static TextureRegion enemyShipOrange;
+    private static TextureRegion enemyShipGreen;
 
     private static Font font;
     private static TextureRegion menuResumeTextureRegion;
@@ -39,7 +41,9 @@ public class TextureLoader {
         FontManager fm = engine.getFontManager();
         BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
         ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
-        enemyShip = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
+        enemyShipLightBlue = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
+        enemyShipOrange = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster2.png", 0,300);
+        enemyShipGreen = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster3.png", 0,375);
         tm.loadTexture(mTexture);
         BitmapTextureAtlas mOnScreenControlTexture = new BitmapTextureAtlas(tm, 256, 128,
                 TextureOptions.BILINEAR);
@@ -103,8 +107,16 @@ public class TextureLoader {
         return simpleBulletTextureRegion;
     }
 
-    public static TextureRegion getEnemyShip() {
-        return enemyShip;
+    public static TextureRegion getEnemyShipLightBlue() {
+        return enemyShipLightBlue;
+    }
+
+    public static TextureRegion getEnemyShipOrange() {
+        return enemyShipOrange;
+    }
+
+    public static TextureRegion getEnemyShipGreen() {
+        return enemyShipGreen;
     }
 
     public static Font getFont() {
