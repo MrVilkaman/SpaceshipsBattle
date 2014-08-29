@@ -7,7 +7,6 @@ import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.Units.EnemySingleGun;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.InfinityWave;
@@ -69,13 +68,13 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initBulletsPools() {
-        BaseUnit.initPool();
+        BaseBullet.initPool();
         BaseBullet.setUnitDieListener(this);
     }
 
     @Override
     protected void initUnitsPools() {
-        EnemySingleGun.initPool();
+        BaseUnit.initPool();
     }
 
     @Override

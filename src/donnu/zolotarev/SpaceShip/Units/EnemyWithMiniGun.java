@@ -57,16 +57,14 @@ public class EnemyWithMiniGun extends BaseUnit {
 
     }
 
-    public static void initPool() {
-    //    if (!isRegistredPool){
-            isRegistredPool = true;
-            registredPool(EnemyWithMiniGun.class,new GenericPool() {
+    protected static void poolInit() {
+        isRegistredPool = true;
+        registredPool(EnemyWithMiniGun.class,new GenericPool() {
                 @Override
                 protected EnemyWithMiniGun onAllocatePoolItem() {
                     return new EnemyWithMiniGun();
                 }
             });
-     //   }
     }
 
 }

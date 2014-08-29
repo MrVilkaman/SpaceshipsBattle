@@ -180,4 +180,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public boolean checkHit(IHaveCoords object) {
         return false;
     }
+
+    public static void initPool() {
+        SimpleBullet.poolInit();
+        Rocket.poolInit();
+    }
 }

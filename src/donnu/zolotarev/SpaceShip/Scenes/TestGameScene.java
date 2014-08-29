@@ -3,7 +3,6 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -53,7 +52,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initBulletsPools() {
-        SimpleBullet.initPool();
+        BaseBullet.initPool();
         BaseBullet.setUnitDieListener(this);
     }
 

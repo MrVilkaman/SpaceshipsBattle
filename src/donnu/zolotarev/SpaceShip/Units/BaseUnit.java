@@ -153,7 +153,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public static void initPool() {
-        EnemySingleGun.initPool();
-        EnemyWithMiniGun.initPool();
+        EnemySingleGun.poolInit();
+        EnemyWithMiniGun.poolInit();
     }
 }

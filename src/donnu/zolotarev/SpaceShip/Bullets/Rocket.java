@@ -5,14 +5,13 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
-public class SimpleBullet extends BaseBullet {
+public class Rocket extends BaseBullet {
 
     private static boolean isRegistredPool = false;
 
-    private SimpleBullet() {
-
-        initCharacteristics(1000, 40);
-        sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
+    private Rocket() {
+        initCharacteristics(1000, 200);
+        sprite = new Sprite(0,0, TextureLoader.getRocketAmmoTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void onManagedUpdate(float pSecondsElapsed) {
@@ -29,21 +28,19 @@ public class SimpleBullet extends BaseBullet {
                 }
 
                 checkHit();
-
                 super.onManagedUpdate(pSecondsElapsed);
-
             }
         };
         settings();
     }
 
 
-    protected static void poolInit() {
+    public static void poolInit() {
         isRegistredPool = true;
-        registredPool(SimpleBullet.class,new GenericPool() {
+        registredPool(Rocket.class,new GenericPool() {
                 @Override
-                protected SimpleBullet onAllocatePoolItem() {
-                    return new SimpleBullet();
+                protected Rocket onAllocatePoolItem() {
+                    return new Rocket();
                 }
             });
     }

@@ -83,7 +83,7 @@ public class EnemySingleGun extends BaseUnit {
 
     }
 
-    public static void initPool() {
+    protected static void poolInit() {
         isRegistredPool = true;
         registredPool(EnemySingleGun.class,new GenericPool() {
             @Override
