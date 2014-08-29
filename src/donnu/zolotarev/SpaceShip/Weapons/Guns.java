@@ -39,7 +39,7 @@ public abstract class Guns implements IGun {
     }
 
     protected void GetNewBullet(final float x, final float y, final float direction) {
-        BaseBullet.getBullet(bullitType).init(x, y, direction, targetUnit,modificator);
+        BaseBullet.getBullet(bullitType).init(x, y, direction, bullitType, targetUnit,modificator);
     }
 
     @Override

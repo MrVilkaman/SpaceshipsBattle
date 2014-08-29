@@ -19,6 +19,7 @@ public abstract class BaseUnit implements ICollisionObject {
     public static final int TYPE_ENEMY_MINIGUN_L_1 = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
 
     public static final int TYPE_ENEMY_ROCKET_L_1 = TYPE_ENEMY_MINIGUN_L_1 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_ROCKET_L_2 = TYPE_ENEMY_ROCKET_L_1 + 1;
 
     private static final String TAG = "BaseUnit";
 

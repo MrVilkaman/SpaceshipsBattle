@@ -9,6 +9,7 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -76,13 +77,13 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         Random random = new Random();
         Point point;
         if(i<3){
-            point = new Point(1300, 100 + 200*i);
+            point = new Point(1000, 100 + 200*i);
         }else{
             point = new Point(400 + 250*(i-2), 100);
         }
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,180/*, new WaySpecifications(0,0f)*/);
+        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,180, new WaySpecifications(0,0f));
         i++;
     }
 

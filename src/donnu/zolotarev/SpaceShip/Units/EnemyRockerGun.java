@@ -37,6 +37,9 @@ public class EnemyRockerGun extends BaseUnit {
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_ROCKET,null), 0);
                 break;
+            case 1:
+                weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_ROCKET_AUTO,null), 0);
+                break;
         }
 
     }

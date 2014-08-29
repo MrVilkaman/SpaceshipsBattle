@@ -25,6 +25,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_ROCKET = TYPE_SIMPLE_BULLET+1;
+    public static final int TYPE_ROCKET_AUTO = TYPE_ROCKET+1;
     protected static BaseGameScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
@@ -79,7 +80,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         attachToScene();
     }
 
-    public void init(float x, float y, float direction, boolean unitTarget,IWeaponModificator weaponModificator) {
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
 
         sprite.setRotation(direction);
         sprite.setIgnoreUpdate(false);
@@ -174,6 +175,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     public static BaseBullet getBullet(int type) {
+        if (type == TYPE_ROCKET_AUTO){
+            type = TYPE_ROCKET;
+        }
         return ((BaseBullet)bulletsPool.obtainPoolItem(type));
     }
 

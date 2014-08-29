@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Bullets;
 import donnu.zolotarev.SpaceShip.AI.BulletAI.AutoguiderRocketAI;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class Rocket extends BaseBullet {
@@ -27,7 +28,15 @@ public class Rocket extends BaseBullet {
         settings();
     }
 
-
+    @Override
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
+        if (bullitType == BaseBullet.TYPE_ROCKET_AUTO){
+            ((AutoguiderRocketAI)sprite).setAutoguider();
+        }else{
+            ((AutoguiderRocketAI)sprite).setNoAutoguider();
+        }
+        super.init(x, y, direction, bullitType, unitTarget, weaponModificator);
+    }
 
     public static void poolInit() {
         isRegistredPool = true;
