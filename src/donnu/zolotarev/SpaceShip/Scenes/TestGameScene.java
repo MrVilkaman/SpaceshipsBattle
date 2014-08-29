@@ -83,7 +83,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         }
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,180, new WaySpecifications(0,0f));
+        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,0, new WaySpecifications(0,0f));
         i++;
     }
 

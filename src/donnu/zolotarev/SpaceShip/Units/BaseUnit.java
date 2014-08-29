@@ -82,7 +82,11 @@ public abstract class BaseUnit implements ICollisionObject {
             unitLevel = level;
             loadParam(unitLevel);
             loadWeapon(unitLevel);
+        }else{
+            int f = 0;
+            f =1;
         }
+
         health = defaultHealth;
         if (waySpecifications == null){
             waySpecifications = new WaySpecifications((int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
@@ -139,7 +143,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
-        health =- damage;
+        health -= damage;
         return health < 0;
     }
 
