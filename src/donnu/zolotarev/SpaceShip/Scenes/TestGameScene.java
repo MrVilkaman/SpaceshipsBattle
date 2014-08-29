@@ -75,10 +75,15 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
         BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (kind/Constants.MAX_UNIT_LEVEL));
         Random random = new Random();
-        Point point = new Point(600, 100 + 150*i);
+        Point point;
+        if(i<3){
+            point = new Point(400, 100 + 200*i);
+        }else{
+            point = new Point(400 + 250*(i-2), 100);
+        }
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,0, new UnitSpecifications(2000,0,5f));
+        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,0, new UnitSpecifications(0,0,0f));
         i++;
     }
 

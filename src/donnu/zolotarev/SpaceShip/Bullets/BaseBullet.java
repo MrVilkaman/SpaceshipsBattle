@@ -22,6 +22,7 @@ import java.util.Iterator;
 public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_SIMPLE_BULLET = 0;
+    public static final int TYPE_ROCKET = TYPE_SIMPLE_BULLET+1;
     protected static BaseGameScene main;
     private static ObjectController bulletController;
     private static ObjectController enemyController;
@@ -63,6 +64,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         }
         if (bulletBase.getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.registerPool(TYPE_SIMPLE_BULLET ,genericPool);
+        }else if (bulletBase.getSimpleName().equals(Rocket.class.getSimpleName())){
+            bulletsPool.registerPool(TYPE_ROCKET ,genericPool);
         }
     }
 

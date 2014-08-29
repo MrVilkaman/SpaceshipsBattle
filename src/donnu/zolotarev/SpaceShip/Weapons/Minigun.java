@@ -12,6 +12,7 @@ public class Minigun extends Guns implements IGun {
     }
     private int i = 0;
     private int max = 20;
+
     @Override
     public boolean shoot() {
         shootDelay--;
