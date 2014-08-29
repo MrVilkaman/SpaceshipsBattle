@@ -1,5 +1,6 @@
-package donnu.zolotarev.SpaceShip.EnemyAI;
+package donnu.zolotarev.SpaceShip.AI.EnemyAI;
 
+import donnu.zolotarev.SpaceShip.AI.SimpleAI;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 

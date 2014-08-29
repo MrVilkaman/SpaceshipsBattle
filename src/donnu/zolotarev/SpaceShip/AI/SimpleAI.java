@@ -1,16 +1,16 @@
-package donnu.zolotarev.SpaceShip.EnemyAI;
+package donnu.zolotarev.SpaceShip.AI;
 
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
+import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public abstract class SimpleAI extends SpriteAI {
 
-    protected  UnitSpecifications specifications;
+    protected WaySpecifications specifications;
 
     boolean flagFirstX = false;
     boolean flagFirstY = false;
@@ -40,7 +40,7 @@ public abstract class SimpleAI extends SpriteAI {
     }
 
     @Override
-    public void start(UnitSpecifications specifications) {
+    public void start(WaySpecifications specifications) {
         this.specifications = specifications;
     }
 

@@ -9,7 +9,7 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
+import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -83,7 +83,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         }
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,0, new UnitSpecifications(0,0,0f));
+        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,0, new WaySpecifications(0,0f));
         i++;
     }
 
@@ -92,6 +92,4 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         addToScore(10+o.hashCode()%10);
     }
 
-
-    //  dataProcessor.processGold(levels.newestById(lastSceneId),true);
 }

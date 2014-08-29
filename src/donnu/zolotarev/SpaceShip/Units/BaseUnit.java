@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import android.graphics.PointF;
-import donnu.zolotarev.SpaceShip.EnemyAI.SpriteAI;
+import donnu.zolotarev.SpaceShip.AI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Utils.*;
@@ -31,9 +31,10 @@ public abstract class BaseUnit implements ICollisionObject {
     protected SpriteAI sprite;
    // protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
-    protected UnitSpecifications unitSpecifications;
+    protected WaySpecifications waySpecifications;
 
     protected int unitLevel = -1;
+    protected int health = 0;
 
     protected int defaultHealth;
     protected int defaultSpeed;
@@ -66,8 +67,8 @@ public abstract class BaseUnit implements ICollisionObject {
         }
     }
 
-    public void init(int level, Point point, float angle, UnitSpecifications us){
-        unitSpecifications = us;
+    public void init(int level, Point point, float angle, WaySpecifications us){
+        waySpecifications = us;
         init(level, point, angle);
     }
 
@@ -81,10 +82,11 @@ public abstract class BaseUnit implements ICollisionObject {
             loadParam(unitLevel);
             loadWeapon(unitLevel);
         }
-        if (unitSpecifications == null){
-            unitSpecifications = new UnitSpecifications(defaultHealth,(int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
+        health = defaultHealth;
+        if (waySpecifications == null){
+            waySpecifications = new WaySpecifications((int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
         }
-        sprite.start(unitSpecifications);
+        sprite.start(waySpecifications);
         setStartPosition(point);
         sprite.setRotation(angle);
         sprite.setIgnoreUpdate(false);
@@ -117,7 +119,7 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.setIgnoreUpdate(true);
         sprite.restart();
         unitsController.remove(this);
-        unitSpecifications = null;
+        waySpecifications = null;
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);
         }
@@ -135,13 +137,16 @@ public abstract class BaseUnit implements ICollisionObject {
         return xx*xx +yy*yy < R;
     }
 
-    public abstract boolean addDamageAndCheckDeath(int damage);
+    public boolean addDamageAndCheckDeath(int damage) {
+        health =- damage;
+        return health < 0;
+    }
 
     protected abstract void loadWeapon(int level);
 
     protected abstract void loadParam(int level);
 
-    public abstract void canFire(boolean b);
+    public void canFire(boolean b){};
 
     public static int getEnemiesOnMap() {
         return enemiesOnMap;

@@ -22,7 +22,6 @@ public class ObjectController<E extends ICollisionObject> {
     }
 
     public synchronized void remove(E object){
-       // object.destroy();
         objects.remove(object);
     }
 

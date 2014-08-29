@@ -1,6 +1,6 @@
-package donnu.zolotarev.SpaceShip.EnemyAI;
+package donnu.zolotarev.SpaceShip.AI;
 
-import donnu.zolotarev.SpaceShip.Units.UnitSpecifications;
+import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
@@ -40,7 +40,7 @@ public abstract class SpriteAI extends Sprite {
 
     public abstract void restart();
 
-    public abstract void start(UnitSpecifications unitSpecifications);
+    public abstract void start(WaySpecifications waySpecifications);
 
     @Override
     protected final void onManagedUpdate(float pSecondsElapsed) {

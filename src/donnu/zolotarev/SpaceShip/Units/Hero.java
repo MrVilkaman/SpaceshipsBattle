@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.EnemyAI.HeroAI;
+import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;

@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.EnemyAI.Enemy1AI;
+import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
@@ -23,14 +23,6 @@ public class EnemyRockerGun extends BaseUnit {
             }
         };
         attachToScene();
-    }
-
-    @Override
-    public boolean addDamageAndCheckDeath(int damage) {
-
-        int health =  unitSpecifications.getHealth() - damage;
-        unitSpecifications.setHealth(health);
-        return health < 0;
     }
 
     @Override
@@ -66,11 +58,6 @@ public class EnemyRockerGun extends BaseUnit {
                 defaultMaxAngle = 2f;
                 break;
         }
-
-    }
-
-    @Override
-    public void canFire(boolean b) {
 
     }
 

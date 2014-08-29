@@ -1,11 +1,13 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
+import donnu.zolotarev.SpaceShip.AI.SpriteAI;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
+import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
 import donnu.zolotarev.SpaceShip.Utils.ObjectController;
@@ -30,7 +32,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     private static IHeroDieListener dieListener;
 
-    protected Sprite sprite;
+    protected SpriteAI sprite;
     private PhysicsHandler physicsHandler;
     protected static MultiPool bulletsPool;
 
@@ -41,6 +43,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     private float hw;
     private float hh;
     private static IAmDie iAmDie;
+
+    protected WaySpecifications waySpecifications;
 
     public static void setDieListener(IHeroDieListener listener){
         dieListener = listener;
@@ -77,8 +81,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public void init(float x, float y, float direction, boolean unitTarget,IWeaponModificator weaponModificator) {
 
         sprite.setRotation(direction);
-        physicsHandler.setVelocityY((float) (DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
-        physicsHandler.setVelocityX((float) (DEFAULT_SPEED * Math.cos(Utils.degreeToRad(direction))));
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         bulletController.add(this);
@@ -86,7 +88,10 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         hw = sprite.getWidth()/2;
         hh = sprite.getHeight()/2;
-
+        if (waySpecifications == null){
+            waySpecifications = new WaySpecifications(DEFAULT_SPEED, 0);
+        }
+        sprite.start(waySpecifications);
         sprite.setPosition(x - hw, y - hh);
 
         damage = DEFAULT_DAMAGE;
@@ -112,6 +117,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
         bulletController.remove(this);
+        waySpecifications = null;
         if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
         }

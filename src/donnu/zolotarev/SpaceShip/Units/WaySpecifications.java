@@ -1,14 +1,11 @@
 package donnu.zolotarev.SpaceShip.Units;
 
-public class UnitSpecifications {
+public class WaySpecifications {
     //Полетные характеристики
     private float maxRotationAndle;
     private int speed;
 
-    private int health;
-
-    public UnitSpecifications(int health,int speed,float maxRotationAndle) {
-        this.health = health;
+    public WaySpecifications(int speed, float maxRotationAndle) {
         this.speed = speed;
         this.maxRotationAndle = maxRotationAndle;
     }
@@ -28,13 +25,4 @@ public class UnitSpecifications {
     public void setMaxRotationAndle(float maxRotationAndle) {
         this.maxRotationAndle = maxRotationAndle;
     }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
 }

@@ -1,8 +1,8 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
+import donnu.zolotarev.SpaceShip.AI.BulletAI.SimpleBulletAI;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleBullet extends BaseBullet {
@@ -12,26 +12,16 @@ public class SimpleBullet extends BaseBullet {
     private SimpleBullet() {
 
         initCharacteristics(1000, 40);
-        sprite = new Sprite(0,0, TextureLoader.getSimpleBulletTextureRegion(),
+        sprite = new SimpleBulletAI(TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
-            protected void onManagedUpdate(float pSecondsElapsed) {
-                if(this.mX < 0) {
-                    destroy();
-                } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
-                    destroy();
-                }
+            protected void destroyed() {
+               destroy();
+            }
 
-                if(this.mY < 0) {
-                    destroy();
-                } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
-                    destroy();
-                }
-
+            @Override
+            protected void doAfterUpdate() {
                 checkHit();
-
-                super.onManagedUpdate(pSecondsElapsed);
-
             }
         };
         settings();

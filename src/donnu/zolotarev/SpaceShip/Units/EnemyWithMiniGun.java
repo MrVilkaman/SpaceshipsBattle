@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.EnemyAI.Enemy1AI;
+import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.Minigun;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
@@ -30,13 +30,6 @@ public class EnemyWithMiniGun extends BaseUnit {
     }
 
     @Override
-    public boolean addDamageAndCheckDeath(int damage) {
-        int health =  unitSpecifications.getHealth() - damage;
-        unitSpecifications.setHealth(health);
-        return health < 0;
-    }
-
-    @Override
     protected void loadWeapon(int level) {
         weaponController = new WeaponController(this, new WeaponPos[]{
                 new WeaponPos(sprite, 115, 37 , 0),
@@ -53,11 +46,6 @@ public class EnemyWithMiniGun extends BaseUnit {
         defaultHealth = 500;
         defaultSpeed = 100;
         defaultMaxAngle = 3f;
-    }
-
-    @Override
-    public void canFire(boolean b) {
-
     }
 
     protected static void poolInit() {
