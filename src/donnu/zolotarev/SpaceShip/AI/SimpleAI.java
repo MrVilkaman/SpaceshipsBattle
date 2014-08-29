@@ -45,17 +45,25 @@ public abstract class SimpleAI extends SpriteAI {
     }
 
     protected final void prosecutionHero(int minDist,int maxDist){
-        timeScan2-- ;
+        prosecutionHero(minDist, maxDist,true);
+    }
+    protected final void prosecutionHero(int minDist,int maxDist,boolean flag){
+
         float dist = Utils.distance(mX,mY,hero.getPosition().x,hero.getPosition().y);
-        if(timeScan2<0 ){
-            //todo заменить коэфициенты
-            if ( 100 < dist){
-                dX =  Utils.random(-50f,50f);
-                dY =  Utils.random(-50f,50f);
-            } else {
-                dX = dY = 0;
+        if (flag){
+            timeScan2-- ;
+            if(timeScan2<0 ){
+                //todo заменить коэфициенты
+                if ( 100 < dist){
+                    dX =  Utils.random(-50f,50f);
+                    dY =  Utils.random(-50f,50f);
+                } else {
+                    dX = dY = 0;
+                }
+                timeScan2 = startTimeScan*10;
             }
-            timeScan2 = startTimeScan*10;
+        }else {
+            dX = dY = 0;
         }
 
         if (minDist <= dist && dist <= maxDist){

@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
-import donnu.zolotarev.SpaceShip.AI.BulletAI.SimpleBulletAI;
+import donnu.zolotarev.SpaceShip.AI.BulletAI.AutoguiderRocketAI;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.util.adt.pool.GenericPool;
@@ -10,8 +10,9 @@ public class Rocket extends BaseBullet {
     private static boolean isRegistredPool = false;
 
     private Rocket() {
-        initCharacteristics(1200, 200);
-        sprite = new SimpleBulletAI(TextureLoader.getRocketAmmoTextureRegion(),
+        initCharacteristics(1200, 200, 5f);
+
+        sprite = new AutoguiderRocketAI(TextureLoader.getRocketAmmoTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void destroyed() {
@@ -25,6 +26,7 @@ public class Rocket extends BaseBullet {
         };
         settings();
     }
+
 
 
     public static void poolInit() {

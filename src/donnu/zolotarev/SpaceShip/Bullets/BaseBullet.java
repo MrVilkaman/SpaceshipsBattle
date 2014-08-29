@@ -38,6 +38,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     private int DEFAULT_SPEED;
     private int DEFAULT_DAMAGE;
+    private float DEFAULT_ROTATE_ANGLE;
     private int damage;
     private boolean targetUnit;
     private float hw;
@@ -89,7 +90,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         hw = sprite.getWidth()/2;
         hh = sprite.getHeight()/2;
         if (waySpecifications == null){
-            waySpecifications = new WaySpecifications(DEFAULT_SPEED, 0);
+            waySpecifications = new WaySpecifications(DEFAULT_SPEED, DEFAULT_ROTATE_ANGLE);
         }
         sprite.start(waySpecifications);
         sprite.setPosition(x - hw, y - hh);
@@ -132,9 +133,10 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
       return damage;
     }
 
-    protected  void initCharacteristics(int speed, int damage){
+    protected  void initCharacteristics(int speed, int damage, float angle){
         this.DEFAULT_DAMAGE = damage ;
         this.DEFAULT_SPEED = speed;
+        DEFAULT_ROTATE_ANGLE = angle;
     }
 
     protected void checkHit() {

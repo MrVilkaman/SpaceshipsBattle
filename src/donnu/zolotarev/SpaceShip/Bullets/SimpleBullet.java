@@ -11,7 +11,7 @@ public class SimpleBullet extends BaseBullet {
 
     private SimpleBullet() {
 
-        initCharacteristics(1000, 40);
+        initCharacteristics(1000, 40, 0f);
         sprite = new SimpleBulletAI(TextureLoader.getSimpleBulletTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override

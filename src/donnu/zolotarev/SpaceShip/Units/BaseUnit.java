@@ -107,7 +107,7 @@ public abstract class BaseUnit implements ICollisionObject {
         mainScene.attachChild(sprite);
     }
 
-    protected   void setStartPosition(Point point){
+    protected void setStartPosition(Point point){
         sprite.setX(point.x);
         sprite.setY(point.y);
     }
@@ -158,7 +158,7 @@ public abstract class BaseUnit implements ICollisionObject {
     }
 
     public PointF  getPosition(){
-        return new PointF(sprite.getX(),sprite.getY());
+        return new PointF(sprite.getX()+cx,sprite.getY()+cy);
     }
 
     public static void initPool() {
