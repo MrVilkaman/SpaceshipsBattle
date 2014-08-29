@@ -52,7 +52,7 @@ public class WeaponController {
     private void changePos(WeaponPos weaponPos){
         Sprite sp =  carrier.getShape();
         float rad = carrier.getShape().getRotation();
-        bufferWeaponPos.x = weaponPos.rad*(float)Math.cos(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterX()  + sp.getX()-7;
+        bufferWeaponPos.x = weaponPos.rad*(float)Math.cos(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterX() + sp.getX()-7;
         bufferWeaponPos.y = weaponPos.rad*(float)Math.sin(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterY() + sp.getY();
         bufferWeaponPos.anlge = weaponPos.anlge + rad ;
     }

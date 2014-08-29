@@ -72,7 +72,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     public void init(float x, float y, float direction, boolean unitTarget,IWeaponModificator weaponModificator) {
-        sprite.setPosition(x, y);
+
         sprite.setRotation(direction);
         physicsHandler.setVelocityY((float) (DEFAULT_SPEED * Math.sin(Utils.degreeToRad(direction))));
         physicsHandler.setVelocityX((float) (DEFAULT_SPEED * Math.cos(Utils.degreeToRad(direction))));
@@ -83,6 +83,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         hw = sprite.getWidth()/2;
         hh = sprite.getHeight()/2;
+
+        sprite.setPosition(x - hw, y - hh);
+
         damage = DEFAULT_DAMAGE;
         if (weaponModificator != null){
             damage = weaponModificator.addDamage(damage);

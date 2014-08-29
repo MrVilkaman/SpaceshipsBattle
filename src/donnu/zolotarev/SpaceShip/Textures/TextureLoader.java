@@ -18,12 +18,13 @@ public class TextureLoader {
     private static TextureRegion ship;
     private static TextureRegion screenControlKnobTextureRegion;
     private static TextureRegion screenControlBaseTextureRegion;
-    private static TextureRegion simpleBulletTextureRegion;
     private static TextureRegion enemyShipLightBlue;
     private static TextureRegion enemyShipOrange;
     private static TextureRegion enemyShipGreen;
 
     private static Font font;
+    private static Font fontBig;
+
     private static TextureRegion menuResumeTextureRegion;
     private static TextureRegion menuExitTextureRegion;
     private static TextureRegion menuNewGameTextureRegion;
@@ -34,7 +35,8 @@ public class TextureLoader {
     private static TextureRegion changeLevelLableTextureRegion1;
     private static TextureRegion changeLevelIconShop;
 
-    private static Font fontBig;
+    private static TextureRegion rocketAmmoTextureRegion;
+    private static TextureRegion simpleBulletTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -57,6 +59,9 @@ public class TextureLoader {
                 TextureOptions.BILINEAR);
         simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
                 "simpleBullet.png", 0, 0);
+        rocketAmmoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
+                "roket_ammo.png", 6, 0);
+        bulletTexture.load();
        // Шрифты
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
                 Typeface.DEFAULT, Typeface.BOLD), 32);
@@ -157,5 +162,9 @@ public class TextureLoader {
 
     public static TextureRegion getMenuAboutTextureRegion() {
         return menuAboutTextureRegion;
+    }
+
+    public static TextureRegion getRocketAmmoTextureRegion() {
+        return rocketAmmoTextureRegion;
     }
 }

@@ -38,7 +38,7 @@ public class Hero extends BaseUnit {
     @Override
     protected void loadWeapon(int level) {
         weaponController = new WeaponController(this,
-                new WeaponPos[]{new WeaponPos(sprite, 70, 50, 0),
+                new WeaponPos[]{new WeaponPos(sprite, 70, 56, 0),
                         new WeaponPos(sprite, 35, 30, -2),
                 new WeaponPos(sprite    , 35, 70, 2)});
         ShopData shopData = ShopData.get();
