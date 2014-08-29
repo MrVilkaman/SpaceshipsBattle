@@ -16,6 +16,7 @@ public class UnitWave {
     private Boolean _isStarted = false;
     private float _interval = 0;
     private int _enemyCount = 0;
+    private boolean needWait = false;
 
 
     public UnitWave(IAddedEnemy _instance){
@@ -27,10 +28,17 @@ public class UnitWave {
         _enemies.add(new WaveObject(kind,count,respawnInterval));
     }
 
+    public void addEnemy(int kind, int count, float respawnInterval,boolean needWait){
+        _enemies.add(new WaveObject(kind,count,respawnInterval,needWait));
+    }
+
     public void addDelay(float respawnInterval){
         addEnemy(0,0,respawnInterval);
     }
 
+    public void waitLastKilled(){
+        addEnemy(0,0,0,true);
+    }
 
     public void startWave(){
 
@@ -44,9 +52,16 @@ public class UnitWave {
     public void update(float delta){
         if (_isStarted){
             if ((_interval -= delta)<=0){
-                if (!nextEnemy()){
-                    _isStarted = false;
+                if (!needWait){
+                    if (!nextEnemy()){
+                        _isStarted = false;
+                    }
+                }else{
+                    if (BaseUnit.getEnemiesOnMap() == 0){
+                        needWait = false;
+                    }
                 }
+
             }
         }
     }
@@ -60,6 +75,7 @@ public class UnitWave {
                 }
                 _instance.addEnemy(_enemy.getKind());
                 _interval = _enemy.getDelay();
+                needWait =  _enemy.isWait();
 
                 if(--_enemyCount<= 0){
                     _enemyIndex++;
