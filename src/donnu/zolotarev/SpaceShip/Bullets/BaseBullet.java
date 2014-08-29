@@ -188,4 +188,12 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         SimpleBullet.poolInit();
         Rocket.poolInit();
     }
+
+    public int getDefaultSpeed() {
+        return DEFAULT_SPEED;
+    }
+
+    public int getDefaultDamage() {
+        return DEFAULT_DAMAGE;
+    }
 }

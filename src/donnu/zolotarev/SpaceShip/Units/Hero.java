@@ -42,7 +42,7 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 35, 30, -2),
                 new WeaponPos(sprite    , 35, 70, 2)});
         ShopData shopData = ShopData.get();
-        IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege());
+        IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
         if (shopData.isHaveDoubleGun()){
             gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);

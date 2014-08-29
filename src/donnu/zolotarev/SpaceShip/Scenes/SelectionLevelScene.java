@@ -105,6 +105,11 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 item.setEnabled(true);
                 item.setWin(true);
                 name = "TEST";
+            }else if(item.getLevelId() == WaveContainer.LEVEL_MUSEUM){
+                color = Color.BLACK;
+                item.setEnabled(true);
+                item.setWin(true);
+                name = "MUSEUM";
             } else {
                 name = String.valueOf(item.getLevelId());
                 if (item.isEnabled()){
@@ -168,6 +173,11 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
             case WaveContainer.LEVEL_TEST:
                 gameScene = new TestGameScene(this);
                 ((TestGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(TestGameScene)gameScene));
+
+                break;
+            case WaveContainer.LEVEL_MUSEUM:
+                gameScene = new MuseumScene(this);
+                ((MuseumScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MuseumScene)gameScene));
 
                 break;
             default:

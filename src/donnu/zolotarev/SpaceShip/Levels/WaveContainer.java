@@ -9,6 +9,7 @@ import donnu.zolotarev.SpaceShip.Waves.UnitWave;
 public  class WaveContainer {
     public static final int LEVEL_INFINITY = 99;
     public static final int LEVEL_TEST = 100;
+    public static final int LEVEL_MUSEUM = 101;
 
     public static final int LEVEL_1 = 1;
     public static final int LEVEL_2 = LEVEL_1+1;
@@ -30,6 +31,13 @@ public  class WaveContainer {
         UnitWave unitWave;
         switch (id){
             case LEVEL_TEST:
+                waveController = new SimpleWave();
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.2f);
+                waveController.addWave(unitWave);
+                return waveController;
+            case LEVEL_MUSEUM:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.2f);
