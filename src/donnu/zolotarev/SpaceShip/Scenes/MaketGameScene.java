@@ -27,8 +27,8 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         ((SimpleWave)controller).addListener(new IStatusGameInfo() {
             @Override
             public void onNextWave(int count) {
-                waveIndex++;
-                textWaveBarCallback.onNextWave(waveIndex);
+               /* waveIndex++;
+                textWaveBarCallback.onNextWave(waveIndex);*/
             }
 
             @Override
@@ -82,6 +82,8 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     public void destroyed(BaseUnit o) {
+        waveIndex++;
+        textWaveBarCallback.onNextWave(waveIndex);
         addToScore(o.getMoney() + (int) Utils.random(0,5));
     }
 }

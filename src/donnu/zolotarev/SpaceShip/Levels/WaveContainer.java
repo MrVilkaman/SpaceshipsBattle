@@ -34,7 +34,7 @@ public  class WaveContainer {
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 //unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 0.2f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 3f);
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,2, 0.2f);
                 waveController.addWave(unitWave);
@@ -63,9 +63,14 @@ public  class WaveContainer {
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 1.7f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 6, 1.9f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, -1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 2, 0.3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, -1f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 2.5f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 2.5f);
+
                 waveController.addWave(unitWave);
                 return waveController;
            // case LEVEL_3:
