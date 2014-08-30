@@ -14,12 +14,12 @@ public abstract class SimpleAI extends SpriteAI {
 
     boolean flagFirstX = false;
     boolean flagFirstY = false;
-    private int timeScan = 0 ;
-    private int timeScan2 = 0;
-    private int startTimeScan = 5;
+    protected int timeScan = 0 ;
+    protected int timeScan2 = 0;
+    protected int startTimeScan = 5;
 
-    private float dX;
-    private float dY;
+    protected float dX;
+    protected float dY;
     //todo
     private Hero hero = BaseGameScene.getActiveScene().getHero();
 

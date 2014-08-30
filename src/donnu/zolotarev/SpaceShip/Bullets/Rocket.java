@@ -31,7 +31,7 @@ public class Rocket extends BaseBullet {
     @Override
     public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
         if (bullitType == BaseBullet.TYPE_ROCKET_AUTO){
-            ((AutoguiderRocketAI)sprite).setAutoguider();
+            ((AutoguiderRocketAI)sprite).setAutoguider(unitTarget);
         }else{
             ((AutoguiderRocketAI)sprite).setNoAutoguider();
         }

@@ -38,9 +38,10 @@ public class Hero extends BaseUnit {
     @Override
     protected void loadWeapon(int level) {
         weaponController = new WeaponController(this,
-                new WeaponPos[]{new WeaponPos(sprite, 70, 56, 0),
+                new WeaponPos[]{
+                        new WeaponPos(sprite, 70, 56, 0),
                         new WeaponPos(sprite, 35, 30, -2),
-                new WeaponPos(sprite    , 35, 70, 2)});
+                        new WeaponPos(sprite, 35, 70, 2)});
         ShopData shopData = ShopData.get();
         IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
@@ -50,6 +51,10 @@ public class Hero extends BaseUnit {
             gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }
         weaponController.loadWeapon(gun, 0);
+        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        weaponController.loadWeapon(gun, 1);
+        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        weaponController.loadWeapon(gun, 2);
     }
 
     @Override
