@@ -73,7 +73,23 @@ public  class WaveContainer {
 
                 waveController.addWave(unitWave);
                 return waveController;
-           // case LEVEL_3:
+            case LEVEL_3:
+                waveController = new SimpleWave();
+
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 3f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, -1f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 4, 2f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 3, 3f);
+
+                waveController.addWave(unitWave);
+                return waveController;
             default:
                 waveController = new SimpleWave();
 

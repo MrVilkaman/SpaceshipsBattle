@@ -72,9 +72,10 @@ public class AutoguiderRocketAI extends BulletBaseAI {
     }
 
     private Info findNear(int minDist,int maxDist){
-        float mDist = 0;
+        float mDist = 9999;
         float dist = -1;
         PointF pos = null;
+        PointF mPos = new PointF(0,0);
         Iterator<BaseUnit> col =  InfinityGameScene.getActiveScene().getEnemyController().getObjects();
         while (col.hasNext()){
             BaseUnit unit = col.next();
@@ -82,8 +83,9 @@ public class AutoguiderRocketAI extends BulletBaseAI {
            dist = Utils.distance(mX,mY,pos.x,pos.y);
             if(dist < mDist){
                 mDist = dist;
+                mPos = pos;
             }
         }
-        return new Info(pos,dist);
+        return new Info(mPos,mDist);
     }
 }

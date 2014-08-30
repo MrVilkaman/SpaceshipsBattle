@@ -51,10 +51,11 @@ public class Hero extends BaseUnit {
             gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }
         weaponController.loadWeapon(gun, 0);
-        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        // todo Rocket
+       /* gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
         weaponController.loadWeapon(gun, 1);
         gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
-        weaponController.loadWeapon(gun, 2);
+        weaponController.loadWeapon(gun, 2);*/
     }
 
     @Override
