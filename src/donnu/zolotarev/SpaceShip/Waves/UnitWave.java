@@ -73,13 +73,15 @@ public class UnitWave {
                     _enemy = _enemies.get(_enemyIndex);
                     _enemyCount = _enemy.getCount();
                 }
-                _instance.addEnemy(_enemy.getKind());
-                _interval = _enemy.getDelay();
+
                 needWait =  _enemy.isWait();
 
-                if(--_enemyCount<= 0){
+                if(--_enemyCount< 0){
                     _enemyIndex++;
                     _enemy = null;
+                }else{
+                    _instance.addEnemy(_enemy.getKind());
+                    _interval = _enemy.getDelay();
                 }
             }
             return true;
