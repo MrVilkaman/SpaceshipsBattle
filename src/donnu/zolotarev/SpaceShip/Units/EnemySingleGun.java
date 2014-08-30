@@ -56,6 +56,7 @@ public class EnemySingleGun extends BaseUnit {
         switch (level){
             case 0:
                 defaultHealth = 300;
+                price = 14;
                 break;
             case 1:
                 defaultHealth = 400;

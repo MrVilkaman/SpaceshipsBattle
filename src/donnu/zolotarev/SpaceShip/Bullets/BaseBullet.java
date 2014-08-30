@@ -167,7 +167,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
                 col.remove();
                 unit.destroy();
                 if (iAmDie != null){
-                    iAmDie.destroyed(unit.getClass());
+                    iAmDie.destroyed(unit);
                 }
             }
             destroy();

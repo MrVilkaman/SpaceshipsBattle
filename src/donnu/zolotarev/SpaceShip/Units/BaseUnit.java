@@ -44,6 +44,7 @@ public abstract class BaseUnit implements ICollisionObject {
     private float R = 0;
     private float cy;
     private float cx;
+    protected int price = 0;
 
 
     public static void resetPool(){
@@ -170,5 +171,9 @@ public abstract class BaseUnit implements ICollisionObject {
         EnemySingleGun.poolInit();
         EnemyWithMiniGun.poolInit();
         EnemyRockerGun.poolInit();
+    }
+
+    public int getMoney(){
+        return price;
     }
 }

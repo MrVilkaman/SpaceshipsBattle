@@ -92,8 +92,8 @@ public class MuseumScene extends BaseGameScene implements IAmDie {
     }
 
     @Override
-    public void destroyed(Class o) {
-        addToScore(10+o.hashCode()%10);
+    public void destroyed(BaseUnit unit) {
+
     }
 
 

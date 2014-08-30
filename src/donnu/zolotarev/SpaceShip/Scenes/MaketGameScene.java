@@ -10,6 +10,7 @@ import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
@@ -80,7 +81,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     }
 
     @Override
-    public void destroyed(Class o) {
-        addToScore(10+o.hashCode()%10);
+    public void destroyed(BaseUnit o) {
+        addToScore(o.getMoney() + (int) Utils.random(0,5));
     }
 }

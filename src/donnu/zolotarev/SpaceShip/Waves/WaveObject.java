@@ -11,14 +11,12 @@ public class WaveObject {
         this.kind = kind;
         this.count = count;
         this.delay = delay;
+        if(delay<0){
+            wait = true;
+        }
     }
 
-    public WaveObject(int kind, int count, float delay,boolean wait) {
-        this.kind = kind;
-        this.count = count;
-        this.delay = delay;
-        this.wait = wait;
-    }
+
 
 
     public int getKind() {

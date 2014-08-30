@@ -28,16 +28,13 @@ public class UnitWave {
         _enemies.add(new WaveObject(kind,count,respawnInterval));
     }
 
-    public void addEnemy(int kind, int count, float respawnInterval,boolean needWait){
-        _enemies.add(new WaveObject(kind,count,respawnInterval,needWait));
-    }
 
     public void addDelay(float respawnInterval){
         addEnemy(0,0,respawnInterval);
     }
 
     public void waitLastKilled(){
-        addEnemy(0,0,0,true);
+        addEnemy(0,0,-1);
     }
 
     public void startWave(){

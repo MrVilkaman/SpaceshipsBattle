@@ -87,9 +87,9 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         i++;
     }
 
-    @Override
-    public void destroyed(Class o) {
-        addToScore(10+o.hashCode()%10);
-    }
 
+    @Override
+    public void destroyed(BaseUnit unit) {
+
+    }
 }
