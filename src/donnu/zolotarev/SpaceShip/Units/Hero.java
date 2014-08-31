@@ -23,6 +23,8 @@ public class Hero extends BaseUnit {
     private IHealthBar healthBar;
     private HeroFeatures heroFeatures;
 
+    protected RocketController rocketController;
+
     public Hero(IHealthBar healthBar) {
         super();
         this.healthBar = healthBar;
@@ -42,6 +44,7 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 70, 56, 0),
                         new WeaponPos(sprite, 35, 30, -2),
                         new WeaponPos(sprite, 35, 70, 2)});
+
         ShopData shopData = ShopData.get();
         IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
@@ -52,10 +55,14 @@ public class Hero extends BaseUnit {
         }
         weaponController.loadWeapon(gun, 0);
         // todo Rocket
-       /* gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
-        weaponController.loadWeapon(gun, 1);
+        rocketController = new RocketController(this,
+                new WeaponPos[]{
+                        new WeaponPos(sprite, 35, 30, -2),
+                        new WeaponPos(sprite, 35, 70, 2)});
         gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
-        weaponController.loadWeapon(gun, 2);*/
+        rocketController.loadWeapon(gun, 0);
+        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        rocketController.loadWeapon(gun, 1);
     }
 
     @Override
@@ -120,5 +127,9 @@ public class Hero extends BaseUnit {
         isAlive = false;
         weaponController.setShoot(false);
         super.destroy();
+    }
+
+    public void fireRocket(){
+        rocketController.fire();
     }
 }

@@ -203,7 +203,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                             hero.canFire(true);
                             flag = true;
                         } else if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
-
                             if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
                                 hero.canFire(false);
                                 flag = true;
@@ -221,6 +220,33 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
+
+        final Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCameraWidth()- 250,SpaceShipActivity.getCameraHeight()-150,
+                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+            boolean flag = false;
+            public int pId = -1;
+            @Override
+            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(pSceneTouchEvent.isActionDown()){
+                            pId =  pSceneTouchEvent.getPointerID();
+                            hero.fireRocket();
+                        }
+                    }
+                });
+
+                return flag;
+            }
+        };
+
+        btnFire2.setColor(Color.RED);
+        btnFire2.setAlpha(0.5f);
+
+        analogOnScreenControl.attachChild(btnFire2);
+        analogOnScreenControl.registerTouchArea(btnFire2);
     }
 
     @Override

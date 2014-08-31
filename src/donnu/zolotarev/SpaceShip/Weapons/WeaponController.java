@@ -8,10 +8,11 @@ import java.util.Iterator;
 
 public class WeaponController {
 
-    private final WeaponPos[] weaponPoses;
-    private final BaseUnit carrier;
-    private IGun[] guns;
+    protected final WeaponPos[] weaponPoses;
+    protected final BaseUnit carrier;
+    protected IGun[] guns;
     private boolean shoot;
+    protected WeaponPos bufferWeaponPos;
 
     public WeaponController(BaseUnit carrier,WeaponPos[] weaponPoses){
         if (weaponPoses == null){
@@ -47,9 +48,7 @@ public class WeaponController {
         }
     }
 
-    private WeaponPos bufferWeaponPos;
-
-    private void changePos(WeaponPos weaponPos){
+    protected void changePos(WeaponPos weaponPos){
         Sprite sp =  carrier.getShape();
         float rad = carrier.getShape().getRotation();
         bufferWeaponPos.x = weaponPos.rad*(float)Math.cos(Utils.degreeToRad(rad + weaponPos.radAngle)) + sp.getRotationCenterX() + sp.getX()-7;
