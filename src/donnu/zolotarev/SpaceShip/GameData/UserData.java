@@ -8,7 +8,7 @@ public class UserData {
 
     private static transient UserData instance;
 
-    private int money = 400;
+    private int money = 600;
 
     private UserData() {
     }

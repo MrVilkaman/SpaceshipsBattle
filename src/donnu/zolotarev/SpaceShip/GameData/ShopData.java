@@ -29,7 +29,7 @@ public class ShopData {
     private int levelMaxHealth = 0;
 
     private int priceBulletDamege = 200;
-    private int effectBulletDamege = 10;
+    private int effectBulletDamege = 20;
     private int levelBulletDamege = 0;
 
     private boolean haveDoubleGun = false;
