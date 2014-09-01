@@ -67,7 +67,7 @@ public class TextureLoader {
                 Typeface.DEFAULT, Typeface.BOLD), 32);
         font.load();
         fontBig = FontFactory.create(fm, tm, 512, 256, Typeface.create(
-                Typeface.DEFAULT, Typeface.BOLD), 64, Color.WHITE_ABGR_PACKED_INT);
+                Typeface.DEFAULT, Typeface.BOLD), 72, Color.WHITE_ABGR_PACKED_INT);
         fontBig.load();
         // Меню
 

@@ -47,7 +47,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     @Override
     protected void initHero() {
         hero = new Hero(textHealthBarCallback);
-        hero.init(0, new Point(0, 250));
+        hero.init(0, new Point(600, 300));
     }
 
     @Override

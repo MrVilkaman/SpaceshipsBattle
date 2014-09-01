@@ -48,18 +48,18 @@ public class ShopScene extends MyScene {
         MenuFactory menuFactory =  MenuFactory.createMenu(activity.getEngine(), activity.getCamera())
                 .addedText("Магазин", TextureLoader.getFont(), Constants.CAMERA_WIDTH_HALF, 50, WALIGMENT.CENTER,
                         HALIGMENT.CENTER)
-                .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH / 4, 100, WALIGMENT.LEFT,
+                .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH / 4, 80, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
-                .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 115, WALIGMENT.LEFT,
+                .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 100, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
-                .addedText("Доп. урон: "+ shopData.getLevelBulletDamege()+" уровень", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 160, WALIGMENT.LEFT,
+                .addedText("Доп. урон: "+ shopData.getLevelBulletDamege()+" уровень", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 170, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
-                .addedText("$"+shopData.getPriceBulletDamege(), TextureLoader.getFontBig(),lAddDamage, (Constants.CAMERA_WIDTH*3)/4, 175, WALIGMENT.LEFT,
+                .addedText("$"+shopData.getPriceBulletDamege(), TextureLoader.getFontBig(),lAddDamage, (Constants.CAMERA_WIDTH*3)/4, 190, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
                 .enableAnimation();
         // todo
 
-            menuFactory.addedText("Двойные пушки", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 220, WALIGMENT.LEFT,
+            menuFactory.addedText("Двойные пушки", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 250, WALIGMENT.LEFT,
                     HALIGMENT.TOP);
         ISimpleClick click = null;
         String text = "Куплено";
@@ -67,7 +67,7 @@ public class ShopScene extends MyScene {
             click = lBuyDoubleGun;
             text = "$"+shopData.getPriceDoubleGun();
         }
-        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 240, WALIGMENT.LEFT,
+        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 270, WALIGMENT.LEFT,
                 HALIGMENT.CENTER);
 
 
@@ -80,10 +80,10 @@ public class ShopScene extends MyScene {
             text2 = "Ракеты: "+ "(всего " +shopData.getRocketCount()+ ")";
         }
 
-        menuFactory.addedText(text2, TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 270, WALIGMENT.LEFT,
+        menuFactory.addedText(text2, TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 340, WALIGMENT.LEFT,
                 HALIGMENT.TOP);
 
-        menuFactory.addedText(text, TextureLoader.getFontBig(),lBuyRocketGun, (Constants.CAMERA_WIDTH*3)/4, 290, WALIGMENT.LEFT,
+        menuFactory.addedText(text, TextureLoader.getFontBig(),lBuyRocketGun, (Constants.CAMERA_WIDTH*3)/4, 360, WALIGMENT.LEFT,
                 HALIGMENT.CENTER);
 
         scene =  menuFactory.build();
@@ -165,7 +165,7 @@ public class ShopScene extends MyScene {
     //todo переделать
     private void createHealthBar(){
         try {
-            int y = 100;
+            int y = 80;
             int x = Constants.CAMERA_WIDTH/4+100;
             healthMaxBar = new Text(x,y,TextureLoader.getFont(),"0000",activity.getEngine().getVertexBufferObjectManager());
             healthMaxBar.setPosition(x,y);

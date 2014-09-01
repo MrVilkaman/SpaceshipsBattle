@@ -21,7 +21,7 @@ public class Minigun extends Guns implements IGun {
             i--;
             if (i < 0){
                 i = max;
-                shootDelay = 2*max;
+                shootDelay = 3*max;
             }
             return true;
         }
