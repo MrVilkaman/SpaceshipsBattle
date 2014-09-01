@@ -11,8 +11,6 @@ public class Rocket extends BaseBullet {
     private static boolean isRegistredPool = false;
 
     private Rocket() {
-        initCharacteristics(1200, 200, 5f);
-
         sprite = new AutoguiderRocketAI(TextureLoader.getRocketAmmoTextureRegion(),
                 SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
@@ -30,6 +28,12 @@ public class Rocket extends BaseBullet {
 
     @Override
     public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
+        if (unitTarget){
+            initCharacteristics(1200, 400, 7f);
+        }else{
+            initCharacteristics(1200, 300, 5f);
+        }
+
         if (bullitType == BaseBullet.TYPE_ROCKET_AUTO){
             ((AutoguiderRocketAI)sprite).setAutoguider(unitTarget);
         }else{

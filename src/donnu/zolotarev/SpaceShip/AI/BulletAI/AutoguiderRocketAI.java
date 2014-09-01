@@ -81,7 +81,8 @@ public class AutoguiderRocketAI extends BulletBaseAI {
             BaseUnit unit = col.next();
             pos = unit.getPosition();
            dist = Utils.distance(mX,mY,pos.x,pos.y);
-            if(dist < mDist){
+            float angle =  Utils.getAngle(mX,mY,pos.x,pos.y,false);
+            if(dist < mDist && Utils.equals(Utils.dAngleDegree(angle,mRotation), 45f)){
                 mDist = dist;
                 mPos = pos;
             }

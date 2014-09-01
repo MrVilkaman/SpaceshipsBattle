@@ -34,11 +34,16 @@ public class Utils {
     }
 
     public static float getAngle(float x1, float y1,float x2,float y2 ){
+       return getAngle(x1, y1, x2, y2, true);
+    }
+
+    public static float getAngle(float x1, float y1,float x2,float y2, boolean flag ){
         dx = x2 - x1;
         dy = y2 - y1;
         dx = x2 - x1;
         dy = y2 - y1;
         angle = (float)( Math.atan2(dy, dx) / Math.PI * 180);
+        if (flag){
             if (angle < 0)
             {
                 angle = 360 + angle;
@@ -47,6 +52,7 @@ public class Utils {
             {
                 angle = angle - 360;
             }
+        }
         return angle;
     }
 
