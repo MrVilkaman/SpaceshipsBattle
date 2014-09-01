@@ -36,9 +36,9 @@ public class AutoguiderRocketAI extends BulletBaseAI {
     protected void doUpdate() {
         if (autoguider){
             if(!targetUnit){
-                prosecutionHero(0,800,false);
+                prosecutionHero(0,1000,false);
             }else{
-                prosecutionEnemy(30, 800);
+                prosecutionEnemy(30, 1000);
             }
         }
 
@@ -82,9 +82,15 @@ public class AutoguiderRocketAI extends BulletBaseAI {
             pos = unit.getPosition();
            dist = Utils.distance(mX,mY,pos.x,pos.y);
             float angle =  Utils.getAngle(mX,mY,pos.x,pos.y,false);
-            if(dist < mDist && Utils.equals(Utils.dAngleDegree(angle,mRotation), 45f)){
-                mDist = dist;
-                mPos = pos;
+            if(dist < mDist){
+                boolean f = Utils.inRadius(Utils.dAngleDegree(angle,mRotation), 45f);
+                if (f){
+                    mDist = dist;
+                    mPos = pos;
+                } else {
+                    int r = 0;
+                    r= 7;
+                }
             }
         }
         return new Info(mPos,mDist);

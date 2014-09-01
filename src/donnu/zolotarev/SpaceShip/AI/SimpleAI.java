@@ -16,7 +16,7 @@ public abstract class SimpleAI extends SpriteAI {
     boolean flagFirstY = false;
     protected int timeScan = 0 ;
     protected int timeScan2 = 0;
-    protected int startTimeScan = 5;
+    protected int startTimeScan = 6;
 
     protected float dX;
     protected float dY;
