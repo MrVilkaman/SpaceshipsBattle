@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Waves;
 
+import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 
@@ -22,6 +23,14 @@ public class UnitWave {
     public UnitWave(IAddedEnemy _instance){
         this._instance =  _instance;
         _enemies = new ArrayList<WaveObject>();
+    }
+
+    public void addEnemy(int kind, int count, float respawnInterval, Point point, int angle){
+        _enemies.add(new WaveObject(new IAddedEnemy.AddedEnemyParam(kind,point,angle),count,respawnInterval));
+    }
+
+    public void addEnemy(int kind, int count, float respawnInterval, Point point){
+        _enemies.add(new WaveObject(new IAddedEnemy.AddedEnemyParam(kind,point,180),count,respawnInterval));
     }
 
     public void addEnemy(int kind, int count, float respawnInterval){
@@ -77,7 +86,7 @@ public class UnitWave {
                     _enemyIndex++;
                     _enemy = null;
                 }else{
-                    _instance.addEnemy(_enemy.getKind());
+                    _instance.addEnemy(_enemy.getUnitParam());
                 }
             }
             return true;

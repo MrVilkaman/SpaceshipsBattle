@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
-import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
@@ -70,19 +69,20 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
     int i = 0;
     @Override
-    public void addEnemy(int kind) {
+    public void addEnemy(AddedEnemyParam param) {
 
-        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (kind/Constants.MAX_UNIT_LEVEL));
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (param.getKind()/Constants.MAX_UNIT_LEVEL));
         Random random = new Random();
-        Point point;
-        if(i<3){
-            point = new Point(1000, 100 + 200*i);
-        }else{
-            point = new Point(400 + 250*(i-2), 100);
+        Point point = param.getStartPosition();
+        if (point == null){
+            if(i<3){
+                point = new Point(1000, 100 + 200*i);
+            }else{
+                point = new Point(400 + 250*(i-2), 100);
+            }
         }
-
-        PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point,180/*, new WaySpecifications(0,0f)*/);
+        // todo
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
         i++;
     }
 

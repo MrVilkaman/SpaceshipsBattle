@@ -62,14 +62,17 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     }
 
     @Override
-    public void addEnemy(int kind) {
-        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (kind/Constants.MAX_UNIT_LEVEL));
+    public void addEnemy(AddedEnemyParam param) {
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (param.getKind()/Constants.MAX_UNIT_LEVEL));
         Random random = new Random();
 
-        Point point = new Point(1300, random.nextInt(65) * 10);
+        Point point = param.getStartPosition();
         PointF pointF =  activeScene.getHero().getPosition();
+        if (point == null){
+            point = new Point(1300, random.nextInt(65) * 10);
+        }
         // todo
-        enemy1.init(kind% Constants.MAX_UNIT_LEVEL, point, 180/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
     }
 
     @Override

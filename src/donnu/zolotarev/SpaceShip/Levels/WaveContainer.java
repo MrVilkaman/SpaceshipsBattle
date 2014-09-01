@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Levels;
 
+import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
@@ -34,7 +35,7 @@ public  class WaveContainer {
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 //unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 0.2f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.1f,new Point(500,500),270);
                 unitWave.addDelay(10f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,2, 0.2f);
                 waveController.addWave(unitWave);
