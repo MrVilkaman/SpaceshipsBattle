@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.opengl.GLES20;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
@@ -37,6 +38,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected static BaseGameScene activeScene;
     protected static Engine engine;
     protected final SpaceShipActivity shipActivity;
+    protected final ShopData shopDate;
     protected IWaveController waveController;
     private final ObjectController enemyController;
     private final ObjectController bulletController;
@@ -73,6 +75,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private int status;
     private ISimpleClick exit;
     private ISimpleClick restart;
+    private Text rocketBar;
 
 
     public BaseGameScene(IParentScene self) {
@@ -84,6 +87,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         enemyController = new ObjectController<BaseUnit>();
         bulletController = new ObjectController<BaseBullet>();
+
+        shopDate = ShopData.get();
 
         createFPSBase();
         createHealthBar();
@@ -220,6 +225,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
+        if (shopDate.isHaveRocketGun()){
 
         final Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCameraWidth()- 250,SpaceShipActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
@@ -228,15 +234,18 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
-                shipActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(pSceneTouchEvent.isActionDown()){
-                            pId =  pSceneTouchEvent.getPointerID();
-                            hero.fireRocket();
+                if (shopDate.isHaveRocket()){
+                    shipActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(pSceneTouchEvent.isActionDown()){
+                                hero.fireRocket();
+                                rocketBar.setText(String.valueOf(shopDate.useRocket()));
+
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
                 return flag;
             }
@@ -245,8 +254,24 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         btnFire2.setColor(Color.RED);
         btnFire2.setAlpha(0.5f);
 
-        analogOnScreenControl.attachChild(btnFire2);
-        analogOnScreenControl.registerTouchArea(btnFire2);
+            analogOnScreenControl.attachChild(btnFire2);
+            analogOnScreenControl.registerTouchArea(btnFire2);
+            createRocketBar();
+            rocketBar.setText(String.valueOf(shopDate.getRocketCount()));
+        }
+    }
+
+    private void createRocketBar(){
+        try {
+            int x = SpaceShipActivity.getCameraWidth()- 245;
+            int y = SpaceShipActivity.getCameraHeight()- 95;
+            rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            attachChild(rocketBar);
+            rocketBar.setText("0");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

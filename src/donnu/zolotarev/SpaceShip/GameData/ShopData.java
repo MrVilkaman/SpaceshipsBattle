@@ -23,17 +23,24 @@ public class ShopData {
             instance = new ShopData();
         }
     }
-
+    // Health
     private int priceMaxHealth = 100;
     private int effectMaxHealth = 150;
     private int levelMaxHealth = 0;
 
+    // Damage
     private int priceBulletDamege = 200;
     private int effectBulletDamege = 20;
     private int levelBulletDamege = 0;
 
+    // DoubleGun
     private boolean haveDoubleGun = false;
     private int priceDoubleGun = 1000;
+
+    //Rocket
+    private boolean haveRocket = true;
+    private int rocketCount = 5;
+
 
     public int getPriceMaxHealth() {
         return (int) (priceMaxHealth * (1+ levelMaxHealth));
@@ -77,5 +84,29 @@ public class ShopData {
 
     public int getPriceDoubleGun() {
         return priceDoubleGun;
+    }
+
+    public void buyRocketGun(){
+        haveRocket = true;
+    }
+
+    public void buyRocketAmmo(){
+        rocketCount += 5;
+    }
+
+    public boolean isHaveRocketGun() {
+        return haveRocket;
+    }
+
+    public int getRocketCount() {
+        return rocketCount;
+    }
+
+    public int useRocket() {
+        return --rocketCount;
+    }
+
+    public boolean isHaveRocket() {
+        return rocketCount > 0;
     }
 }
