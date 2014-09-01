@@ -8,5 +8,6 @@
     <string name = "dialog_text_no">Нет</string>
     <string name = "msg_about">О программе</string>
     <string name = "msg_sorry_message">К сожалению, данная версия игры несовместима с предыдущими сохранениями! Поэтому они будут стрерты!</string>
+    <string name = "link"><![CDATA[<a href=\"http://vk.com/space_battle_game\">Google</a>]]></string>
 
 </resources>

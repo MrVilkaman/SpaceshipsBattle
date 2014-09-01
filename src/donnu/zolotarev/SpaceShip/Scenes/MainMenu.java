@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.view.KeyEvent;
+import android.view.View;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
@@ -15,14 +16,9 @@ import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
 import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
 import donnu.zolotarev.SpaceShip.Utils.WALIGMENT;
 import org.andengine.engine.Engine;
-import org.andengine.entity.scene.IOnSceneTouchListener;
-import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
-import org.andengine.input.touch.TouchEvent;
-import org.andengine.util.HorizontalAlign;
 
 public class MainMenu extends MyScene implements IParentScene {
     private static final int MENU_NEWGAME = 0;
@@ -30,7 +26,7 @@ public class MainMenu extends MyScene implements IParentScene {
 
     private final SpaceShipActivity activity;
     private final Engine engine;
-    private final Text text;
+    private Text text;
     private MyScene infinityGameScene;
     private MenuScene menuScene;
     private Runnable runnableAbout;
@@ -41,8 +37,8 @@ public class MainMenu extends MyScene implements IParentScene {
         engine = activity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         createMenuScene();
-
-        text = new Text(450,SpaceShipActivity.getCameraHeight()-100,
+        setChildScene(menuScene, false, true, true);
+        /*text = new Text(450,SpaceShipActivity.getCameraHeight()-100,
                 TextureLoader.getFont(),"Коснитесь для продолжения!",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
         attachChild(text);
         text.setVisible(true);
@@ -53,7 +49,7 @@ public class MainMenu extends MyScene implements IParentScene {
                 setChildScene(menuScene, false, true, true);
                 return true;
             }
-        });
+        });*/
     }
 
     protected void createMenuScene() {
@@ -216,9 +212,10 @@ public class MainMenu extends MyScene implements IParentScene {
             runnableAbout =  new Runnable(){
                @Override
                public void run() {
+                   View view =  activity.getLayoutInflater().inflate(R.layout.about, null);
                    AlertDialog.Builder builderAbout = new AlertDialog.Builder(activity);
                    builderAbout.setTitle(R.string.msg_about)
-                           .setView(activity.getLayoutInflater().inflate(R.layout.about, null))
+                           .setView(view)
                            .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                                @Override
                                public void onClick(DialogInterface dialogInterface, int i) {

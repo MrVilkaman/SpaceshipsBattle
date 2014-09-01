@@ -23,4 +23,22 @@
             >
     </TextView>
 
+    <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:text = "Группа Battle Space Вконтакте"
+            android:textSize = "24dp">
+    </TextView>
+    <TextView
+            android:id = "@+id/tvCount2"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:text = "http://vk.com/space_battle_game"
+
+            android:linksClickable = "true"
+            android:autoLink = "all"
+            >
+    </TextView>
+
 </LinearLayout>
