@@ -266,7 +266,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             int x = SpaceShipActivity.getCameraWidth()- 245;
             int y = SpaceShipActivity.getCameraHeight()- 95;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            attachChild(rocketBar);
+            analogOnScreenControl.attachChild(rocketBar);
             rocketBar.setText("0");
 
         } catch (Exception e) {

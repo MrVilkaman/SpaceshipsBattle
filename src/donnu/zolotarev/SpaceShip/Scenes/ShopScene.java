@@ -32,6 +32,7 @@ public class ShopScene extends MyScene {
     private HeroFeatures heroFeatures;
     private ISimpleClick lBuyDoubleGun;
     private ISimpleClick lAddDamage;
+    private ISimpleClick lBuyRocketGun;
 
     public ShopScene(Scene entity,IParentScene parentScene) {
         super(parentScene);
@@ -49,11 +50,11 @@ public class ShopScene extends MyScene {
                         HALIGMENT.CENTER)
                 .addedText("Броня: ", TextureLoader.getFont(), Constants.CAMERA_WIDTH / 4, 100, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
-                .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 120, WALIGMENT.LEFT,
+                .addedText("$"+shopData.getPriceMaxHealth(), TextureLoader.getFontBig(),lAddHealth, (Constants.CAMERA_WIDTH*3)/4, 115, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
                 .addedText("Доп. урон: "+ shopData.getLevelBulletDamege()+" уровень", TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 160, WALIGMENT.LEFT,
                         HALIGMENT.TOP)
-                .addedText("$"+shopData.getPriceBulletDamege(), TextureLoader.getFontBig(),lAddDamage, (Constants.CAMERA_WIDTH*3)/4, 170, WALIGMENT.LEFT,
+                .addedText("$"+shopData.getPriceBulletDamege(), TextureLoader.getFontBig(),lAddDamage, (Constants.CAMERA_WIDTH*3)/4, 175, WALIGMENT.LEFT,
                         HALIGMENT.CENTER)
                 .enableAnimation();
         // todo
@@ -66,9 +67,24 @@ public class ShopScene extends MyScene {
             click = lBuyDoubleGun;
             text = "$"+shopData.getPriceDoubleGun();
         }
-        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 230, WALIGMENT.LEFT,
+        menuFactory.addedText(text, TextureLoader.getFontBig(),click, (Constants.CAMERA_WIDTH*3)/4, 240, WALIGMENT.LEFT,
                 HALIGMENT.CENTER);
 
+
+        String text2 = "";
+        if (!shopData.isHaveRocketGun()){
+            text = "$"+shopData.getPriceRocketGun();
+            text2 = "Ракетная установка";
+        }else {
+            text = "$"+shopData.getPriceRocketAmmo();
+            text2 = "Ракеты: "+ "(всего " +shopData.getRocketCount()+ ")";
+        }
+
+        menuFactory.addedText(text2, TextureLoader.getFont(), Constants.CAMERA_WIDTH/4, 270, WALIGMENT.LEFT,
+                HALIGMENT.TOP);
+
+        menuFactory.addedText(text, TextureLoader.getFontBig(),lBuyRocketGun, (Constants.CAMERA_WIDTH*3)/4, 290, WALIGMENT.LEFT,
+                HALIGMENT.CENTER);
 
         scene =  menuFactory.build();
         parentScene.callback(CALLBACK_UPDATE_MONEY);
@@ -114,6 +130,28 @@ public class ShopScene extends MyScene {
                     toast("Теперь ты обладатель крутой пушки!");
                 }else{
                     toast("Мало денег(");
+                }
+            }
+        };
+
+        lBuyRocketGun = new ISimpleClick() {
+            @Override
+            public void onClick(int id) {
+                if (!shopData.isHaveRocketGun()){
+                    if (processor.buy(shopData.getPriceRocketGun())){
+                        shopData.buyRocketGun();
+                        updateUI();
+                        toast("Теперь ты обладатель крутой пушки!");
+                    }else{
+                        toast("Мало денег(");
+                    }
+                }else{
+                    if (processor.buy(shopData.getPriceRocketAmmo())){
+                        shopData.buyRocketAmmo();
+                        updateUI();
+                    }else{
+                        toast("Мало денег(");
+                    }
                 }
             }
         };

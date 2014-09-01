@@ -38,8 +38,11 @@ public class ShopData {
     private int priceDoubleGun = 1000;
 
     //Rocket
-    private boolean haveRocket = true;
-    private int rocketCount = 5;
+    private int priceRocketGun = 2000;
+    private boolean haveRocket = false;
+
+    private int priceRocketAmmo = 500;
+    private int rocketCount = 0;
 
 
     public int getPriceMaxHealth() {
@@ -88,6 +91,7 @@ public class ShopData {
 
     public void buyRocketGun(){
         haveRocket = true;
+        buyRocketAmmo();
     }
 
     public void buyRocketAmmo(){
@@ -108,5 +112,13 @@ public class ShopData {
 
     public boolean isHaveRocket() {
         return rocketCount > 0;
+    }
+
+    public int getPriceRocketGun() {
+        return priceRocketGun;
+    }
+
+    public int getPriceRocketAmmo() {
+        return priceRocketAmmo;
     }
 }
