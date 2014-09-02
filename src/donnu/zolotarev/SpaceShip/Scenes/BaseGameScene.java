@@ -406,16 +406,16 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     @Override
     public void onResume() {
+
+    }
+
+    @Override
+    public void onPause() {
         Log.i("XXX", "isShowMenuScene =  " + (isShowMenuScene));
         if (!isShowMenuScene){
             isShowMenuScene = true;
             isActive = false;
             setChildScene(menuScene, false, true, true);
         }
-    }
-
-    @Override
-    public void onPause() {
-
     }
 }

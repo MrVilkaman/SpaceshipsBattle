@@ -162,7 +162,7 @@ public class MainMenu extends MyScene implements IParentScene {
 
     @Override
     public void onResume() {
-        Log.i("XXX", "Its work, " + (infinityGameScene != null));
+
         if (infinityGameScene != null){
             infinityGameScene.onResume();
         }
@@ -170,7 +170,9 @@ public class MainMenu extends MyScene implements IParentScene {
 
     @Override
     public void onPause() {
+        Log.i("XXX", "Its work, " + (infinityGameScene != null));
         if (infinityGameScene != null){
+            Log.i("XXX", "Its work, inside");
             infinityGameScene.onPause();
         }
     }

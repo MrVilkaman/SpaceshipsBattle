@@ -164,12 +164,17 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
     @Override
     public void onResume() {
+        if (gameScene != null){
+            gameScene.onResume();
+        }
 
     }
 
     @Override
     public void onPause() {
-
+        if (gameScene != null){
+            gameScene.onPause();
+        }
     }
 
     private void createGameScene(int type) {
