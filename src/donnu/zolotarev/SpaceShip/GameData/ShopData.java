@@ -24,12 +24,14 @@ public class ShopData {
         }
     }
     // Health
-    private int priceMaxHealth = 100;
+    private int priceMaxHealth = 150;
+    private int priceDiffHealth = 75;
     private int effectMaxHealth = 150;
     private int levelMaxHealth = 0;
 
     // Damage
-    private int priceBulletDamege = 200;
+    private int priceBulletDamege = 250;
+    private int priceDiffDamege = 120;
     private int effectBulletDamege = 20;
     private int levelBulletDamege = 0;
 
@@ -46,7 +48,7 @@ public class ShopData {
 
 
     public int getPriceMaxHealth() {
-        return (int) (priceMaxHealth * (1+ levelMaxHealth));
+        return (int) (priceMaxHealth + priceDiffHealth* (levelMaxHealth* levelMaxHealth));
     }
 
     public int getEffectMaxHealth() {
@@ -62,7 +64,7 @@ public class ShopData {
     }
 
     public int getPriceBulletDamege() {
-        return (int) (priceBulletDamege * (1+ levelBulletDamege*.7f));
+        return (int) (priceBulletDamege + priceDiffDamege* (levelBulletDamege* levelBulletDamege));
     }
 
     public int getEffectBulletDamege() {
