@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.opengl.GLES20;
+import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
@@ -401,5 +402,20 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     public void addNewWaveController(IWaveController controller){
         waveController = controller;
         start();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("XXX", "isShowMenuScene =  " + (isShowMenuScene));
+        if (!isShowMenuScene){
+            isShowMenuScene = true;
+            isActive = false;
+            setChildScene(menuScene, false, true, true);
+        }
+    }
+
+    @Override
+    public void onPause() {
+
     }
 }

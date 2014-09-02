@@ -48,7 +48,8 @@ public class Hero extends BaseUnit {
         ShopData shopData = ShopData.get();
         IWeaponModificator mode = new DamageModificator(shopData.getEffectBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
-        if (shopData.isHaveDoubleGun()){
+        if (shopData.isHaveDoubleGunAmmo()){
+            shopData.useDoubleGun();
             gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }else{
             gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);

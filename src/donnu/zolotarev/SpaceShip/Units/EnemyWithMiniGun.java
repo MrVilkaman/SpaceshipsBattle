@@ -43,6 +43,8 @@ public class EnemyWithMiniGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
+        price = 60;
+
         defaultHealth = 500;
         defaultSpeed = 100;
         defaultMaxAngle = 3f;

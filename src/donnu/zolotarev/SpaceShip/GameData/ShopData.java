@@ -38,11 +38,12 @@ public class ShopData {
     // DoubleGun
     private boolean haveDoubleGun = false;
     private int priceDoubleGun = 1000;
+    private int priceDoubleGunAmmo = 500;
+    private int doubleGunCount = 0;
 
     //Rocket
     private int priceRocketGun = 2000;
     private boolean haveRocket = false;
-
     private int priceRocketAmmo = 500;
     private int rocketCount = 0;
 
@@ -79,18 +80,39 @@ public class ShopData {
         ++levelBulletDamege;
     }
 
-    public boolean isHaveDoubleGun() {
-        return haveDoubleGun;
-    }
-
     public void buyDoubleGun() {
-        haveDoubleGun = true;
+        haveDoubleGun  = true;
+        doubleGunCount = 2;
+    }
+    public void buyDoubleGunAmmo() {
+        doubleGunCount++;
     }
 
     public int getPriceDoubleGun() {
         return priceDoubleGun;
     }
 
+    public int getPriceDoubleAmmo() {
+        return priceDoubleGunAmmo;
+    }
+
+    public boolean isHaveDoubleGun() {
+        return haveDoubleGun;
+    }
+
+    public int getDoubleGunCount() {
+        return doubleGunCount;
+    }
+
+    public int useDoubleGun() {
+        return --doubleGunCount;
+    }
+
+    public boolean isHaveDoubleGunAmmo() {
+        return doubleGunCount > 0;
+    }
+
+    ////
     public void buyRocketGun(){
         haveRocket = true;
         buyRocketAmmo();

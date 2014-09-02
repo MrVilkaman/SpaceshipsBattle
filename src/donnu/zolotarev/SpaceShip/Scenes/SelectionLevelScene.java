@@ -162,6 +162,16 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         }
     }
 
+    @Override
+    public void onResume() {
+
+    }
+
+    @Override
+    public void onPause() {
+
+    }
+
     private void createGameScene(int type) {
         if (gameScene != null){
             deactive();

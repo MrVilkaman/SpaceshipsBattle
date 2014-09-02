@@ -13,11 +13,11 @@ import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
-import donnu.zolotarev.SpaceShip.Scenes.Interfaces.IHardKey;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.IActivityCallback;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.entity.scene.Scene;
 
-public abstract class MyScene extends Scene implements IHardKey {
+public abstract class MyScene extends Scene implements IActivityCallback {
 
     protected static final String FILE_SYSTEM_DATA = "file_system_data";
 

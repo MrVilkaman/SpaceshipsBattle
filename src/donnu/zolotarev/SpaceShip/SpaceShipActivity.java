@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip;
 
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Scenes.MainMenu;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -80,6 +81,8 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
         super.onDestroy();
     }
 
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -88,6 +91,16 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
             return true;
         }else {
             return super.onKeyDown(keyCode, event);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Log.i("XXX", "Its work,SpaceShipActivity  " + (mainMenu != null));
+        if (mainMenu != null){
+            mainMenu.onResume();
         }
     }
 

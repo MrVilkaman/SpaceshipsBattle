@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -156,6 +157,21 @@ public class MainMenu extends MyScene implements IParentScene {
             infinityGameScene.onKeyPressed(keyCode, event);
         }else if(keyCode == KeyEvent.KEYCODE_BACK ){
             showExitDialog();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("XXX", "Its work, " + (infinityGameScene != null));
+        if (infinityGameScene != null){
+            infinityGameScene.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        if (infinityGameScene != null){
+            infinityGameScene.onPause();
         }
     }
 
