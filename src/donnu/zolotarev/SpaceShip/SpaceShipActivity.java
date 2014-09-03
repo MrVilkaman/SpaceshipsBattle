@@ -95,8 +95,8 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
+    protected void onResume() {
+        super.onResume();
         Log.i("XXX", "Its work,SpaceShipActivity onStart" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onResume();
@@ -104,8 +104,8 @@ public class SpaceShipActivity extends SimpleBaseGameActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
         Log.i("XXX", "Its work,SpaceShipActivity onStop" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onPause();
