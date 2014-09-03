@@ -32,8 +32,8 @@ public class LevelController {
 
     public void changeStateById(int id, boolean win){
         LevelInfo item = levels.get(id);
-        if (!item.isInfinity()){
-            item.setWin(win);
+        if (!item.isInfinity()  ){
+            item.setWin(win || item.isWin());
             item.setNew(false);
         }
     }
@@ -52,13 +52,15 @@ public class LevelController {
         int counter = 0;
         for (int i = 0;i<levels.size();i++){
             int index = i-1;
-            levels.get(i).setEnabled(true);
-            //todo !!!!
-           /*if(0<index){
-               levels.get(i).setEnabled(levels.get(index).isWin());
-           }else{
-               levels.get(i).setEnabled(true);
-           }*/
+            if(0<index){
+                levels.get(i).setEnabled(levels.get(index).isWin());
+            }else{
+                levels.get(i).setEnabled(true);
+            }
         }
+    }
+
+    public LevelInfo getById(int type) {
+        return  levels.get(type);
     }
 }

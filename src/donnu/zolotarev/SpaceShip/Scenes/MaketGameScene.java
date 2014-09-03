@@ -7,6 +7,7 @@ import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
+import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
@@ -18,8 +19,16 @@ import java.util.Random;
 
 public class MaketGameScene extends BaseGameScene implements IAmDie {
 
+    private LevelInfo levelInfo;
+
     public MaketGameScene(IParentScene self) {
         super(self);
+    }
+
+    public MaketGameScene(SelectionLevelScene selectionLevelScene, LevelInfo level) {
+       super(selectionLevelScene);
+       this.levelInfo = level;
+
     }
 
     @Override
@@ -79,7 +88,11 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     protected void beforeReturnToParent(int status) {
         UserDataProcessor dataProcessor = UserDataProcessor.get();
         if (status == IParentScene.EXIT_WIN || status == IParentScene.EXIT_DIE){
-            score =  dataProcessor.processGold(score,status == IParentScene.EXIT_WIN);
+            boolean flag = status == IParentScene.EXIT_WIN;
+            if (levelInfo != null){
+                flag  = flag && !levelInfo.isWin();
+            }
+            score =  dataProcessor.processGold(score,flag);
         }
     }
 
