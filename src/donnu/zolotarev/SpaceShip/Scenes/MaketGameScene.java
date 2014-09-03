@@ -20,6 +20,7 @@ import java.util.Random;
 public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     private LevelInfo levelInfo;
+    private boolean isAlreadyProcess = false;
 
     public MaketGameScene(IParentScene self) {
         super(self);
@@ -92,7 +93,11 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             if (levelInfo != null){
                 flag  = flag && !levelInfo.isWin();
             }
-            score =  dataProcessor.processGold(score,flag);
+            if( !isAlreadyProcess){
+                score =  dataProcessor.processGold(score,flag);
+            }
+            isAlreadyProcess = true;
+
         }
     }
 

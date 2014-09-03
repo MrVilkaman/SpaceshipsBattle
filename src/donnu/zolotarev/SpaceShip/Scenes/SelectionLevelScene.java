@@ -196,7 +196,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
 
                 break;
             default:
-                gameScene = new MaketGameScene(this,levels.getById(type));
+                gameScene = new MaketGameScene(this,levels.getById(lastSceneId));
                 ((MaketGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MaketGameScene)gameScene));
                 break;
         }
