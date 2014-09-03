@@ -55,8 +55,8 @@ public abstract class SimpleAI extends SpriteAI {
             if(timeScan2<0 ){
                 //todo заменить коэфициенты
                 if ( 100 < dist){
-                    dX =  Utils.random(-50f,50f);
-                    dY =  Utils.random(-50f,50f);
+                    dX =  Utils.random(-40f,40f);
+                    dY =  Utils.random(-40f,40f);
                 } else {
                     dX = dY = 0;
                 }
@@ -69,7 +69,7 @@ public abstract class SimpleAI extends SpriteAI {
         if (minDist <= dist && dist <= maxDist){
             timeScan--;
             if (timeScan<0){
-                float angle =  Utils.getAngle(mX+dX,mY+dY,hero.getPosition().x,hero.getPosition().y);
+                float angle =  Utils.getAngle(mX,mY,hero.getPosition().x+dX,hero.getPosition().y+dY);
                 angle = Utils.dAngleDegree(angle,mRotation);
                 angle = Utils.equals(0,angle,specifications.getMaxRotationAndle())?
                         angle: specifications.getMaxRotationAndle()*Utils.getSign(angle) ;
