@@ -11,18 +11,21 @@ import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
+import org.andengine.opengl.texture.atlas.bitmap.source.IBitmapTextureAtlasSource;
+import org.andengine.opengl.texture.atlas.buildable.builder.BlackPawnTextureAtlasBuilder;
+import org.andengine.opengl.texture.atlas.buildable.builder.ITextureAtlasBuilder;
 import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.util.color.Color;
 
 public class TextureLoader {
 
-    private static TextureRegion ship;
+    private static TiledTextureRegion ship;
     private static TextureRegion screenControlKnobTextureRegion;
     private static TextureRegion screenControlBaseTextureRegion;
-    private static TextureRegion enemyShipLightBlue;
-    private static TextureRegion enemyShipOrange;
-    private static TextureRegion enemyShipGreen;
+    private static TiledTextureRegion enemyShipLightBlue;
+    private static TiledTextureRegion enemyShipOrange;
+    private static TiledTextureRegion enemyShipGreen;
 
     private static Font font;
     private static Font fontBig;
@@ -37,19 +40,28 @@ public class TextureLoader {
     private static TextureRegion changeLevelLableTextureRegion1;
     private static TextureRegion changeLevelIconShop;
 
-    private static TextureRegion rocketAmmoTextureRegion;
-    private static TextureRegion simpleBulletTextureRegion;
+    private static TiledTextureRegion rocketAmmoTextureRegion;
+    private static TiledTextureRegion simpleBulletTextureRegion;
     private static TiledTextureRegion mMeteorite1TextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
         FontManager fm = engine.getFontManager();
-        BitmapTextureAtlas mTexture = new BitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST_PREMULTIPLYALPHA);
-        ship = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "ship.png", 0, 0);
-        enemyShipLightBlue = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster.png", 0,225);
-        enemyShipOrange = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster_2.png", 0,300);
-        enemyShipGreen = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mTexture, context, "alienblaster_3.png", 0,375);
+        BuildableBitmapTextureAtlas mTexture = new BuildableBitmapTextureAtlas(tm, 1024, 768, TextureOptions.NEAREST);
+        ship = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mTexture, context, "ship.png", 1, 1);
+        enemyShipLightBlue = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mTexture, context,
+                "alienblaster.png", 1, 1);
+        enemyShipOrange = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mTexture, context,
+                "alienblaster_2.png", 1, 1);
+        enemyShipGreen = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mTexture, context,
+                "alienblaster_3.png", 1, 1);
+        try {
+            mTexture.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 1));
+        } catch (ITextureAtlasBuilder.TextureAtlasBuilderException e) {
+            e.printStackTrace();
+        }
         tm.loadTexture(mTexture);
+
         BitmapTextureAtlas mOnScreenControlTexture = new BitmapTextureAtlas(tm, 256, 128,
                 TextureOptions.BILINEAR);
         screenControlBaseTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(
@@ -58,12 +70,17 @@ public class TextureLoader {
                 mOnScreenControlTexture, context, "onscreen_control_knob.png", 130, 0);
         mOnScreenControlTexture.load();
 
-        BitmapTextureAtlas bulletTexture = new BitmapTextureAtlas(tm, 128, 128,
-                TextureOptions.BILINEAR);
-        simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
-                "simpleBullet.png", 0, 0);
-        rocketAmmoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(bulletTexture, context,
-                "roket_ammo.png", 6, 0);
+        BuildableBitmapTextureAtlas bulletTexture = new BuildableBitmapTextureAtlas(tm, 128, 128,
+                TextureOptions.NEAREST);
+        simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,
+                "simpleBullet.png", 1, 1);
+        rocketAmmoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,
+                "roket_ammo.png", 1, 1);
+        try {
+            bulletTexture.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 1));
+        } catch (ITextureAtlasBuilder.TextureAtlasBuilderException e) {
+            e.printStackTrace();
+        }
         bulletTexture.load();
        // Шрифты
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
@@ -95,6 +112,7 @@ public class TextureLoader {
                 , "text/change_level_Lable_1.png", 0, 0);
         changeLevelIconShop = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadSceneTexture, context
                 , "Level_Shop.png", 401, 0);
+
         loadSceneTexture.load();
 
 
@@ -102,11 +120,16 @@ public class TextureLoader {
                 TextureOptions.NEAREST);
 
         mMeteorite1TextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, context, "Meteorite1.png", 5, 1);
+        try {
+            mBitmapTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 1));
+        } catch (ITextureAtlasBuilder.TextureAtlasBuilderException e) {
+            e.printStackTrace();
+        }
         mBitmapTextureAtlas.load();
 
     }
 
-    public static TextureRegion getShip() {
+    public static TiledTextureRegion getShip() {
         return ship;
     }
 
@@ -118,19 +141,19 @@ public class TextureLoader {
         return screenControlKnobTextureRegion;
     }
 
-    public static TextureRegion getSimpleBulletTextureRegion() {
+    public static TiledTextureRegion getSimpleBulletTextureRegion() {
         return simpleBulletTextureRegion;
     }
 
-    public static TextureRegion getEnemyShipLightBlue() {
+    public static TiledTextureRegion getEnemyShipLightBlue() {
         return enemyShipLightBlue;
     }
 
-    public static TextureRegion getEnemyShipOrange() {
+    public static TiledTextureRegion getEnemyShipOrange() {
         return enemyShipOrange;
     }
 
-    public static TextureRegion getEnemyShipGreen() {
+    public static TiledTextureRegion getEnemyShipGreen() {
         return enemyShipGreen;
     }
 
@@ -174,7 +197,7 @@ public class TextureLoader {
         return menuAboutTextureRegion;
     }
 
-    public static TextureRegion getRocketAmmoTextureRegion() {
+    public static TiledTextureRegion getRocketAmmoTextureRegion() {
         return rocketAmmoTextureRegion;
     }
 

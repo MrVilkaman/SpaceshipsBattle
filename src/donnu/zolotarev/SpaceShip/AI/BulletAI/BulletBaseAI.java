@@ -2,11 +2,11 @@ package donnu.zolotarev.SpaceShip.AI.BulletAI;
 
 import donnu.zolotarev.SpaceShip.AI.SimpleAI;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
-import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public abstract class BulletBaseAI extends SimpleAI {
-    public BulletBaseAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
+    public BulletBaseAI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
     }
 

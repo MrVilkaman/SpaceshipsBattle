@@ -21,6 +21,8 @@ public abstract class BaseUnit implements ICollisionObject {
     public static final int TYPE_ENEMY_ROCKET_L_1 = TYPE_ENEMY_MINIGUN_L_1 + Constants.MAX_UNIT_LEVEL;
     public static final int TYPE_ENEMY_ROCKET_L_2 = TYPE_ENEMY_ROCKET_L_1 + 1;
 
+    public static final int TYPE_ENEMY_METEOR_L_1 = TYPE_ENEMY_ROCKET_L_1 + Constants.MAX_UNIT_LEVEL;
+
     private static final String TAG = "BaseUnit";
 
     protected static BaseGameScene mainScene;
@@ -66,6 +68,8 @@ public abstract class BaseUnit implements ICollisionObject {
             unitsPool.registerPool(TYPE_ENEMY_MINIGUN_L_1, genericPool);
         }else if (base.getSimpleName().equals(EnemyRockerGun.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_ROCKET_L_1, genericPool);
+        }else if (base.getSimpleName().equals(Meteor.class.getSimpleName())){
+            unitsPool.registerPool(TYPE_ENEMY_METEOR_L_1, genericPool);
         }
     }
 
@@ -126,6 +130,7 @@ public abstract class BaseUnit implements ICollisionObject {
         sprite.restart();
         unitsController.remove(this);
         waySpecifications = null;
+        // todo УДАЛЯТЬ ДРУГИХ!
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);
         }
@@ -171,6 +176,7 @@ public abstract class BaseUnit implements ICollisionObject {
         EnemySingleGun.poolInit();
         EnemyWithMiniGun.poolInit();
         EnemyRockerGun.poolInit();
+        Meteor.poolInit();
     }
 
     public int getMoney(){

@@ -4,7 +4,7 @@ import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
-import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 import java.util.Iterator;
@@ -23,7 +23,7 @@ public class AutoguiderRocketAI extends BulletBaseAI {
         }
     }
 
-    public AutoguiderRocketAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
+    public AutoguiderRocketAI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
     }
 

@@ -1,10 +1,10 @@
 package donnu.zolotarev.SpaceShip.AI.BulletAI;
 
-import org.andengine.opengl.texture.region.ITextureRegion;
+import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
 public class SimpleBulletAI extends BulletBaseAI {
-    public SimpleBulletAI(ITextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
+    public SimpleBulletAI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
     }
 
