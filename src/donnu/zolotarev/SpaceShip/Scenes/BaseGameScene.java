@@ -78,6 +78,37 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private ISimpleClick restart;
     private Text rocketBar;
 
+    private IHeroDieListener heroDieListener =  new IHeroDieListener() {
+        @Override
+        public void heroDie() {
+            status = IParentScene.EXIT_DIE;
+            beforeReturnToParent(IParentScene.EXIT_DIE);
+            dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
+                    .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
+                            Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
+                    .addedText("но ты заработал "+score+"$",TextureLoader.getFont())
+                    .addedItem(TextureLoader.getMenuRestartTextureRegion(), new ISimpleClick() {
+                        @Override
+                        public void onClick(int id) {
+
+                            restart.onClick(id);
+                        }
+                    }/*restart*/)
+                    .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
+                    .enableAnimation()
+                    .build();
+
+            shipActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    isActive = false;
+                    enablePauseMenu = false;
+                    setChildScene(dieMenuScene, false, true, true);
+                }
+            });
+        }
+    };
+
 
     public BaseGameScene(IParentScene self) {
         super(self);
@@ -100,36 +131,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         initBulletsPools();
         addHeroMoveControl();
 
-        BaseBullet.setDieListener(new IHeroDieListener() {
-            @Override
-            public void heroDie() {
-                status = IParentScene.EXIT_DIE;
-                beforeReturnToParent(IParentScene.EXIT_DIE);
-                dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
-                        .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
-                                Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
-                        .addedText("но ты заработал "+score+"$",TextureLoader.getFont())
-                        .addedItem(TextureLoader.getMenuRestartTextureRegion(), new ISimpleClick() {
-                            @Override
-                            public void onClick(int id) {
-
-                                restart.onClick(id);
-                            }
-                        }/*restart*/)
-                        .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
-                        .enableAnimation()
-                        .build();
-
-                shipActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        isActive = false;
-                        enablePauseMenu = false;
-                        setChildScene(dieMenuScene, false, true, true);
-                    }
-                });
-            }
-        });
+        BaseBullet.setDieListener(heroDieListener);
+        BaseUnit.setDieListener(heroDieListener);
         initWave();
         createMenu();
         status = IParentScene.EXIT_USER;

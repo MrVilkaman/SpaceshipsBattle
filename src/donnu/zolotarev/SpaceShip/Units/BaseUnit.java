@@ -48,7 +48,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     private float cy;
     private float cx;
     protected int price = 0;
-    protected IHeroDieListener dieListener;
+    protected static IHeroDieListener dieListener;
     static Hero hero;
 
 
@@ -136,6 +136,14 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         // todo УДАЛЯТЬ ДРУГИХ!
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);
+        }else if (getClass().getSimpleName().equals(EnemyWithMiniGun.class.getSimpleName())){
+            unitsPool.recyclePoolItem(TYPE_ENEMY_MINIGUN_L_1,(EnemyWithMiniGun)this);
+        }else if (getClass().getSimpleName().equals(EnemyRockerGun.class.getSimpleName())){
+            unitsPool.recyclePoolItem(TYPE_ENEMY_ROCKET_L_1,(EnemyRockerGun)this);
+        }else if (getClass().getSimpleName().equals(Meteor.class.getSimpleName())){
+            unitsPool.recyclePoolItem(TYPE_ENEMY_METEOR_L_1,(Meteor)this);
+        }else {
+           new  Exception("Не известный тип!");
         }
     }
 
@@ -183,6 +191,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     public int getMoney(){
         return price;
+    }
+
+    public static void setDieListener(IHeroDieListener listener){
+        dieListener = listener;
     }
 
     protected void checkHitHero() {
