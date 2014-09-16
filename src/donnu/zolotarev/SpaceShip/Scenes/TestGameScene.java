@@ -75,10 +75,8 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         Random random = new Random();
         Point point = param.getStartPosition();
         if (point == null){
-            if(i<3){
-                point = new Point(1000, 100 + 200*i);
-            }else{
-                point = new Point(400 + 250*(i-2), 100);
+            if (point == null){
+                point = new Point(1300, 100 +random.nextInt(50) * 10);
             }
         }
         // todo

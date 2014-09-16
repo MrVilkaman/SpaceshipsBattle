@@ -12,15 +12,27 @@ public abstract class BulletBaseAI extends SimpleAI {
 
     protected void destroyOutScreen(){
         if(this.mX < 0) {
-            destroyed();
+            if(flagFirstX){
+                destroyed();
+            }
         } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
-            destroyed();
+            if(flagFirstX){
+                destroyed();
+            }
+        }else {
+            flagFirstX = true;
         }
 
         if(this.mY < 0) {
-            destroyed();
+            if(flagFirstY){
+                destroyed();
+            }
         } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
-            destroyed();
+            if(flagFirstY){
+                destroyed();
+            }
+        }else {
+             flagFirstY = true;
         }
     }
 

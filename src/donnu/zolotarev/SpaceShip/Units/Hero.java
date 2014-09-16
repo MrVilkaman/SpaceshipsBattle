@@ -34,6 +34,7 @@ public class Hero extends BaseUnit {
                 weaponController.weaponCooldown();
             }
         };
+        hero = this;
         attachToScene();
     }
 

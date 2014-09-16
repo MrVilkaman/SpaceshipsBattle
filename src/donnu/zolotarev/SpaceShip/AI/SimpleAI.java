@@ -12,8 +12,8 @@ public abstract class SimpleAI extends SpriteAI {
 
     protected WaySpecifications specifications;
 
-    boolean flagFirstX = false;
-    boolean flagFirstY = false;
+    protected boolean flagFirstX = false;
+    protected boolean flagFirstY = false;
     protected int timeScan = 0 ;
     protected int timeScan2 = 0;
     protected int startTimeScan = 6;

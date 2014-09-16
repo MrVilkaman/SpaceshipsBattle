@@ -1,15 +1,26 @@
 package donnu.zolotarev.SpaceShip.Units;
 
-import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
+import android.graphics.Point;
+import donnu.zolotarev.SpaceShip.AI.BulletAI.MeteorAI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class Meteor extends BaseUnit {
 
     private Meteor(){
         super();
+        sprite = new MeteorAI(TextureLoader.getmMeteorite1TextureRegion(), engine.getVertexBufferObjectManager()){
+            @Override
+            protected void destroyed() {
+                destroy();
+            }
 
-        sprite = new Enemy1AI(TextureLoader.getmMeteorite1TextureRegion(), engine.getVertexBufferObjectManager());
+            @Override
+            protected void doAfterUpdate() {
+                checkHitHero();
+            }
+        };
         sprite.animate(100);
         attachToScene();
     }
@@ -21,8 +32,18 @@ public class Meteor extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 100;
+        defaultSpeed = 1300;
         defaultMaxAngle = 3f;
+    }
+
+    @Override
+    public void init(int level, Point point, float angle) {
+        super.init(level, point, angle + Utils.random(- 20f, 20f));
+    }
+
+    @Override
+    public void init(int level, Point point, float angle, WaySpecifications us) {
+        super.init(level, point, angle + Utils.random(- 20f, 20f), us);
     }
 
     protected static void poolInit() {

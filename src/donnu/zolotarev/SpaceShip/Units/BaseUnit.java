@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import android.graphics.Point;
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.AI.SpriteAI;
+import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Utils.*;
@@ -11,7 +12,7 @@ import org.andengine.engine.Engine;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 
-public abstract class BaseUnit implements ICollisionObject {
+public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_ENEMY_SINGLE_GUN_L_1 = 0;
     public static final int TYPE_ENEMY_SINGLE_GUN_L_2 = TYPE_ENEMY_SINGLE_GUN_L_1 + 1;
@@ -47,6 +48,8 @@ public abstract class BaseUnit implements ICollisionObject {
     private float cy;
     private float cx;
     protected int price = 0;
+    protected IHeroDieListener dieListener;
+    static Hero hero;
 
 
     public static void resetPool(){
@@ -163,7 +166,6 @@ public abstract class BaseUnit implements ICollisionObject {
         return enemiesOnMap;
     }
 
-
     public static BaseUnit getEnemy(int type) {
         return ((BaseUnit)unitsPool.obtainPoolItem(type));
     }
@@ -181,5 +183,33 @@ public abstract class BaseUnit implements ICollisionObject {
 
     public int getMoney(){
         return price;
+    }
+
+    protected void checkHitHero() {
+
+        if (hero != null){
+            if (hero.checkHit(this)){
+                if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
+                    dieListener.heroDie();
+                    hero.destroy();
+                }
+                destroy();
+            }
+        }
+    }
+
+    public int getDamage() {
+        //todo Изменить
+        return 50;
+    }
+
+    @Override
+    public float getCenterX() {
+        return sprite.getX() + cx;
+    }
+
+    @Override
+    public float getCenterY() {
+        return sprite.getY() + cy;
     }
 }

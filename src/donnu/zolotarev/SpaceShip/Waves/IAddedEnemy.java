@@ -31,5 +31,6 @@ public interface IAddedEnemy {
         }
 
     }
+
     public void addEnemy(AddedEnemyParam param);
 }
