@@ -52,11 +52,12 @@ public class LevelController {
         int counter = 0;
         for (int i = 0;i<levels.size();i++){
             int index = i-1;
-            if(0<index){
+            /*if(0<index){
                 levels.get(i).setEnabled(levels.get(index).isWin());
             }else{
                 levels.get(i).setEnabled(true);
-            }
+            }*/
+                levels.get(i).setEnabled(true);
         }
     }
 

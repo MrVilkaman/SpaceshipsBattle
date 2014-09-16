@@ -10,7 +10,9 @@ import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
+import org.andengine.opengl.texture.atlas.bitmap.BuildableBitmapTextureAtlas;
 import org.andengine.opengl.texture.region.TextureRegion;
+import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.util.color.Color;
 
 public class TextureLoader {
@@ -37,6 +39,7 @@ public class TextureLoader {
 
     private static TextureRegion rocketAmmoTextureRegion;
     private static TextureRegion simpleBulletTextureRegion;
+    private static TiledTextureRegion mMeteorite1TextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -93,6 +96,13 @@ public class TextureLoader {
         changeLevelIconShop = BitmapTextureAtlasTextureRegionFactory.createFromAsset(loadSceneTexture, context
                 , "Level_Shop.png", 401, 0);
         loadSceneTexture.load();
+
+
+        BuildableBitmapTextureAtlas mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(tm, 512, 256,
+                TextureOptions.NEAREST);
+
+        mMeteorite1TextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, context, "Meteorite1.png", 5, 1);
+        mBitmapTextureAtlas.load();
 
     }
 
@@ -166,5 +176,9 @@ public class TextureLoader {
 
     public static TextureRegion getRocketAmmoTextureRegion() {
         return rocketAmmoTextureRegion;
+    }
+
+    public static TiledTextureRegion getmMeteorite1TextureRegion() {
+        return mMeteorite1TextureRegion;
     }
 }
