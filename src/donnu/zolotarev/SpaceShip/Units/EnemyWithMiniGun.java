@@ -23,6 +23,7 @@ public class EnemyWithMiniGun extends BaseUnit {
             @Override
             protected void doAfterUpdate() {
                 weaponController.weaponCooldown();
+                checkHitHero();
             }
         };
 

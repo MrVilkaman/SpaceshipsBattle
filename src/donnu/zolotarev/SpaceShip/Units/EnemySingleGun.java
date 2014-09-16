@@ -20,6 +20,7 @@ public class EnemySingleGun extends BaseUnit {
             @Override
             protected void doAfterUpdate() {
                 weaponController.weaponCooldown();
+                checkHitHero();
             }
         };
         attachToScene();
