@@ -19,6 +19,7 @@ public class Meteor extends BaseUnit {
             @Override
             protected void doAfterUpdate() {
                 checkHitHero();
+                mRotation +=1f;
             }
         };
         sprite.animate(100);
@@ -32,8 +33,10 @@ public class Meteor extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 1300;
-        defaultMaxAngle = 3f;
+        defaultSpeed = 1200;
+        price = 20;
+        defaultHealth = 200;
+        defaultDamage = 300;
     }
 
     @Override

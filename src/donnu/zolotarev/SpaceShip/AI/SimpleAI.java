@@ -36,12 +36,18 @@ public abstract class SimpleAI extends SpriteAI {
 
     @Override
     protected final void doInternalUpdate() {
-        updateSpriteRotarion(specifications.getSpeed());
+        if (needChangeAngle){
+            if (oldAngle != mRotation){
+                oldAngle = mRotation;
+                updateSpriteRotarion(specifications.getSpeed());
+            }
+        }
     }
 
     @Override
     public void start(WaySpecifications specifications) {
         this.specifications = specifications;
+        updateSpriteRotarion(specifications.getSpeed());
     }
 
     protected final void prosecutionHero(int minDist,int maxDist){

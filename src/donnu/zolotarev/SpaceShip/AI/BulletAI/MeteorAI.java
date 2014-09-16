@@ -6,6 +6,7 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 public class MeteorAI extends BulletBaseAI {
     public MeteorAI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
+        needChangeAngle = false;
     }
 
     @Override
@@ -17,5 +18,7 @@ public class MeteorAI extends BulletBaseAI {
     protected void destroyed() {
 
     }
+
+
 
 }

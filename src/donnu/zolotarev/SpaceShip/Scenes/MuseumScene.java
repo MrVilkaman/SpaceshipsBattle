@@ -79,11 +79,12 @@ public class MuseumScene extends BaseGameScene implements IAmDie {
         Random random = new Random();
         Point point;
         y++;
-        if(param.getKind() == BaseUnit.TYPE_ENEMY_ROCKET_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_MINIGUN_L_1 ){
+        if(param.getKind() == BaseUnit.TYPE_ENEMY_ROCKET_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1
+                || param.getKind() == BaseUnit.TYPE_ENEMY_MINIGUN_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_METEOR_L_1){
             y = 0;
             x++;
         }
-        point = new Point(200 + 250*x, 100 + 200*y);
+        point = new Point(250*x, 100 + 200*y);
 
 
         PointF pointF =  activeScene.getHero().getPosition();

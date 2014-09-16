@@ -59,6 +59,7 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 0.2f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.2f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 1, 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 1, 0.2f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_1:

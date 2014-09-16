@@ -43,6 +43,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected int defaultHealth;
     protected int defaultSpeed;
     protected float defaultMaxAngle;
+    protected int defaultDamage = 200;
 
     private float R = 0;
     private float cy;
@@ -50,6 +51,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected int price = 0;
     protected static IHeroDieListener dieListener;
     static Hero hero;
+
+    protected int damage;
 
 
     public static void resetPool(){
@@ -99,9 +102,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         if (waySpecifications == null){
             waySpecifications = new WaySpecifications((int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
         }
+        damage = (int)Utils.random(defaultDamage*0.8f,defaultDamage*1.2f);
+        sprite.setRotation(angle);
         sprite.start(waySpecifications);
         setStartPosition(point);
-        sprite.setRotation(angle);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);
         unitsController.add(this);
@@ -211,8 +215,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public int getDamage() {
-        //todo Изменить
-        return 50;
+        return damage;
     }
 
     @Override

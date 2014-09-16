@@ -11,7 +11,8 @@ public abstract class SpriteAI extends AnimatedSprite {
 
     protected PhysicsHandler physicsHandler;
     protected float rotateAngle = 0;
-    private float oldAngle = -999;
+    protected float oldAngle = -999;
+    protected boolean needChangeAngle = true;
 
     public SpriteAI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(0, 0, pTextureRegion, pVertexBufferObjectManager);
@@ -52,10 +53,7 @@ public abstract class SpriteAI extends AnimatedSprite {
     }
 
     protected void updateSpriteRotarion(int speed){
-        if (oldAngle != mRotation){
-            oldAngle =  mRotation;
-            physicsHandler.setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(oldAngle))));
-            physicsHandler.setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(oldAngle))));
-        }
+        physicsHandler.setVelocityX((float)(speed * Math.cos(Utils.degreeToRad(mRotation))));
+        physicsHandler.setVelocityY((float) (speed * Math.sin(Utils.degreeToRad(mRotation))));
     }
 }
