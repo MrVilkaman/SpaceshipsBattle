@@ -412,13 +412,6 @@ public  class WaveContainer {
                 waveController.addWave(unitWave);
                 return waveController;
 
-            case LEVEL_19:
-                waveController = new SimpleWave();
-                unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addDelay(2f);
-
-                waveController.addWave(unitWave);
-                return waveController;
             default:
                 waveController = new SimpleWave();
 

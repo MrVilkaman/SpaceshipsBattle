@@ -1,5 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
@@ -7,6 +9,7 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
+import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -190,6 +193,22 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 ((TestGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(TestGameScene)gameScene));
 
                 break;
+            case WaveContainer.LEVEL_19:
+                // todo
+                shipActivity.runOnUiThread(
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        AlertDialog.Builder builderAbout = new AlertDialog.Builder(shipActivity);
+                        builderAbout.setTitle(R.string.msg_coming_soon)
+                                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                }).show();
+                    }
+                });
+                return;
             case WaveContainer.LEVEL_MUSEUM:
                 gameScene = new MuseumScene(this);
                 ((MuseumScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MuseumScene)gameScene));

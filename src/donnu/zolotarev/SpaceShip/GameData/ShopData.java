@@ -34,10 +34,10 @@ public class ShopData {
     private int priceBulletDamege = 250;
     private int priceDiffDamege = 120;
     private int effectBulletDamege = 20;
-    private int levelBulletDamege = 3;
+    private int levelBulletDamege = 0;
 
     // DoubleGun
-    private boolean haveDoubleGun = true;//false;
+    private boolean haveDoubleGun = false;
     private int priceDoubleGun = 1000;
     private int priceDoubleGunAmmo = 300;
     private int doubleGunCount = 0;
