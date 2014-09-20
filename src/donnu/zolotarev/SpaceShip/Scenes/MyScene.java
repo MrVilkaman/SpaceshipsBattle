@@ -96,21 +96,25 @@ public abstract class MyScene extends Scene implements IActivityCallback {
         } else {
             levels = new LevelController();
      //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
-            levels.addLevel(WaveContainer.LEVEL_1, 200,300, false);
-            levels.addLevel(WaveContainer.LEVEL_2, 300,350, false);
-            levels.addLevel(WaveContainer.LEVEL_3, 400,180, false);
-            levels.addLevel(WaveContainer.LEVEL_4, 500,180, false);
-            levels.addLevel(WaveContainer.LEVEL_5, 600,300, false);
-            levels.addLevel(WaveContainer.LEVEL_6, 700,400, false);
-            levels.addLevel(WaveContainer.LEVEL_7, 750,300, false);
-            levels.addLevel(WaveContainer.LEVEL_8, 800,200, false);
-            levels.addLevel(WaveContainer.LEVEL_9, 900,200, false);
-            levels.addLevel(WaveContainer.LEVEL_10, 1000,200, false);
-            levels.addLevel(WaveContainer.LEVEL_11, 1100,250, false);
-            levels.addLevel(WaveContainer.LEVEL_12, 1150,350, false);
-            levels.addLevel(WaveContainer.LEVEL_13, 1150,450, false);
-            levels.addLevel(WaveContainer.LEVEL_14, 1050,500, false);
-            levels.addLevel(WaveContainer.LEVEL_15, 920,500, false);
+
+            int dx = 1;
+            int minX = -2;
+            int maxX = 2;
+            int x = minX;
+            int dy = 50;
+            int y = 30;
+            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_18; i++) {
+                if(i == 11){
+                    dy += 25;
+                }
+                y += dy;
+               levels.addLevel(i,y,250+60*x, false);
+                x += dx;
+                if (x == maxX || x == minX){
+                    dx *= -1;
+                }
+            }
+
             levels.addLevel(WaveContainer.LEVEL_TEST, 200,500, false);
             levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,500, false);
             levels.changeEnabled();

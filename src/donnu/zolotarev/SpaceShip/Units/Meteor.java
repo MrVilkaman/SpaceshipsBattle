@@ -48,7 +48,9 @@ public class Meteor extends BaseUnit {
     public void init(int level, Point point, float angle) {
         PointF pointF = hero.getPosition();
 
-        point = new Point(1300, random.nextInt(65) * 10);
+        if (angle == 180){
+            point = new Point(1300, random.nextInt(65) * 10);
+        }
 
         angle =  Utils.getAngle(point.x, point.y, pointF.x, pointF.y);
         super.init(level, point, angle /*+ Utils.random(- 10f, 10f)*/);

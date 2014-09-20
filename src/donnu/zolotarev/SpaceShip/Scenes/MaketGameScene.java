@@ -81,8 +81,8 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         PointF pointF =  activeScene.getHero().getPosition();
         if (point == null){
             int rand = random.nextInt(60);
-            if (Utils.equals(lastRand, rand, 15)){
-                rand = Math.min(rand,lastRand)+ 15;
+            if (Utils.equals(lastRand, rand, 10)){
+                rand = Math.min(rand,lastRand)+ 10;
             }
             lastRand = rand;
             point = new Point(1300, lastRand * 10);

@@ -35,8 +35,8 @@ public class Rocket extends BaseBullet {
             }
         };
         settings();
-        splushRadiusMin = 50;
-        splushRadiusMax = 200;
+        splushRadiusMin = 40;
+        splushRadiusMax = 250;
         splushRadius = splushRadiusMax - splushRadiusMin;
     }
 
