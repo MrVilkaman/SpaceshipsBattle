@@ -1,5 +1,7 @@
 package donnu.zolotarev.SpaceShip.Utils;
 
+import android.graphics.PointF;
+
 public class Utils {
     private static float dx;
     private static float dy;
@@ -83,9 +85,21 @@ public class Utils {
         return (float)Math.sqrt(dx * dx + dy * dy);
     }
 
+    public static float distance(PointF f, PointF f2){
+        dx = f2.x - f.x;
+        dy = f2.y - f.y;
+        return (float)Math.sqrt(dx * dx + dy * dy);
+    }
+
     public static float distanceSqr(float x1, float y1, float x2, float y2){
         dx = x2 - x1;
         dy = y2 - y1;
+        return (dx * dx + dy * dy);
+    }
+
+    public static float distanceSqr(PointF f, PointF f2){
+        dx = f2.x - f.x;
+        dy = f2.y - f.y;
         return (dx * dx + dy * dy);
     }
 

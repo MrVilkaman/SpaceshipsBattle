@@ -28,7 +28,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public static final int TYPE_ROCKET_AUTO = TYPE_ROCKET+1;
     protected static BaseGameScene main;
     private static ObjectController bulletController;
-    private static ObjectController enemyController;
+    protected static ObjectController enemyController;
     private static Hero hero;
 
     private static IHeroDieListener dieListener;
@@ -44,7 +44,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     private boolean targetUnit;
     private float hw;
     private float hh;
-    private static IAmDie iAmDie;
+    protected static IAmDie iAmDie;
 
     protected WaySpecifications waySpecifications;
 
@@ -148,7 +148,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
        }
     }
 
-    private void checkHitHero() {
+    protected void checkHitHero() {
 
         if (hero.checkHit(this)){
             if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
@@ -208,4 +208,5 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public int getDefaultDamage() {
         return DEFAULT_DAMAGE;
     }
+
 }

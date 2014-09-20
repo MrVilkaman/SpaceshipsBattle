@@ -56,7 +56,7 @@ public class Meteor extends BaseUnit {
 
     @Override
     public void init(int level, Point point, float angle, WaySpecifications us) {
-       // super.init(level, point, angle + Utils.random(- 20f, 20f), us);
+        super.init(level, point, angle, us);
     }
 
     protected static void poolInit() {
