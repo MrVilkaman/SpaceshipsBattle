@@ -248,8 +248,23 @@ public  class WaveContainer {
 
                 waveController.addWave(unitWave);
                 return waveController;
-
             case LEVEL_10:
+                waveController = new SimpleWave();
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addDelay(2f);
+
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,5,1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3,5,1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,5,1f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3,5,1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,5,1f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 20, 0.3f);
+
+                waveController.addWave(unitWave);
+                return waveController;
+            case LEVEL_11:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addDelay(2f);
@@ -273,7 +288,7 @@ public  class WaveContainer {
 
                 waveController.addWave(unitWave);
                 return waveController;
-            case LEVEL_11:
+            case LEVEL_12:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 unitWave.addDelay(2f);

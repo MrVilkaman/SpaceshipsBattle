@@ -39,7 +39,7 @@ public class ShopData {
     // DoubleGun
     private boolean haveDoubleGun = true;//false;
     private int priceDoubleGun = 1000;
-    private int priceDoubleGunAmmo = 500;
+    private int priceDoubleGunAmmo = 300;
     private int doubleGunCount = 0;
 
     //Rocket
@@ -83,7 +83,7 @@ public class ShopData {
 
     public void buyDoubleGun() {
         haveDoubleGun  = true;
-        doubleGunCount = 2;
+        doubleGunCount = 3;
     }
     public void buyDoubleGunAmmo() {
         doubleGunCount++;
