@@ -75,9 +75,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         Random random = new Random();
         Point point = param.getStartPosition();
         if (point == null){
-            if (point == null){
-                point = new Point(1300, 100 +random.nextInt(50) * 10);
-            }
+            point = new Point(1300, 100 +random.nextInt(50) * 10);
         }
         // todo
         enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);

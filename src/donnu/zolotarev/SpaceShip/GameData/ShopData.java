@@ -23,6 +23,7 @@ public class ShopData {
             instance = new ShopData();
         }
     }
+    //todo Вернуть как было!
     // Health
     private int priceMaxHealth = 150;
     private int priceDiffHealth = 75;
@@ -33,10 +34,10 @@ public class ShopData {
     private int priceBulletDamege = 250;
     private int priceDiffDamege = 120;
     private int effectBulletDamege = 20;
-    private int levelBulletDamege = 0;
+    private int levelBulletDamege = 3;
 
     // DoubleGun
-    private boolean haveDoubleGun = false;
+    private boolean haveDoubleGun = true;//false;
     private int priceDoubleGun = 1000;
     private int priceDoubleGunAmmo = 500;
     private int doubleGunCount = 0;

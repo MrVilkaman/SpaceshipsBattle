@@ -21,6 +21,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     private LevelInfo levelInfo;
     private boolean isAlreadyProcess = false;
+    private int lastRand = 0;
 
     public MaketGameScene(IParentScene self) {
         super(self);
@@ -79,7 +80,12 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         Point point = param.getStartPosition();
         PointF pointF =  activeScene.getHero().getPosition();
         if (point == null){
-            point = new Point(1300, random.nextInt(65) * 10);
+            int rand = random.nextInt(60);
+            if (Utils.equals(lastRand, rand, 15)){
+                rand = Math.min(rand,lastRand)+ 15;
+            }
+            lastRand = rand;
+            point = new Point(1300, lastRand * 10);
         }
         // todo
         enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
