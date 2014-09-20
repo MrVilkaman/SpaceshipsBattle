@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
+import donnu.zolotarev.SpaceShip.AI.EnemyAI.RocketAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
@@ -15,7 +15,7 @@ public class EnemyRockerGun extends BaseUnit {
 
     private EnemyRockerGun(){
         super();
-        sprite = new Enemy1AI(TextureLoader.getEnemyShipGreen(), engine.getVertexBufferObjectManager()){
+        sprite = new RocketAI(TextureLoader.getEnemyShipGreen(), engine.getVertexBufferObjectManager()){
 
             @Override
             protected void doAfterUpdate() {
@@ -47,19 +47,14 @@ public class EnemyRockerGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 100;
-        defaultMaxAngle = 3f;
+        defaultSpeed = 80;
+        defaultMaxAngle = 4f;
         switch (level){
             case 0:
-                defaultHealth = 300;
+                defaultHealth = 800;
                 break;
             case 1:
-                defaultHealth = 400;
-                break;
-            case 2:
-                defaultHealth = 500;
-                defaultSpeed = 80;
-                defaultMaxAngle = 2f;
+                defaultHealth = 1000;
                 break;
         }
 
