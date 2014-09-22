@@ -49,12 +49,15 @@ public class EnemyRockerGun extends BaseUnit {
     protected void loadParam(int level) {
         defaultSpeed = 80;
         defaultMaxAngle = 4f;
+
         switch (level){
             case 0:
                 defaultHealth = 800;
+                price = 120;
                 break;
             case 1:
                 defaultHealth = 1000;
+                price = 180;
                 break;
         }
 
