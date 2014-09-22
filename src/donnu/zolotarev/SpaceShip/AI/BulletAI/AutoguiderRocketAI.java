@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 public class AutoguiderRocketAI extends BulletBaseAI {
     private boolean autoguider = false;
-    protected boolean targetUnit = true;
+    protected boolean targetUnit = false;
 
     class Info{
         public PointF point;

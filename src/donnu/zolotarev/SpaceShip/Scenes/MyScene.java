@@ -115,8 +115,8 @@ public abstract class MyScene extends Scene implements IActivityCallback {
                 }
             }
 
-          /*  levels.addLevel(WaveContainer.LEVEL_TEST, 200,500, false);
-            levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,500, false);*/
+            levels.addLevel(WaveContainer.LEVEL_TEST, 200,600, false);
+            levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
             levels.changeEnabled();
         }
 
