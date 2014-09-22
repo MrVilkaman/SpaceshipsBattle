@@ -82,7 +82,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         if (point == null){
             int rand = random.nextInt(60);
             if (Utils.equals(lastRand, rand, 10)){
-                rand = Math.min(rand,lastRand)+ 10;
+                rand = 35 + (int)Utils.random(-10,15);
             }
             lastRand = rand;
             point = new Point(1300, lastRand * 10);

@@ -57,7 +57,7 @@ public class LevelController {
             }else{
                 levels.get(i).setEnabled(true);
             }
-                levels.get(i).setEnabled(true);
+         //       levels.get(i).setEnabled(true);
         }
     }
 

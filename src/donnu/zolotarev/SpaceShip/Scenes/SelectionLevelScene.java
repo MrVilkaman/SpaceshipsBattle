@@ -195,6 +195,8 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 break;
             case WaveContainer.LEVEL_19:
                 // todo
+                levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
+
                 shipActivity.runOnUiThread(
                 new Runnable(){
                     @Override
@@ -204,6 +206,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                                 .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        redrawLevelsUI();
                                     }
                                 }).show();
                     }

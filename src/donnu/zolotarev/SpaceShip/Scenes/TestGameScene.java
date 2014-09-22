@@ -10,12 +10,15 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
 import java.util.Random;
 
 public class TestGameScene extends BaseGameScene implements IAmDie {
+
+    private int lastRand = 0;
 
     public TestGameScene(IParentScene self) {
         super(self);
@@ -76,7 +79,12 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         Random random = new Random();
         Point point = param.getStartPosition();
         if (point == null){
-            point = new Point(1700, 100 +50*i);
+            int rand = random.nextInt(60);
+            if (Utils.equals(lastRand, rand, 10)){
+                rand = 35 + (int)Utils.random(-10,15);
+            }
+            lastRand = rand;
+            point = new Point(1300, lastRand * 10);
         }
         // todo
         enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle(),new WaySpecifications(180,0)/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
