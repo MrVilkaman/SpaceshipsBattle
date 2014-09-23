@@ -141,14 +141,14 @@ public abstract class MyScene extends Scene implements IActivityCallback {
         } catch (PackageManager.NameNotFoundException e) {
         }
 
-        if (codeVersion == -1){
+
             codeVersion =  shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
                     .getInt(PREF_LAST_CODE_VERSION,-1);
 
             shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).edit()
                     .putInt(PREF_LAST_CODE_VERSION,packinfo.versionCode ).commit();
 
-        }
+     //   }
 
         return packinfo.versionCode == codeVersion;
     }
