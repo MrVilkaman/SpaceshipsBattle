@@ -2,16 +2,24 @@ package donnu.zolotarev.SpaceShip.Fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import butterknife.ButterKnife;
+import donnu.zolotarev.SpaceShip.MenuActivity;
 
 public class BaseFragment extends Fragment {
+
+    protected final String tag;
+
+    public BaseFragment() {
+        tag = getClass().getSimpleName();
+    }
 
     protected View inflateFragmentView(int layoutResource, LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(layoutResource, container, false);
@@ -22,7 +30,6 @@ public class BaseFragment extends Fragment {
         }
         return view;
     }
-
 
     protected void toast(int messageId) {
         Activity activity = getActivity();
@@ -78,5 +85,23 @@ public class BaseFragment extends Fragment {
             }
         });
         builder.show();
+    }
+
+    protected void logDebug(String message) {
+        Log.d(tag, String.valueOf(message));
+    }
+
+    protected void logError(String message) {
+        Log.e(tag, String.valueOf(message));
+    }
+
+    protected void showFragment(BaseFragment fragment, boolean addToBackStack) {
+        Activity activity = getActivity();
+        if (activity != null && activity instanceof MenuActivity) {
+            MenuActivity mainActivity = (MenuActivity) activity;
+            mainActivity.loadRootFragment(fragment, addToBackStack);
+        } else {
+            logError("Cannot get MainActivity reference... Look for error");
+        }
     }
 }

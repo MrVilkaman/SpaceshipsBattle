@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+                android:layout_width = "match_parent"
+                android:layout_height = "match_parent">
+
+
+    <Button
+            style="@style/MenuButton"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:text = "@string/txt_back"
+            android:id = "@+id/select_levels_back"
+            android:layout_alignParentTop = "true"
+            android:layout_alignParentLeft = "true" />
+    <Button
+            style="@style/MenuButton"
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:text = "@string/shop_name"
+            android:id = "@+id/select_levels_shop"
+            android:layout_alignParentTop = "true"
+            android:layout_alignParentRight = "true" />
+    <ListView
+            android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:id = "@+id/select_levels_list_view"
+            android:layout_alignParentLeft = "true"
+            android:layout_below = "@+id/select_levels_back" />
+    <LinearLayout
+            android:orientation = "horizontal"
+            android:layout_width = "fill_parent"
+            android:layout_height = "fill_parent"
+            android:gravity="center"
+            android:layout_above = "@+id/select_levels_list_view"
+            android:layout_toRightOf = "@+id/select_levels_back"
+            android:layout_toLeftOf = "@+id/select_levels_shop">
+        <TextView
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:textAppearance = "?android:attr/textAppearanceLarge"
+                android:text = "@string/select_levels_money"
+                android:id = "@+id/select_levels_money" />
+        <TextView
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:textAppearance = "?android:attr/textAppearanceLarge"
+                android:text = "0"
+                android:id = "@+id/select_levels_money_val" />
+    </LinearLayout>
+</RelativeLayout>

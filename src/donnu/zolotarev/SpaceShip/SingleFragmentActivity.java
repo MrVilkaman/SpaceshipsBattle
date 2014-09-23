@@ -12,6 +12,9 @@ public abstract class SingleFragmentActivity extends Activity {
         return R.layout.activity_fragment;
     }
 
+    protected int getViewPlaceID(){
+        return R.id.fragmentContainer;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,13 +22,13 @@ public abstract class SingleFragmentActivity extends Activity {
         setContentView(getLayoutResID());
 
         FragmentManager fm = getFragmentManager();
-        Fragment crimeFragment = fm.findFragmentById(R.id.fragmentContainer);
+        Fragment crimeFragment = fm.findFragmentById(getViewPlaceID());
 
 
         if (crimeFragment == null){
             crimeFragment = createFragment();
             fm.beginTransaction()
-                    .add(R.id.fragmentContainer, crimeFragment)
+                    .add(getViewPlaceID(), crimeFragment)
                     .commit();
         }
     }

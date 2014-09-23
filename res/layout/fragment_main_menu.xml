@@ -11,25 +11,26 @@
             android:layout_centerHorizontal = "true"
             android:orientation="vertical"
             >
-        <Button
+        <Button   style="@style/MenuButton"
                 android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_continue"
                 android:id = "@+id/btn_main_menu_continue"
                 />
         <Button
+                style="@style/MenuButton"
                 android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_new_game"
                 android:id = "@+id/btn_main_menu_new_game"
                 />
-        <Button
+        <Button  style="@style/MenuButton"
                 android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_about"
                 android:id = "@+id/btn_main_menu_about"
                 />
-        <Button
+        <Button   style="@style/MenuButton"
                 android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_exit"

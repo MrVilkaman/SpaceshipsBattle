@@ -14,7 +14,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 
-public class MainMenu extends BaseFragment {
+public class MainMenuFragment extends BaseFragment {
 
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
@@ -38,10 +38,12 @@ public class MainMenu extends BaseFragment {
 
     @OnClick(R.id.btn_main_menu_new_game)
     public void onNewGame(){
+        openSelectLevels();
     }
 
     @OnClick(R.id.btn_main_menu_continue)
     public void onContinue(){
+        openSelectLevels();
     }
 
     @OnClick(R.id.btn_main_menu_about)
@@ -59,5 +61,40 @@ public class MainMenu extends BaseFragment {
 
     @OnClick(R.id.btn_main_menu_exit)
     public void onExit(){
+        showExitDialog();
     }
+
+    private void showExitDialog() {
+        // Диалог выхода
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new AlertDialog.Builder(getActivity()).setMessage(R.string.dialog_text_exit_message).setPositiveButton(
+                        R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        getActivity().finish();
+                    }
+                }).setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                }).show();
+            }
+        });
+
+    }
+
+    private void openSelectLevels(){
+        showFragment(new SelectLevelFragment(),true);
+    }
+    /*
+    * protected void back(){
+		MainActivity activity = getMainActivity();
+		if(activity != null){
+			activity.popBackStack();
+		}
+	}
+    * */
 }

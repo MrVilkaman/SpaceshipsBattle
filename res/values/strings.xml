@@ -16,5 +16,8 @@
     <string name = "btn_main_menu_new_game">Новая игра</string>
     <string name = "btn_main_menu_about">Об игре</string>
     <string name = "btn_main_menu_exit">Выход</string>
+    <string name = "shop_name">Магазин</string>
+    <string name = "txt_back">Назад</string>
+    <string name = "select_levels_money">Деньги: </string>
 
 </resources>
