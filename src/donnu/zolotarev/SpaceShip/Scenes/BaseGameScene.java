@@ -4,13 +4,13 @@ import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
@@ -38,7 +38,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     protected static BaseGameScene activeScene;
     protected static Engine engine;
-    protected final SpaceShipActivity shipActivity;
+    protected final GameActivity shipActivity;
     protected final ShopData shopDate;
     protected IWaveController waveController;
     private final ObjectController enemyController;
@@ -114,7 +114,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         super(self);
         parentScene = self;
         activeScene = this;
-        shipActivity = SpaceShipActivity.getInstance();
+        shipActivity = GameActivity.getInstance();
         engine = shipActivity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         enemyController = new ObjectController<BaseUnit>();
@@ -184,7 +184,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     protected void addHeroMoveControl() {
         analogOnScreenControl = new AnalogOnScreenControl(70,
-                SpaceShipActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
+                GameActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
                 shipActivity.getEngine().getVertexBufferObjectManager(),
@@ -197,7 +197,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
 
-        final Rectangle btnFire = new Rectangle(SpaceShipActivity.getCameraWidth()-130,SpaceShipActivity.getCameraHeight()-150,
+        final Rectangle btnFire = new Rectangle(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
@@ -231,7 +231,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.registerTouchArea(btnFire);
         if (shopDate.isHaveRocketGun()){
 
-        final Rectangle btnFire2 = new Rectangle(SpaceShipActivity.getCameraWidth()- 250,SpaceShipActivity.getCameraHeight()-150,
+        final Rectangle btnFire2 = new Rectangle(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
@@ -267,8 +267,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createRocketBar(){
         try {
-            int x = SpaceShipActivity.getCameraWidth()- 245;
-            int y = SpaceShipActivity.getCameraHeight()- 95;
+            int x = GameActivity.getCameraWidth()- 245;
+            int y = GameActivity.getCameraHeight()- 95;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             analogOnScreenControl.attachChild(rocketBar);
             rocketBar.setText("0");
@@ -327,7 +327,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createHealthBar(){
         try {
-            int y = SpaceShipActivity.getCameraHeight() - 32;
+            int y = GameActivity.getCameraHeight() - 32;
             int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
             Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
@@ -357,7 +357,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private void createWaveCountBar() {
         try {
             waveCountBar = new Text(0,0, TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
-            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
+            int x = GameActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
             waveCountBar.setPosition(x,0);
             attachChild(waveCountBar);
 
@@ -369,7 +369,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private void createScoreBar() {
         try {
             scoreBar = new Text(0,0,TextureLoader.getFont(),"000000000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
-            int x = SpaceShipActivity.getCameraWidth() - (int)scoreBar.getWidth();
+            int x = GameActivity.getCameraWidth() - (int)scoreBar.getWidth();
             scoreBar.setPosition(x,0);
             attachChild(scoreBar);
 

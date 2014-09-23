@@ -7,10 +7,10 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
@@ -25,7 +25,7 @@ public class MainMenu extends MyScene implements IParentScene {
     private static final int MENU_NEWGAME = 0;
     private static final int MENU_EXIT = MENU_NEWGAME + 1;
 
-    private final SpaceShipActivity activity;
+    private final GameActivity activity;
     private final Engine engine;
     private Text text;
     private MyScene infinityGameScene;
@@ -34,7 +34,7 @@ public class MainMenu extends MyScene implements IParentScene {
 
     public MainMenu() {
         super(null);
-        activity = SpaceShipActivity.getInstance();
+        activity = GameActivity.getInstance();
         engine = activity.getEngine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         createMenuScene();

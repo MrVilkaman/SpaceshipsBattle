@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.AI.EnemyAI;
 
 import donnu.zolotarev.SpaceShip.AI.SpriteAI;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
@@ -23,11 +23,11 @@ public class HeroAI extends SpriteAI {
 
     @Override
     protected void doUpdate() {
-        if (this.mX < 0 || this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()){
+        if (this.mX < 0 || this.mX + this.getWidth() > GameActivity.getCameraWidth()){
             mX = xOld;
         }
 
-        if (this.mY < 0 || this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()){
+        if (this.mY < 0 || this.mY + this.getHeight() > GameActivity.getCameraHeight()){
             mY = yOld;
         }
         if (! Utils.equals(mRotation, rotateAngle, 0.1f)){

@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -11,7 +12,6 @@ import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
@@ -28,7 +28,7 @@ import org.andengine.util.color.Color;
 import java.util.Iterator;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
-    private final SpaceShipActivity shipActivity;
+    private final GameActivity shipActivity;
     private final Engine engine;
     private final IParentScene parentScene;
     private final SelectionLevelScene self;
@@ -47,7 +47,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         super(parentScene);
         self = this;
         this.parentScene = parentScene;
-        shipActivity = SpaceShipActivity.getInstance();
+        shipActivity = GameActivity.getInstance();
        engine = shipActivity.getEngine();
        setBackground(new Background(Color.WHITE));
 
@@ -277,9 +277,9 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private void createGoldBar(){
         try {
             int y = 12;
-            int x = SpaceShipActivity.getCameraWidth()-5;
+            int x = GameActivity.getCameraWidth()-5;
             goldBar = new Text(x,y,TextureLoader.getFont(),"000000",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            x = SpaceShipActivity.getCameraWidth() - (int)goldBar.getWidth();
+            x = GameActivity.getCameraWidth() - (int)goldBar.getWidth();
             goldBar.setPosition(x,y);
             attachChild(goldBar);
             Text text = new Text(x,y,TextureLoader.getFont(),"Деньги: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());

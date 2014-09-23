@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.AI;
 
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
@@ -93,9 +93,9 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void flyThroughX(){
         if (this.mX < -this.getWidth() ){
             if (flagFirstX){
-                mX = SpaceShipActivity.getCameraWidth();
+                mX = GameActivity.getCameraWidth();
             }
-        }else if (this.mX > SpaceShipActivity.getCameraWidth()){
+        }else if (this.mX > GameActivity.getCameraWidth()){
             if (flagFirstX){
                 mX = -this.getWidth();
             }
@@ -107,9 +107,9 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void flyThroughY(){
         if (this.mY < -this.getHeight()  ){
             if (flagFirstY){
-                mY = SpaceShipActivity.getCameraHeight();
+                mY = GameActivity.getCameraHeight();
             }
-        } else if (this.mY > SpaceShipActivity.getCameraHeight()){
+        } else if (this.mY > GameActivity.getCameraHeight()){
             if (flagFirstY){
                 mY = -this.getHeight();
             }
@@ -123,7 +123,7 @@ public abstract class SimpleAI extends SpriteAI {
             if (flagFirstX){
                 mRotation = -Utils.dAngleDegree(mRotation, 180);
             }
-        }else if (this.mX > SpaceShipActivity.getCameraWidth()){
+        }else if (this.mX > GameActivity.getCameraWidth()){
             if (flagFirstX){
                 mRotation = 180 - Utils.dAngleDegree(mRotation, 0);
             }
@@ -137,7 +137,7 @@ public abstract class SimpleAI extends SpriteAI {
             if (flagFirstY){
                 mRotation = 90 - Utils.dAngleDegree(mRotation, 270);
             }
-        } else if (this.mY > SpaceShipActivity.getCameraHeight()){
+        } else if (this.mY > GameActivity.getCameraHeight()){
             if (flagFirstY){
                 mRotation = 270 - Utils.dAngleDegree(mRotation, 90);
             }
@@ -147,7 +147,7 @@ public abstract class SimpleAI extends SpriteAI {
     }
 
     protected final void turnonY(){
-        if (this.mY < -this.getHeight()/2 || this.mY > SpaceShipActivity.getCameraHeight()-this.getHeight()/2 ){
+        if (this.mY < -this.getHeight()/2 || this.mY > GameActivity.getCameraHeight()-this.getHeight()/2 ){
             if (flagFirstY){
                 prosecutionHero(0,1500);
             }
@@ -157,7 +157,7 @@ public abstract class SimpleAI extends SpriteAI {
     }
 
     protected final void turnonX(){
-        if (this.mX < -this.getWidth()/2|| this.mX > SpaceShipActivity.getCameraWidth() -this.getWidth()/2 ){
+        if (this.mX < -this.getWidth()/2|| this.mX > GameActivity.getCameraWidth() -this.getWidth()/2 ){
             if (flagFirstX){
                 prosecutionHero(0,1500);
             }

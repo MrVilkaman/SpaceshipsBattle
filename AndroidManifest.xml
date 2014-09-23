@@ -3,12 +3,18 @@
           package = "donnu.zolotarev.SpaceShip"
           android:versionCode = "6"
           android:versionName = "0.3.1a">
-    <uses-sdk android:minSdkVersion = "10" />
+    <uses-sdk android:minSdkVersion = "14" />
     <application
                  android:label = "@string/app_name"
                  android:icon = "@drawable/icon_small"
             >
-        <activity android:name = "SpaceShipActivity"
+        <activity android:name = ".GameActivity"
+                  android:configChanges="orientation"
+                  android:label = "@string/app_name">
+        </activity>
+        <activity android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+                 android:name = ".MenuActivity"
+                 android:screenOrientation="landscape"
                   android:configChanges="orientation"
                   android:label = "@string/app_name">
             <intent-filter>
@@ -16,5 +22,6 @@
                 <category android:name = "android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 </manifest>

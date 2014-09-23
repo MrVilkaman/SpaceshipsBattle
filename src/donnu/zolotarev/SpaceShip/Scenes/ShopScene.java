@@ -1,12 +1,12 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
@@ -25,7 +25,7 @@ public class ShopScene extends MyScene {
     private MenuScene scene;
     private ISimpleClick lAddHealth;
     private Text healthMaxBar;
-    private SpaceShipActivity activity;
+    private GameActivity activity;
 
     private ShopData shopData;
     private UserDataProcessor processor;
@@ -38,7 +38,7 @@ public class ShopScene extends MyScene {
         super(parentScene);
         this.parentScene = parentScene;
         this.entity = entity;
-        activity =  SpaceShipActivity.getInstance();
+        activity =  GameActivity.getInstance();
         sceneMain = new Scene();
         createUI();
 

@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.AI.BulletAI;
 
 import donnu.zolotarev.SpaceShip.AI.SimpleAI;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
@@ -15,7 +15,7 @@ public abstract class BulletBaseAI extends SimpleAI {
             if(flagFirstX){
                 destroyed();
             }
-        } else if(this.mX + this.getWidth() > SpaceShipActivity.getCameraWidth()) {
+        } else if(this.mX + this.getWidth() > GameActivity.getCameraWidth()) {
             if(flagFirstX){
                 destroyed();
             }
@@ -27,7 +27,7 @@ public abstract class BulletBaseAI extends SimpleAI {
             if(flagFirstY){
                 destroyed();
             }
-        } else if(this.mY + this.getHeight() > SpaceShipActivity.getCameraHeight()) {
+        } else if(this.mY + this.getHeight() > GameActivity.getCameraHeight()) {
             if(flagFirstY){
                 destroyed();
             }

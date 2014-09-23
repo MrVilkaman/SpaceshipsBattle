@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.AI.BulletAI.AutoguiderRocketAI;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
@@ -19,7 +19,7 @@ public class Rocket extends BaseBullet {
 
     private Rocket() {
         sprite = new AutoguiderRocketAI(TextureLoader.getRocketAmmoTextureRegion(),
-                SpaceShipActivity.getInstance().getEngine().getVertexBufferObjectManager()){
+                GameActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void destroyed() {
                 destroy();

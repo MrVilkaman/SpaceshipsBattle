@@ -15,14 +15,14 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
-public class SpaceShipActivity extends SimpleBaseGameActivity {
+public class GameActivity extends SimpleBaseGameActivity {
 
 
     private Camera camera;
     private MainMenu mainMenu;
-    private static SpaceShipActivity instance;
+    private static GameActivity instance;
 
-    public static SpaceShipActivity getInstance() {
+    public static GameActivity getInstance() {
         return instance;
     }
 

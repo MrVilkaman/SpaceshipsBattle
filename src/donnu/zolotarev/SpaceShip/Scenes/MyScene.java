@@ -7,6 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
+import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
@@ -14,7 +15,6 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.IActivityCallback;
-import donnu.zolotarev.SpaceShip.SpaceShipActivity;
 import org.andengine.entity.scene.Scene;
 
 public abstract class MyScene extends Scene implements IActivityCallback {
@@ -38,7 +38,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
     public void saveGameState(){
         Gson gson = new Gson();
 
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
                 .edit()
                 .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
@@ -48,7 +48,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
     }
 
     public void loadGame(){
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         UserData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_USER_STATS,""));
 
@@ -60,21 +60,21 @@ public abstract class MyScene extends Scene implements IActivityCallback {
     }
 
     public void saveLevels(LevelController levels){
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_LEVELS,levels.toJson())
                 .commit();
     }
 
     public boolean haveCurrentGame(){
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
         return !levelsJson.isEmpty();
     }
 
     public void clearCurrentGame(){
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
                 .edit()
                 .putString(PREF_USER_STATS,"")
@@ -88,7 +88,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
 
     public LevelController loadLevels(){
         LevelController levels;
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
         if (!levelsJson.isEmpty()){
@@ -124,7 +124,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
     }
 
     public void toast(final String msg){
-        final SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        final GameActivity shipActivity =  GameActivity.getInstance();
         shipActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -135,7 +135,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
 
     public boolean actualCodeVersion(){
         PackageInfo packinfo = null;
-        SpaceShipActivity shipActivity =  SpaceShipActivity.getInstance();
+        GameActivity shipActivity =  GameActivity.getInstance();
         try {
             packinfo = shipActivity.getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
         } catch (PackageManager.NameNotFoundException e) {
