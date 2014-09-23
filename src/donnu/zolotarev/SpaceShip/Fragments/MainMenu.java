@@ -1,32 +1,63 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 
-import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.R;
 
 public class MainMenu extends BaseFragment {
 
-    @InjectView(R.id.textView)
-    Button button;
+    @InjectView(R.id.txt_main_menu_version)
+    TextView versionInfoView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_main_menu, inflater, container);
-        int fd = 5;
-        fd = 4;
+
+        versionInfoUpdate();
         return view;
     }
 
-    @OnClick(R.id.textView)
-    public void clikc(){
-        getActivity().startActivity(new Intent(getActivity(),GameActivity.class));
+    private void versionInfoUpdate() {
+        PackageInfo packinfo = null;
+        try {
+            packinfo = getActivity().getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        versionInfoView.setText("v" + packinfo.versionName.toString());
+    }
+
+    @OnClick(R.id.btn_main_menu_new_game)
+    public void onNewGame(){
+    }
+
+    @OnClick(R.id.btn_main_menu_continue)
+    public void onContinue(){
+    }
+
+    @OnClick(R.id.btn_main_menu_about)
+    public void onAbout(){
+        View view =  getActivity().getLayoutInflater().inflate(R.layout.about, null);
+        AlertDialog.Builder builderAbout = new AlertDialog.Builder(getActivity());
+        builderAbout.setTitle(R.string.msg_about)
+                .setView(view)
+                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                }).show();
+    }
+
+    @OnClick(R.id.btn_main_menu_exit)
+    public void onExit(){
     }
 }

@@ -6,7 +6,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import donnu.zolotarev.SpaceShip.GameActivity;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
@@ -128,7 +127,6 @@ public class MainMenu extends MyScene implements IParentScene {
             clearCurrentGame();
         }
 
-
         MenuFactory m = MenuFactory.createMenu(engine, activity.getCamera());
         if (haveCurrentGame()){
             m.addedItem(TextureLoader.getMenuResumeTextureRegion(), clickResumeGame);
@@ -230,15 +228,7 @@ public class MainMenu extends MyScene implements IParentScene {
             runnableAbout =  new Runnable(){
                @Override
                public void run() {
-                   View view =  activity.getLayoutInflater().inflate(R.layout.about, null);
-                   AlertDialog.Builder builderAbout = new AlertDialog.Builder(activity);
-                   builderAbout.setTitle(R.string.msg_about)
-                           .setView(view)
-                           .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialogInterface, int i) {
-                               }
-                           }).show();
+
                }
            };
         }

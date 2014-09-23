@@ -11,4 +11,10 @@
     <string name = "msg_sorry_message">К сожалению, данная версия игры несовместима с предыдущими сохранениями! Поэтому они будут стрерты!</string>
     <string name = "link"><![CDATA[<a href=\"http://vk.com/space_battle_game\">Google</a>]]></string>
 
+
+    <string name = "btn_main_menu_continue">Продолжить</string>
+    <string name = "btn_main_menu_new_game">Новая игра</string>
+    <string name = "btn_main_menu_about">Об игре</string>
+    <string name = "btn_main_menu_exit">Выход</string>
+
 </resources>

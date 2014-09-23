@@ -15,7 +15,11 @@ public class BaseFragment extends Fragment {
 
     protected View inflateFragmentView(int layoutResource, LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(layoutResource, container, false);
-        ButterKnife.inject(this, view);
+        try {
+            ButterKnife.inject(this, view);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
