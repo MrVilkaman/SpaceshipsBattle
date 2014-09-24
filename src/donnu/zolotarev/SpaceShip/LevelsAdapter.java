@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 public class LevelsAdapter extends ArrayAdapter {
 
@@ -18,7 +18,12 @@ public class LevelsAdapter extends ArrayAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return inflateNewView(parent);
+        View view = inflateNewView(parent);
+        ViewHolder holder = (ViewHolder)view.getTag();
+        if(position%2 == 0){
+            holder.bk.setBackgroundColor( parent.getResources().getColor(R.color.item_level_bk_color_2));
+        }
+        return view;
     }
 
     @Override
@@ -34,10 +39,10 @@ public class LevelsAdapter extends ArrayAdapter {
     }
 
     private class ViewHolder {
-        public TextView name;
+        public RelativeLayout bk;
 
         public ViewHolder(View view) {
-          //  name = (TextView) view.findViewById(R.id.item_friends_name);
+            bk = (RelativeLayout) view.findViewById(R.id.item_level_bk);
         }
     }
 }

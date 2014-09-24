@@ -21,12 +21,14 @@
             android:id = "@+id/select_levels_shop"
             android:layout_alignParentTop = "true"
             android:layout_alignParentRight = "true" />
-    <ListView
+    <donnu.zolotarev.SpaceShip.HorizontalListView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:id = "@+id/select_levels_list_view"
             android:layout_alignParentLeft = "true"
-            android:layout_below = "@+id/select_levels_back" />
+            android:layout_below = "@+id/select_levels_back"
+            android:layout_alignParentBottom = "true"
+            android:layout_alignParentRight = "true" />
     <LinearLayout
             android:orientation = "horizontal"
             android:layout_width = "fill_parent"
