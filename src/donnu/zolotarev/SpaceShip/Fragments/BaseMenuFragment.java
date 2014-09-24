@@ -15,7 +15,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
     protected static final String PREF_USER_STATS = "pref_user_stats";
     protected static final String PREF_HERO_STATS = "pref_hero_stats";
     protected static final String PREF_LEVELS = "pref_levels";
-    private static final String PREF_SHOP_ITEMS = "pref_shop_items";
+    protected static final String PREF_SHOP_ITEMS = "pref_shop_items";
 
     private static final String PREF_LAST_CODE_VERSION = "pref_last_code_version";
     private static int codeVersion = -1;
@@ -71,5 +71,11 @@ public abstract class BaseMenuFragment extends BaseFragment {
         }
 
         return levels;
+    }
+
+    public boolean haveCurrentGame(){
+        String levelsJson =  getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
+                .getString(PREF_LEVELS,"");
+        return !levelsJson.isEmpty();
     }
 }

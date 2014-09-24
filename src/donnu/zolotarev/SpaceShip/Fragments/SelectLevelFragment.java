@@ -40,8 +40,6 @@ public class SelectLevelFragment extends BaseMenuFragment {
         levelsAdapter.setLevels(loadLevels());
         levelsAdapter.setClickListener(startLevelListenet);
         listView.setAdapter(levelsAdapter);
-
-
         return view;
     }
 

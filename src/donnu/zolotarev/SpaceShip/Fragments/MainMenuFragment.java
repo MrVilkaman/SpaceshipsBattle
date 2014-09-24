@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Fragments;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -16,12 +18,21 @@ import donnu.zolotarev.SpaceShip.R;
 
 public class MainMenuFragment extends BaseMenuFragment {
 
+
+    @InjectView(R.id.btn_main_menu_continue)
+    Button btnContinue;
+
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_main_menu, inflater, container);
+        if (haveCurrentGame()){
+            btnContinue.setVisibility(View.VISIBLE);
+        }else{
+            btnContinue.setVisibility(View.GONE);
+        }
 
         versionInfoUpdate();
         return view;
@@ -38,7 +49,25 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @OnClick(R.id.btn_main_menu_new_game)
     public void onNewGame(){
-        openSelectLevels();
+        if (haveCurrentGame()){
+            new AlertDialog.Builder(getActivity())
+                    .setMessage(R.string.dialog_text_new_game_message)
+                    .setPositiveButton(R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            clearCurrentGame();
+                            openSelectLevels();
+                        }
+                    })
+                    .setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    }).show();
+        }else{
+            openSelectLevels();
+        }
     }
 
     @OnClick(R.id.btn_main_menu_continue)
@@ -65,7 +94,21 @@ public class MainMenuFragment extends BaseMenuFragment {
     }
 
     private void openSelectLevels(){
+
         showFragment(new SelectLevelFragment(),true);
+    }
+
+    public void clearCurrentGame(){
+
+        getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
+                .edit()
+                .putString(PREF_USER_STATS,"")
+                .putString(PREF_HERO_STATS,"")
+                .putString(PREF_SHOP_ITEMS,"")
+                .commit();
+        getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
+                .edit().putString(PREF_LEVELS,"")
+                .commit();
     }
 
 }
