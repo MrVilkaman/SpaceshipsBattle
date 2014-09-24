@@ -27,7 +27,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         super(self);
     }
 
-    public MaketGameScene(SelectionLevelScene selectionLevelScene, LevelInfo level) {
+    public MaketGameScene(IParentScene selectionLevelScene, LevelInfo level) {
        super(selectionLevelScene);
        this.levelInfo = level;
 

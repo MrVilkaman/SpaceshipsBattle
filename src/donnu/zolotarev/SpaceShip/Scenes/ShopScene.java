@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;

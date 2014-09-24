@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.UI;
 
 import android.content.Context;
 import android.database.DataSetObserver;

@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import butterknife.ButterKnife;
-import donnu.zolotarev.SpaceShip.MenuActivity;
+import donnu.zolotarev.SpaceShip.Activity.MenuActivity;
 
 public class BaseFragment extends Fragment {
 

@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.AI.BulletAI.AutoguiderRocketAI;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Utils;

@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.AI;
 
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;

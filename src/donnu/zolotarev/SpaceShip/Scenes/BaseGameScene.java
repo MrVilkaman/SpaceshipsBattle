@@ -4,7 +4,7 @@ import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;

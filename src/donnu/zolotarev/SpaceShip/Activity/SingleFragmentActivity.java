@@ -1,9 +1,10 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Activity;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
+import donnu.zolotarev.SpaceShip.R;
 
 public abstract class SingleFragmentActivity extends Activity {
     protected abstract Fragment createFragment();

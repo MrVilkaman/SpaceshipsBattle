@@ -3,7 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;

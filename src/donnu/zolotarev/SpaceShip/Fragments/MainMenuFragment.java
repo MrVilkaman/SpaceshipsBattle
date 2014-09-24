@@ -14,7 +14,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 
-public class MainMenuFragment extends BaseFragment {
+public class MainMenuFragment extends BaseMenuFragment {
 
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;

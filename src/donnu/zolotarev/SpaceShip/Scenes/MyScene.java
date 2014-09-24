@@ -7,7 +7,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
 import com.google.gson.Gson;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
@@ -51,7 +51,6 @@ public abstract class MyScene extends Scene implements IActivityCallback {
         GameActivity shipActivity =  GameActivity.getInstance();
         UserData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_USER_STATS,""));
-
         HeroFeatures.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_HERO_STATS,""));
         ShopData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).

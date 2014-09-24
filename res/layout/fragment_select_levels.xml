@@ -21,7 +21,7 @@
             android:id = "@+id/select_levels_shop"
             android:layout_alignParentTop = "true"
             android:layout_alignParentRight = "true" />
-    <donnu.zolotarev.SpaceShip.HorizontalListView
+    <donnu.zolotarev.SpaceShip.UI.HorizontalListView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:id = "@+id/select_levels_list_view"

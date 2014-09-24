@@ -1,12 +1,14 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Activity;
 
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.Scenes.MainMenu;
+import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
+import donnu.zolotarev.SpaceShip.Scenes.qwe;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
 import org.andengine.engine.options.ScreenOrientation;
@@ -15,15 +17,20 @@ import org.andengine.entity.scene.Scene;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
 
-public class GameActivity extends SimpleBaseGameActivity {
+public class GameActivity extends SimpleBaseGameActivity implements IParentScene {
 
 
     private Camera camera;
-    private MainMenu mainMenu;
+    private BaseGameScene mainMenu;
     private static GameActivity instance;
 
     public static GameActivity getInstance() {
         return instance;
+    }
+
+
+    public static Engine engine() {
+        return instance.getEngine();
     }
 
     /**
@@ -58,8 +65,11 @@ public class GameActivity extends SimpleBaseGameActivity {
 
     @Override
     protected Scene onCreateScene() {
-        mainMenu = new MainMenu();
-        return mainMenu;
+ /*       mainMenu = new MaketGameScene(this,null);
+        ((MaketGameScene)mainMenu).addNewWaveController( WaveContainer.getWaveControllerById(2,
+                (MaketGameScene) mainMenu));
+*/
+        return new qwe();
     }
 
     public static int getCameraWidth() {
@@ -94,7 +104,7 @@ public class GameActivity extends SimpleBaseGameActivity {
         }
     }
 
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
         Log.i("XXX", "Its work,SpaceShipActivity onStart" + (mainMenu != null));
@@ -110,10 +120,25 @@ public class GameActivity extends SimpleBaseGameActivity {
         if (mainMenu != null){
             mainMenu.onPause();
         }
-    }
+    }*/
 
     public void exit() {
         onDestroy();
 //        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
+    @Override
+    public void returnToParentScene(int statusCode) {
+
+    }
+
+    @Override
+    public void restart(int statusCode) {
+
+    }
+
+    @Override
+    public void callback(int statusCode) {
+
     }
 }

@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,6 +6,7 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
+import donnu.zolotarev.SpaceShip.R;
 
 public class MenuActivity extends SingleFragmentActivity {
     @Override

@@ -6,7 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
@@ -34,7 +34,7 @@ public class MainMenu extends MyScene implements IParentScene {
     public MainMenu() {
         super(null);
         activity = GameActivity.getInstance();
-        engine = activity.getEngine();
+        engine = GameActivity.engine();
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         createMenuScene();
         setChildScene(menuScene, false, true, true);

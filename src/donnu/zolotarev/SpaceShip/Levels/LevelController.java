@@ -64,4 +64,13 @@ public class LevelController {
     public LevelInfo getById(int type) {
         return  levels.get(type);
     }
+
+    public int getSize(){
+       return levels.size();
+    }
+
+    public LevelInfo getLevelInfo(int pos){
+        return levels.get(pos);
+    }
+
 }

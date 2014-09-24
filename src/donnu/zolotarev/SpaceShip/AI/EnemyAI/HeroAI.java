@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.AI.EnemyAI;
 
 import donnu.zolotarev.SpaceShip.AI.SpriteAI;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;

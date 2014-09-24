@@ -18,8 +18,8 @@
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceLarge"
-            android:text = "Уровень ) "
-            android:id = "@+id/textView"
+            android:text = "@string/item_level_title_template"
+            android:id = "@+id/item_level_title"
              />
     <TextView
             android:layout_width = "wrap_content"
@@ -28,4 +28,12 @@
             android:text = "Скоро будет)"
             android:id = "@+id/textView2" />
     </LinearLayout>
+
+    <Button android:layout_width = "wrap_content"
+            android:layout_height = "wrap_content"
+            android:text="@string/item_level_start"
+            android:id="@+id/item_level_start"
+            android:layout_alignParentBottom = "true"
+            android:layout_alignParentRight = "true"
+            android:layout_alignParentLeft = "true" />
 </RelativeLayout>

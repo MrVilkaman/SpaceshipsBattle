@@ -1,7 +1,7 @@
 package donnu.zolotarev.SpaceShip.Bullets;
 
 import donnu.zolotarev.SpaceShip.AI.BulletAI.SimpleBulletAI;
-import donnu.zolotarev.SpaceShip.GameActivity;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.util.adt.pool.GenericPool;
 

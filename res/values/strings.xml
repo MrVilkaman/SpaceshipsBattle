@@ -19,5 +19,7 @@
     <string name = "shop_name">Магазин</string>
     <string name = "txt_back">Назад</string>
     <string name = "select_levels_money">Деньги: </string>
+    <string name = "item_level_title_template">Уровень %1s</string>
+    <string name = "item_level_start">Играть</string>
 
 </resources>
