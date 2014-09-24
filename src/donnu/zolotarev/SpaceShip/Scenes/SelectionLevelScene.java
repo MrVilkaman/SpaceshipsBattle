@@ -153,7 +153,6 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         saveGameState();
     }
 
-
     @Override
     public void onKeyPressed(int keyCode, KeyEvent event) {
         if (gameScene != null){

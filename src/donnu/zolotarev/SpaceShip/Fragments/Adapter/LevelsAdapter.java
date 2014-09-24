@@ -11,8 +11,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
+import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
+import org.andengine.util.color.Color;
 
 public class LevelsAdapter extends ArrayAdapter {
 
@@ -32,9 +34,12 @@ public class LevelsAdapter extends ArrayAdapter {
         ViewHolder holder = (ViewHolder)view.getTag();
         final LevelInfo levelInfo =  levelController.getLevelInfo(position);
         Resources resources = parent.getResources();
-        if(position%2 == 0){
-            holder.bk.setBackgroundColor(resources.getColor(R.color.item_level_bk_color_2));
-        }
+
+            holder.bk.setBackgroundColor(redraw(levelInfo).getARGBPackedInt());
+
+
+            holder.start.setEnabled(levelInfo.isEnabled());
+
 
         holder.title.setText(resources.getString(R.string.item_level_title_template,levelInfo.getLevelId()));
 
@@ -45,6 +50,40 @@ public class LevelsAdapter extends ArrayAdapter {
             }
         });
         return view;
+    }
+
+    private Color redraw(LevelInfo item) {
+        String name;
+        Color color;
+        if(item.getLevelId() == WaveContainer.LEVEL_INFINITY){
+            color = Color.BLACK;
+            item.setEnabled(true);
+            item.setWin(true);
+        }else if(item.getLevelId() == WaveContainer.LEVEL_TEST){
+            color = Color.BLACK;
+            item.setEnabled(true);
+            item.setWin(true);
+        }else if(item.getLevelId() == WaveContainer.LEVEL_MUSEUM){
+            color = Color.BLACK;
+            item.setEnabled(true);
+            item.setWin(true);
+        } else {
+            name = String.valueOf(item.getLevelId());
+            if (item.isEnabled()){
+                if (item.isNew()){
+                    color = Color.BLACK;
+                }else {
+                    if (item.isWin()){
+                        color = Color.GREEN;
+                    } else {
+                        color = Color.RED;
+                    }
+                }
+            } else {
+                color = new Color(184/255f,  183/255f,  183/255f, 1);
+            }
+        }
+        return color;
     }
 
     @Override

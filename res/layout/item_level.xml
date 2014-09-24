@@ -11,7 +11,8 @@
                   android:orientation="vertical"
                   android:layout_centerVertical = "true"
                   android:layout_centerHorizontal = "true"
-                  android:layout_height = "wrap_content">
+                  android:layout_height = "wrap_content"
+                  android:id = "@+id/linearLayout">
 
 
     <TextView
@@ -29,11 +30,10 @@
             android:id = "@+id/textView2" />
     </LinearLayout>
 
-    <Button android:layout_width = "wrap_content"
+    <Button android:layout_width = "150dp"
             android:layout_height = "wrap_content"
             android:text="@string/item_level_start"
             android:id="@+id/item_level_start"
             android:layout_alignParentBottom = "true"
-            android:layout_alignParentRight = "true"
-            android:layout_alignParentLeft = "true" />
+            android:layout_centerHorizontal = "true" />
 </RelativeLayout>
