@@ -95,6 +95,23 @@ public class BaseFragment extends Fragment {
         Log.e(tag, String.valueOf(message));
     }
 
+    protected void back(){
+        MenuActivity activity = getMainActivity();
+        if(activity != null){
+            activity.popBackStack();
+        }
+    }
+
+    protected MenuActivity getMainActivity(){
+        Activity activity = getActivity();
+        if(activity != null && activity instanceof MenuActivity){
+            return (MenuActivity) activity;
+        }
+
+        return null;
+    }
+
+
     protected void showFragment(BaseFragment fragment, boolean addToBackStack) {
         Activity activity = getActivity();
         if (activity != null && activity instanceof MenuActivity) {
@@ -104,4 +121,5 @@ public class BaseFragment extends Fragment {
             logError("Cannot get MainActivity reference... Look for error");
         }
     }
+
 }
