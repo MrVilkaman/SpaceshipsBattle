@@ -1,6 +1,8 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
@@ -77,5 +79,24 @@ public abstract class BaseMenuFragment extends BaseFragment {
         String levelsJson =  getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
         return !levelsJson.isEmpty();
+    }
+
+    public boolean actualCodeVersion(){
+        PackageInfo packinfo = null;
+        try {
+            packinfo = getActivity().getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+
+
+        codeVersion =  getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
+                .getInt(PREF_LAST_CODE_VERSION,-1);
+
+        getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).edit()
+                .putInt(PREF_LAST_CODE_VERSION,packinfo.versionCode ).commit();
+
+        //   }
+
+        return packinfo.versionCode == codeVersion;
     }
 }

@@ -35,6 +35,22 @@ public class MainMenuFragment extends BaseMenuFragment {
         }
 
         versionInfoUpdate();
+
+        PackageInfo packinfo = null;
+
+        try {
+            packinfo = getActivity().getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
+        } catch (PackageManager.NameNotFoundException e) {
+        }
+        if (!actualCodeVersion() && haveCurrentGame()){
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    showAlert(getActivity(), R.string.msg_sorry_message, "Упс(");
+                }
+            });
+            clearCurrentGame();
+        }
         return view;
     }
 
