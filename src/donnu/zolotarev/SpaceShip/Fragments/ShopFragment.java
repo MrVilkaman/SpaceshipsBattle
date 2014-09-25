@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.ShopAdapter;
@@ -26,7 +27,7 @@ public class ShopFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
 
-        shopAdapter = new ShopAdapter(getActivity());
+        shopAdapter = new ShopAdapter(getActivity(), Shop.getInstance());
         listView.setAdapter(shopAdapter);
         userData = UserData.get();
         return view;

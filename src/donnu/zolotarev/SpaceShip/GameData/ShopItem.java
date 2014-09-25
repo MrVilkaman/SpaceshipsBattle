@@ -16,13 +16,13 @@ public class ShopItem {
     // count = -1 = Предмет куплен, НЕ нуждается в патронах!
     // count >= 0 = Предмет куплен, Количество оставшихся патронов.
     private int count;
-    private int title;
-    private int description;
+    private String title;
+    private String description;
     private ItemShopType type;
     private boolean isHaveAmmo = false;
 
 
-    public ShopItem(int title, int description, ItemShopType type,int priceBuy) {
+    public ShopItem(String title, String description, ItemShopType type,int priceBuy) {
         this.title = title;
         this.description = description;
         this.type = type;
@@ -53,11 +53,11 @@ public class ShopItem {
         this.count = count;
     }
 
-    public int getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
 

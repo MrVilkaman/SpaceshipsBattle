@@ -26,4 +26,13 @@
     <string name = "item_shop_price">$%1s</string>
     <string name = "btn_shop_buy">Купить</string>
 
+
+    <!--Магазин-->
+    <string name = "shop_item_armor_title">Броня</string>
+    <string name = "shop_item_armor_description">Увеличивает максимально количестно урона, который может выдержать
+        корабль.
+    </string>
+    <string name = "shop_item_damage_title">Увеличенный урон</string>
+    <string name = "shop_item_damage_description">Увеличивает наносимый урон от каждой пули.</string>
+
 </resources>

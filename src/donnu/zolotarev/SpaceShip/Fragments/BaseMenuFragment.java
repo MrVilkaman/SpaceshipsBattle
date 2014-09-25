@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.GameData.ShopData;
+import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
@@ -28,7 +28,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 getString(PREF_USER_STATS, ""));
         HeroFeatures.create(getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_HERO_STATS, ""));
-        ShopData.create(getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
+        Shop.create(getActivity(),getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_SHOP_ITEMS, ""));
 
     }

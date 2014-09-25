@@ -7,19 +7,29 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import donnu.zolotarev.SpaceShip.GameData.Shop;
+import donnu.zolotarev.SpaceShip.GameData.ShopItem;
 
 public class ShopAdapter extends ArrayAdapter{
     private final LayoutInflater lInflater;
+    private final Shop shop;
 
-    public ShopAdapter(Context context) {
+    public ShopAdapter(Context context, Shop shop) {
         super(context, R.layout.item_shop_item);
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.shop = shop;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = inflateNewView(parent);
         ViewHolder viewHolder = (ViewHolder)view.getTag();
+
+        ShopItem shopItem = shop.getItem(position);
+
+        viewHolder.title.setText(shopItem.getTitle());
+        viewHolder.value.setText(shopItem.getDescription());
+        viewHolder.price.setText(parent.getContext().getString(R.string.item_shop_price,shopItem.getPriceBuy()));
 
         viewHolder.buy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,13 +42,14 @@ public class ShopAdapter extends ArrayAdapter{
 
     @Override
     public int getCount() {
-        return 10;
+        return shop.getSize();
     }
 
     private View inflateNewView(ViewGroup parent) {
         View view  = lInflater.inflate(R.layout.item_shop_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         view.setTag(holder);
+
         return view;
     }
 
