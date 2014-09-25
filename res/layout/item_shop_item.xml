@@ -2,7 +2,7 @@
 
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:layout_width = "match_parent"
-                android:layout_height = "match_parent">
+                android:layout_height = "100dp">
     <TextView android:layout_width = "wrap_content"
               android:layout_height = "wrap_content"
             android:text="@string/item_shop_price"
@@ -24,6 +24,7 @@
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceLarge"
             android:id = "@+id/btn_shop_title"
+            android:text="qwer"
             android:layout_alignTop = "@+id/textView2"
             android:layout_alignParentLeft = "true" />
     <TextView
@@ -31,6 +32,7 @@
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceMedium"
             android:id = "@+id/btn_shop_value"
+            android:text="qwer"
             android:layout_below = "@+id/btn_shop_title"
             android:layout_alignParentLeft = "true" />
 
