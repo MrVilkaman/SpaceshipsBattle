@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.GameData;
 
 public class ShopItem {
+
     public enum ItemShopType {
         AMMO,
         DEFENCE
@@ -12,8 +13,7 @@ public class ShopItem {
 
     private int priceItemBuy;
     private int priceBuy;
-    // count = -2 - Предмет НЕ куплен
-    // count = -1 = Предмет куплен, НЕ нуждается в патронах!
+    // count = -1 - Предмет НЕ куплен
     // count >= 0 = Предмет куплен, Количество оставшихся патронов.
     private int count;
     private String title;
@@ -27,30 +27,23 @@ public class ShopItem {
         this.description = description;
         this.type = type;
         this.priceBuy = priceBuy;
-    }
-
-    public int getPriceItemBuy() {
-        return priceItemBuy;
-    }
-
-    public void setPriceItemBuy(int priceItemBuy) {
-        this.priceItemBuy = priceItemBuy;
+        count = -1;
     }
 
     public int getPriceBuy() {
-        return priceBuy;
-    }
-
-    public void setPriceBuy(int priceBuy) {
-        this.priceBuy = priceBuy;
+        if (!alreadyBought()){
+            return priceBuy;
+        }else{
+            if (isHaveAmmo){
+                return priceItemBuy;
+            }else{
+                return -1;
+            }
+        }
     }
 
     public int getCount() {
         return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
     }
 
     public String getTitle() {
@@ -60,5 +53,23 @@ public class ShopItem {
     public String getDescription() {
         return description;
     }
+
+    public boolean isUseAmmo() {
+        return isHaveAmmo;
+    }
+
+    public boolean alreadyBought(){
+        return count != -1;
+    }
+
+    void buy() {
+        if (!isUseAmmo()){
+            count = 0;
+        }else{
+            // todo Сделать коэфициент
+            count = 5;
+        }
+    }
+
 
 }

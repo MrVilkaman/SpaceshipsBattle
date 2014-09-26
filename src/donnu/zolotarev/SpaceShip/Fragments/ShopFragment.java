@@ -23,11 +23,18 @@ public class ShopFragment extends BaseMenuFragment {
     ListView listView;
     private ShopAdapter shopAdapter;
 
+    private ShopAdapter.Callback moneyUpdateCallback = new ShopAdapter.Callback() {
+        @Override
+        public void updateMoney() {
+            gold.setText(String.valueOf(userData.getMoney()));
+        }
+    };
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
 
-        shopAdapter = new ShopAdapter(getActivity(), Shop.getInstance());
+        shopAdapter = new ShopAdapter(getActivity(), Shop.get(),moneyUpdateCallback);
         listView.setAdapter(shopAdapter);
         userData = UserData.get();
         return view;
@@ -42,5 +49,11 @@ public class ShopFragment extends BaseMenuFragment {
     public void onResume() {
         super.onResume();
         gold.setText(String.valueOf(userData.getMoney()));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        saveGameState();
     }
 }

@@ -58,8 +58,9 @@ public class SelectLevelFragment extends BaseMenuFragment {
     @Override
     public void onResume() {
        super.onResume();
-        gold.setText(String.valueOf(userData.getMoney()));
+       gold.setText(String.valueOf(userData.getMoney()));
     }
+
 
     @OnClick(R.id.select_levels_back)
     public void onBack(){

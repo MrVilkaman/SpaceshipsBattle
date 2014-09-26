@@ -9,15 +9,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.ShopItem;
+import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 
 public class ShopAdapter extends ArrayAdapter{
     private final LayoutInflater lInflater;
     private final Shop shop;
+    private final UserDataProcessor dataProcessor;
+    private final Callback callback;
+    public interface Callback{
+        public void updateMoney();
+    }
 
-    public ShopAdapter(Context context, Shop shop) {
+    public ShopAdapter(Context context, Shop shop,Callback callback) {
         super(context, R.layout.item_shop_item);
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.shop = shop;
+        this.callback = callback;
+        dataProcessor = UserDataProcessor.get();
     }
 
     @Override
@@ -25,18 +33,33 @@ public class ShopAdapter extends ArrayAdapter{
         View view = inflateNewView(parent);
         ViewHolder viewHolder = (ViewHolder)view.getTag();
 
-        ShopItem shopItem = shop.getItem(position);
+       final ShopItem shopItem = shop.getItem(position);
 
         viewHolder.title.setText(shopItem.getTitle());
         viewHolder.value.setText(shopItem.getDescription());
-        viewHolder.price.setText(parent.getContext().getString(R.string.item_shop_price,shopItem.getPriceBuy()));
 
-        viewHolder.buy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        boolean needBuyButton = !shopItem.alreadyBought() || shopItem.isUseAmmo();
+        if (needBuyButton){
+            viewHolder.price.setText(parent.getContext().getString(R.string.item_shop_price,shopItem.getPriceBuy()));
+        }else{
+            viewHolder.price.setText("");
+        }
 
-            }
-        });
+        viewHolder.buy.setEnabled(needBuyButton);
+        if (needBuyButton){
+            viewHolder.buy.setText(R.string.btn_shop_buy);
+            viewHolder.buy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (dataProcessor.buy(shopItem)){
+                        notifyDataSetChanged();
+                        callback.updateMoney();
+                    }
+                }
+            });
+        }else{
+            viewHolder.buy.setText(R.string.btn_shop_already_bought);
+        }
         return view;
     }
 

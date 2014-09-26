@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Fragments;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
@@ -31,6 +32,16 @@ public abstract class BaseMenuFragment extends BaseFragment {
         Shop.create(getActivity(),getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_SHOP_ITEMS, ""));
 
+    }
+
+    public void saveGameState(){
+        Gson gson = new Gson();
+        getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
+                .edit()
+                .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
+                .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
+                .putString(PREF_SHOP_ITEMS,gson.toJson(Shop.get().toJson()))
+                .commit();
     }
 
     public void saveLevels(LevelController levels){

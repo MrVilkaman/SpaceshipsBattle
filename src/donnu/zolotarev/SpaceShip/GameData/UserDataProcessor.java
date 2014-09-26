@@ -30,11 +30,12 @@ public class UserDataProcessor {
          return instance;
     }
 
-    public boolean buy(int priceItem){
+    public boolean buy(ShopItem shopItem){
         UserData userData = UserData.get();
-        int lostMoney = userData.getMoney() - priceItem;
+        int lostMoney = userData.getMoney() - shopItem.getPriceBuy();
         if (lostMoney >= 0){
            userData.setMoney(lostMoney);
+           shopItem.buy();
            return true;
         }
         return false;

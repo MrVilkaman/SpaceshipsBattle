@@ -105,7 +105,7 @@ public class ShopScene extends MyScene {
         lAddHealth = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                if (processor.buy(shopData.getPriceMaxHealth())){
+              /*  if (processor.buy(shopData.getPriceMaxHealth())){
                     int h = heroFeatures.getMaxHealth()+shopData.getEffectMaxHealth();
                     heroFeatures.setMaxHealth(h);
                     healthMaxBar.setText(String.valueOf(h));
@@ -113,25 +113,25 @@ public class ShopScene extends MyScene {
                     updateUI();
                 }else{
                  toast("Мало денег(");
-                }
+                }*/
             }
         };
         lAddDamage  = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                if (processor.buy(shopData.getPriceBulletDamege())){
+              /*  if (processor.buy(shopData.getPriceBulletDamege())){
                     shopData.nextLevelBulletDamege();
                     updateUI();
                 }else{
                     toast("Мало денег(");
-                }
+                }*/
             }
         };
 
         lBuyDoubleGun = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                if (!shopData.isHaveDoubleGun()){
+               /* if (!shopData.isHaveDoubleGun()){
                     if (processor.buy(shopData.getPriceDoubleGun())){
                         shopData.buyDoubleGun();
                         updateUI();
@@ -146,14 +146,14 @@ public class ShopScene extends MyScene {
                     }else{
                         toast("Мало денег(");
                     }
-                }
+                }*/
             }
         };
 
         lBuyRocketGun = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                if (!shopData.isHaveRocketGun()){
+               /* if (!shopData.isHaveRocketGun()){
                     if (processor.buy(shopData.getPriceRocketGun())){
                         shopData.buyRocketGun();
                         updateUI();
@@ -168,7 +168,7 @@ public class ShopScene extends MyScene {
                     }else{
                         toast("Мало денег(");
                     }
-                }
+                }*/
             }
         };
         updateUI();

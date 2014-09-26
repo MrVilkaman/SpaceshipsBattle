@@ -7,6 +7,7 @@ import com.google.gson.reflect.TypeToken;
 import donnu.zolotarev.SpaceShip.R;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Shop {
 
@@ -22,6 +23,10 @@ public class Shop {
         return list.get(pos);
     }
 
+    private Shop(Context context,ArrayList<ShopItem> l){
+        list = l;
+    }
+
     private Shop(Context context){
         list = new ArrayList<ShopItem>();
 
@@ -34,9 +39,10 @@ public class Shop {
 
     public static void create(Context context,String s){
         if (!s.isEmpty()){
+
             try {
                 Gson gson = new Gson();
-                instance = gson.fromJson(s,new TypeToken<Shop>(){}.getType());
+                instance = new Shop(context,(ArrayList)gson.fromJson(s,new TypeToken<Collection<ShopItem>>(){}.getType()));
             } catch (JsonSyntaxException e) {
                 instance = new Shop(context);
             }
@@ -45,7 +51,12 @@ public class Shop {
         }
     }
 
-    public static Shop getInstance() {
+    public static Shop get() {
         return instance;
+    }
+
+    public String toJson() {
+        Gson gson = new Gson();
+        return gson.toJson(list);
     }
 }
