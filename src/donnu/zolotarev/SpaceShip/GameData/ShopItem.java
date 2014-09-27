@@ -12,7 +12,7 @@ public class ShopItem {
     }
 
     private int priceItemBuy;
-    private Integer priceBuy;
+    private int priceBuy;
     // count = -1 - Предмет НЕ куплен
     // count >= 0 = Предмет куплен, Количество оставшихся патронов или уровень, если isHaveAmmo = false.
     private int count;
@@ -94,6 +94,9 @@ public class ShopItem {
         return count != maxLevel;
     }
 
+    public Object getLevelMax() {
+        return maxLevel;
+    }
 
 
 }

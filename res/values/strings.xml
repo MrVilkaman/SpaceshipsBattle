@@ -38,5 +38,6 @@
     </string>
     <string name = "shop_item_damage_title">Увеличенный урон</string>
     <string name = "shop_item_damage_description">Увеличивает наносимый урон от каждой пули.</string>
+    <string name = "shop_item_level_template">%1$s / %2$s</string>
 
 </resources>

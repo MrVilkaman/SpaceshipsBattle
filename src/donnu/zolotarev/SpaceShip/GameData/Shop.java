@@ -34,7 +34,7 @@ public class Shop {
                 ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,150,75));
 
         list.add(new ShopItem(context.getString(R.string.shop_item_damage_title),context.getString(R.string.shop_item_damage_description),
-                ShopItem.ItemShopType.DEFENCE,5, ShopGrowthRates.RatesModels.PARABOLA,250,120));
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,120));
     }
 
     public static void create(Context context,String s){

@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ public class ShopAdapter extends ArrayAdapter{
     private final Shop shop;
     private final UserDataProcessor dataProcessor;
     private final Callback callback;
+
     public interface Callback{
         public void updateMoney();
     }
@@ -33,17 +35,19 @@ public class ShopAdapter extends ArrayAdapter{
         View view = inflateNewView(parent);
         ViewHolder viewHolder = (ViewHolder)view.getTag();
 
+        Resources resources = parent.getContext().getResources();
        final ShopItem shopItem = shop.getItem(position);
 
         viewHolder.title.setText(shopItem.getTitle());
         viewHolder.value.setText(shopItem.getDescription());
+        viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
 
         boolean needBuyButton = true;//!shopItem.alreadyBought() || shopItem.isUseAmmo();
 
 
 
         if (needBuyButton){
-            viewHolder.price.setText(parent.getContext().getString(R.string.item_shop_price,shopItem.getPriceBuy()));
+            viewHolder.price.setText(resources.getString(R.string.item_shop_price, shopItem.getPriceBuy()));
         }else{
             viewHolder.price.setText("");
         }
@@ -88,12 +92,14 @@ public class ShopAdapter extends ArrayAdapter{
         public final TextView price;
         public final TextView value;
         public final TextView title;
+        public final TextView levels;
 
         public ViewHolder(View view) {
            buy = (Button)view.findViewById(R.id.btn_shop_buy);
            price = (TextView)view.findViewById(R.id.item_shop_price);
            title = (TextView)view.findViewById(R.id.btn_shop_title);
            value = (TextView)view.findViewById(R.id.btn_shop_value);
+           levels = (TextView)view.findViewById(R.id.btn_shop_levels_count);
         }
     }                       
 }

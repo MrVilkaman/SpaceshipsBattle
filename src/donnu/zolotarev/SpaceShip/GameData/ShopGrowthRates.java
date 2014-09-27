@@ -10,10 +10,10 @@ public class ShopGrowthRates {
         int i = 0;
         switch (models){
             case LINEARLY:
-                i = base+diff*level*level;
+                i = base+diff*level;
                 break;
             case PARABOLA:
-                i = base+diff*level;
+                i = base+diff*level*level;
                 base = i;
 
         }
