@@ -38,11 +38,20 @@ public class ShopAdapter extends ArrayAdapter{
         viewHolder.title.setText(shopItem.getTitle());
         viewHolder.value.setText(shopItem.getDescription());
 
-        boolean needBuyButton = !shopItem.alreadyBought() || shopItem.isUseAmmo();
+        boolean needBuyButton = true;//!shopItem.alreadyBought() || shopItem.isUseAmmo();
+
+
+
         if (needBuyButton){
             viewHolder.price.setText(parent.getContext().getString(R.string.item_shop_price,shopItem.getPriceBuy()));
         }else{
             viewHolder.price.setText("");
+        }
+
+        if (!shopItem.haveNext()){
+            viewHolder.price.setText("");
+            viewHolder.buy.setText(R.string.btn_shop_max_level);
+            needBuyButton = false;
         }
 
         viewHolder.buy.setEnabled(needBuyButton);
@@ -57,8 +66,6 @@ public class ShopAdapter extends ArrayAdapter{
                     }
                 }
             });
-        }else{
-            viewHolder.buy.setText(R.string.btn_shop_already_bought);
         }
         return view;
     }

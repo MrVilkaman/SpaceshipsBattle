@@ -2,19 +2,19 @@ package donnu.zolotarev.SpaceShip.GameData;
 
 public class ShopItem {
 
+    private final int maxLevel;
+    private final ShopGrowthRates.RatesModels models;
+    private final int priceDiff;
+
     public enum ItemShopType {
         AMMO,
         DEFENCE
     }
 
-    public interface GrowthFunction{
-        public int getPriceForLevel(int level);
-    }
-
     private int priceItemBuy;
-    private int priceBuy;
+    private Integer priceBuy;
     // count = -1 - Предмет НЕ куплен
-    // count >= 0 = Предмет куплен, Количество оставшихся патронов.
+    // count >= 0 = Предмет куплен, Количество оставшихся патронов или уровень, если isHaveAmmo = false.
     private int count;
     private String title;
     private String description;
@@ -22,24 +22,43 @@ public class ShopItem {
     private boolean isHaveAmmo = false;
 
 
-    public ShopItem(String title, String description, ItemShopType type,int priceBuy) {
+    public ShopItem(String title, String description, ItemShopType type,int maxLevel,ShopGrowthRates.RatesModels models,int priceBuy,int priceDiff) {
+        this.title = title;
+        this.description = description;
+        this.type = type;
+        this.priceBuy = priceBuy;
+        this.priceDiff = priceDiff;
+        this.maxLevel = maxLevel;
+        this.models = models;
+        count = 0;
+    }
+
+   /* public ShopItem(String title, String description, ItemShopType type,int priceBuyGun,int countAddAmmo,int priceBuyAmmo) {
         this.title = title;
         this.description = description;
         this.type = type;
         this.priceBuy = priceBuy;
         count = -1;
-    }
+    }*/
+
 
     public int getPriceBuy() {
-        if (!alreadyBought()){
+        if (isHaveAmmo){
+            return -1;
+        }else{
+
+            return ShopGrowthRates.getPriceForLevel(models, priceBuy,priceDiff,count);
+        }
+
+        /*if (!alreadyBought()){
             return priceBuy;
         }else{
             if (isHaveAmmo){
-                return priceItemBuy;
+                return ShopGrowthRates.getPriceForLevel(models, priceItemBuy,priceDiff,count);
             }else{
                 return -1;
             }
-        }
+        }*/
     }
 
     public int getCount() {
@@ -64,12 +83,17 @@ public class ShopItem {
 
     void buy() {
         if (!isUseAmmo()){
-            count = 0;
+            count++;
         }else{
             // todo Сделать коэфициент
             count = 5;
         }
     }
+
+    public boolean haveNext(){
+        return count != maxLevel;
+    }
+
 
 
 }

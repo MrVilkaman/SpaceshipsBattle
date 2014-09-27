@@ -28,6 +28,7 @@
     <string name = "item_shop_title">Купить хуй!</string>
     <string name = "item_shop_price">$%1s</string>
     <string name = "btn_shop_buy">Купить</string>
+    <string name = "btn_shop_max_level">Круче нет!</string>
     <string name = "btn_shop_already_bought">Куплено</string>
 
     <!--    Магазин предметы-->

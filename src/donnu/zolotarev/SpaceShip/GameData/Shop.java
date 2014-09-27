@@ -31,10 +31,10 @@ public class Shop {
         list = new ArrayList<ShopItem>();
 
         list.add(new ShopItem(context.getString(R.string.shop_item_armor_title),context.getString(R.string.shop_item_armor_description),
-                ShopItem.ItemShopType.DEFENCE,100));
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,150,75));
 
         list.add(new ShopItem(context.getString(R.string.shop_item_damage_title),context.getString(R.string.shop_item_damage_description),
-                ShopItem.ItemShopType.DEFENCE,100));
+                ShopItem.ItemShopType.DEFENCE,5, ShopGrowthRates.RatesModels.PARABOLA,250,120));
     }
 
     public static void create(Context context,String s){
@@ -51,6 +51,7 @@ public class Shop {
             instance = new Shop(context);
         }
     }
+
 
     public static Shop get() {
         return instance;
