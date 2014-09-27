@@ -2,6 +2,18 @@ package donnu.zolotarev.SpaceShip.Levels;
 
 public class LevelInfo {
 
+    public enum ItemShopType {
+        AMMO,
+        DEFENCE
+    }
+
+    public interface GrowthFunction{
+        public int getPriceForLevel(int level);
+    }
+
+    private GrowthFunction growthFunction ;
+    private ItemShopType itemShopType = ItemShopType.AMMO;
+
     private int levelId;
     private int x;
     private int y;

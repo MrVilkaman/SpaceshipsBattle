@@ -40,7 +40,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 .edit()
                 .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
                 .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
-                .putString(PREF_SHOP_ITEMS,gson.toJson(Shop.get().toJson()))
+                .putString(PREF_SHOP_ITEMS,Shop.get().toJson())
                 .commit();
     }
 

@@ -33,8 +33,8 @@ public class Shop {
         list.add(new ShopItem(context.getString(R.string.shop_item_armor_title),context.getString(R.string.shop_item_armor_description),
                 ShopItem.ItemShopType.DEFENCE,100));
 
-        list.add(new ShopItem(context.getString(R.string.shop_item_damage_title),context.getString(R.string.shop_item_damage_description),
-                ShopItem.ItemShopType.DEFENCE,100));
+      /*  list.add(new ShopItem(context.getString(R.string.shop_item_damage_title),context.getString(R.string.shop_item_damage_description),
+                ShopItem.ItemShopType.DEFENCE,100));*/
     }
 
     public static void create(Context context,String s){
@@ -42,7 +42,8 @@ public class Shop {
 
             try {
                 Gson gson = new Gson();
-                instance = new Shop(context,(ArrayList)gson.fromJson(s,new TypeToken<Collection<ShopItem>>(){}.getType()));
+                ArrayList<ShopItem> l = gson.fromJson(s,new TypeToken<Collection<ShopItem>>(){}.getType());
+                instance = new Shop(context,l);
             } catch (JsonSyntaxException e) {
                 instance = new Shop(context);
             }

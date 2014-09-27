@@ -29,7 +29,7 @@ public class ShopAdapter extends ArrayAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View view = inflateNewView(parent);
         ViewHolder viewHolder = (ViewHolder)view.getTag();
 
@@ -51,7 +51,7 @@ public class ShopAdapter extends ArrayAdapter{
             viewHolder.buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (dataProcessor.buy(shopItem)){
+                    if (dataProcessor.buy(shop.getItem(position))){
                         notifyDataSetChanged();
                         callback.updateMoney();
                     }

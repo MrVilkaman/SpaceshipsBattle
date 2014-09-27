@@ -15,7 +15,7 @@ public class LevelController {
     public LevelController(String s){
         Gson gson = new Gson();
         levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
-        changeEnabled();
+        changeEnabled();                                                                                     x
     }
 
     public LevelController() {
@@ -25,6 +25,7 @@ public class LevelController {
     public void addLevel(int levelId, int x, int y, boolean isInfinity){
         levels.add(new LevelInfo(levelId, x, y, isInfinity));
     }
+
 
     public Iterator<LevelInfo> getIterator() {
         return levels.iterator();
