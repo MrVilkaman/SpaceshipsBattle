@@ -3,12 +3,12 @@ package donnu.zolotarev.SpaceShip.GameData;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import donnu.zolotarev.SpaceShip.R;
 
 public class HeroFeatures {
     private static transient HeroFeatures instance;
 
     private int maxHealth = 500;
-
 
     public static HeroFeatures get(){
         return instance;
@@ -28,10 +28,10 @@ public class HeroFeatures {
     }
 
     public int getMaxHealth() {
-        return maxHealth;
+        return Shop.get().getRecursiveEffectById(R.string.shop_item_armor_title,maxHealth);
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
+    public int getExtraBulletDamege() {
+        return Shop.get().getEffectById(R.string.shop_item_damage_title);
     }
 }

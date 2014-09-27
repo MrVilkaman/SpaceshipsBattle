@@ -3,21 +3,24 @@ package donnu.zolotarev.SpaceShip.GameData;
 public class ShopGrowthRates {
     public enum RatesModels{
         LINEARLY,
-        PARABOLA
+        PARABOLA,
+        SPECIAL_1,
     }
 
-    static int getPriceForLevel(RatesModels models,int base,int diff,int level){
-        int i = 0;
+    static int getPriceForLevel(RatesModels models,int base,float diff,float level){
+        float i = 0;
         switch (models){
             case LINEARLY:
                 i = base+diff*level;
                 break;
             case PARABOLA:
                 i = base+diff*level*level;
-                base = i;
-
+                break;
+            case SPECIAL_1:
+                i = base*(1 +diff*level);
+                break;
         }
 
-        return i;
+        return (int)i;
     }
 }

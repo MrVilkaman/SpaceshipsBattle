@@ -2,10 +2,6 @@ package donnu.zolotarev.SpaceShip.GameData;
 
 public class ShopItem {
 
-    private final int maxLevel;
-    private final ShopGrowthRates.RatesModels models;
-    private final int priceDiff;
-
     public enum ItemShopType {
         AMMO,
         DEFENCE
@@ -16,61 +12,52 @@ public class ShopItem {
     // count = -1 - Предмет НЕ куплен
     // count >= 0 = Предмет куплен, Количество оставшихся патронов или уровень, если isHaveAmmo = false.
     private int count;
-    private String title;
-    private String description;
+    private int titleResId;
+    private int descriptionResId;
     private ItemShopType type;
     private boolean isHaveAmmo = false;
+    private final int maxLevel;
+    private final ShopGrowthRates.RatesModels models;
+    private final float priceDiff;
 
+    private final ShopGrowthRates.RatesModels modelsEffect;
+    private final int effectBase;
+    private final float effectDiff;
 
-    public ShopItem(String title, String description, ItemShopType type,int maxLevel,ShopGrowthRates.RatesModels models,int priceBuy,int priceDiff) {
-        this.title = title;
-        this.description = description;
+    public ShopItem(int titleResId, int descriptionResId, ItemShopType type,int maxLevel
+            ,ShopGrowthRates.RatesModels models,int priceBuy,float priceDiff
+            ,ShopGrowthRates.RatesModels modelsEffect,int effectBase,float effectDiff) {
+        this.titleResId = titleResId;
+        this.descriptionResId = descriptionResId;
         this.type = type;
         this.priceBuy = priceBuy;
         this.priceDiff = priceDiff;
         this.maxLevel = maxLevel;
         this.models = models;
+        this.modelsEffect = modelsEffect;
+        this.effectBase = effectBase;
+        this.effectDiff = effectDiff;
         count = 0;
     }
-
-   /* public ShopItem(String title, String description, ItemShopType type,int priceBuyGun,int countAddAmmo,int priceBuyAmmo) {
-        this.title = title;
-        this.description = description;
-        this.type = type;
-        this.priceBuy = priceBuy;
-        count = -1;
-    }*/
-
 
     public int getPriceBuy() {
         if (isHaveAmmo){
             return -1;
         }else{
-
             return ShopGrowthRates.getPriceForLevel(models, priceBuy,priceDiff,count);
         }
-
-        /*if (!alreadyBought()){
-            return priceBuy;
-        }else{
-            if (isHaveAmmo){
-                return ShopGrowthRates.getPriceForLevel(models, priceItemBuy,priceDiff,count);
-            }else{
-                return -1;
-            }
-        }*/
     }
 
     public int getCount() {
         return count;
     }
 
-    public String getTitle() {
-        return title;
+    public int getTitle() {
+        return titleResId;
     }
 
-    public String getDescription() {
-        return description;
+    public int getDescriptionResId() {
+        return descriptionResId;
     }
 
     public boolean isUseAmmo() {
@@ -94,9 +81,22 @@ public class ShopItem {
         return count != maxLevel;
     }
 
-    public Object getLevelMax() {
+    public int getLevelMax() {
         return maxLevel;
     }
 
+    public int getEffect() {
+        return ShopGrowthRates.getPriceForLevel(modelsEffect, effectBase,effectDiff,count);
+    }
+
+    public int getEffectRec(int base) {
+        int value = base;
+        int i = 0;
+        while (i != count){
+            value += ShopGrowthRates.getPriceForLevel(modelsEffect, effectBase,effectDiff,i);
+            i++;
+        }
+        return value;
+    }
 
 }

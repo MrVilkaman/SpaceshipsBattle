@@ -32,12 +32,30 @@
     <string name = "btn_shop_already_bought">Куплено</string>
 
     <!--    Магазин предметы-->
-    <string name = "shop_item_armor_title">Броня</string>
+    <string name = "shop_item_armor_title">Броня! Текущая прочность  %1$s единиц!</string>
     <string name = "shop_item_armor_description">Увеличивает максимально количестно урона, который может выдержать
         корабль.
     </string>
-    <string name = "shop_item_damage_title">Увеличенный урон</string>
+    <string name = "shop_item_damage_title">Увеличенный урон на %1$s единиц!</string>
     <string name = "shop_item_damage_description">Увеличивает наносимый урон от каждой пули.</string>
     <string name = "shop_item_level_template">%1$s / %2$s</string>
+    <string name = "shop_item_damage_description_2">
+        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+        sdasdas
+        da
+        sd
+        asd
+        as
+        da
+        sd
+
+        as
+        as
+        dasdasasdasdaskldaskdlkas   asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
+    </string>
 
 </resources>

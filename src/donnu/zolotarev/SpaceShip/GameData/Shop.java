@@ -5,14 +5,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.SpaceExeptions.NoShopItemById;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Shop {
 
     private static transient Shop instance;
-
     private ArrayList<ShopItem> list;
 
     public int getSize(){
@@ -30,11 +31,14 @@ public class Shop {
     private Shop(Context context){
         list = new ArrayList<ShopItem>();
 
-        list.add(new ShopItem(context.getString(R.string.shop_item_armor_title),context.getString(R.string.shop_item_armor_description),
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,150,75));
+        list.add(new ShopItem(R.string.shop_item_armor_title,R.string.shop_item_armor_description,
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,150,75
+        , ShopGrowthRates.RatesModels.SPECIAL_1,150,0.5f));
 
-        list.add(new ShopItem(context.getString(R.string.shop_item_damage_title),context.getString(R.string.shop_item_damage_description),
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,120));
+        list.add(new ShopItem(R.string.shop_item_damage_title,R.string.shop_item_damage_description,
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,120,
+                ShopGrowthRates.RatesModels.LINEARLY,0,15));
+
     }
 
     public static void create(Context context,String s){
@@ -52,7 +56,6 @@ public class Shop {
         }
     }
 
-
     public static Shop get() {
         return instance;
     }
@@ -61,4 +64,29 @@ public class Shop {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
+
+    public int getEffectById(int titleResId) throws NoShopItemById{
+        Iterator<ShopItem> it = list.iterator();
+        while (it.hasNext()){
+            ShopItem item = it.next();
+            if(item.getTitle() == titleResId){
+                return item.getEffect();
+            }
+        }
+        new NoShopItemById();
+        return 0;
+    }
+
+    public int getRecursiveEffectById(int titleResId, int base) throws NoShopItemById{
+        Iterator<ShopItem> it = list.iterator();
+        while (it.hasNext()){
+            ShopItem item = it.next();
+            if(item.getTitle() == titleResId){
+                return item.getEffectRec(base);
+            }
+        }
+        new NoShopItemById();
+        return 0;
+    }
+
 }

@@ -2,24 +2,50 @@
 
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:layout_width = "match_parent"
-                android:layout_height = "100dp">
-    <TextView android:layout_width = "wrap_content"
-              android:layout_height = "wrap_content"
-            android:text="@string/item_shop_price"
-            android:layout_above = "@+id/btn_shop_buy"
-            android:textAppearance = "?android:attr/textAppearanceMedium"
-            android:gravity="center"
-            android:layout_alignLeft = "@+id/btn_shop_buy"
-            android:layout_alignRight = "@+id/btn_shop_buy"
-            android:id = "@+id/item_shop_price" />
+                android:layout_height = "wrap_content"
+                android:minWidth = "100dp"
+                android:paddingTop = "0dp"
+                android:paddingLeft = "5dp"
+                android:paddingRight = "5dp"
+                android:paddingBottom = "5dp">
 
-    <Button android:layout_width = "wrap_content"
+    <LinearLayout
+            android:orientation = "vertical"
+            android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:text="@string/btn_shop_buy"
-            android:textAppearance = "?android:attr/textAppearanceLarge"
-            android:layout_centerVertical = "true"
+            android:id = "@+id/linearLayout"
+            android:layout_alignParentTop = "true"
             android:layout_alignParentRight = "true"
-            android:id = "@+id/btn_shop_buy" />
+            >
+        <TextView android:layout_width = "wrap_content"
+                  android:layout_height = "wrap_content"
+                android:text="asdasd"
+                android:textAppearance = "?android:attr/textAppearanceMedium"
+                android:gravity="center"
+                android:layout_alignLeft = "@+id/btn_shop_buy"
+                android:layout_alignRight = "@+id/btn_shop_buy"
+                android:id = "@+id/item_shop_price"
+                android:layout_alignTop = "@+id/btn_shop_value"
+                android:layout_above = "@+id/btn_shop_levels_count"
+                android:layout_gravity = "center" />
+        <Button android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:text="@string/btn_shop_buy"
+                android:textAppearance = "?android:attr/textAppearanceLarge"
+                android:layout_centerVertical = "true"
+                android:layout_alignParentRight = "true"
+                android:id = "@+id/btn_shop_buy" />
+        <TextView
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:textAppearance = "?android:attr/textAppearanceMedium"
+                android:text = "0/10"
+                android:id = "@+id/btn_shop_levels_count"
+                android:layout_below = "@+id/btn_shop_buy"
+                android:layout_alignParentRight = "true"
+                android:layout_alignLeft = "@+id/btn_shop_buy"
+                android:layout_gravity = "center" />
+    </LinearLayout>
     <TextView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
@@ -31,20 +57,19 @@
     <TextView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:textAppearance = "?android:attr/textAppearanceMedium"
-            android:id = "@+id/btn_shop_value"
-            android:text="qwer"
+            android:textSize="18dp"
+            android:id = "@+id/btn_shop_discription"
+            android:text="@string/shop_item_damage_description_2"
             android:layout_below = "@+id/btn_shop_title"
-            android:layout_alignParentLeft = "true" />
-    <TextView
+            android:layout_alignParentLeft = "true"
+            android:layout_toLeftOf = "@+id/linearLayout" />
+    TextView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceMedium"
-            android:text = "0/10"
-            android:id = "@+id/btn_shop_levels_count"
-            android:gravity = "center"
-            android:layout_below = "@+id/btn_shop_buy"
-            android:layout_alignParentRight = "true"
-            android:layout_alignLeft = "@+id/btn_shop_buy" />
+            android:text = "Medium Text"
+            android:id = "@+id/btn_shop_value"
+            android:layout_below = "@+id/btn_shop_title"
+            android:layout_alignParentLeft = "true" />
 
 </RelativeLayout>

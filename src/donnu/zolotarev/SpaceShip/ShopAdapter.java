@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.ShopItem;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
@@ -17,6 +18,16 @@ public class ShopAdapter extends ArrayAdapter{
     private final Shop shop;
     private final UserDataProcessor dataProcessor;
     private final Callback callback;
+
+    public int getShopItemValue(int title) {
+        switch (title){
+            case R.string.shop_item_armor_title:
+                return HeroFeatures.get().getMaxHealth();
+            case R.string.shop_item_damage_title:
+                return HeroFeatures.get().getExtraBulletDamege();
+        }
+        return 0;
+    }
 
     public interface Callback{
         public void updateMoney();
@@ -38,12 +49,11 @@ public class ShopAdapter extends ArrayAdapter{
         Resources resources = parent.getContext().getResources();
        final ShopItem shopItem = shop.getItem(position);
 
-        viewHolder.title.setText(shopItem.getTitle());
-        viewHolder.value.setText(shopItem.getDescription());
+        viewHolder.title.setText(resources.getString(shopItem.getTitle(), getShopItemValue(shopItem.getTitle())));
+        viewHolder.discription.setText(shopItem.getDescriptionResId());
         viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
 
         boolean needBuyButton = true;//!shopItem.alreadyBought() || shopItem.isUseAmmo();
-
 
 
         if (needBuyButton){
@@ -93,12 +103,14 @@ public class ShopAdapter extends ArrayAdapter{
         public final TextView value;
         public final TextView title;
         public final TextView levels;
+        public final TextView discription;
 
         public ViewHolder(View view) {
            buy = (Button)view.findViewById(R.id.btn_shop_buy);
            price = (TextView)view.findViewById(R.id.item_shop_price);
            title = (TextView)view.findViewById(R.id.btn_shop_title);
            value = (TextView)view.findViewById(R.id.btn_shop_value);
+           discription = (TextView) view.findViewById(R.id.btn_shop_discription);
            levels = (TextView)view.findViewById(R.id.btn_shop_levels_count);
         }
     }                       

@@ -6,6 +6,7 @@ public class UserDataProcessor {
     private static UserDataProcessor instance;
 
     private Random random;
+
     private UserDataProcessor() {
         random = new Random();
     }
