@@ -31,7 +31,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 getString(PREF_HERO_STATS, ""));
         Shop.create(getActivity(),getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_SHOP_ITEMS, ""));
-
+        loadLevels();
     }
 
     public void saveGameState(){
@@ -42,22 +42,22 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
                 .putString(PREF_SHOP_ITEMS,Shop.get().toJson())
                 .commit();
+        saveLevels();
     }
 
-    public void saveLevels(LevelController levels){
+    public void saveLevels(){
         getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,levels.toJson())
+                .edit().putString(PREF_LEVELS,LevelController.getInstance().toJson())
                 .commit();
     }
 
-    public LevelController loadLevels(){
-        LevelController levels;
+    public void loadLevels(){
+        LevelController levels = LevelController.getInstance();
         String levelsJson =  getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
         if (!levelsJson.isEmpty()){
-            levels = new LevelController(levelsJson);
+           levels.load(levelsJson);
         } else {
-            levels = new LevelController();
             //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
 
             int dx = 1;
@@ -87,8 +87,6 @@ public abstract class BaseMenuFragment extends BaseFragment {
         levels.changeStateById(3,true);
         levels.getById(3).setWin(true);
         levels.getById(3).setNew(false);
-
-        return levels;
     }
 
     public boolean haveCurrentGame(){

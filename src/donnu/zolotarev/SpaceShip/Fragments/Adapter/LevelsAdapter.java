@@ -26,6 +26,7 @@ public class LevelsAdapter extends ArrayAdapter {
     public LevelsAdapter(Context context) {
         super(context, R.layout.item_level);
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        levelController = LevelController.getInstance();
     }
 
     @Override
@@ -96,10 +97,6 @@ public class LevelsAdapter extends ArrayAdapter {
         ViewHolder holder = new ViewHolder(view);
         view.setTag(holder);
         return view;
-    }
-
-    public void setLevels(LevelController levelController) {
-        this.levelController = levelController;
     }
 
     public void setClickListener(ISimpleClick click) {

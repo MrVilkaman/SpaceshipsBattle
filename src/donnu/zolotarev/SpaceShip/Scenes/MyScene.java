@@ -91,9 +91,9 @@ public abstract class MyScene extends Scene implements IActivityCallback {
         String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .getString(PREF_LEVELS,"");
         if (!levelsJson.isEmpty()){
-            levels = new LevelController(levelsJson);
+           // levels = new LevelController(levelsJson);
         } else {
-            levels = new LevelController();
+           // levels = new LevelController();
      //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
 
             int dx = 1;
@@ -107,7 +107,7 @@ public abstract class MyScene extends Scene implements IActivityCallback {
                     dy += 25;
                 }
                 y += dy;
-               levels.addLevel(i,y,350+60*x, false);
+               //levels.addLevel(i,y,350+60*x, false);
                 x += dx;
                 if (x == maxX || x == minX){
                     dx *= -1;
@@ -116,10 +116,10 @@ public abstract class MyScene extends Scene implements IActivityCallback {
 
            // levels.addLevel(WaveContainer.LEVEL_TEST, 200,600, false);
            // levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
-            levels.changeEnabled();
+           // levels.changeEnabled();
         }
 
-        return levels;
+        return null;
     }
 
     public void toast(final String msg){

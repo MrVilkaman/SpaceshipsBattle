@@ -43,14 +43,11 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_select_levels,inflater,container);
         levelsAdapter = new LevelsAdapter(getActivity());
-        levelsAdapter.setLevels(loadLevels());
         levelsAdapter.setClickListener(startLevelListenet);
         listView.setAdapter(levelsAdapter);
 
         loadGame();
         userData = UserData.get();
-
-
 
         return view;
     }

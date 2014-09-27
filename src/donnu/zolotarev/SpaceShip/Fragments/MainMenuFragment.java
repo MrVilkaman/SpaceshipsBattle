@@ -110,7 +110,6 @@ public class MainMenuFragment extends BaseMenuFragment {
     }
 
     private void openSelectLevels(){
-
         showFragment(new SelectLevelFragment(),true);
     }
 

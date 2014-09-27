@@ -9,16 +9,21 @@ import java.util.Iterator;
 
 public class LevelController {
 
+    private static transient LevelController instance = new LevelController();
 
-    private final ArrayList<LevelInfo> levels;
+    private ArrayList<LevelInfo> levels;
 
-    public LevelController(String s){
-        Gson gson = new Gson();
-        levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
-        changeEnabled();                                                                                     x
+    public static LevelController getInstance() {
+        return instance;
     }
 
-    public LevelController() {
+    public void load(String s){
+        Gson gson = new Gson();
+        levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
+        changeEnabled();
+    }
+
+    private LevelController() {
         levels = new ArrayList<LevelInfo>();
     }
 
