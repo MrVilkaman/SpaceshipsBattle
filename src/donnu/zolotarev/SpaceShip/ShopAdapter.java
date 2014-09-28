@@ -49,7 +49,12 @@ public class ShopAdapter extends ArrayAdapter{
         Resources resources = parent.getContext().getResources();
        final ShopItem shopItem = shop.getItem(position);
 
-        viewHolder.title.setText(resources.getString(shopItem.getTitle(), getShopItemValue(shopItem.getTitle())));
+        boolean hideTitle = !shopItem.isUseAmmo() && shopItem.alreadyBought();
+        if (hideTitle){
+            viewHolder.title.setText(resources.getString(shopItem.getTitle(), getShopItemValue(shopItem.getTitle())));
+        }else{
+            viewHolder.title.setText(resources.getString(shopItem.getTitle()));
+        }
         viewHolder.discription.setText(shopItem.getDescriptionResId());
         viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
 
