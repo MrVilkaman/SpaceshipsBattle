@@ -65,7 +65,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         shopListner = new ISimpleClick() {
             @Override
             public void onClick(int id) {
-                gameScene =  new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
+                gameScene = null;// new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
             }
         };
 
@@ -267,9 +267,9 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     @Override
     public void callback(int statusCode) {
         switch (statusCode){
-            case ShopScene.CALLBACK_UPDATE_MONEY:
+          /*  case ShopScene.CALLBACK_UPDATE_MONEY:
                 updateInfo();
-                break;
+                break;*/
         }
     }
 
