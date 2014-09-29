@@ -43,8 +43,10 @@ public class ShopAdapter extends ArrayAdapter{
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        View view = inflateNewView(parent);
-        ViewHolder viewHolder = (ViewHolder)view.getTag();
+        if (convertView == null){
+            convertView = inflateNewView(parent);
+        }
+        ViewHolder viewHolder = (ViewHolder)convertView.getTag();
 
         Resources resources = parent.getContext().getResources();
        final ShopItem shopItem = shop.getItem(position);
@@ -86,7 +88,7 @@ public class ShopAdapter extends ArrayAdapter{
                 }
             });
         }
-        return view;
+        return convertView;
     }
 
     @Override

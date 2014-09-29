@@ -30,9 +30,11 @@ public class LevelsAdapter extends ArrayAdapter {
     }
 
     @Override
-    public View getView(int position, final View convertView, ViewGroup parent) {
-        View view = inflateNewView(parent);
-        ViewHolder holder = (ViewHolder)view.getTag();
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null){
+            convertView = inflateNewView(parent);
+        }
+        ViewHolder holder = (ViewHolder)convertView.getTag();
         final LevelInfo levelInfo =  levelController.getLevelInfo(position);
         Resources resources = parent.getResources();
 
@@ -50,7 +52,7 @@ public class LevelsAdapter extends ArrayAdapter {
                 clickListener.onClick(levelInfo.getLevelId());
             }
         });
-        return view;
+        return convertView;
     }
 
     private Color redraw(LevelInfo item) {
