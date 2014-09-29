@@ -1,10 +1,9 @@
 package donnu.zolotarev.SpaceShip.Units;
 
 import android.graphics.Point;
-import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.Weapons.*;
@@ -36,6 +35,8 @@ public class Hero extends BaseUnit {
         };
         hero = this;
         attachToScene();
+        heroFeatures = HeroFeatures.get();
+
     }
 
     @Override
@@ -46,15 +47,15 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 35, 30, -2),
                         new WeaponPos(sprite, 35, 70, 2)});
 
-        ShopData shopData = ShopData.get();
-        IWeaponModificator mode = new DamageModificator(HeroFeatures.get().getExtraBulletDamege(), IWeaponModificator.Mode.Add);
+        IWeaponModificator mode = new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
-        if (shopData.isHaveDoubleGunAmmo()){
+        // todo получаить инко об оружии.
+        /*if (shopData.isHaveDoubleGunAmmo()){
             shopData.useDoubleGun();
             gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
-        }else{
+        }else{*/
             gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
-        }
+        //}
         weaponController.loadWeapon(gun, 0);
         // todo Rocket
         rocketController = new RocketController(this,
@@ -69,7 +70,6 @@ public class Hero extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        heroFeatures = HeroFeatures.get();
         health = heroFeatures.getMaxHealth();
     }
 

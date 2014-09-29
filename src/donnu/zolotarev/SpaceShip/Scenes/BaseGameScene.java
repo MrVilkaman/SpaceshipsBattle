@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
-import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
@@ -39,7 +38,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected static BaseGameScene activeScene;
     protected static Engine engine;
     protected final GameActivity shipActivity;
-    protected final ShopData shopDate;
     protected IWaveController waveController;
     private final ObjectController enemyController;
     private final ObjectController bulletController;
@@ -120,7 +118,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         enemyController = new ObjectController<BaseUnit>();
         bulletController = new ObjectController<BaseBullet>();
 
-        shopDate = ShopData.get();
 
         createFPSBase();
         createHealthBar();
@@ -229,7 +226,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
-        if (shopDate.isHaveRocketGun()){
+        // todo отображать кнопку ракет
+        /*if (shopDate.isHaveRocketGun()){
 
         final Rectangle btnFire2 = new Rectangle(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
@@ -262,7 +260,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             analogOnScreenControl.registerTouchArea(btnFire2);
             createRocketBar();
             rocketBar.setText(String.valueOf(shopDate.getRocketCount()));
-        }
+        }*/
     }
 
     private void createRocketBar(){

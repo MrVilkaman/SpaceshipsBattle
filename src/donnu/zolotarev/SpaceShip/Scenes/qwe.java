@@ -11,7 +11,6 @@ import org.andengine.util.HorizontalAlign;
 public class qwe extends Scene {
 
     public qwe() {
-
         setBackground(new Background(0.9f, 0.9f, 0.9f));
         attachChild(new Text(50,30, TextureLoader.getFont(),"1234567890/"
                 ,new TextOptions(HorizontalAlign.LEFT), GameActivity.getInstance().getEngine().getVertexBufferObjectManager()));

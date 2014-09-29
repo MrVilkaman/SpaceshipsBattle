@@ -1,11 +1,14 @@
 package donnu.zolotarev.SpaceShip.Activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
-import donnu.zolotarev.SpaceShip.Scenes.qwe;
+import donnu.zolotarev.SpaceShip.Scenes.MaketGameScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.engine.Engine;
@@ -20,14 +23,24 @@ import org.andengine.ui.activity.SimpleBaseGameActivity;
 public class GameActivity extends SimpleBaseGameActivity implements IParentScene {
 
 
+    public static final String EXTRA_LEVEL = "level";
+    private int level;
     private Camera camera;
     private BaseGameScene mainMenu;
     private static GameActivity instance;
+    private Intent intent;
+
+
+    public static Intent createIntent(Context context, int levelId){
+        Intent intent = new Intent(context,GameActivity.class);
+        intent.putExtra(GameActivity.EXTRA_LEVEL,levelId);
+      //      intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        return intent;
+    }
 
     public static GameActivity getInstance() {
         return instance;
     }
-
 
     public static Engine engine() {
         return instance.getEngine();
@@ -40,6 +53,8 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
+       intent = getIntent();
+        level = getIntent().getExtras().getInt(EXTRA_LEVEL);
     }
 
     @Override
@@ -65,11 +80,10 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
 
     @Override
     protected Scene onCreateScene() {
- /*       mainMenu = new MaketGameScene(this,null);
-        ((MaketGameScene)mainMenu).addNewWaveController( WaveContainer.getWaveControllerById(2,
-                (MaketGameScene) mainMenu));
-*/
-        return new qwe();
+        mainMenu = new MaketGameScene(this,null);
+        ((MaketGameScene)mainMenu).addNewWaveController( WaveContainer.getWaveControllerById(level,
+                 mainMenu));
+        return mainMenu;
     }
 
     public static int getCameraWidth() {
@@ -85,15 +99,6 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     }
 
     @Override
-    protected void onDestroy() {
-        finish();
-//        android.os.Process.killProcess(android.os.Process.myPid());
-        super.onDestroy();
-    }
-
-
-
-    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if((keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_BACK ) && event.getAction() == KeyEvent.ACTION_DOWN){
@@ -102,6 +107,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
         }else {
             return super.onKeyDown(keyCode, event);
         }
+          //  return super.onKeyDown(keyCode, event);
     }
 
    /* @Override
@@ -129,12 +135,14 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
 
     @Override
     public void returnToParentScene(int statusCode) {
-
+        setResult(RESULT_OK,new Intent());
+        finish();
     }
 
     @Override
     public void restart(int statusCode) {
-
+        //todo вернуть возможность переиграть)
+//      startActivityForResult(intent, ???);
     }
 
     @Override

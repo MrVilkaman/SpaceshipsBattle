@@ -9,7 +9,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.GameData.ShopData;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
@@ -43,7 +42,6 @@ public abstract class MyScene extends Scene implements IActivityCallback {
                 .edit()
                 .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
                 .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
-                .putString(PREF_SHOP_ITEMS,gson.toJson(ShopData.get()))
                 .commit();
     }
 
@@ -53,8 +51,6 @@ public abstract class MyScene extends Scene implements IActivityCallback {
                 getString(PREF_USER_STATS,""));
         HeroFeatures.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
                 getString(PREF_HERO_STATS,""));
-        ShopData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_SHOP_ITEMS,""));
 
     }
 

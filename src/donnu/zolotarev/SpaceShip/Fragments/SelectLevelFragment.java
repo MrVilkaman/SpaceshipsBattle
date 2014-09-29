@@ -18,6 +18,7 @@ import donnu.zolotarev.SpaceShip.UI.HorizontalListView;
 
 public class SelectLevelFragment extends BaseMenuFragment {
 
+    private static final int GAME_STOP = 0;
     @InjectView(R.id.select_levels_money_val)
     TextView gold;
 
@@ -28,7 +29,8 @@ public class SelectLevelFragment extends BaseMenuFragment {
     private ISimpleClick startLevelListenet = new ISimpleClick() {
         @Override
         public void onClick(int id) {
-            startActivityForResult(new Intent(getActivity(),GameActivity.class),1);
+
+            startActivityForResult(GameActivity.createIntent(getActivity(), id), GAME_STOP);
         }
     };
     private UserData userData;
@@ -85,4 +87,17 @@ public class SelectLevelFragment extends BaseMenuFragment {
        }
     }
 */
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case GAME_STOP:
+                if (resultCode == Activity.RESULT_OK){
+                    int df = 9;
+                    df +=6;
+                }
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }
