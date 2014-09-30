@@ -121,7 +121,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     public void returnToParentScene(int statusCode) {
         deactive();
         processResault(statusCode);
-        setChildScene(menuFactory, false, true, true);
+        parentScene.returnToParentScene(statusCode);
     }
 
     private void processResault(int statusCode) {
