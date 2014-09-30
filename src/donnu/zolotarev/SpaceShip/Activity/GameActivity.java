@@ -4,11 +4,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
-import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
-import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
-import donnu.zolotarev.SpaceShip.Scenes.MaketGameScene;
+import donnu.zolotarev.SpaceShip.Scenes.MyScene;
+import donnu.zolotarev.SpaceShip.Scenes.SelectionLevelScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.engine.Engine;
@@ -26,9 +26,8 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public static final String EXTRA_LEVEL = "level";
     private int level;
     private Camera camera;
-    private BaseGameScene mainMenu;
+    private MyScene mainMenu;
     private static GameActivity instance;
-    private Intent intent;
 
 
     public static Intent createIntent(Context context, int levelId){
@@ -53,7 +52,6 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         instance = this;
-       intent = getIntent();
         level = getIntent().getExtras().getInt(EXTRA_LEVEL);
     }
 
@@ -80,9 +78,8 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
 
     @Override
     protected Scene onCreateScene() {
-        mainMenu = new MaketGameScene(this,null);
-        ((MaketGameScene)mainMenu).addNewWaveController( WaveContainer.getWaveControllerById(level,
-                 mainMenu));
+
+        mainMenu = new SelectionLevelScene(this,level);
         return mainMenu;
     }
 
@@ -110,7 +107,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
           //  return super.onKeyDown(keyCode, event);
     }
 
-   /* @Override
+    @Override
     protected void onResume() {
         super.onResume();
         Log.i("XXX", "Its work,SpaceShipActivity onStart" + (mainMenu != null));
@@ -126,7 +123,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
         if (mainMenu != null){
             mainMenu.onPause();
         }
-    }*/
+    }
 
     public void exit() {
         onDestroy();
@@ -135,18 +132,13 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
 
     @Override
     public void returnToParentScene(int statusCode) {
-        setResult(RESULT_OK,new Intent());
+        Intent intent =  new Intent();
+        setResult(RESULT_OK,intent);
         finish();
     }
 
     @Override
     public void restart(int statusCode) {
-        //todo вернуть возможность переиграть)
-//      startActivityForResult(intent, ???);
     }
 
-    @Override
-    public void callback(int statusCode) {
-
-    }
 }

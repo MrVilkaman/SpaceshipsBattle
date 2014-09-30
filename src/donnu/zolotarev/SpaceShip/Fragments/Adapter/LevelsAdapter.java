@@ -35,7 +35,7 @@ public class LevelsAdapter extends ArrayAdapter {
             convertView = inflateNewView(parent);
         }
         ViewHolder holder = (ViewHolder)convertView.getTag();
-        final LevelInfo levelInfo =  levelController.getLevelInfo(position);
+        final LevelInfo levelInfo =  levelController.getLevelInfoForAdapter(position);
         Resources resources = parent.getResources();
 
             holder.bk.setBackgroundColor(redraw(levelInfo).getARGBPackedInt());

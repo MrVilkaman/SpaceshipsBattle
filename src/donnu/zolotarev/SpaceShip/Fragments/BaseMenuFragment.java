@@ -60,22 +60,8 @@ public abstract class BaseMenuFragment extends BaseFragment {
         } else {
             //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
 
-            int dx = 1;
-            int minX = -2;
-            int maxX = 2;
-            int x = minX;
-            int dy = 50;
-            int y = 15;
             for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_19; i++) {
-                if(i == 11){
-                    dy += 25;
-                }
-                y += dy;
-                levels.addLevel(i,y,350+60*x, false);
-                x += dx;
-                if (x == maxX || x == minX){
-                    dx *= -1;
-                }
+                levels.addLevel(i, false);
             }
 
             // levels.addLevel(WaveContainer.LEVEL_TEST, 200,600, false);

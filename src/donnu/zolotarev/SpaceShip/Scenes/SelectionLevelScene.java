@@ -1,31 +1,17 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
-import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
-import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
-import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Utils.HALIGMENT;
-import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
-import donnu.zolotarev.SpaceShip.Utils.WALIGMENT;
 import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.Background;
 import org.andengine.entity.scene.menu.MenuScene;
 import org.andengine.entity.text.Text;
-import org.andengine.entity.text.TextOptions;
-import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
-
-import java.util.Iterator;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
     private final GameActivity shipActivity;
@@ -43,114 +29,21 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private Text goldBar;
     private ISimpleClick shopListner;
 
-    public SelectionLevelScene(IParentScene parentScene) {
+    public SelectionLevelScene(IParentScene parentScene,int level) {
         super(parentScene);
         self = this;
         this.parentScene = parentScene;
         shipActivity = GameActivity.getInstance();
        engine = shipActivity.getEngine();
        setBackground(new Background(Color.WHITE));
-
-       initLevels();
         dataProcessor = UserDataProcessor.get();
-       initUI();
+        initLevels();
+        lastSceneId = level;
+        createGameScene(lastSceneId);
     }
 
     private void initLevels() {
-        loadGame();
-        levels = loadLevels();
-    }
-
-    private void initUI() {
-        shopListner = new ISimpleClick() {
-            @Override
-            public void onClick(int id) {
-                gameScene = null;// new ShopScene(SelectionLevelScene.this,SelectionLevelScene.this);
-            }
-        };
-
-        createGoldBar();
-        int x = Constants.CAMERA_WIDTH_HALF;
-        int y = 0;
-        menuFactory = MenuFactory.createMenu(engine, shipActivity.getCamera())
-                .addedItem(TextureLoader.getChangeLevelLableTextureRegion1(), Constants.CAMERA_WIDTH_HALF,5, WALIGMENT.CENTER, HALIGMENT.TOP )
-                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
-                    @Override
-                    public void onClick(int id) {
-                        parentScene.returnToParentScene(- 1);
-                    }
-                }, Constants.CAMERA_WIDTH, Constants.CAMERA_HEIGHT, WALIGMENT.RIGHT, HALIGMENT.BOTTOM)
-                .addedItem(TextureLoader.getChangeLevelIconShop(),shopListner,Constants.CAMERA_WIDTH -Constants.CAMERA_WIDTH_HALF/2,0, WALIGMENT.CENTER, HALIGMENT.TOP)
-                .enableAnimation().build();
-
-
-        setChildScene(menuFactory);
-        redrawLevelsUI();
-
-
-    }
-
-    private void redrawLevelsUI() {
-        menuFactory.clearChildScene();
-        MenuFactory qq = MenuFactory.createMenu(engine, shipActivity.getCamera());
-        Iterator<LevelInfo> iter = levels.getIterator();
-        while(iter.hasNext()){
-            final LevelInfo item = iter.next();
-            String name;
-            Color color;
-            if(item.getLevelId() == WaveContainer.LEVEL_INFINITY){
-                color = Color.BLACK;
-                item.setEnabled(true);
-                item.setWin(true);
-                name = "Inf";
-            }else if(item.getLevelId() == WaveContainer.LEVEL_TEST){
-                color = Color.BLACK;
-                item.setEnabled(true);
-                item.setWin(true);
-                name = "TEST";
-            }else if(item.getLevelId() == WaveContainer.LEVEL_MUSEUM){
-                color = Color.BLACK;
-                item.setEnabled(true);
-                item.setWin(true);
-                name = "MUSEUM";
-            } else {
-                name = String.valueOf(item.getLevelId());
-                if (item.isEnabled()){
-                    if (item.isNew()){
-                        color = Color.BLACK;
-                        // name = "N";
-                    }else {
-                        if (item.isWin()){
-                            color = Color.GREEN;
-                            //  name = "X";
-                        } else {
-                            color = Color.RED;
-                            //  name = "O";
-                        }
-                    }
-                } else {
-                    color = new Color(184/255f,  183/255f,  183/255f, 1);
-                }
-            }
-            ISimpleClick click = null;
-            if (item.isEnabled()){
-                click = new ISimpleClick() {
-                    @Override
-                    public void onClick(int id) {
-                        createGameScene(item.getLevelId());
-                        lastSceneId = id;
-                    }
-                };
-            }
-            qq.addedText(name, TextureLoader.getFontBig(), click, color, item.getX(), item.getY());
-        }
-        qq.enableAnimation().build();
-        menuFactory.setChildScene(qq.build());
-
-        updateInfo();
-
-        saveLevels(levels);
-        saveGameState();
+     levels = LevelController.getInstance();
     }
 
     @Override
@@ -192,7 +85,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 ((TestGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(TestGameScene)gameScene));
 
                 break;
-            case WaveContainer.LEVEL_19:
+          /*  case WaveContainer.LEVEL_19:
                 // todo
                 levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
 
@@ -209,8 +102,7 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                                     }
                                 }).show();
                     }
-                });
-                return;
+                });*/
             case WaveContainer.LEVEL_MUSEUM:
                 gameScene = new MuseumScene(this);
                 ((MuseumScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MuseumScene)gameScene));
@@ -229,7 +121,6 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     public void returnToParentScene(int statusCode) {
         deactive();
         processResault(statusCode);
-        redrawLevelsUI();
         setChildScene(menuFactory, false, true, true);
     }
 
@@ -264,35 +155,4 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         createGameScene(activeLevel);
     }
 
-    @Override
-    public void callback(int statusCode) {
-        switch (statusCode){
-          /*  case ShopScene.CALLBACK_UPDATE_MONEY:
-                updateInfo();
-                break;*/
-        }
-    }
-
-    private void createGoldBar(){
-        try {
-            int y = 12;
-            int x = GameActivity.getCameraWidth()-5;
-            goldBar = new Text(x,y,TextureLoader.getFont(),"000000",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            x = GameActivity.getCameraWidth() - (int)goldBar.getWidth();
-            goldBar.setPosition(x,y);
-            attachChild(goldBar);
-            Text text = new Text(x,y,TextureLoader.getFont(),"Деньги: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            attachChild(text);
-            x -= (text.getWidth()+10);
-            text.setPosition(x,y);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void updateInfo(){
-        UserData userData = UserData.get();
-        goldBar.setText(String.valueOf(userData.getMoney()));
-    }
 }

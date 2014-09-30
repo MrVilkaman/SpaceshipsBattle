@@ -6,13 +6,8 @@ import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.widget.Toast;
-import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
-import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
-import donnu.zolotarev.SpaceShip.Levels.LevelController;
-import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.IActivityCallback;
 import org.andengine.entity.scene.Scene;
 
@@ -34,89 +29,6 @@ public abstract class MyScene extends Scene implements IActivityCallback {
     public MyScene(IParentScene parentScene) {
     }
 
-    public void saveGameState(){
-        Gson gson = new Gson();
-
-        GameActivity shipActivity =  GameActivity.getInstance();
-        shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
-                .edit()
-                .putString(PREF_USER_STATS,gson.toJson(UserData.get()))
-                .putString(PREF_HERO_STATS,gson.toJson(HeroFeatures.get()))
-                .commit();
-    }
-
-    public void loadGame(){
-        GameActivity shipActivity =  GameActivity.getInstance();
-        UserData.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_USER_STATS,""));
-        HeroFeatures.create(shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_HERO_STATS,""));
-
-    }
-
-    public void saveLevels(LevelController levels){
-        GameActivity shipActivity =  GameActivity.getInstance();
-        shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,levels.toJson())
-                .commit();
-    }
-
-    public boolean haveCurrentGame(){
-        GameActivity shipActivity =  GameActivity.getInstance();
-        String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .getString(PREF_LEVELS,"");
-        return !levelsJson.isEmpty();
-    }
-
-    public void clearCurrentGame(){
-        GameActivity shipActivity =  GameActivity.getInstance();
-        shipActivity.getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
-                .edit()
-                .putString(PREF_USER_STATS,"")
-                .putString(PREF_HERO_STATS,"")
-                .putString(PREF_SHOP_ITEMS,"")
-                .commit();
-        shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,"")
-                .commit();
-    }
-
-    public LevelController loadLevels(){
-        LevelController levels;
-        GameActivity shipActivity =  GameActivity.getInstance();
-        String levelsJson =  shipActivity.getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .getString(PREF_LEVELS,"");
-        if (!levelsJson.isEmpty()){
-           // levels = new LevelController(levelsJson);
-        } else {
-           // levels = new LevelController();
-     //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
-
-            int dx = 1;
-            int minX = -2;
-            int maxX = 2;
-            int x = minX;
-            int dy = 50;
-            int y = 15;
-            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_19; i++) {
-                if(i == 11){
-                    dy += 25;
-                }
-                y += dy;
-               //levels.addLevel(i,y,350+60*x, false);
-                x += dx;
-                if (x == maxX || x == minX){
-                    dx *= -1;
-                }
-            }
-
-           // levels.addLevel(WaveContainer.LEVEL_TEST, 200,600, false);
-           // levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
-           // levels.changeEnabled();
-        }
-
-        return null;
-    }
 
     public void toast(final String msg){
         final GameActivity shipActivity =  GameActivity.getInstance();

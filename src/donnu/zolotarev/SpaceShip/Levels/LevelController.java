@@ -3,15 +3,16 @@ package donnu.zolotarev.SpaceShip.Levels;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class LevelController {
 
     private static transient LevelController instance = new LevelController();
 
-    private ArrayList<LevelInfo> levels;
+    private HashMap<Integer,LevelInfo> levels;
+    private int excessCounter = 0;
 
     public static LevelController getInstance() {
         return instance;
@@ -19,21 +20,21 @@ public class LevelController {
 
     public void load(String s){
         Gson gson = new Gson();
-        levels = gson.fromJson(s,new TypeToken<Collection<LevelInfo>>(){}.getType());
+        excessCounter = 0;
+        levels = gson.fromJson(s,new TypeToken<Map<Integer,LevelInfo>>(){}.getType());
         changeEnabled();
     }
 
     private LevelController() {
-        levels = new ArrayList<LevelInfo>();
+        excessCounter = 0;
+        levels = new HashMap<Integer, LevelInfo>();
     }
 
-    public void addLevel(int levelId, int x, int y, boolean isInfinity){
-        levels.add(new LevelInfo(levelId, x, y, isInfinity));
-    }
-
-
-    public Iterator<LevelInfo> getIterator() {
-        return levels.iterator();
+    public void addLevel(int levelId, boolean isInfinity){
+        if( !(WaveContainer.LEVEL_1 <= levelId && levelId <= WaveContainer.LEVEL_19)){
+            excessCounter++;
+        }
+        levels.put(levelId, new LevelInfo(levelId, isInfinity));
     }
 
     public void changeStateById(int id, boolean win){
@@ -55,28 +56,26 @@ public class LevelController {
     }
 
     public void changeEnabled(){
-        int counter = 0;
-        for (int i = 0;i<levels.size();i++){
-            int index = i-1;
-            if(0<index){
-                levels.get(i).setEnabled(levels.get(index).isWin());
-            }else{
-                levels.get(i).setEnabled(true);
-            }
-         //       levels.get(i).setEnabled(true);
+        Iterator<Integer> iter =  levels.keySet().iterator();
+        Boolean isWin = true;
+        while (iter.hasNext()) {
+            LevelInfo item = levels.get(iter.next());
+            item.setEnabled(isWin);
+            //todo Убарть!
+            isWin = true;//item.isWin();
         }
     }
 
     public LevelInfo getById(int type) {
-        return  levels.get(type);
+        return levels.get(type);
     }
 
     public int getSize(){
-       return levels.size();
+       return levels.size() - excessCounter;
     }
 
-    public LevelInfo getLevelInfo(int pos){
-        return levels.get(pos);
+    public LevelInfo getLevelInfoForAdapter(int pos){
+        return levels.get(WaveContainer.LEVEL_1+pos);
     }
 
 }

@@ -2,21 +2,7 @@ package donnu.zolotarev.SpaceShip.Levels;
 
 public class LevelInfo {
 
-    public enum ItemShopType {
-        AMMO,
-        DEFENCE
-    }
-
-    public interface GrowthFunction{
-        public int getPriceForLevel(int level);
-    }
-
-    private GrowthFunction growthFunction ;
-    private ItemShopType itemShopType = ItemShopType.AMMO;
-
     private int levelId;
-    private int x;
-    private int y;
     private boolean isInfinity;
     private boolean isWin;
     private boolean isNew;
@@ -26,18 +12,8 @@ public class LevelInfo {
         return levelId;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public LevelInfo(int levelId, int x, int y, boolean isInfinity) {
+    public LevelInfo(int levelId, boolean isInfinity) {
         this.levelId = levelId;
-        this.x = x;
-        this.y = y;
         this.isInfinity = isInfinity;
         isNew = true;
     }
@@ -74,7 +50,6 @@ public class LevelInfo {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("levelId= ")
-                .append(levelId).append(" x= ").append(x).append(" y= ").append(y)
                 .append(" isEnabled= ").append(isEnabled).append(" isWin=").append(isWin).append(" isInfinity= ").append(isInfinity)
                 .append(" isNew= ").append(isNew);
         return builder.toString();

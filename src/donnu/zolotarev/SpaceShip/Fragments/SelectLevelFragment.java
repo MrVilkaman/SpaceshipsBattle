@@ -12,6 +12,7 @@ import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
+import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.UI.HorizontalListView;
@@ -26,11 +27,12 @@ public class SelectLevelFragment extends BaseMenuFragment {
     HorizontalListView listView;
 
     private LevelsAdapter levelsAdapter;
+    private Intent restartIntent;
     private ISimpleClick startLevelListenet = new ISimpleClick() {
         @Override
         public void onClick(int id) {
-
-            startActivityForResult(GameActivity.createIntent(getActivity(), id), GAME_STOP);
+            restartIntent = GameActivity.createIntent(getActivity(), id);
+            startActivityForResult(restartIntent, GAME_STOP);
         }
     };
     private UserData userData;
@@ -93,8 +95,14 @@ public class SelectLevelFragment extends BaseMenuFragment {
         switch (requestCode){
             case GAME_STOP:
                 if (resultCode == Activity.RESULT_OK){
-                    int df = 9;
-                    df +=6;
+                   int code =  data.getIntExtra(IParentScene.STATUS_CODE,-99);
+                   switch (code){
+                       case IParentScene.EXIT_RESTART:
+                           if (restartIntent != null){
+                               startActivityForResult(restartIntent,GAME_STOP);
+                           }
+                           break;
+                   }
                 }
                 break;
         }
