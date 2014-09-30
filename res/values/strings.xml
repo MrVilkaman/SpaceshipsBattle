@@ -65,5 +65,15 @@
     <string name = "shop_item_rocket_gun_title">Ракетная пушка (Не установлено)</string>
     <string name = "shop_item_rocket_ammo_title">Ракетная пушка (Установлено)</string>
     <string name = "shop_item_rocket_gun_description">Мощные самонаводящиеся ракеты.</string>
+    <string name = "txt_status_new">Новая миссия!</string>
+    <string name = "txt_status_gone">Миссия пройдена!</string>
+    <string name = "txt_status_lose">Миссия провалена!</string>
+    <string name = "txt_status_disable">Миссия Закрыта!</string>
+
+
+    <string name = "item_level_total_coast">Всего получено денег: %1$s</string>
+    <string name = "item_level_total_wins">Всего побед: %1$s</string>
+    <string name = "item_level_total_lose">Всего поражений: %1$s</string>
+    <string name = "item_level_total_games">Всего игр: %1$s</string>
 
 </resources>

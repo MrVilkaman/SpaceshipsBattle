@@ -68,11 +68,6 @@ public abstract class BaseMenuFragment extends BaseFragment {
             // levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
             levels.changeEnabled();
         }
-        levels.getById(2).setEnabled(true);
-        levels.getById(3).setEnabled(true);
-        levels.changeStateById(3,true);
-        levels.getById(3).setWin(true);
-        levels.getById(3).setNew(false);
     }
 
     public boolean haveCurrentGame(){

@@ -11,7 +11,7 @@ import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
-import donnu.zolotarev.SpaceShip.ShopAdapter;
+import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
 
 public class ShopFragment extends BaseMenuFragment {
 

@@ -45,6 +45,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             @Override
             public void onWinLevel() {
                 returnToParentScene(IParentScene.EXIT_WIN);
+
                 toast("Победа! И ты заработал " + score + "$!");
             }
         });
@@ -101,6 +102,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             }
             if( !isAlreadyProcess){
                 score =  dataProcessor.processGold(score,flag);
+                levelInfo.addTotalCoast(score);
             }
             isAlreadyProcess = true;
 

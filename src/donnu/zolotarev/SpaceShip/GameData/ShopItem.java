@@ -108,6 +108,7 @@ public class ShopItem {
         }else{
             if (alreadyBought()){
                 count += (int)effectDiff;
+                count = count <= maxLevel?count:maxLevel;
             }else{
                 count = (int)effectBase;
             }

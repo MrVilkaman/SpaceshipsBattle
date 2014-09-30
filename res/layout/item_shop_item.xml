@@ -52,7 +52,6 @@
             android:textAppearance = "?android:attr/textAppearanceLarge"
             android:id = "@+id/btn_shop_title"
             android:text="qwer"
-            android:layout_alignTop = "@+id/textView2"
             android:layout_alignParentLeft = "true" />
     <TextView
             android:layout_width = "wrap_content"

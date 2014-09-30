@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Fragments.Adapter;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -12,6 +12,7 @@ import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.ShopItem;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
+import donnu.zolotarev.SpaceShip.R;
 
 public class ShopAdapter extends ArrayAdapter{
     private final LayoutInflater lInflater;
@@ -58,10 +59,22 @@ public class ShopAdapter extends ArrayAdapter{
             viewHolder.title.setText(resources.getString(shopItem.getTitle()));
         }
         viewHolder.discription.setText(shopItem.getDescriptionResId());
-        viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
+        if (shopItem.getCount()>=0){
+            viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
+            viewHolder.levels.setVisibility(View.VISIBLE);
+        }else{
+            viewHolder.levels.setVisibility(View.GONE);
+        }
 
         boolean needBuyButton = true;//!shopItem.alreadyBought() || shopItem.isUseAmmo();
 
+
+
+        if (!shopItem.haveNext()){
+            viewHolder.price.setText("");
+            viewHolder.buy.setText(R.string.btn_shop_max_level);
+            needBuyButton = false;
+        }
 
         if (needBuyButton){
             viewHolder.price.setText(resources.getString(R.string.item_shop_price, shopItem.getPriceBuy()));
@@ -69,11 +82,6 @@ public class ShopAdapter extends ArrayAdapter{
             viewHolder.price.setText("");
         }
 
-        if (!shopItem.haveNext()){
-            viewHolder.price.setText("");
-            viewHolder.buy.setText(R.string.btn_shop_max_level);
-            needBuyButton = false;
-        }
 
         viewHolder.buy.setEnabled(needBuyButton);
         if (needBuyButton){

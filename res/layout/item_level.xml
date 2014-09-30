@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:id="@+id/item_level_bk"
                 android:background="@color/item_level_bk_color"
-                android:layout_width = "200dp"
-                android:layout_margin="5dp"
-                android:layout_height = "300dp">
+                android:layout_width = "250dp"
+                android:layout_height = "wrap_content">
 
     <LinearLayout android:layout_width = "wrap_content"
                   android:orientation="vertical"
-                  android:layout_centerVertical = "true"
-                  android:layout_centerHorizontal = "true"
+                  android:gravity="center"
                   android:layout_height = "wrap_content"
-                  android:id = "@+id/linearLayout">
+                  android:id = "@+id/linearLayout"
+                  android:layout_alignParentTop = "true"
+                  android:layout_centerHorizontal = "true"
+                  android:layout_marginTop = "20dp">
 
 
     <TextView
@@ -26,14 +26,47 @@
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceMedium"
-            android:text = "Скоро будет)"
-            android:id = "@+id/textView2" />
+            android:id = "@+id/item_level_status"
+            android:layout_gravity = "center" />
     </LinearLayout>
 
+    <LinearLayout
+                  android:id="@+id/item_level_total"
+                  android:layout_width = "wrap_content"
+                  android:orientation="vertical"
+                  android:layout_height = "wrap_content"
+                  android:layout_margin="5dp"
+                  android:layout_below = "@+id/linearLayout"
+                  android:layout_centerHorizontal = "true">
+
+        <TextView android:layout_width = "wrap_content"
+                  android:layout_height = "wrap_content"
+                  android:text="@string/item_level_total_coast"
+                  android:id="@+id/item_level_total_coast"
+                 />
+        <TextView android:layout_width = "wrap_content"
+                  android:layout_height = "wrap_content"
+                  android:text="@string/item_level_total_games"
+                  android:id="@+id/item_level_total_games"
+                />
+        <TextView android:layout_width = "wrap_content"
+                  android:layout_height = "wrap_content"
+                  android:text="@string/item_level_total_wins"
+                  android:id="@+id/item_level_total_wins"
+                   />
+        <TextView android:layout_width = "wrap_content"
+                  android:layout_height = "wrap_content"
+                  android:text="@string/item_level_total_lose"
+                  android:id="@+id/item_level_total_lose"
+                />
+
+
+    </LinearLayout>
     <Button android:layout_width = "150dp"
             android:layout_height = "wrap_content"
             android:text="@string/item_level_start"
             android:id="@+id/item_level_start"
             android:layout_alignParentBottom = "true"
             android:layout_centerHorizontal = "true" />
+
 </RelativeLayout>

@@ -127,13 +127,16 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
     private void processResault(int statusCode) {
        switch (statusCode){
            case IParentScene.EXIT_USER:
+               levels.getById(lastSceneId).addTotalRestart();
                break;
            case IParentScene.EXIT_DIE:
                levels.changeStateById(lastSceneId,false);
+               levels.getById(lastSceneId).addTotalLose();
 //               dataProcessor.processGold(levels.newestById(lastSceneId),false);
               break;
            case IParentScene.EXIT_WIN:
                levels.changeStateById(lastSceneId,true);
+               levels.getById(lastSceneId).addTotalWin();
                levels.changeEnabled();
 //               dataProcessor.processGold(levels.newestById(lastSceneId),true);
                break;
