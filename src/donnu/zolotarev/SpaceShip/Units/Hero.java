@@ -50,12 +50,12 @@ public class Hero extends BaseUnit {
         IWeaponModificator mode = new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.Add);
         IGun gun;
         // todo получаить инко об оружии.
-        /*if (shopData.isHaveDoubleGunAmmo()){
-            shopData.useDoubleGun();
+        if (heroFeatures.isHaveDoubleAmmo()){
+            heroFeatures.useDoubleGun();
             gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
-        }else{*/
+        }else{
             gun =  new SimpleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
-        //}
+        }
         weaponController.loadWeapon(gun, 0);
         // todo Rocket
         rocketController = new RocketController(this,
