@@ -60,6 +60,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public void onResume() {
        super.onResume();
        gold.setText(String.valueOf(userData.getMoney()));
+        saveGameState();
     }
 
 
@@ -103,6 +104,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
                            }
                            break;
                    }
+                    levelsAdapter.notifyDataSetInvalidated();
                 }
                 break;
         }
