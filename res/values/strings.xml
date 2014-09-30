@@ -62,5 +62,8 @@
     <string name = "shop_item_double_gun_description">Подготавливает основную пушку для выстрела сразу двух патронов за
         раз. (Нуждается в обслуживании перед каждым вылетом на задание)
     </string>
+    <string name = "shop_item_rocket_gun_title">Ракетная пушка (Не установлено)</string>
+    <string name = "shop_item_rocket_ammo_title">Ракетная пушка (Установлено)</string>
+    <string name = "shop_item_rocket_gun_description">Мощные самонаводящиеся ракеты.</string>
 
 </resources>

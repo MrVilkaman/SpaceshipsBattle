@@ -40,7 +40,10 @@ public class Shop {
                 ShopGrowthRates.RatesModels.LINEARLY,0,15));
 
         list.add(new ShopItem(R.string.shop_item_double_gun_title,R.string.shop_item_double_ammo_title,
-                R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,50,1000,300,3,1));
+                R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,20,1000,300,3,1));
+
+        list.add(new ShopItem(R.string.shop_item_rocket_gun_title,R.string.shop_item_rocket_ammo_title,
+                R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,20,2000,500,10,5));
 
     }
 
@@ -68,28 +71,16 @@ public class Shop {
         return gson.toJson(list);
     }
 
-    public int getEffectById(int titleResId) throws NoShopItemById{
+    public ShopItem getById(int titleResId) throws NoShopItemById{
         Iterator<ShopItem> it = list.iterator();
         while (it.hasNext()){
             ShopItem item = it.next();
-            if(item.getTitle() == titleResId){
-                return item.getEffect();
+            if(item.getId() == titleResId){
+                return item;
             }
         }
         new NoShopItemById();
-        return 0;
-    }
-
-    public int getRecursiveEffectById(int titleResId, int base) throws NoShopItemById{
-        Iterator<ShopItem> it = list.iterator();
-        while (it.hasNext()){
-            ShopItem item = it.next();
-            if(item.getTitle() == titleResId){
-                return item.getEffectRec(base);
-            }
-        }
-        new NoShopItemById();
-        return 0;
+        return null;
     }
 
 }

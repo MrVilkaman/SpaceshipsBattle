@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
@@ -226,8 +227,9 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
+        final HeroFeatures heroFeatures = HeroFeatures.get();
         // todo отображать кнопку ракет
-        /*if (shopDate.isHaveRocketGun()){
+        if (heroFeatures.isHaveRocketGun()){
 
         final Rectangle btnFire2 = new Rectangle(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
                 100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
@@ -236,13 +238,13 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
-                if (shopDate.isHaveRocket()){
+                if (heroFeatures.isHaveRocket()){
                     shipActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             if(pSceneTouchEvent.isActionDown()){
                                 hero.fireRocket();
-                                rocketBar.setText(String.valueOf(shopDate.useRocket()));
+                                rocketBar.setText(String.valueOf(heroFeatures.useRocket()));
 
                             }
                         }
@@ -259,8 +261,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             analogOnScreenControl.attachChild(btnFire2);
             analogOnScreenControl.registerTouchArea(btnFire2);
             createRocketBar();
-            rocketBar.setText(String.valueOf(shopDate.getRocketCount()));
-        }*/
+            rocketBar.setText(String.valueOf(heroFeatures.getRocketCount()));
+        }
     }
 
     private void createRocketBar(){

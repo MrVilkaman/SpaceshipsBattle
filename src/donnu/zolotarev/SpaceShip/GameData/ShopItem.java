@@ -78,6 +78,10 @@ public class ShopItem {
         return count;
     }
 
+    public int getId() {
+        return titleResId;
+    }
+
     public int getTitle() {
         if (!isUseAmmo() || !alreadyBought()){
             return titleResId;
@@ -141,4 +145,14 @@ public class ShopItem {
         }
     }
 
+    public int use(){
+        count--;
+        return count;
+       /* if (count != 0){
+            count--;
+            return true;
+        }else{
+            return false;
+        }*/
+    }
 }

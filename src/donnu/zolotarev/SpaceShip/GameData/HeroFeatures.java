@@ -28,10 +28,26 @@ public class HeroFeatures {
     }
 
     public int getMaxHealth() {
-        return Shop.get().getRecursiveEffectById(R.string.shop_item_armor_title,maxHealth);
+        return Shop.get().getById(R.string.shop_item_armor_title).getEffectRec(maxHealth);
     }
 
     public int getExtraBulletDamege() {
-        return Shop.get().getEffectById(R.string.shop_item_damage_title);
+        return Shop.get().getById(R.string.shop_item_damage_title).getEffect();
+    }
+
+    public boolean isHaveRocketGun() {
+        return Shop.get().getById(R.string.shop_item_rocket_gun_title).alreadyBought();
+    }
+
+    public int getRocketCount() {
+        return Shop.get().getById(R.string.shop_item_rocket_gun_title).getCount();
+    }
+
+    public boolean isHaveRocket() {
+        return Shop.get().getById(R.string.shop_item_rocket_gun_title).getCount() != 0;
+    }
+
+    public int useRocket() {
+        return Shop.get().getById(R.string.shop_item_rocket_gun_title).use();
     }
 }
