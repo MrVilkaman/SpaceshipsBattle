@@ -64,6 +64,7 @@ public  class WaveContainer {
             case LEVEL_1:
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addDelay(2f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 6, -1.0f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 4, 2.0f);
                 unitWave.waitLastKilled();
