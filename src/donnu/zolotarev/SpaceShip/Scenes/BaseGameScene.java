@@ -228,7 +228,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
         final HeroFeatures heroFeatures = HeroFeatures.get();
-        // todo отображать кнопку ракет
         if (heroFeatures.isHaveRocketGun()){
 
         final Rectangle btnFire2 = new Rectangle(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,

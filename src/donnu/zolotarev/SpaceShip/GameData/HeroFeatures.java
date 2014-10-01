@@ -44,7 +44,7 @@ public class HeroFeatures {
     }
 
     public boolean isHaveRocket() {
-        return Shop.get().getById(R.string.shop_item_rocket_gun_title).getCount() != 0;
+        return Shop.get().getById(R.string.shop_item_rocket_gun_title).getCount() > 0;
     }
 
     public int useRocket() {
@@ -60,7 +60,7 @@ public class HeroFeatures {
     }
 
     public boolean isHaveDoubleAmmo() {
-        return Shop.get().getById(R.string.shop_item_double_gun_title).getCount() != 0;
+        return Shop.get().getById(R.string.shop_item_double_gun_title).getCount() > 0;
     }
 
     public int useDoubleGun() {

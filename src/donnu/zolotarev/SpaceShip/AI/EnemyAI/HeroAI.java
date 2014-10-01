@@ -31,7 +31,6 @@ public class HeroAI extends SpriteAI {
             mY = yOld;
         }
         if (! Utils.equals(mRotation, rotateAngle, 0.1f)){
-            //todo влияет на скорость поворота
             mRotation -= Utils.dAngleDegree(mRotation,rotateAngle)/10;
         }else{
             mRotation = rotateAngle;

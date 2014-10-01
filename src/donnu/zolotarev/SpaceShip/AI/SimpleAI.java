@@ -59,7 +59,6 @@ public abstract class SimpleAI extends SpriteAI {
         if (flag){
             timeScan2-- ;
             if(timeScan2<0 ){
-                //todo заменить коэфициенты
                 if ( 100 < dist){
                     dX =  Utils.random(-40f,40f);
                     dY =  Utils.random(-40f,40f);

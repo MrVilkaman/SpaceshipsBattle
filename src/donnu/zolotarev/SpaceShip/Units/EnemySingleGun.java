@@ -52,7 +52,7 @@ public class EnemySingleGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 100;
+        defaultSpeed = 200;
         defaultMaxAngle = 3f;
         switch (level){
             case 0:
@@ -66,7 +66,7 @@ public class EnemySingleGun extends BaseUnit {
             case 2:
                 price = 40;
                 defaultHealth = 500;
-                defaultSpeed = 80;
+                defaultSpeed = 180;
                 defaultMaxAngle = 2f;
                 break;
         }

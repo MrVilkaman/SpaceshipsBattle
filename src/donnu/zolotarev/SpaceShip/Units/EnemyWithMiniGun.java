@@ -47,7 +47,7 @@ public class EnemyWithMiniGun extends BaseUnit {
         price = 60;
 
         defaultHealth = 500;
-        defaultSpeed = 100;
+        defaultSpeed = 200;
         defaultMaxAngle = 3f;
     }
 
