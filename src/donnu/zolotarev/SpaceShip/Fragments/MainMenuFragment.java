@@ -28,11 +28,7 @@ public class MainMenuFragment extends BaseMenuFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_main_menu, inflater, container);
-        if (haveCurrentGame()){
-            btnContinue.setVisibility(View.VISIBLE);
-        }else{
-            btnContinue.setVisibility(View.GONE);
-        }
+
 
         versionInfoUpdate();
 
@@ -51,6 +47,13 @@ public class MainMenuFragment extends BaseMenuFragment {
             });
             clearCurrentGame();
         }
+
+        if (haveCurrentGame()){
+            btnContinue.setVisibility(View.VISIBLE);
+        }else{
+            btnContinue.setVisibility(View.GONE);
+        }
+
         return view;
     }
 
