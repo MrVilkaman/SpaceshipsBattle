@@ -95,8 +95,6 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
             loadParam(unitLevel);
             loadWeapon(unitLevel);
         }else{
-            int f = 0;
-            f =1;
         }
 
         health = defaultHealth;

@@ -48,18 +48,16 @@ public class Meteor extends BaseUnit {
     public void init(int level, Point point, float angle) {
         PointF pointF = hero.getPosition();
 
+
+        pointF.y += ((int) Utils.random(- 5f, 5f)) * 10;
         if (angle == 180){
             point = new Point(1300, random.nextInt(65) * 10);
         }
 
-        angle =  Utils.getAngle(point.x, point.y, pointF.x, pointF.y);
+        angle = Utils.getAngle(point.x, point.y, pointF.x, pointF.y);
         super.init(level, point, angle /*+ Utils.random(- 10f, 10f)*/);
     }
 
-    @Override
-    public void init(int level, Point point, float angle, WaySpecifications us) {
-        super.init(level, point, angle, us);
-    }
 
     protected static void poolInit() {
         registredPool(Meteor.class,new GenericPool() {
