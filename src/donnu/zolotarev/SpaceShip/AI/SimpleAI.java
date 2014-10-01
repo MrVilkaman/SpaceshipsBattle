@@ -53,7 +53,12 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void prosecutionHero(int minDist,int maxDist){
         prosecutionHero(minDist, maxDist,true);
     }
-    protected final void prosecutionHero(int minDist,int maxDist,boolean flag){
+
+    protected final void prosecutionHero(int minDist, int maxDist, boolean flag){
+        prosecutionHero(minDist, maxDist, flag, specifications.getMaxRotationAndle());
+    }
+
+    protected final void prosecutionHero(int minDist, int maxDist, boolean flag, float maxAngle){
 
         float dist = Utils.distance(mX,mY,hero.getPosition().x,hero.getPosition().y);
         if (flag){
@@ -76,8 +81,8 @@ public abstract class SimpleAI extends SpriteAI {
             if (timeScan<0){
                 float angle =  Utils.getAngle(mX,mY,hero.getPosition().x+dX,hero.getPosition().y+dY);
                 angle = Utils.dAngleDegree(angle,mRotation);
-                angle = Utils.equals(0,angle,specifications.getMaxRotationAndle())?
-                        angle: specifications.getMaxRotationAndle()*Utils.getSign(angle) ;
+                angle = Utils.equals(0,angle,maxAngle)?
+                        angle: maxAngle*Utils.getSign(angle) ;
                 mRotation += angle;
                 timeScan = startTimeScan;
             }
@@ -148,7 +153,7 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void turnonY(){
         if (this.mY < -this.getHeight()/2 || this.mY > GameActivity.getCameraHeight()-this.getHeight()/2 ){
             if (flagFirstY){
-                prosecutionHero(0,1500);
+                prosecutionHero(0,1500,true,10f);
             }
         }else{
             flagFirstY = true;
@@ -158,7 +163,7 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void turnonX(){
         if (this.mX < -this.getWidth()/2|| this.mX > GameActivity.getCameraWidth() -this.getWidth()/2 ){
             if (flagFirstX){
-                prosecutionHero(0,1500);
+                prosecutionHero(0,1500,true,10f);
             }
         }else{
             flagFirstX = true;

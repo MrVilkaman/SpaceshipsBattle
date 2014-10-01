@@ -38,7 +38,7 @@ public class AutoguiderRocketAI extends BulletBaseAI {
             if(!targetUnit){
                 prosecutionHero(0,1000,false);
             }else{
-                prosecutionEnemy(30, 1000);
+                prosecutionEnemy(0, 1000);
             }
         }
 

@@ -43,7 +43,7 @@ public class Shop {
                 R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,20,1000,300,3,1));
 
         list.add(new ShopItem(R.string.shop_item_rocket_gun_title,R.string.shop_item_rocket_ammo_title,
-                R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,20,2000,500,10,5));
+                R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,50,2000,500,10,5));
 
     }
 

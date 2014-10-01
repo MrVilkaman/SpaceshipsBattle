@@ -11,11 +11,11 @@ public abstract class BulletBaseAI extends SimpleAI {
     }
 
     protected void destroyOutScreen(){
-        if(this.mX < 0) {
+        if(this.mX < - this.getWidth()) {
             if(flagFirstX){
                 destroyed();
             }
-        } else if(this.mX + this.getWidth() > GameActivity.getCameraWidth()) {
+        } else if(this.mX - this.getWidth() > GameActivity.getCameraWidth()) {
             if(flagFirstX){
                 destroyed();
             }
@@ -23,11 +23,11 @@ public abstract class BulletBaseAI extends SimpleAI {
             flagFirstX = true;
         }
 
-        if(this.mY < 0) {
+        if(this.mY < - this.getHeight()) {
             if(flagFirstY){
                 destroyed();
             }
-        } else if(this.mY + this.getHeight() > GameActivity.getCameraHeight()) {
+        } else if(this.mY - this.getHeight() > GameActivity.getCameraHeight()) {
             if(flagFirstY){
                 destroyed();
             }
