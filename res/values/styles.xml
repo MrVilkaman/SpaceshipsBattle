@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name = "MenuButton">
-
+    <style name = "BaseButton">
+        <item name = "android:background">@drawable/selector_button</item>
+        <item name = "android:textSize">24dp</item>
+        <item name = "android:padding">5dp</item>
+        <item name = "android:layout_margin">5dp</item>
     </style>
+
+    <style name="MenuButton" parent = "BaseButton">
+        <item name = "android:layout_width">300dp</item>
+    </style>
+
+
 </resources>

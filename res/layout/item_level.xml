@@ -62,7 +62,8 @@
 
 
     </LinearLayout>
-    <Button android:layout_width = "150dp"
+    <Button style="@style/BaseButton"
+            android:layout_width = "150dp"
             android:layout_height = "wrap_content"
             android:text="@string/item_level_start"
             android:id="@+id/item_level_start"

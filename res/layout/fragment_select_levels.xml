@@ -10,7 +10,7 @@
             />
 
     <Button
-            style="@style/MenuButton"
+            style="@style/BaseButton"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:text = "@string/txt_back"
@@ -18,7 +18,7 @@
             android:layout_alignParentTop = "true"
             android:layout_alignParentLeft = "true" />
     <Button
-            style="@style/MenuButton"
+            style="@style/BaseButton"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:text = "@string/shop_name"

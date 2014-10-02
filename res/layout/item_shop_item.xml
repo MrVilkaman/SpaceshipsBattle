@@ -28,7 +28,8 @@
                 android:layout_alignTop = "@+id/btn_shop_value"
                 android:layout_above = "@+id/btn_shop_levels_count"
                 android:layout_gravity = "center" />
-        <Button android:layout_width = "wrap_content"
+        <Button style="@style/BaseButton"
+                android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:text="@string/btn_shop_buy"
                 android:textAppearance = "?android:attr/textAppearanceLarge"

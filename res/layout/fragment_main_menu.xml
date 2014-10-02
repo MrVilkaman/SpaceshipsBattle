@@ -12,12 +12,12 @@
     <LinearLayout
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:layout_centerVertical = "true"
-            android:layout_centerHorizontal = "true"
             android:orientation="vertical"
-            >
+            android:layout_alignBottom = "@+id/txt_main_menu_version"
+            android:layout_alignParentRight = "true"
+            android:layout_marginRight = "70dp"
+            android:layout_marginBottom = "70dp">
         <Button   style="@style/MenuButton"
-                android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_continue"
                 android:id = "@+id/btn_main_menu_continue"

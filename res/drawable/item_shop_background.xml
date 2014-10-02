@@ -3,8 +3,8 @@
 <shape xmlns:android = "http://schemas.android.com/apk/res/android">
     <corners android:radius="10dip"/>
     <gradient android:angle="180"
-            android:startColor="@color/item_shop_background_gradient_color_start"
-            android:endColor="@color/item_shop_background_gradient_color_end"
+            android:startColor="@color/btn_menu_background_gradient_color_start"
+            android:endColor="@color/btn_menu_background_gradient_color_end"
             />
 
 </shape>

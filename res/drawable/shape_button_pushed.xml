@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<shape xmlns:android = "http://schemas.android.com/apk/res/android">
+    <corners android:radius="10dip"/>
+    <gradient android:angle="180"
+              android:startColor="@color/btn_menu_background_gradient_color_end"
+              android:endColor="@color/btn_menu_background_gradient_color_start"
+            />
+    <padding android:bottom="1dp"/>
+    <padding android:left="1dp"/>
+    <stroke android:width="2px" android:color="#ff000000"/>
+</shape>
