@@ -60,7 +60,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
         } else {
             //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
 
-            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_19; i++) {
+            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_2; i++) {
                 levels.addLevel(i, false);
             }
 

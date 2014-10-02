@@ -3,7 +3,11 @@
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:layout_width = "match_parent"
                 android:layout_height = "match_parent">
-
+    <ImageView android:layout_width = "match_parent"
+               android:layout_height = "match_parent"
+               android:src="@drawable/main_wall_1"
+               android:scaleType="centerCrop"
+            />
 
     <Button
             style="@style/MenuButton"

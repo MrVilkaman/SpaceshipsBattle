@@ -3,6 +3,11 @@
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:layout_width = "match_parent"
                 android:layout_height = "match_parent">
+    <ImageView android:layout_width = "match_parent"
+               android:layout_height = "match_parent"
+               android:src="@drawable/main_wall_1"
+               android:scaleType="centerCrop"
+            />
 
     <Button
             style="@style/MenuButton"
@@ -49,6 +54,10 @@
             android:layout_height = "wrap_content"
             android:id = "@+id/shop_list_view"
             android:layout_alignParentLeft = "true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:dividerHeight="5.0sp"
+            android:background="@null"
             android:layout_below = "@+id/select_levels_back" />
 
 </RelativeLayout>

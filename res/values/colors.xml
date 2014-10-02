@@ -2,4 +2,7 @@
 <resources>
     <color name = "item_level_bk_color">#222222</color>
     <color name = "item_level_bk_color_2">#aabbaa</color>
+    <color name = "item_shop_background_gradient_color_start">#88bbbbbb</color>
+    <color name = "item_shop_background_gradient_color_end">#BBbbbbbb</color>
+    <color name = "item_shop_discription">#ffeeeeee</color>
 </resources>
