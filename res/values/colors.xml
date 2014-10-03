@@ -5,4 +5,9 @@
     <color name = "btn_menu_background_gradient_color_start">#bbbbbbbb</color>
     <color name = "btn_menu_background_gradient_color_end">#eebbbbbb</color>
     <color name = "item_shop_discription">#ffeeeeee</color>
+
+    <color name = "dialog_background_gradient_color_start">#88000102</color>
+    <color name = "dialog_background_gradient_color_end">#bb07080d</color>
+
+
 </resources>

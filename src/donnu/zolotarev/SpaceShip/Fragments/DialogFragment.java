@@ -1,12 +1,13 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import org.andengine.util.color.Color;
 
 public class DialogFragment extends android.app.DialogFragment {
 
@@ -39,6 +41,7 @@ public class DialogFragment extends android.app.DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         LayoutInflater inflater  = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
         View view = null;
             view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
@@ -60,10 +63,16 @@ public class DialogFragment extends android.app.DialogFragment {
             buttonOK.setVisibility(View.VISIBLE);
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        final Dialog dialog = new Dialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(view);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
+        textView.setText(text);
+       /* AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         textView.setText(text);
         builder.setView(view);
-        return builder.create();
+        return builder.create();*/
+        return dialog;
     }
 
     public void setText(String s){
