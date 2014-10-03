@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -44,11 +43,16 @@ public class DialogFragment extends android.app.DialogFragment {
 
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
 
-        LayoutInflater inflater  = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+      //  LayoutInflater inflater  = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
         View view = null;
-            view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
+        view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
         if (viewResId != 0){
             View view2 =  inflater.inflate(viewResId,null, true);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -76,13 +80,21 @@ public class DialogFragment extends android.app.DialogFragment {
             titleTextView.setText(title);
         }
 
-        final Dialog dialog = new Dialog(getActivity());
+        Dialog dialog = getDialog();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
 
-        return dialog;
+        return view;
     }
+
+    @Override
+    public void onDestroyView() {
+        if (getDialog() != null && getRetainInstance())
+            getDialog().setDismissMessage(null);
+        super.onDestroyView();
+    }
+
+
 
     public void setTitle(String s){
         title = s;
