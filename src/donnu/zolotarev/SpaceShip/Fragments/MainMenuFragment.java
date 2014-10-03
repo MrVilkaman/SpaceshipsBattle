@@ -9,17 +9,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import donnu.zolotarev.SpaceShip.Utils.ImageChangeManager;
 
 public class MainMenuFragment extends BaseMenuFragment {
 
 
     @InjectView(R.id.btn_main_menu_continue)
     Button btnContinue;
+
+    @InjectView(R.id.image_background)
+    ImageView imageBack;
 
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
@@ -28,7 +33,24 @@ public class MainMenuFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_main_menu, inflater, container);
 
+       /* Drawable[] layers = new Drawable[3];
+        layers[0] = getActivity().getResources().getDrawable(R.drawable.main_wall_2);
+        layers[1] = getActivity().getResources().getDrawable(R.drawable.main_wall_3);
+        layers[2] = getActivity().getResources().getDrawable(R.drawable.main_wall_4);
 
+        TransitionDrawable tr = new TransitionDrawable(layers);
+        imageBack.setImageDrawable(tr);
+        tr.startTransition(2000);*/
+
+        new ImageChangeManager(getActivity(),imageBack, new int[]{
+                R.drawable.main_wall_1,
+                R.drawable.main_wall_2,
+                R.drawable.main_wall_3,
+                R.drawable.main_wall_4,
+                R.drawable.main_wall_5,
+                R.drawable.main_wall_6
+        }).start();
+        //imageBack.setImageDrawable();
         versionInfoUpdate();
 
         PackageInfo packinfo = null;
