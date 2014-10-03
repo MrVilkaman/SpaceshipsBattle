@@ -15,6 +15,7 @@ import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 
 public class MainMenuFragment extends BaseMenuFragment {
 
@@ -96,7 +97,18 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @OnClick(R.id.btn_main_menu_about)
     public void onAbout(){
-        View view =  getActivity().getLayoutInflater().inflate(R.layout.about, null);
+
+        DialogFragment fragment = new DialogFragment();
+        fragment.show(getFragmentManager(),"1");
+        fragment.setText(getActivity().getString(R.string.msg_about));
+        fragment.setViewResId(R.layout.about);
+        fragment.setOkListener(new ISimpleClick2() {
+            @Override
+            public void onClick() {
+
+            }
+        });
+       /* View view =  getActivity().getLayoutInflater().inflate(R.layout.about, null);
         AlertDialog.Builder builderAbout = new AlertDialog.Builder(getActivity());
         builderAbout.setTitle(R.string.msg_about)
                 .setView(view)
@@ -104,7 +116,7 @@ public class MainMenuFragment extends BaseMenuFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
-                }).show();
+                }).show();*/
     }
 
     @OnClick(R.id.btn_main_menu_exit)
