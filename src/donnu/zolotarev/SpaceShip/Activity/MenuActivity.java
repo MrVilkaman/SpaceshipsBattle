@@ -1,12 +1,12 @@
 package donnu.zolotarev.SpaceShip.Activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.DialogInterface;
+import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 
 public class MenuActivity extends SingleFragmentActivity {
     @Override
@@ -39,21 +39,19 @@ public class MenuActivity extends SingleFragmentActivity {
     public void showExitDialog() {
         // Диалог выхода
         final Activity self = this;
-        runOnUiThread(new Runnable() {
+        DialogFragment fragment = new DialogFragment();
+        fragment.show(getFragmentManager(), "1");
+        fragment.setTitle(getString(R.string.dialog_text_exit_message));
+        fragment.setOkListener(new ISimpleClick2() {
             @Override
-            public void run() {
-                new AlertDialog.Builder(self).setMessage(R.string.dialog_text_exit_message)
-                        .setPositiveButton(R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        self.finish();
-                                    }
-                                }).setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+            public void onClick() {
+                self.finish();
+            }
+        });
+        fragment.setCancelListener(new ISimpleClick2() {
+            @Override
+            public void onClick() {
 
-                    }
-                }).show();
             }
         });
 

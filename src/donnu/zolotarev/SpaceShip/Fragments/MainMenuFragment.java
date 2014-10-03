@@ -1,9 +1,7 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -70,21 +68,23 @@ public class MainMenuFragment extends BaseMenuFragment {
     @OnClick(R.id.btn_main_menu_new_game)
     public void onNewGame(){
         if (haveCurrentGame()){
-            new AlertDialog.Builder(getActivity())
-                    .setMessage(R.string.dialog_text_new_game_message)
-                    .setPositiveButton(R.string.dialog_text_yes, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            clearCurrentGame();
-                            openSelectLevels();
-                        }
-                    })
-                    .setNegativeButton(R.string.dialog_text_no, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+            DialogFragment fragment = new DialogFragment();
+            fragment.show(getFragmentManager(),"1");
+            fragment.setTitle(getString(R.string.dialog_text_new_game_message));
+            fragment.setOkListener(new ISimpleClick2() {
+                @Override
+                public void onClick() {
+                    clearCurrentGame();
+                    openSelectLevels();
+                }
+            });
+            fragment.setCancelListener(new ISimpleClick2() {
+                @Override
+                public void onClick() {
 
-                        }
-                    }).show();
+                }
+            });
+
         }else{
             openSelectLevels();
         }
@@ -100,7 +100,7 @@ public class MainMenuFragment extends BaseMenuFragment {
 
         DialogFragment fragment = new DialogFragment();
         fragment.show(getFragmentManager(),"1");
-        fragment.setText(getActivity().getString(R.string.msg_about));
+        fragment.setTitle(getActivity().getString(R.string.msg_about));
         fragment.setViewResId(R.layout.about);
         fragment.setOkListener(new ISimpleClick2() {
             @Override
@@ -108,15 +108,7 @@ public class MainMenuFragment extends BaseMenuFragment {
 
             }
         });
-       /* View view =  getActivity().getLayoutInflater().inflate(R.layout.about, null);
-        AlertDialog.Builder builderAbout = new AlertDialog.Builder(getActivity());
-        builderAbout.setTitle(R.string.msg_about)
-                .setView(view)
-                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                    }
-                }).show();*/
+
     }
 
     @OnClick(R.id.btn_main_menu_exit)

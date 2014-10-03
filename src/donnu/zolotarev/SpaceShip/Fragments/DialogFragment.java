@@ -21,9 +21,9 @@ import org.andengine.util.color.Color;
 public class DialogFragment extends android.app.DialogFragment {
 
     @InjectView(R.id.text)
-    TextView textView;
+    TextView titleTextView;
 
-    String text = "";
+    String title = null;
     private ISimpleClick2 onOk;
     private ISimpleClick2 onCancel;
 
@@ -37,6 +37,10 @@ public class DialogFragment extends android.app.DialogFragment {
     LinearLayout linearLayout;
 
     private int viewResId;
+    private String message;
+
+    @InjectView(R.id.textMessage)
+    TextView messageTextView;
 
 
     @Override
@@ -62,21 +66,26 @@ public class DialogFragment extends android.app.DialogFragment {
         if (onOk !=null){
             buttonOK.setVisibility(View.VISIBLE);
         }
+        if (message != null){
+            messageTextView.setVisibility(View.VISIBLE);
+            messageTextView.setText(message);
+        }
+
+        if (title!=null){
+            titleTextView.setVisibility(View.VISIBLE);
+            titleTextView.setText(title);
+        }
 
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(view);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
-        textView.setText(text);
-       /* AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        textView.setText(text);
-        builder.setView(view);
-        return builder.create();*/
+
         return dialog;
     }
 
-    public void setText(String s){
-        text = s;
+    public void setTitle(String s){
+        title = s;
     }
 
     public void setViewResId(int viewResId) {
@@ -112,5 +121,9 @@ public class DialogFragment extends android.app.DialogFragment {
             e.printStackTrace();
         }
         return view;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

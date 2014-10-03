@@ -1,10 +1,7 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 import butterknife.ButterKnife;
 import donnu.zolotarev.SpaceShip.Activity.MenuActivity;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 
 public class BaseFragment extends Fragment {
 
@@ -67,12 +65,12 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    public static void showAlert(Context ctx, int messageId, String title){
+    public static void showAlert(Activity ctx, int messageId, String title){
         showAlert(ctx, ctx.getString(messageId), title);
     }
 
-    public static void showAlert(Context ctx, String message, String title) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
+    public static void showAlert(Activity ctx, String message, String title) {
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
         if(title == null){
             builder.setIcon(android.R.drawable.ic_dialog_alert);
             builder.setTitle("Alert");
@@ -84,7 +82,22 @@ public class BaseFragment extends Fragment {
             public void onClick(DialogInterface dialog, int whichButton) {
             }
         });
-        builder.show();
+
+        builder.show();*/
+        DialogFragment fragment = new DialogFragment();
+        fragment.show( ctx.getFragmentManager(),"1");
+        fragment.setTitle(title);
+        if(title == null){
+            fragment.setTitle("Alert");
+        } else {
+            fragment.setTitle(title);
+        }
+        fragment.setMessage(message);
+        fragment.setOkListener(new ISimpleClick2() {
+            @Override
+            public void onClick() {
+            }
+        });
     }
 
     protected void logDebug(String message) {
