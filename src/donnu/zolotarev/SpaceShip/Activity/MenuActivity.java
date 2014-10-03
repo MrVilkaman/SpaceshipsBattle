@@ -7,6 +7,7 @@ import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class MenuActivity extends SingleFragmentActivity {
     @Override
@@ -45,6 +46,7 @@ public class MenuActivity extends SingleFragmentActivity {
         fragment.setOkListener(new ISimpleClick2() {
             @Override
             public void onClick() {
+                GlobalImageManager.stop();
                 self.finish();
             }
         });

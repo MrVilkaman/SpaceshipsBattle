@@ -15,7 +15,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
-import donnu.zolotarev.SpaceShip.Utils.ImageChangeManager;
+import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class MainMenuFragment extends BaseMenuFragment {
 
@@ -42,14 +42,15 @@ public class MainMenuFragment extends BaseMenuFragment {
         imageBack.setImageDrawable(tr);
         tr.startTransition(2000);*/
 
-        new ImageChangeManager(getActivity(),imageBack, new int[]{
+        GlobalImageManager.configuration(getActivity(), new int[]{
                 R.drawable.main_wall_1,
                 R.drawable.main_wall_2,
                 R.drawable.main_wall_3,
                 R.drawable.main_wall_4,
                 R.drawable.main_wall_5,
                 R.drawable.main_wall_6
-        }).start();
+        },30);
+
         //imageBack.setImageDrawable();
         versionInfoUpdate();
 
@@ -85,6 +86,12 @@ public class MainMenuFragment extends BaseMenuFragment {
         } catch (PackageManager.NameNotFoundException e) {
         }
         versionInfoView.setText("v" + packinfo.versionName.toString());
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        GlobalImageManager.changeImageView(imageBack);
     }
 
     @OnClick(R.id.btn_main_menu_new_game)

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -16,6 +17,7 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.UI.HorizontalListView;
+import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class SelectLevelFragment extends BaseMenuFragment {
 
@@ -33,9 +35,13 @@ public class SelectLevelFragment extends BaseMenuFragment {
         public void onClick(int id) {
             restartIntent = GameActivity.createIntent(getActivity(), id);
             startActivityForResult(restartIntent, GAME_STOP);
+            GlobalImageManager.stop();
         }
     };
     private UserData userData;
+
+    @InjectView(R.id.image_background)
+    ImageView imageBack;
 
     @Override
     public void onAttach(Activity activity) {
@@ -54,6 +60,12 @@ public class SelectLevelFragment extends BaseMenuFragment {
         userData = UserData.get();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        GlobalImageManager.changeImageView(imageBack);
     }
 
     @Override
@@ -102,6 +114,8 @@ public class SelectLevelFragment extends BaseMenuFragment {
                            if (restartIntent != null){
                                startActivityForResult(restartIntent,GAME_STOP);
                            }
+                       case -99:
+                           GlobalImageManager.changeImageView(imageBack);
                            break;
                    }
                     levelsAdapter.notifyDataSetInvalidated();

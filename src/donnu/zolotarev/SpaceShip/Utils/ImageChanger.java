@@ -13,44 +13,73 @@ public class ImageChanger {
 
     private final Activity context;
     private final int[] resurceImageId;
-    private final ImageView view;
+    private ImageView view;
     private final Resources res;
     private long delay = 4000;
-    private int image1;
-    private int image2;
+    private int imageNextId;
+    private Timer timer;
 
-    public ImageChanger(Activity context, ImageView view, int[] resurceImageId) {
+    public ImageChanger(Activity context, ImageView view, int[] resurceImageId,long delay) {
        this.context = context;
        this.view = view;
        this.resurceImageId = resurceImageId;
        res = context.getResources();
+       this.delay = delay;
+       changeImage(res.getDrawable(resurceImageId[0]));
+       imageNextId = 1;
+    }
 
-       view.setImageDrawable(res.getDrawable(resurceImageId[0]));
-       image1 = 0;
-       image2 = 1;
+    public void changeImageView(ImageView newView){
+        if (view != null){
+            Drawable drawable = view.getDrawable();
+            view = newView;
+            changeImage(drawable);
+        }else{
+            view = newView;
+        }
     }
 
     public void start(){
-      new Timer().schedule(new TimerTask() {
-          @Override
-          public void run() {
-              context.runOnUiThread(new Runnable() {
-                  @Override
-                  public void run() {
-                      image1 = image2;
-                      image2++;
-                      image2 = (image2 < resurceImageId.length)? image2: 0;
-                      Drawable[] layers = new Drawable[2];
-                      layers[0] = res.getDrawable(resurceImageId[image1]);
-                      layers[1] = res.getDrawable(resurceImageId[image2]);
+        if (timer != null){
+            stop();
+        }
+        timer =  new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        imageNextId++;
+                        imageNextId = (imageNextId < resurceImageId.length) ? imageNextId : 0;
+                        changeImage( res.getDrawable(resurceImageId[imageNextId])) ;
+                    }
+                });
+            }
+        }, 0, delay);
+    }
 
-                      final TransitionDrawable tr = new TransitionDrawable(layers);
-                      tr.startTransition(1000);
-                      view.setImageDrawable(tr);
-                  }
-              });
-          }
-      },0,delay);
+    private void changeImage(Drawable drawable){
+        if (view != null){
+            Drawable oldDrawable = view.getDrawable();
+
+            if (oldDrawable != null){
+                Drawable[] layers = new Drawable[2];
+                layers[0] = oldDrawable;
+                layers[1] = drawable;
+
+                final TransitionDrawable tr = new TransitionDrawable(layers);
+                tr.startTransition(2000);
+                view.setImageDrawable(tr);
+            }else{
+                view.setImageDrawable(drawable);
+            }
+        }
+    }
+
+    public void stop(){
+        timer.cancel();
+        timer = null;
     }
 
 }

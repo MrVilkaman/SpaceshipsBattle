@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
@@ -12,6 +13,7 @@ import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
+import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class ShopFragment extends BaseMenuFragment {
 
@@ -22,6 +24,9 @@ public class ShopFragment extends BaseMenuFragment {
     @InjectView(R.id.shop_list_view)
     ListView listView;
     private ShopAdapter shopAdapter;
+
+    @InjectView(R.id.image_background)
+    ImageView imageBack;
 
     private ShopAdapter.Callback moneyUpdateCallback = new ShopAdapter.Callback() {
         @Override
@@ -43,6 +48,12 @@ public class ShopFragment extends BaseMenuFragment {
     @OnClick(R.id.select_levels_back)
     public void onBack(){
         back();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        GlobalImageManager.changeImageView(imageBack);
     }
 
     @Override
