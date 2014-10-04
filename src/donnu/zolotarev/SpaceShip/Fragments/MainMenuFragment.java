@@ -160,6 +160,9 @@ public class MainMenuFragment extends BaseMenuFragment {
         getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_LEVELS,"")
                 .commit();
+        getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE)
+                .edit().putString(PREF_SETTINGS,"")
+                .commit();
     }
 
 }

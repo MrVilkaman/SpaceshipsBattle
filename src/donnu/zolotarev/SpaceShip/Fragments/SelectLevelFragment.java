@@ -12,6 +12,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.R;
@@ -22,26 +23,32 @@ import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 public class SelectLevelFragment extends BaseMenuFragment {
 
     private static final int GAME_STOP = 0;
+
     @InjectView(R.id.select_levels_money_val)
     TextView gold;
 
     @InjectView(R.id.select_levels_list_view)
     HorizontalListView listView;
 
+    @InjectView(R.id.image_background)
+    ImageView imageBack;
+
     private LevelsAdapter levelsAdapter;
     private Intent restartIntent;
+    private UserData userData;
+    private Settings settings;
+
     private ISimpleClick startLevelListenet = new ISimpleClick() {
         @Override
         public void onClick(int id) {
             restartIntent = GameActivity.createIntent(getActivity(), id);
             startActivityForResult(restartIntent, GAME_STOP);
             GlobalImageManager.stop();
+            //dirty hack
+            settings.setLastPlayedLevel(id - 2);
         }
     };
-    private UserData userData;
 
-    @InjectView(R.id.image_background)
-    ImageView imageBack;
 
     @Override
     public void onAttach(Activity activity) {
@@ -58,7 +65,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
 
         loadGame();
         userData = UserData.get();
-
+        settings = Settings.get();
         return view;
     }
 
@@ -73,6 +80,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
        super.onResume();
        gold.setText(String.valueOf(userData.getMoney()));
         saveGameState();
+        listView.setSelection(settings.getLastPlayedLevel());
     }
 
 

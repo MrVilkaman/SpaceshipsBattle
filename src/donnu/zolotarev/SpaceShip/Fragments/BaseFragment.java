@@ -70,20 +70,7 @@ public class BaseFragment extends Fragment {
     }
 
     public static void showAlert(Activity ctx, String message, String title) {
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
-        if(title == null){
-            builder.setIcon(android.R.drawable.ic_dialog_alert);
-            builder.setTitle("Alert");
-        } else {
-            builder.setTitle(title);
-        }
-        builder.setMessage(message);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-            }
-        });
 
-        builder.show();*/
         DialogFragment fragment = new DialogFragment();
         fragment.show( ctx.getFragmentManager(),"1");
         fragment.setTitle(title);

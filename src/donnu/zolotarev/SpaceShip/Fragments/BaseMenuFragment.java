@@ -1,10 +1,12 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
@@ -14,23 +16,26 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
     protected static final String FILE_GAME_DATA = "file_game_data";
     protected static final String FILE_LEVELS = "file_levels";
+    protected static final String FILE_SETTINGS = "file_settings";
 
     protected static final String PREF_USER_STATS = "pref_user_stats";
     protected static final String PREF_HERO_STATS = "pref_hero_stats";
     protected static final String PREF_LEVELS = "pref_levels";
     protected static final String PREF_SHOP_ITEMS = "pref_shop_items";
+    protected static final String PREF_SETTINGS = "pref_settings";
 
     private static final String PREF_LAST_CODE_VERSION = "pref_last_code_version";
     private static int codeVersion = -1;
 
-    public void loadGame(){
 
-        UserData.create(getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_USER_STATS, ""));
-        HeroFeatures.create(getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_HERO_STATS, ""));
-        Shop.create(getActivity(),getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).
-                getString(PREF_SHOP_ITEMS, ""));
+    public void loadGame(){
+        SharedPreferences pref = getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE);
+        UserData.create(pref.getString(PREF_USER_STATS, ""));
+        HeroFeatures.create(pref.getString(PREF_HERO_STATS, ""));
+        Shop.create(getActivity(), pref.getString(PREF_SHOP_ITEMS, ""));
+
+        pref = getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE);
+        Settings.create(pref.getString(PREF_USER_STATS, ""));
         loadLevels();
     }
 
@@ -43,11 +48,16 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 .putString(PREF_SHOP_ITEMS,Shop.get().toJson())
                 .commit();
         saveLevels();
+
+        getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE)
+                .edit()
+                .putString(PREF_USER_STATS,gson.toJson(Settings.get()))
+                .commit();
     }
 
     public void saveLevels(){
         getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,LevelController.getInstance().toJson())
+                .edit().putString(PREF_SETTINGS,LevelController.getInstance().toJson())
                 .commit();
     }
 
@@ -60,7 +70,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
         } else {
             //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
 
-            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_2; i++) {
+            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_19; i++) {
                 levels.addLevel(i, false);
             }
 
