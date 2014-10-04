@@ -34,7 +34,7 @@ public class LevelsAdapter extends ArrayAdapter {
         final LevelInfo levelInfo =  levelController.getLevelInfoForAdapter(position);
         Resources resources = parent.getResources();
 
-        holder.bk.setBackgroundColor(resources.getColor(R.color.item_level_bk_color));
+        //holder.bk.setBackgroundColor(resources.getColor(R.color.item_level_bk_color));
         holder.status.setTextColor(redraw(levelInfo).getARGBPackedInt());
         holder.status.setText(getStatusMessage(levelInfo));
 

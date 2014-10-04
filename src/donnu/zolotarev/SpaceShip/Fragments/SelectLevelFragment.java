@@ -85,23 +85,6 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public void onShop(){
         showFragment(new ShopFragment(),true);
     }
-    /*
-    *  private void processResault(int statusCode) {
-       switch (statusCode){
-           case IParentScene.EXIT_USER:
-               break;
-           case IParentScene.EXIT_DIE:
-               levels.changeStateById(lastSceneId,false);
-//               dataProcessor.processGold(levels.newestById(lastSceneId),false);
-              break;
-           case IParentScene.EXIT_WIN:
-               levels.changeStateById(lastSceneId,true);
-               levels.changeEnabled();
-//               dataProcessor.processGold(levels.newestById(lastSceneId),true);
-               break;
-       }
-    }
-*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
