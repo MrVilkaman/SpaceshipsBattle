@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.widget.ImageView;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,11 +14,13 @@ public class ImageChanger {
 
     private final Activity context;
     private final int[] resurceImageId;
+    private final Random random;
     private ImageView view;
     private final Resources res;
     private long delay = 4000;
     private int imageNextId;
     private Timer timer;
+    private boolean needRandom = false;
 
     public ImageChanger(Activity context, ImageView view, int[] resurceImageId,long delay) {
        this.context = context;
@@ -27,6 +30,7 @@ public class ImageChanger {
        this.delay = delay;
        changeImage(res.getDrawable(resurceImageId[0]));
        imageNextId = 1;
+       random = new Random();
     }
 
     public void changeImageView(ImageView newView){
@@ -51,7 +55,15 @@ public class ImageChanger {
                     @Override
                     public void run() {
                         imageNextId++;
-                        imageNextId = (imageNextId < resurceImageId.length) ? imageNextId : 0;
+                        if (needRandom){
+                            int newId = imageNextId;
+                            while (newId == imageNextId) {
+                                newId = random.nextInt(resurceImageId.length);
+                            }
+                            imageNextId = newId;
+                        } else {
+                            imageNextId = (imageNextId < resurceImageId.length) ? imageNextId : 0;
+                        }
                         changeImage( res.getDrawable(resurceImageId[imageNextId])) ;
                     }
                 });
@@ -82,4 +94,7 @@ public class ImageChanger {
         timer = null;
     }
 
+    public void needRandom(boolean needRandom) {
+        this.needRandom = needRandom;
+    }
 }

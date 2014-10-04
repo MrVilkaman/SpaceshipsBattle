@@ -12,6 +12,7 @@ public  class GlobalImageManager {
     public static void configuration(Activity activities, int[] images,int del ){
         if (changer == null){
             changer =  new ImageChanger(activities,null, images,del*1000);
+            changer.needRandom(true);
         }
     }
 
