@@ -24,7 +24,6 @@
                 />
         <Button
                 style="@style/MenuButton"
-                android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_new_game"
                 android:id = "@+id/btn_main_menu_new_game"
