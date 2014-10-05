@@ -57,7 +57,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
     public void saveLevels(){
         getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_SETTINGS,LevelController.getInstance().toJson())
+                .edit().putString(PREF_LEVELS,LevelController.getInstance().toJson())
                 .commit();
     }
 
