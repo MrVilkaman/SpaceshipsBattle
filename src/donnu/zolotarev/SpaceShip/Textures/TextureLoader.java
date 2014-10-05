@@ -72,7 +72,7 @@ public class TextureLoader {
         mOnScreenControlTexture.load();
 
         BuildableBitmapTextureAtlas bulletTexture = new BuildableBitmapTextureAtlas(tm, 128, 128,
-                TextureOptions.NEAREST);
+                TextureOptions.BILINEAR);
         simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,
                 "simpleBullet.png", 1, 1);
         rocketAmmoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,
@@ -85,7 +85,7 @@ public class TextureLoader {
         bulletTexture.load();
        // Шрифты
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(
-                Typeface.DEFAULT, Typeface.BOLD), 32);
+                Typeface.DEFAULT, Typeface.BOLD), 32, Color.WHITE_ABGR_PACKED_INT);
         font.load();
         fontBig = FontFactory.create(fm, tm, 512, 256, Typeface.create(
                 Typeface.DEFAULT, Typeface.BOLD), 72, Color.WHITE_ABGR_PACKED_INT);

@@ -37,6 +37,7 @@ import org.andengine.util.color.Color;
 
 public abstract class BaseGameScene extends MyScene implements IAddedEnemy, IScoreBar {
 
+    protected Color textColor = Color.WHITE;
 
     protected static BaseGameScene activeScene;
     protected static Engine engine;
@@ -109,6 +110,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             });
         }
     };
+
 
 
     public BaseGameScene(IParentScene self) {
@@ -339,6 +341,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             attachChild(text);
             x += text.getWidth();
             healthBar = new Text(x,y,TextureLoader.getFont(),"1234567890/",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            healthBar.setColor(textColor);
             attachChild(healthBar);
 
         } catch (Exception e) {
@@ -350,6 +353,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         final FPSCounter fpsCounter = new FPSCounter();
         engine.registerUpdateHandler(fpsCounter);
         final Text fpsText = new Text(0, 0, TextureLoader.getFont(), "FPS:", "FPS: 1234567890.".length(),engine.getVertexBufferObjectManager());
+        fpsText.setColor(textColor);
         attachChild(fpsText);
         registerUpdateHandler(new TimerHandler(1 / 20.0f, true, new ITimerCallback() {
             @Override
@@ -365,6 +369,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             waveCountBar = new Text(0,0, TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
             int x = GameActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
             waveCountBar.setPosition(x,0);
+            waveCountBar.setColor(textColor);
             attachChild(waveCountBar);
 
         } catch (Exception e) {
@@ -377,6 +382,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             scoreBar = new Text(0,0,TextureLoader.getFont(),"000000000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
             int x = GameActivity.getCameraWidth() - (int)scoreBar.getWidth();
             scoreBar.setPosition(x,0);
+            scoreBar.setColor(textColor);
             attachChild(scoreBar);
 
         } catch (Exception e) {
