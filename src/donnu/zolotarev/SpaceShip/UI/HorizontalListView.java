@@ -51,6 +51,11 @@ import java.util.Queue;
  */
 public class HorizontalListView extends AdapterView<ListAdapter> {
 
+    @Override
+    public boolean isInEditMode() {
+        return false;//super.isInEditMode();
+    }
+
     /**
      * log level should be greater than DEBUG.
      * if you want to show log info. please exec command as follow:
@@ -320,6 +325,8 @@ public class HorizontalListView extends AdapterView<ListAdapter> {
             mFreezePosInAdapter = posInAdapter;
         }
     }
+
+
 
     /**
      * has freeze request.

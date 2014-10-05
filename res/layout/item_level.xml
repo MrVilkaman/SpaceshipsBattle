@@ -2,13 +2,19 @@
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
                 android:id="@+id/item_level_bk"
                 android:layout_width = "250dp"
-                android:layout_height = "wrap_content">
-
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_height = "match_parent"
+                android:gravity = "center">
     <View android:layout_width = "250dp"
-          android:layout_height = "wrap_content"
-          android:layout_margin="4dp"
-          android:background="@drawable/item_shop_background"
+          android:layout_height = "match_parent"
+          android:background="@drawable/select_level_background"
+          android:layout_marginLeft = "4dp"
+          android:layout_marginRight = "4dp"
+          android:layout_marginTop = "4dp"
+          android:layout_alignBottom = "@+id/ll"
             />
+
+
     <LinearLayout android:layout_width = "wrap_content"
                   android:orientation="vertical"
                   android:gravity="center"
@@ -16,7 +22,8 @@
                   android:id = "@+id/linearLayout"
                   android:layout_alignParentTop = "true"
                   android:layout_centerHorizontal = "true"
-                  android:layout_marginTop = "20dp">
+                  android:layout_marginTop = "20dp"
+            >
 
 
     <TextView
@@ -34,6 +41,21 @@
             android:layout_gravity = "center" />
     </LinearLayout>
 
+
+    <LinearLayout android:layout_width="wrap_content"
+                  android:layout_below = "@+id/item_level_total"
+                  android:layout_centerHorizontal = "true"
+                  android:id="@+id/ll"
+            android:layout_height="wrap_content">
+        <Button style = "@style/BaseButton"
+                android:layout_width = "150dp"
+                android:layout_height = "wrap_content"
+                android:text = "@string/item_level_start"
+                android:id = "@+id/item_level_start"
+
+                android:layout_marginBottom = "10dp" />
+    </LinearLayout>
+
     <LinearLayout
                   android:id="@+id/item_level_total"
                   android:layout_width = "wrap_content"
@@ -43,22 +65,32 @@
                   android:layout_below = "@+id/linearLayout"
                   android:layout_centerHorizontal = "true">
 
-        <TextView android:layout_width = "wrap_content"
+        <TextView
+                 style="LevelItemText"
+                 android:textColor="@color/LevelItemText"
+                 android:layout_width = "wrap_content"
                   android:layout_height = "wrap_content"
                   android:text="@string/item_level_total_coast"
                   android:id="@+id/item_level_total_coast"
                  />
-        <TextView android:layout_width = "wrap_content"
+        <TextView
+                style="LevelItemText"
+                android:textColor="@color/LevelItemText"
+                android:layout_width = "wrap_content"
                   android:layout_height = "wrap_content"
                   android:text="@string/item_level_total_games"
                   android:id="@+id/item_level_total_games"
                 />
-        <TextView android:layout_width = "wrap_content"
+        <TextView   style="LevelItemText"
+                    android:textColor="@color/LevelItemText"
+                    android:layout_width = "wrap_content"
                   android:layout_height = "wrap_content"
                   android:text="@string/item_level_total_wins"
                   android:id="@+id/item_level_total_wins"
                    />
-        <TextView android:layout_width = "wrap_content"
+        <TextView   style="LevelItemText"
+                    android:textColor="@color/LevelItemText"
+                    android:layout_width = "wrap_content"
                   android:layout_height = "wrap_content"
                   android:text="@string/item_level_total_lose"
                   android:id="@+id/item_level_total_lose"
@@ -66,13 +98,6 @@
 
 
     </LinearLayout>
-    <Button style="@style/BaseButton"
-            android:layout_width = "150dp"
-            android:layout_height = "wrap_content"
-            android:text="@string/item_level_start"
-            android:id="@+id/item_level_start"
-            android:layout_alignParentBottom = "true"
-            android:layout_centerHorizontal = "true"
-            android:layout_marginBottom = "29dp" />
+
 
 </RelativeLayout>

@@ -2,12 +2,15 @@
 <resources>
     <color name = "item_level_bk_color">#222222</color>
     <color name = "item_level_bk_color_2">#aabbaa</color>
-    <color name = "btn_menu_background_gradient_color_start">#bbbbbbbb</color>
-    <color name = "btn_menu_background_gradient_color_end">#eebbbbbb</color>
+    <color name = "menu_background_gradient_color_start">#bbbbbbbb</color>
+    <color name = "menu_background_gradient_color_end">#eebbbbbb</color>
+    <color name = "level_menu_background_gradient_color_start">#88bbbbbb</color>
+    <color name = "level_menu_background_gradient_color_end">#bbbbbbbb</color>
     <color name = "item_shop_discription">#ffeeeeee</color>
 
     <color name = "dialog_background_gradient_color_start">#88000102</color>
     <color name = "dialog_background_gradient_color_end">#bb07080d</color>
+    <color name = "LevelItemText">#ffffff</color>
 
 
 </resources>

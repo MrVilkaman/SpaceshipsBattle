@@ -11,5 +11,8 @@
         <item name = "android:layout_width">300dp</item>
     </style>
 
+    <style name = "LevelItemText">
+        <item name = "android:textColor">@android:color/white</item>
+    </style>
 
 </resources>
