@@ -43,6 +43,7 @@ public class TextureLoader {
     private static TiledTextureRegion rocketAmmoTextureRegion;
     private static TiledTextureRegion simpleBulletTextureRegion;
     private static TiledTextureRegion mMeteorite1TextureRegion;
+    private static TextureRegion gameBK;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -114,6 +115,12 @@ public class TextureLoader {
                 , "Level_Shop.png", 401, 0);
 
         loadSceneTexture.load();
+
+        BitmapTextureAtlas gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
+        gameBK = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context
+                , "bk_game.jpg", 0, 0);
+
+        gameBKTexture.load();
 
 
         BuildableBitmapTextureAtlas mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(tm, 512, 256,
@@ -203,5 +210,9 @@ public class TextureLoader {
 
     public static TiledTextureRegion getmMeteorite1TextureRegion() {
         return mMeteorite1TextureRegion;
+    }
+
+    public static TextureRegion getGameBK() {
+        return gameBK;
     }
 }

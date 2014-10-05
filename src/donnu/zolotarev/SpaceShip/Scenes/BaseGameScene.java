@@ -3,8 +3,8 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -24,8 +24,10 @@ import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.primitive.Rectangle;
-import org.andengine.entity.scene.background.Background;
+import org.andengine.entity.scene.background.AutoParallaxBackground;
+import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.menu.MenuScene;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.entity.text.Text;
 import org.andengine.entity.text.TextOptions;
 import org.andengine.entity.util.FPSCounter;
@@ -115,7 +117,12 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         activeScene = this;
         shipActivity = GameActivity.getInstance();
         engine = shipActivity.getEngine();
-        setBackground(new Background(0.9f, 0.9f, 0.9f));
+        final AutoParallaxBackground autoParallaxBackground = new AutoParallaxBackground(0, 0, 0, 5);
+
+        Sprite background =  new Sprite(0,0,TextureLoader.getGameBK(),shipActivity.getVertexBufferObjectManager());
+        autoParallaxBackground.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-5.0f, background));
+        setBackground(autoParallaxBackground);
+
         enemyController = new ObjectController<BaseUnit>();
         bulletController = new ObjectController<BaseBullet>();
 
