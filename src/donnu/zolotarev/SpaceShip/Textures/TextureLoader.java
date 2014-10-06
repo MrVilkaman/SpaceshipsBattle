@@ -44,6 +44,8 @@ public class TextureLoader {
     private static TiledTextureRegion simpleBulletTextureRegion;
     private static TiledTextureRegion mMeteorite1TextureRegion;
     private static TextureRegion gameBK;
+    private static TiledTextureRegion btnFire1;
+    private static TiledTextureRegion btnFire2;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -106,6 +108,21 @@ public class TextureLoader {
         menuAboutTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(menuTexture, context
                 , "menu_about.png", 0, 255);
         menuTexture.load();
+
+
+
+        //Кнопки
+        BuildableBitmapTextureAtlas buttonTexture = new BuildableBitmapTextureAtlas(tm, 256, 128, TextureOptions.NEAREST);
+        btnFire1 = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(buttonTexture, context, "btn_fire_1.png", 1, 1);
+        btnFire2 = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(buttonTexture, context, "btn_fire_2.png", 1, 1);
+
+        try {
+            buttonTexture.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 1));
+        } catch (ITextureAtlasBuilder.TextureAtlasBuilderException e) {
+            e.printStackTrace();
+        }
+        buttonTexture.load();
+
 
         // Меню выбора уровня
         BitmapTextureAtlas loadSceneTexture = new BitmapTextureAtlas(tm, 512, 256, TextureOptions.BILINEAR);
@@ -214,5 +231,12 @@ public class TextureLoader {
 
     public static TextureRegion getGameBK() {
         return gameBK;
+    }
+
+    public static TiledTextureRegion getBtnFire1() {
+        return btnFire1;
+    }
+    public static TiledTextureRegion getBtnFire2() {
+        return btnFire2;
     }
 }

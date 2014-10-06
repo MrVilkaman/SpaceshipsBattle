@@ -23,7 +23,6 @@ import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
-import org.andengine.entity.primitive.Rectangle;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -204,8 +203,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
 
-        final Rectangle btnFire = new Rectangle(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
-                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+        final Sprite btnFire = new Sprite(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
+                TextureLoader.getBtnFire1(),shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
             @Override
@@ -231,16 +230,17 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             }
         };
 
-        btnFire.setColor(Color.BLACK);
-        btnFire.setAlpha(0.5f);
+       /* btnFire.setColor(Color.BLACK);
+        btnFire.setAlpha(0.5f);*/
 
         analogOnScreenControl.attachChild(btnFire);
         analogOnScreenControl.registerTouchArea(btnFire);
         final HeroFeatures heroFeatures = HeroFeatures.get();
         if (heroFeatures.isHaveRocketGun()){
 
-        final Rectangle btnFire2 = new Rectangle(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
-                100,100,shipActivity.getEngine().getVertexBufferObjectManager()){
+
+        final Sprite btnFire2 = new Sprite(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
+                TextureLoader.getBtnFire2(),shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
             @Override
@@ -263,8 +263,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             }
         };
 
-        btnFire2.setColor(Color.RED);
-        btnFire2.setAlpha(0.5f);
+       // btnFire2.setAlpha(0.5f);
 
             analogOnScreenControl.attachChild(btnFire2);
             analogOnScreenControl.registerTouchArea(btnFire2);
@@ -275,8 +274,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createRocketBar(){
         try {
-            int x = GameActivity.getCameraWidth()- 245;
-            int y = GameActivity.getCameraHeight()- 95;
+            int x = GameActivity.getCameraWidth()- 185;
+            int y = GameActivity.getCameraHeight()- 85;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             analogOnScreenControl.attachChild(rocketBar);
             rocketBar.setText("0");
