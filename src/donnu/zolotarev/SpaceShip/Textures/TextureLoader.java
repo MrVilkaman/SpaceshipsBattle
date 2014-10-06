@@ -46,6 +46,7 @@ public class TextureLoader {
     private static TextureRegion gameBK;
     private static TiledTextureRegion btnFire1;
     private static TiledTextureRegion btnFire2;
+    private static TiledTextureRegion mBoomTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -141,10 +142,10 @@ public class TextureLoader {
         gameBKTexture.load();
 
 
-        BuildableBitmapTextureAtlas mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(tm, 512, 256,
+        BuildableBitmapTextureAtlas mBitmapTextureAtlas = new BuildableBitmapTextureAtlas(tm, 1024, 512,
                 TextureOptions.NEAREST);
-
         mMeteorite1TextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, context, "Meteorite1.png", 5, 1);
+        mBoomTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(mBitmapTextureAtlas, context, "boom.png", 5, 2);
         try {
             mBitmapTextureAtlas.build(new BlackPawnTextureAtlasBuilder<IBitmapTextureAtlasSource, BitmapTextureAtlas>(0, 0, 1));
         } catch (ITextureAtlasBuilder.TextureAtlasBuilderException e) {
@@ -239,5 +240,9 @@ public class TextureLoader {
     }
     public static TiledTextureRegion getBtnFire2() {
         return btnFire2;
+    }
+
+    public static TiledTextureRegion getmBoomTextureRegion() {
+        return mBoomTextureRegion;
     }
 }

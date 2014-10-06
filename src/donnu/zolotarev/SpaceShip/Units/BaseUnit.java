@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.AI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
+import donnu.zolotarev.SpaceShip.Boom;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
@@ -148,6 +149,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         }else {
            new  Exception("Не известный тип!");
         }
+
+        Boom.run(this);
     }
 
     @Override
