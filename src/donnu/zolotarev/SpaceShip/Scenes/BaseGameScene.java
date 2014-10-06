@@ -334,7 +334,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createHealthBar(){
         try {
-            int y = GameActivity.getCameraHeight() - 32;
+            int y = 0;
             int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
             Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
