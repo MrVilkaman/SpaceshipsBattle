@@ -73,8 +73,9 @@ public class TextureLoader {
                 mOnScreenControlTexture, context, "onscreen_control_knob.png", 130, 0);
         mOnScreenControlTexture.load();
 
+
         BuildableBitmapTextureAtlas bulletTexture = new BuildableBitmapTextureAtlas(tm, 128, 128,
-                TextureOptions.BILINEAR);
+                TextureOptions.NEAREST);
         simpleBulletTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,
                 "simpleBullet.png", 1, 1);
         rocketAmmoTextureRegion = BitmapTextureAtlasTextureRegionFactory.createTiledFromAsset(bulletTexture, context,

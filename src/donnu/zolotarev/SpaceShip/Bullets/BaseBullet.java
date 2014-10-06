@@ -17,7 +17,6 @@ import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
-import org.andengine.util.color.Color;
 
 import java.util.Iterator;
 
@@ -108,7 +107,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     protected void createSettings() {
-        sprite.setColor(Color.BLUE);
+
         physicsHandler = new PhysicsHandler(sprite);
         sprite.registerUpdateHandler(physicsHandler);
         sprite.setIgnoreUpdate(true);
