@@ -47,6 +47,7 @@ public class TextureLoader {
     private static TiledTextureRegion btnFire1;
     private static TiledTextureRegion btnFire2;
     private static TiledTextureRegion mBoomTextureRegion;
+    private static TextureRegion mParticleTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
         TextureManager tm = engine.getTextureManager();
@@ -153,6 +154,11 @@ public class TextureLoader {
         }
         mBitmapTextureAtlas.load();
 
+        //
+        BitmapTextureAtlas mAtlas = new BitmapTextureAtlas(tm,64, 64, TextureOptions.BILINEAR_PREMULTIPLYALPHA);
+        mParticleTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromAsset(mAtlas, context, "f4.png", 0, 0);
+        mAtlas.load();
+
     }
 
     public static TiledTextureRegion getShip() {
@@ -244,5 +250,9 @@ public class TextureLoader {
 
     public static TiledTextureRegion getmBoomTextureRegion() {
         return mBoomTextureRegion;
+    }
+
+    public static TextureRegion getmParticleTextureRegion() {
+        return mParticleTextureRegion;
     }
 }

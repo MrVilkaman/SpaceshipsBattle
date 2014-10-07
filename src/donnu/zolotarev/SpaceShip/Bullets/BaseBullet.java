@@ -10,7 +10,7 @@ import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.ICollisionObject;
 import donnu.zolotarev.SpaceShip.Utils.IHaveCoords;
-import donnu.zolotarev.SpaceShip.Utils.ObjectController;
+import donnu.zolotarev.SpaceShip.Utils.ObjectCollisionController;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.handler.physics.PhysicsHandler;
@@ -26,8 +26,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public static final int TYPE_ROCKET = TYPE_SIMPLE_BULLET+1;
     public static final int TYPE_ROCKET_AUTO = TYPE_ROCKET+1;
     protected static BaseGameScene main;
-    private static ObjectController bulletController;
-    protected static ObjectController enemyController;
+    private static ObjectCollisionController bulletController;
+    protected static ObjectCollisionController enemyController;
     private static Hero hero;
 
     private static IHeroDieListener dieListener;

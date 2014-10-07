@@ -31,7 +31,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected static BaseGameScene mainScene;
     protected static Engine engine;
     private static MultiPool unitsPool;
-    private static ObjectController unitsController;
+    private static ObjectCollisionController unitsController;
     private static int enemiesOnMap = 0;
 
     protected SpriteAI sprite;

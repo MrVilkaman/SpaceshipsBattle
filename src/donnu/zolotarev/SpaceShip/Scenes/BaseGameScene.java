@@ -42,8 +42,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected static Engine engine;
     protected final GameActivity shipActivity;
     protected IWaveController waveController;
-    private final ObjectController enemyController;
-    private final ObjectController bulletController;
+    private final ObjectCollisionController enemyController;
+    private final ObjectCollisionController bulletController;
     private final IParentScene parentScene;
     private AnalogOnScreenControl analogOnScreenControl;
 
@@ -124,8 +124,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         autoParallaxBackground.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-10.0f, background));
         setBackground(autoParallaxBackground);
 
-        enemyController = new ObjectController<BaseUnit>();
-        bulletController = new ObjectController<BaseBullet>();
+        enemyController = new ObjectCollisionController<BaseUnit>();
+        bulletController = new ObjectCollisionController<BaseBullet>();
 
 
         createFPSBase();
@@ -393,11 +393,11 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         return hero;
     }
 
-    public ObjectController getEnemyController() {
+    public ObjectCollisionController getEnemyController() {
         return enemyController;
     }
 
-    public ObjectController getBulletController() {
+    public ObjectCollisionController getBulletController() {
         return bulletController;
     }
 

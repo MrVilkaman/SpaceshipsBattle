@@ -3,12 +3,12 @@ package donnu.zolotarev.SpaceShip.Utils;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ObjectController<E extends ICollisionObject> {
+public class ObjectCollisionController<E extends ICollisionObject> {
 
     private ArrayList<E> objects;
     private ArrayList<E> iShapes;
 
-    public ObjectController() {
+    public ObjectCollisionController() {
        objects = new ArrayList<E>();
        iShapes = new ArrayList<E>();
     }

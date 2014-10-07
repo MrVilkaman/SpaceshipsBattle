@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.Fire;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -14,6 +15,7 @@ import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
+import org.andengine.entity.particle.emitter.PointParticleEmitter;
 
 import java.util.Random;
 
@@ -31,7 +33,17 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
        super(selectionLevelScene);
        this.levelInfo = level;
 
+     //   qwet();
     }
+
+    private void qwet() {
+        PointParticleEmitter emitter=  new PointParticleEmitter(0,0);
+        Fire fire =  new Fire(emitter);
+        emitter.setCenter(500,200);
+
+        attachChild(fire);
+    }
+
 
     @Override
     public void addNewWaveController(IWaveController controller) {
