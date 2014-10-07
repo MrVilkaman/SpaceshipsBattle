@@ -41,7 +41,7 @@ public class LevelsAdapter extends ArrayAdapter {
         if (levelInfo.isEnabled()){
             holder.total.setVisibility(View.VISIBLE);
         }else{
-            holder.total.setVisibility(View.GONE);
+            holder.total.setVisibility(View.INVISIBLE);
         }
 
         holder.totalCoast.setText(resources.getString(R.string.item_level_total_coast,levelInfo.getTotalCoast()));
@@ -96,7 +96,7 @@ public class LevelsAdapter extends ArrayAdapter {
                 }
             }
         } else {
-            color = new Color(184/255f,  183/255f,  183/255f, 1);
+            color = Color.WHITE;
         }
 
         return color;
