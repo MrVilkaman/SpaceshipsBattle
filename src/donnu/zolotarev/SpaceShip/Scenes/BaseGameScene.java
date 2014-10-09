@@ -23,6 +23,8 @@ import org.andengine.engine.Engine;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
+import org.andengine.entity.scene.IOnSceneTouchListener;
+import org.andengine.entity.scene.Scene;
 import org.andengine.entity.scene.background.AutoParallaxBackground;
 import org.andengine.entity.scene.background.ParallaxBackground;
 import org.andengine.entity.scene.menu.MenuScene;
@@ -188,6 +190,9 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 .build();
     }
 
+
+    boolean flag = false;
+
     protected void addHeroMoveControl() {
         analogOnScreenControl = new AnalogOnScreenControl(70,
                 GameActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
@@ -203,30 +208,45 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
 
+
+        setOnSceneTouchListener(new IOnSceneTouchListener() {
+            @Override
+            public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+
+                hero.canFire(flag);
+                flag = false;
+                return false;
+            }
+        });
+
         final Sprite btnFire = new Sprite(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
                 TextureLoader.getBtnFire1(),shipActivity.getEngine().getVertexBufferObjectManager()){
-            boolean flag = false;
+
             public int pId = -1;
+
             @Override
             public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
 
-                shipActivity.runOnUiThread(new Runnable() {
+              /*  shipActivity.runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
-                        if(pSceneTouchEvent.isActionDown()){
-                            pId =  pSceneTouchEvent.getPointerID();
-                            hero.canFire(true);
-                            flag = true;
-                        } else if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
-                            if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
-                                hero.canFire(false);
-                                flag = true;
-                            }
-                        }
-                    }
-                });
+                    public void run() {*/
 
-                return flag;
+                        if(pSceneTouchEvent.isActionDown() || pSceneTouchEvent.isActionMove()){
+                           // hero.canFire(true);
+                            flag = true;
+                        }
+                        if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
+                            if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
+                                flag = false;
+                            }
+
+                        }
+
+
+                 //   }
+               // });
+
+                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
             }
         };
 
