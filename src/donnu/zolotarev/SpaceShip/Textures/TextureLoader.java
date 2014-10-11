@@ -54,6 +54,7 @@ public class TextureLoader {
     private static TexturePack texturePack2;
     private static TexturePackTextureRegionLibrary texturePackLibrary2;
     private static BitmapTextureAtlas gameBKTexture;
+    private static ITiledTextureRegion shieldTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -73,6 +74,8 @@ public class TextureLoader {
             enemyShipOrange = texturePackLibrary.getTiled(TexturesPack1ID.ALIENBLASTER_2_ID);
             enemyShipGreen = texturePackLibrary.getTiled(TexturesPack1ID.ALIENBLASTER_3_ID);
 
+            shieldTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.POWERSHIELD_ID);
+
             rocketAmmoTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.ROKET_AMMO_ID);
             simpleBulletTextureRegion  = texturePackLibrary.getTiled(TexturesPack1ID.SIMPLEBULLET_ID);
             btnFire1 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_1_ID);
@@ -82,6 +85,7 @@ public class TextureLoader {
             menuExitTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_EXIT_ID);
             menuBackToMainMenuTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_TO_MAINMENU_ID);
             menuRestartTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_RESTART_ID);
+
 
         }
         catch (final TexturePackParseException e)
@@ -212,5 +216,9 @@ public class TextureLoader {
 
     public static TextureRegion getmParticleTextureRegion() {
         return mParticleTextureRegion;
+    }
+
+    public static ITiledTextureRegion getShieldTextureRegion() {
+        return shieldTextureRegion;
     }
 }

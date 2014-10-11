@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texture version="1" file="Pack1.png" type="bitmap" width="512" height="512" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+<texture version="1" file="TexturesPack1.png" type="bitmap" width="512" height="512" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:a257bc1492c3439ff31f756d603558db:1f26466e1500e5e0fd6a9d4709c57a27:5ca5da93dd8330b5b67a27e6acc4bf38$ -->
-    <textureregion id="0" src="alienblaster.png" x="106" y="352" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="1" src="alienblaster_2.png" x="106" y="430" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="2" src="alienblaster_3.png" x="238" y="218" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="3" src="btn_fire_1.png" x="406" y="116" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
-    <textureregion id="4" src="btn_fire_2.png" x="2" y="352" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
-    <textureregion id="5" src="menu_exit.png" x="2" y="2" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="6" src="menu_restart.png" x="2" y="56" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="7" src="menu_resume.png" x="2" y="110" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="8" src="menu_to_mainmenu.png" x="2" y="164" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="9" src="onscreen_control_base.png" x="2" y="220" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
-    <textureregion id="10" src="onscreen_control_knob.png" x="2" y="456" width="52" height="52" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="64" srcheight="64"/>
-    <textureregion id="11" src="roket_ammo.png" x="58" y="456" width="32" height="16" rotated="false" trimmed="true" srcx="0" srcy="1" srcwidth="32" srcheight="18"/>
-    <textureregion id="12" src="ship.png" x="406" y="2" width="100" height="110" rotated="false" trimmed="true" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
-    <textureregion id="13" src="simpleBullet.png" x="58" y="476" width="13" height="3" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="15" srcheight="5"/>
+    <!-- $TexturePacker:SmartUpdate:9edd416e908cddd33af53fb78068f4a1:68a8e09d12e602ed0f175eb32dc0a80e:3553d7cbd670330404a5be1f541e22da$ -->
+    <textureregion id="0" src="PowerShield.png" x="2" y="340" width="113" height="113" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="128" srcheight="128"/>
+    <textureregion id="1" src="alienblaster.png" x="132" y="210" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="2" src="alienblaster_2.png" x="262" y="210" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="3" src="alienblaster_3.png" x="132" y="286" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="4" src="btn_fire_1.png" x="404" y="114" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
+    <textureregion id="5" src="btn_fire_2.png" x="117" y="362" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
+    <textureregion id="6" src="menu_exit.png" x="2" y="2" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
+    <textureregion id="7" src="menu_restart.png" x="2" y="54" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
+    <textureregion id="8" src="menu_resume.png" x="2" y="106" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
+    <textureregion id="9" src="menu_to_mainmenu.png" x="2" y="158" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
+    <textureregion id="10" src="onscreen_control_base.png" x="2" y="210" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
+    <textureregion id="11" src="onscreen_control_knob.png" x="262" y="286" width="52" height="52" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="64" srcheight="64"/>
+    <textureregion id="12" src="roket_ammo.png" x="2" y="455" width="32" height="16" rotated="false" trimmed="true" srcx="0" srcy="1" srcwidth="32" srcheight="18"/>
+    <textureregion id="13" src="ship.png" x="404" y="2" width="100" height="110" rotated="false" trimmed="true" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
+    <textureregion id="14" src="simpleBullet.png" x="117" y="340" width="13" height="3" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="15" srcheight="5"/>
 </texture>
