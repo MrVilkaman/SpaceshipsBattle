@@ -131,6 +131,12 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     }
 
     @Override
+    public void onDestroyResources() throws Exception {
+        super.onDestroyResources();
+        TextureLoader.clearMemory();
+    }
+
+    @Override
     public void returnToParentScene(int statusCode) {
         Intent intent =  new Intent();
         setResult(RESULT_OK,intent);

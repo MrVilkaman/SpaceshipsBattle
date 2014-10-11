@@ -53,6 +53,7 @@ public class TextureLoader {
     private static TextureRegion mParticleTextureRegion;
     private static TexturePack texturePack2;
     private static TexturePackTextureRegionLibrary texturePackLibrary2;
+    private static BitmapTextureAtlas gameBKTexture;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -88,7 +89,7 @@ public class TextureLoader {
 
         }
 
-        BitmapTextureAtlas gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
+        gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
         gameBK = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 0, 0);
 
         gameBKTexture.load();
@@ -110,6 +111,12 @@ public class TextureLoader {
         {
 
         }
+    }
+
+    public static void clearMemory(){
+        texturePack1.unloadTexture();
+        texturePack2.unloadTexture();
+        gameBKTexture.unload();
     }
 
     public static ITiledTextureRegion getShip() {
