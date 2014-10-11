@@ -15,10 +15,11 @@ public class Boom extends AnimatedSprite {
     private Boom() {
         super(0, 0, TextureLoader.getmBoomTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
         BaseGameScene.getActiveScene().attachChild(this);
+        setScale(3);
     }
 
     public void animate() {
-        super.animate(40, new IAnimationListener() {
+        super.animate(60, new IAnimationListener() {
             @Override
             public void onAnimationStarted(AnimatedSprite pAnimatedSprite, int pInitialLoopCount) {
 

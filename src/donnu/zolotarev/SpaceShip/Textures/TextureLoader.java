@@ -12,9 +12,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.texture.region.TextureRegion;
-import org.andengine.opengl.texture.region.TiledTextureRegion;
 import org.andengine.util.color.Color;
-import org.andengine.util.debug.Debug;
 import org.andengine.util.texturepack.TexturePack;
 import org.andengine.util.texturepack.TexturePackLoader;
 import org.andengine.util.texturepack.TexturePackTextureRegionLibrary;
@@ -47,12 +45,14 @@ public class TextureLoader {
 
     private static ITiledTextureRegion rocketAmmoTextureRegion;
     private static ITiledTextureRegion simpleBulletTextureRegion;
-    private static TiledTextureRegion mMeteorite1TextureRegion;
+    private static ITiledTextureRegion mMeteorite1TextureRegion;
     private static TextureRegion gameBK;
     private static ITiledTextureRegion btnFire1;
     private static ITiledTextureRegion btnFire2;
-    private static TiledTextureRegion mBoomTextureRegion;
+    private static ITiledTextureRegion mBoomTextureRegion;
     private static TextureRegion mParticleTextureRegion;
+    private static TexturePack texturePack2;
+    private static TexturePackTextureRegionLibrary texturePackLibrary2;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -82,13 +82,10 @@ public class TextureLoader {
             menuBackToMainMenuTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_TO_MAINMENU_ID);
             menuRestartTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_RESTART_ID);
 
-
-
-
         }
         catch (final TexturePackParseException e)
         {
-            Debug.e(e);
+
         }
 
         BitmapTextureAtlas gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
@@ -100,6 +97,19 @@ public class TextureLoader {
                 Color.WHITE_ABGR_PACKED_INT);
         font.load();
 
+        try
+        {
+            texturePack2 = new TexturePackLoader(context.getAssets(),tm).loadFromAsset("gfx/TexturesPack2.xml", "gfx/");
+            texturePack2.loadTexture();
+            texturePackLibrary2 = texturePack2.getTexturePackTextureRegionLibrary();
+
+            mBoomTextureRegion = texturePackLibrary2.getTiled(TexturesPack2.BOOM2_ID,4,2);
+            mMeteorite1TextureRegion = texturePackLibrary2.getTiled(TexturesPack2.METEORITE1_ID,5,1);
+        }
+        catch (final TexturePackParseException e)
+        {
+
+        }
     }
 
     public static ITiledTextureRegion getShip() {
@@ -174,7 +184,7 @@ public class TextureLoader {
         return rocketAmmoTextureRegion;
     }
 
-    public static TiledTextureRegion getmMeteorite1TextureRegion() {
+    public static ITiledTextureRegion getmMeteorite1TextureRegion() {
         return mMeteorite1TextureRegion;
     }
 
@@ -189,7 +199,7 @@ public class TextureLoader {
         return btnFire2;
     }
 
-    public static TiledTextureRegion getmBoomTextureRegion() {
+    public static ITiledTextureRegion getmBoomTextureRegion() {
         return mBoomTextureRegion;
     }
 

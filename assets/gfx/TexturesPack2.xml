@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="TexturesPack2.png" type="bitmap" width="256" height="256" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:da26dae3bb7845232a93d66ab03e5927:27a02cde11779dfc048a77e8d06a4981:52ceab5dfd5a67967c83aa66861f4dca$ -->
+    <textureregion id="0" src="Boom2.png" x="2" y="2" width="251" height="122" rotated="false" trimmed="true" srcx="3" srcy="6" srcwidth="256" srcheight="128"/>
+    <textureregion id="1" src="Meteorite1.png" x="2" y="126" width="200" height="35" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="200" srcheight="35"/>
+</texture>
