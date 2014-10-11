@@ -102,6 +102,6 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
         //   }
 
-        return (packinfo.versionCode == codeVersion) || (codeVersion == 7);
+        return (packinfo.versionCode == codeVersion) || codeVersion == 7 || codeVersion == 8;
     }
 }
