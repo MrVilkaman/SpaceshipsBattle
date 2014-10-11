@@ -5,6 +5,7 @@ import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.entity.sprite.AnimatedSprite;
 import org.andengine.util.adt.pool.GenericPool;
 
@@ -68,6 +69,7 @@ public class Boom extends AnimatedSprite {
         boom.setPosition(f.x - boom.getWidth()/2 ,f.y- boom.getHeight()/2);
         boom.setVisible(true);
         boom.setIgnoreUpdate(false);
+        boom.setRotation(Utils.random(0,360));
 
     }
 }

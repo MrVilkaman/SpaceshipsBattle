@@ -69,7 +69,6 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
             engine = GameActivity.engine();
             unitsController = mainScene.getEnemyController();
         }
-
         if (base.getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.registerPool(TYPE_ENEMY_SINGLE_GUN_L_1, genericPool);
         }else if (base.getSimpleName().equals(EnemyWithMiniGun.class.getSimpleName())){
@@ -130,7 +129,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     @Override
-    public void destroy(){
+    public void destroy(Boolean withAnimate){
         enemiesOnMap--;
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
@@ -150,7 +149,9 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
            new  Exception("Не известный тип!");
         }
 
-        Boom.run(this);
+        if (withAnimate){
+            Boom.run(this);
+        }
     }
 
     @Override
@@ -209,9 +210,9 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
             if (hero.checkHit(this)){
                 if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
                     dieListener.heroDie();
-                    hero.destroy();
+                    hero.destroy(true);
                 }
-                destroy();
+                destroy(true);
             }
         }
     }

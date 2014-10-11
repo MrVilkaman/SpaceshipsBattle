@@ -114,7 +114,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     @Override
-    public  void destroy(){
+    public  void destroy(Boolean withAnimate){
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
         bulletController.remove(this);
@@ -152,9 +152,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         if (hero.checkHit(this)){
             if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
                 dieListener.heroDie();
-                hero.destroy();
+                hero.destroy(true);
             }
-            destroy();
+            destroy(true);
         }
     }
 
@@ -164,12 +164,12 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
             BaseUnit unit = col.next();
             if (unit.addDamageAndCheckDeath(getDamage())){
                 col.remove();
-                unit.destroy();
+                unit.destroy(true);
                 if (iAmDie != null){
                     iAmDie.destroyed(unit);
                 }
             }
-            destroy();
+            destroy(true);
         }
     }
 

@@ -125,10 +125,10 @@ public class Hero extends BaseUnit {
     }
 
     @Override
-    public  void destroy() {
+    public  void destroy(Boolean withAnimate) {
         isAlive = false;
         weaponController.setShoot(false);
-        super.destroy();
+        super.destroy(withAnimate);
     }
 
     public void fireRocket(){

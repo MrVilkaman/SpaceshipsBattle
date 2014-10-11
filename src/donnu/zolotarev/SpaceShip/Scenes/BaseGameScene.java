@@ -339,7 +339,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         activeScene.clearChildScene();
         activeScene.clearEntityModifiers();
         activeScene.clearTouchAreas();
-        hero.destroy();
+        hero.destroy(true);
         getEnemyController().cleer();
         getBulletController().cleer();
         detachSelf();

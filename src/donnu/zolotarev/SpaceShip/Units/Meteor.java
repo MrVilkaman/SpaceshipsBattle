@@ -17,7 +17,7 @@ public class Meteor extends BaseUnit {
             @Override
             protected void destroyed() {
                 // todo Учитывать размер объекта
-                destroy();
+                destroy(false);
             }
 
             @Override

@@ -70,6 +70,7 @@ public class EnemyRockerGun extends BaseUnit {
             protected EnemyRockerGun onAllocatePoolItem() {
                 return new EnemyRockerGun();
             }
+
         });
     }
 

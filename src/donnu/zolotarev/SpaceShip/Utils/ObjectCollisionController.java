@@ -28,7 +28,7 @@ public class ObjectCollisionController<E extends ICollisionObject> {
     public synchronized void cleer(){
         iShapes =  (ArrayList<E>)objects.clone();
         for( E e :iShapes){
-            e.destroy();
+            e.destroy(true);
         }
         iShapes.clear();
     }

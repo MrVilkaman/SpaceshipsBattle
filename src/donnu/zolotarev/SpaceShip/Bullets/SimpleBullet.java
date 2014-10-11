@@ -16,7 +16,7 @@ public class SimpleBullet extends BaseBullet {
                 GameActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void destroyed() {
-               destroy();
+               destroy(true);
             }
 
             @Override

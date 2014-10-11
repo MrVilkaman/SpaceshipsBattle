@@ -22,7 +22,7 @@ public class Rocket extends BaseBullet {
                 GameActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override
             protected void destroyed() {
-                destroy();
+                destroy(true);
             }
 
             @Override
@@ -92,7 +92,7 @@ public class Rocket extends BaseBullet {
                 if (damage != 0){
                     if (unit.addDamageAndCheckDeath((int)damage)){
                         items.remove();
-                        unit2.destroy();
+                        unit2.destroy(true);
                         if (iAmDie != null){
                             iAmDie.destroyed(unit2);
                         }
@@ -100,7 +100,7 @@ public class Rocket extends BaseBullet {
                 }
             }
 
-            destroy();
+            destroy(true);
         }
 
     }
