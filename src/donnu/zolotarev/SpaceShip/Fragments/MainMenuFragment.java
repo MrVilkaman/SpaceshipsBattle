@@ -15,6 +15,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import donnu.zolotarev.SpaceShip.Utils.AppUtils;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class MainMenuFragment extends BaseMenuFragment {
@@ -143,6 +144,11 @@ public class MainMenuFragment extends BaseMenuFragment {
     @OnClick(R.id.btn_main_menu_exit)
     public void onExit(){
         getMainActivity().showExitDialog();
+    }
+
+    @OnClick(R.id.google_play_button)
+    public void onGoogle(){
+        AppUtils.rateOnCall(getActivity());
     }
 
     private void openSelectLevels(){
