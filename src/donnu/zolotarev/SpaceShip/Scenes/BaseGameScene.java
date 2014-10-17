@@ -53,6 +53,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private Text waveCountBar;
     private Text scoreBar;
     private Text healthBar;
+    private Text shueldBar;
 
     private MenuScene menuScene;
     private MenuScene dieMenuScene;
@@ -63,10 +64,16 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected int score;
     protected int waveIndex = 0;
 
+
     protected IHealthBar textHealthBarCallback = new IHealthBar() {
         @Override
         public void updateHealthBar(int health) {
             healthBar.setText(String.valueOf(health));
+        }
+
+        @Override
+        public void updateShueldBar(int health) {
+            shueldBar.setText(String.valueOf(health));
         }
     };
 
@@ -360,9 +367,21 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
             x += text.getWidth();
-            healthBar = new Text(x,y,TextureLoader.getFont(),"1234567890/",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            healthBar = new Text(x,y,TextureLoader.getFont(),"123456",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             healthBar.setColor(textColor);
             attachChild(healthBar);
+            final HeroFeatures heroFeatures = HeroFeatures.get();
+
+                x += healthBar.getWidth()+5;
+                text = new Text(x,y,TextureLoader.getFont(),"Щит: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+                attachChild(text);
+                x += text.getWidth();
+                shueldBar = new Text(x,y,TextureLoader.getFont(),"12345",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+                shueldBar.setColor(textColor);
+                attachChild(shueldBar);
+            text.setVisible(heroFeatures.isHaveShield());
+            shueldBar.setVisible(heroFeatures.isHaveShield());
+            //shueldBar
 
         } catch (Exception e) {
             e.printStackTrace();

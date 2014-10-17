@@ -95,6 +95,9 @@ public class Hero extends BaseUnit {
             shield.start(this);
         }
         healthBar.updateHealthBar(health);
+        if (shield != null){
+            healthBar.updateShueldBar(shield.getHealth());
+        }
     }
 
     public Sprite getSprite() {
@@ -125,6 +128,7 @@ public class Hero extends BaseUnit {
 
         if (shield != null){
             damage = shield.addDamage(damage);
+            healthBar.updateShueldBar(shield.getHealth());
         }
         health -= damage;
         if(health < 0){

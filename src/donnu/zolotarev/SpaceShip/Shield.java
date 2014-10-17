@@ -72,4 +72,8 @@ public class Shield extends AnimatedSprite {
     private void changeVisibility() {
         setAlpha(1.0f*shuieldHealth/shuieldHealthDefault);
     }
+
+    public int getHealth() {
+        return shuieldHealth;
+    }
 }
