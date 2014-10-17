@@ -1,6 +1,5 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
-import android.graphics.PointF;
 import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -12,7 +11,6 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.Shield;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
@@ -147,7 +145,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         createMenu();
         status = IParentScene.EXIT_USER;
 
-        Shield.run();
     }
 
 

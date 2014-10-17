@@ -8,6 +8,7 @@ import donnu.zolotarev.SpaceShip.Boom;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
+import donnu.zolotarev.SpaceShip.Shield;
 import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
@@ -121,6 +122,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected void attachToScene() {
         mainScene.attachChild(sprite);
+        Shield.run(this);
     }
 
     protected void setStartPosition(Point point){
