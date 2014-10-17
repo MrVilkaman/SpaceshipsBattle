@@ -39,6 +39,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
    // protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
     protected WaySpecifications waySpecifications;
+    protected Shield shield;
 
     protected int unitLevel = -1;
     protected int health = 0;
@@ -112,6 +113,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         setSize();
         enemiesOnMap++;
 
+
+        if (shield != null){
+            shield.start(this);
+        }
     }
 
     protected void setSize(){
@@ -122,7 +127,6 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected void attachToScene() {
         mainScene.attachChild(sprite);
-        Shield.run(this);
     }
 
     protected void setStartPosition(Point point){
@@ -137,6 +141,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         sprite.setIgnoreUpdate(true);
         sprite.restart();
         unitsController.remove(this);
+
+        if (shield != null){
+            shield.destroy();
+        }
         waySpecifications = null;
         // todo УДАЛЯТЬ ДРУГИХ!
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
@@ -169,6 +177,9 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
+        if (shield != null){
+            damage = shield.addDamage(damage);
+        }
         health -= damage;
         return health < 0;
     }

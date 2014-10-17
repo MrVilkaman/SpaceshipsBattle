@@ -13,6 +13,8 @@ public class Shield extends AnimatedSprite {
     private final int cx;
     private final int cy;
     private BaseUnit unit;
+    private int shuieldHealthDefault = 200;
+    private int shuieldHealth = shuieldHealthDefault;
 
     private Shield() {
         super(0, 0, TextureLoader.getShieldTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
@@ -21,7 +23,7 @@ public class Shield extends AnimatedSprite {
         cy =  (int)getHeight()/2;
     }
 
-    private void destroy() {
+    public void destroy() {
         bulletsPool.recyclePoolItem(this);
         setVisible(false);
         setIgnoreUpdate(true);
@@ -33,8 +35,15 @@ public class Shield extends AnimatedSprite {
         this.setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
     }
 
-    public static void run(BaseUnit baseUnit) {
+    public void start(BaseUnit unit) {
+        this.unit = unit;
+        shuieldHealth = shuieldHealthDefault;
+        changeVisibility();
+        setVisible(true);
+        setIgnoreUpdate(false);
+    }
 
+    public static  Shield useShield(){
         if (bulletsPool == null){
             bulletsPool = new GenericPool<Shield>() {
                 @Override
@@ -43,16 +52,24 @@ public class Shield extends AnimatedSprite {
                 }
             };
         }
-
-        Shield boom = bulletsPool.obtainPoolItem();
-        /*PointF f = baseUnit.getPosition();
-        boom.setPosition(f.x - boom.getWidth()/2 ,f.y- boom.getHeight()/2);*/
-        boom.setUnit(baseUnit);
-        boom.setVisible(true);
-        boom.setIgnoreUpdate(false);
+        Shield shield = bulletsPool.obtainPoolItem();
+        return shield;
     }
 
-    public void setUnit(BaseUnit unit) {
-        this.unit = unit;
+    public int addDamage(int damage) {
+        changeVisibility();
+        shuieldHealth -= damage;
+        if (0 < shuieldHealth){
+            return 0;
+        }else{
+            int i = -shuieldHealth;
+            shuieldHealth = 0;
+            return i;
+        }
+
+    }
+
+    private void changeVisibility() {
+        setAlpha(1.0f*shuieldHealth/shuieldHealthDefault);
     }
 }

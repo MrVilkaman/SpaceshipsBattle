@@ -4,6 +4,7 @@ import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.Shield;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.Weapons.*;
@@ -66,6 +67,12 @@ public class Hero extends BaseUnit {
         rocketController.loadWeapon(gun, 0);
         gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
         rocketController.loadWeapon(gun, 1);
+
+        if (heroFeatures.isHaveShield()){
+            heroFeatures.useShield();
+            shield = Shield.useShield();
+        }
+
     }
 
     @Override
@@ -84,6 +91,9 @@ public class Hero extends BaseUnit {
         setSize();
         loadWeapon(level);
         loadParam(level);
+        if (shield != null){
+            shield.start(this);
+        }
         healthBar.updateHealthBar(health);
     }
 
@@ -112,7 +122,11 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
-          health -= damage;
+
+        if (shield != null){
+            damage = shield.addDamage(damage);
+        }
+        health -= damage;
         if(health < 0){
             health = 0;
         }
