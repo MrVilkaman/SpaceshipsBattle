@@ -36,7 +36,9 @@ public class EnemySingleGun extends BaseUnit {
         });
         weaponController.setShoot(true);
 
-        shield = Shield.useShield();
+        if (shield == null){
+            shield = Shield.useShield();
+        }
         switch (level){
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);

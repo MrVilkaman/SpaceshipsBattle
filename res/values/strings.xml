@@ -75,5 +75,10 @@
     <string name = "item_level_total_wins">Всего побед: %1$s</string>
     <string name = "item_level_total_lose">Всего поражений: %1$s</string>
     <string name = "item_level_total_games">Всего игр: %1$s</string>
+    <string name = "shop_item_shield_title">Силовой щит</string>
+    <string name = "shop_item_shield_ammo_title">Энегретические элементы для силового щита</string>
+    <string name = "shop_item_shield_description">Создает силовое поле вокруг корабля, которое защищает его от
+        повреждений!
+    </string>
 
 </resources>

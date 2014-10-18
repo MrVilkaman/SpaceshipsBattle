@@ -6,7 +6,7 @@ public class ShopItem {
 
     public enum ItemShopType {
         AMMO,
-        DEFENCE
+        shop_item_shield_description, DEFENCE
     }
 
     private int priceItemBuy;

@@ -13,7 +13,7 @@ public class Shield extends AnimatedSprite {
     private final int cx;
     private final int cy;
     private BaseUnit unit;
-    private int shuieldHealthDefault = 200;
+    private int shuieldHealthDefault = 2000;
     private int shuieldHealth = shuieldHealthDefault;
 
     private Shield() {
@@ -32,18 +32,19 @@ public class Shield extends AnimatedSprite {
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         super.onManagedUpdate(pSecondsElapsed);
-        this.setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
+        setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
     }
 
     public void start(BaseUnit unit) {
         this.unit = unit;
         shuieldHealth = shuieldHealthDefault;
-        changeVisibility();
         setVisible(true);
         setIgnoreUpdate(false);
+        changeVisibility();
+        setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
     }
 
-    public static  Shield useShield(){
+    public static Shield useShield(){
         if (bulletsPool == null){
             bulletsPool = new GenericPool<Shield>() {
                 @Override
@@ -57,8 +58,8 @@ public class Shield extends AnimatedSprite {
     }
 
     public int addDamage(int damage) {
-        changeVisibility();
         shuieldHealth -= damage;
+        changeVisibility();
         if (0 < shuieldHealth){
             return 0;
         }else{
@@ -66,14 +67,29 @@ public class Shield extends AnimatedSprite {
             shuieldHealth = 0;
             return i;
         }
-
     }
 
     private void changeVisibility() {
-        setAlpha(1.0f*shuieldHealth/shuieldHealthDefault);
+        float v = 1.0f*shuieldHealth/shuieldHealthDefault;
+        if (0.75f<v){
+            v = 1f;
+        }else if(0.5f<v){
+            v = 0.8f;
+        }else if(0.25f<v){
+            v = 0.6f;
+        }else if(0.0f<v){
+            v = 0.4f;
+        }else{
+            v = 0.0f;
+        }
+        setAlpha(v);
     }
 
     public int getHealth() {
         return shuieldHealth;
+    }
+
+    public static void resetPool(){
+        bulletsPool = null;
     }
 }

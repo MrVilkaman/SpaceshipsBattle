@@ -45,6 +45,10 @@ public class Shop {
         list.add(new ShopItem(R.string.shop_item_rocket_gun_title,R.string.shop_item_rocket_ammo_title,
                 R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,50,2000,500,10,5));
 
+        // todo сделать так, что бы не удалялись сохранения)
+
+        list.add(new ShopItem(R.string.shop_item_shield_title,R.string.shop_item_shield_ammo_title,
+                R.string.shop_item_shield_description,ShopItem.ItemShopType.AMMO,50,1000,300,3,1));
 
 
     }

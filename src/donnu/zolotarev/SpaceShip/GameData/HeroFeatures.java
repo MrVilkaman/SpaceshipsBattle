@@ -68,12 +68,10 @@ public class HeroFeatures {
     }
 
     public boolean isHaveShield() {
-        //todo заменить
-        return true;//Shop.get().getById(R.string.shop_item_double_gun_title).getCount() > 0;
+        return Shop.get().getById(R.string.shop_item_shield_title).getCount() > 0;
     }
 
     public int useShield() {
-        //todo заменить
-        return 1;//Shop.get().getById(R.string.shop_item_double_gun_title).use();
+        return Shop.get().getById(R.string.shop_item_shield_title).use();
     }
 }
