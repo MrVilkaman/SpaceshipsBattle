@@ -48,6 +48,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected int defaultSpeed;
     protected float defaultMaxAngle;
     protected int defaultDamage = 200;
+    protected int shieldPoint = 0;
 
     private float R = 0;
     private float cy;
@@ -57,6 +58,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     static Hero hero;
 
     protected int damage;
+
 
 
     public static void resetPool(){
@@ -114,9 +116,15 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         enemiesOnMap++;
 
 
-        if (shield != null){
-            shield.start(this);
+        if (shield == null){
+            shield = Shield.useShield();
         }
+            if (isHaveShuield()){
+                shield.start(this);
+            }else{
+                shield.destroy();
+            }
+
     }
 
     protected void setSize(){
@@ -242,5 +250,13 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     @Override
     public float getCenterY() {
         return sprite.getY() + cy;
+    }
+
+    public int getShieldPoint() {
+        return shieldPoint;
+    }
+
+    public boolean isHaveShuield() {
+        return 0 < shieldPoint;
     }
 }

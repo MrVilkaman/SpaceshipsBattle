@@ -74,4 +74,9 @@ public class HeroFeatures {
     public int useShield() {
         return Shop.get().getById(R.string.shop_item_shield_title).use();
     }
+
+    public int getShieldPoint() {
+        // todo заменить на актуальные данные из магазина
+        return 500;
+    }
 }

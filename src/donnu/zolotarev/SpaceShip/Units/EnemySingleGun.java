@@ -1,8 +1,7 @@
 package donnu.zolotarev.SpaceShip.Units;
 
-import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
-import donnu.zolotarev.SpaceShip.Shield;
+import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
@@ -36,9 +35,6 @@ public class EnemySingleGun extends BaseUnit {
         });
         weaponController.setShoot(true);
 
-        if (shield == null){
-            shield = Shield.useShield();
-        }
         switch (level){
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
@@ -59,6 +55,8 @@ public class EnemySingleGun extends BaseUnit {
     protected void loadParam(int level) {
         defaultSpeed = 200;
         defaultMaxAngle = 3f;
+        shieldPoint = 200;
+
         switch (level){
             case 0:
                 defaultHealth = 300;

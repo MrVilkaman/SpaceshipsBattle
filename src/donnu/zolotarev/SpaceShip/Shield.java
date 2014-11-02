@@ -13,31 +13,43 @@ public class Shield extends AnimatedSprite {
     private final int cx;
     private final int cy;
     private BaseUnit unit;
-    private int shuieldHealthDefault = 200;
-    private int shuieldHealth = shuieldHealthDefault;
+    private int shuieldHealthDefault = 0;
+    private int shuieldHealth = 0;
+    private boolean isAlive = false;
 
     private Shield() {
         super(0, 0, TextureLoader.getShieldTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
         BaseGameScene.getActiveScene().attachChild(this);
         cx =  (int)getWidth()/2;
         cy =  (int)getHeight()/2;
+        setVisible(false);
+        setIgnoreUpdate(true);
     }
 
     public void destroy() {
-        bulletsPool.recyclePoolItem(this);
-        setVisible(false);
-        setIgnoreUpdate(true);
+
+            isAlive = false;
+        if (isAlive){
+            bulletsPool.recyclePoolItem(this);
+        }
+            setVisible(false);
+            setIgnoreUpdate(true);
+
     }
 
     @Override
     protected void onManagedUpdate(float pSecondsElapsed) {
         super.onManagedUpdate(pSecondsElapsed);
-        setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
+        if (isAlive){
+            setPosition(unit.getCenterX() - cx, unit.getCenterY() - cy);
+        }
     }
 
     public void start(BaseUnit unit) {
         this.unit = unit;
-        shuieldHealth = shuieldHealthDefault;
+        isAlive = true;
+        shuieldHealth = unit.getShieldPoint();
+        shuieldHealthDefault = shuieldHealth;
         setVisible(true);
         setIgnoreUpdate(false);
         changeVisibility();

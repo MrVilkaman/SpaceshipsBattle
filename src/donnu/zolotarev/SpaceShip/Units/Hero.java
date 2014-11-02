@@ -70,7 +70,12 @@ public class Hero extends BaseUnit {
 
         if (heroFeatures.isHaveShield()){
             heroFeatures.useShield();
-            shield = Shield.useShield();
+            if (shield == null){
+                shield = Shield.useShield();
+            }
+            shieldPoint = heroFeatures.getShieldPoint();
+        }else{
+            shieldPoint = 0;
         }
 
     }

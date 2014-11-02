@@ -46,7 +46,8 @@ public  class WaveContainer {
                 waveController = new SimpleWave();
                 unitWave = new UnitWave(iAddedEnemy);
                 //unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 0.2f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 50, 0.01f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.01f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 10, 0.01f);
                 waveController.addWave(unitWave);
                 return waveController;
             case LEVEL_MUSEUM:
