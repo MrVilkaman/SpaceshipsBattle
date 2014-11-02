@@ -34,7 +34,7 @@ public class LevelController {
         if( !(WaveContainer.LEVEL_1 <= levelId && levelId <= WaveContainer.LEVEL_19)){
             excessCounter++;
         }
-        levels.put(levelId, new LevelInfo(levelId, isInfinity));
+        levels.put(levelId, new LevelInfo(levelId, isInfinity)) ;
     }
 
     public void changeStateById(int id, boolean win){

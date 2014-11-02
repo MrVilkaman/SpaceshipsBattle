@@ -74,7 +74,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
                 levels.addLevel(i, false);
             }
 
-            // levels.addLevel(WaveContainer.LEVEL_TEST, 200,600, false);
+             levels.addLevel(WaveContainer.LEVEL_TEST, true);
             // levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
             levels.changeEnabled();
         }

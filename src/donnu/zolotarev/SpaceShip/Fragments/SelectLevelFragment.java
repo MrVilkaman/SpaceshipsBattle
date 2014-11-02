@@ -15,6 +15,7 @@ import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.UI.HorizontalListView;
@@ -83,6 +84,11 @@ public class SelectLevelFragment extends BaseMenuFragment {
         listView.setSelection(settings.getLastPlayedLevel());
     }
 
+    @OnClick(R.id.select_levels_test_level)
+    void onTest(){
+        restartIntent = GameActivity.createIntent(getActivity(), WaveContainer.LEVEL_TEST);
+        startActivityForResult(restartIntent, GAME_STOP);
+    }
 
     @OnClick(R.id.select_levels_back)
     public void onBack(){

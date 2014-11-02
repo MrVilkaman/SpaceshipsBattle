@@ -13,7 +13,7 @@ public class Shield extends AnimatedSprite {
     private final int cx;
     private final int cy;
     private BaseUnit unit;
-    private int shuieldHealthDefault = 2000;
+    private int shuieldHealthDefault = 200;
     private int shuieldHealth = shuieldHealthDefault;
 
     private Shield() {
