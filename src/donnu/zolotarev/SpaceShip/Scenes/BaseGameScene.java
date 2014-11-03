@@ -340,6 +340,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected void returnToParentScene(int statusCode){
         beforeReturnToParent(statusCode);
         clearItem();
+        System.gc();
         parentScene.returnToParentScene(statusCode);
     }
 
@@ -468,6 +469,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     @Override
     public void onPause() {
+        System.gc();
         Log.i("XXX", "isShowMenuScene =  " + (isShowMenuScene));
         if (enablePauseMenu){
             if (!isShowMenuScene){

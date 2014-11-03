@@ -84,6 +84,12 @@ public class LevelsAdapter extends ArrayAdapter {
     private Color redraw(LevelInfo item) {
         String name;
         Color color;
+        // todo null pointer eckb kbcnfnm lj egjhf
+//        at donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter.redraw(LevelsAdapter.java:87)
+//        at donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter.getView(LevelsAdapter.java:38)
+//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.fillListRight(HorizontalListView.java:561)
+//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.fillList(HorizontalListView.java:505)
+//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.onLayout(HorizontalListView.java:472)
         name = String.valueOf(item.getLevelId());
         if (item.isEnabled()){
             if (item.isNew()){
