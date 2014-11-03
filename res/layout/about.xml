@@ -6,39 +6,25 @@
         android:orientation = "vertical">
 
 
-    <TextView
-            android:id = "@+id/tvTime"
+    <Button
+            android:id = "@+id/author_link_title"
+            style="@style/MenuButton"
+            android:layout_gravity="center"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:text = "Автор Золотарев Захар "
+            android:text = "@string/author_link_title"
             android:textSize = "24dp">
-    </TextView>
-    <TextView
-            android:id = "@+id/tvCount"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "http://vk.com/zahar_zolotarev"
-            android:linksClickable = "true"
-            android:autoLink = "all"
-            >
-    </TextView>
+    </Button>
 
-    <TextView
+    <Button
+            style="@style/MenuButton"
+            android:id = "@+id/offical_group_link_title"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:text = "Группа Battle Space Вконтакте"
+            android:text = "@string/offical_group_link_title"
             android:textSize = "24dp">
-    </TextView>
-    <TextView
-            android:id = "@+id/tvCount2"
-            android:layout_width = "wrap_content"
-            android:layout_height = "wrap_content"
-            android:text = "http://vk.com/space_battle_game"
-
-            android:linksClickable = "true"
-            android:autoLink = "all"
-            >
-    </TextView>
+    </Button>
 
 </LinearLayout>

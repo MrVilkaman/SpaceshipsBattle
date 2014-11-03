@@ -11,6 +11,7 @@
     <color name = "dialog_background_gradient_color_start">#88000102</color>
     <color name = "dialog_background_gradient_color_end">#bb07080d</color>
     <color name = "LevelItemText">#ffffff</color>
+    <color name = "about_text_color">@android:color/secondary_text_light_nodisable</color>
 
 
 </resources>

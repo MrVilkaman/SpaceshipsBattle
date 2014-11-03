@@ -20,7 +20,7 @@ public class AppUtils {
         if (AppUtils.isOnline(context)) {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setData(Uri.parse("market://details?id=donnu.zolotarev.SpaceShip"));
+            intent.setData(Uri.parse(Constants.GOOGLE_PLAY_LINK));
             context.startActivity(intent);
         }
     }

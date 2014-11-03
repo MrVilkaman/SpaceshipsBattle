@@ -15,4 +15,10 @@ public  class Constants {
     // Game const
     public static final int LIMIL_UNIT_IN_MAP_TO_NEXT_UNIT = 7;
     public static final int LIMIL_UNIT_IN_MAP_TO_NEXT_WAVE = 0;
+
+
+    //links
+    public static final String VK_AUTHOR_PAGE_LINK = "http://vk.com/zahar_zolotarev";
+    public static final String VK_GROUP_LINK = "http://vk.com/space_battle_game";
+    public static final String GOOGLE_PLAY_LINK = "market://details?id=donnu.zolotarev.SpaceShip";
 }

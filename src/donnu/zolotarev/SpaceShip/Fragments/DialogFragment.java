@@ -35,11 +35,12 @@ public class DialogFragment extends android.app.DialogFragment {
     @InjectView(R.id.linearLayout)
     LinearLayout linearLayout;
 
-    private int viewResId;
+    private int viewResId = 0;
     private String message;
 
     @InjectView(R.id.textMessage)
     TextView messageTextView;
+    private View view;
 
 
     @Override
@@ -52,15 +53,25 @@ public class DialogFragment extends android.app.DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
       //  LayoutInflater inflater  = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);;
         View view = null;
-        view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
-        if (viewResId != 0){
-            View view2 =  inflater.inflate(viewResId,null, true);
+
+            view = inflateFragmentView(R.layout.fragment_dialog, inflater, null);
+
+            if (viewResId != 0){
+                View view2 =  inflater.inflate(viewResId,null, true);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                lp.setMargins(10,5,10,5);
+                view2.setLayoutParams(lp);
+                linearLayout.addView(view2);
+            }
+        if (this.view != null){
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
+                    ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT
             );
             lp.setMargins(10,5,10,5);
-            view2.setLayoutParams(lp);
-            linearLayout.addView(view2);
+            this.view.setLayoutParams(lp);
+            linearLayout.addView(this.view);
         }
 
         if (onCancel !=null){
@@ -94,14 +105,16 @@ public class DialogFragment extends android.app.DialogFragment {
         super.onDestroyView();
     }
 
-
-
     public void setTitle(String s){
         title = s;
     }
 
     public void setViewResId(int viewResId) {
         this.viewResId = viewResId;
+    }
+
+    public void setView(View view) {
+        this.view = view;
     }
 
     public void setOkListener(ISimpleClick2 listener){

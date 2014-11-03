@@ -2,8 +2,10 @@ package donnu.zolotarev.SpaceShip.Fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.AppUtils;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class MainMenuFragment extends BaseMenuFragment {
@@ -127,15 +130,31 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @OnClick(R.id.btn_main_menu_about)
     public void onAbout(){
-
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.about,null);
         DialogFragment fragment = new DialogFragment();
         fragment.show(getFragmentManager(),"1");
         fragment.setTitle(getActivity().getString(R.string.msg_about));
-        fragment.setViewResId(R.layout.about);
+        fragment.setView(view);
         fragment.setOkListener(new ISimpleClick2() {
             @Override
             public void onClick() {
 
+            }
+        });
+        view.findViewById(R.id.author_link_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri address = Uri.parse(Constants.VK_AUTHOR_PAGE_LINK);
+                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
+                getActivity().startActivity(openlink);
+            }
+        });
+        view.findViewById(R.id.offical_group_link_title).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri address = Uri.parse(Constants.VK_GROUP_LINK);
+                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
+                getActivity().startActivity(openlink);
             }
         });
 

@@ -80,5 +80,7 @@
     <string name = "shop_item_shield_description">Создает силовое поле вокруг корабля, которое защищает его от
         повреждений!
     </string>
+    <string name = "author_link_title">Разработчик Золотарев Захар</string>
+    <string name = "offical_group_link_title">Группа Battle Space Вконтакте</string>
 
 </resources>
