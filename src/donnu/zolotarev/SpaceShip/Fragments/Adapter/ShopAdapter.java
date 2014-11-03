@@ -26,6 +26,8 @@ public class ShopAdapter extends ArrayAdapter{
                 return HeroFeatures.get().getMaxHealth();
             case R.string.shop_item_damage_title:
                 return HeroFeatures.get().getExtraBulletDamege();
+            case R.string.shop_item_shield_hp_title:
+            return HeroFeatures.get().getShieldPoint();
         }
         return 0;
     }

@@ -32,7 +32,7 @@ public class Shop {
         list = new ArrayList<ShopItem>();
 
         list.add(new ShopItem(R.string.shop_item_armor_title,R.string.shop_item_armor_description,
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,150,75
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,200,75
         , ShopGrowthRates.RatesModels.SPECIAL_1,150,0.5f));
 
         list.add(new ShopItem(R.string.shop_item_damage_title,R.string.shop_item_damage_description,
@@ -50,6 +50,9 @@ public class Shop {
         list.add(new ShopItem(R.string.shop_item_shield_title,R.string.shop_item_shield_ammo_title,
                 R.string.shop_item_shield_description,ShopItem.ItemShopType.AMMO,50,1000,300,3,1));
 
+        list.add(new ShopItem(R.string.shop_item_shield_hp_title,R.string.shop_item_shield_hp_description,
+                ShopItem.ItemShopType.AMMO,100, ShopGrowthRates.RatesModels.LINEARLY,200,25
+                , ShopGrowthRates.RatesModels.LINEARLY,0,100));
 
     }
 

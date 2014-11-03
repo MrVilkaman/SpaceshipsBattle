@@ -40,22 +40,6 @@
     <string name = "shop_item_damage_description">Увеличивает наносимый урон от каждой пули.</string>
     <string name = "shop_item_level_template">%1$s / %2$s</string>
     <string name = "shop_item_damage_description_2">
-        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
-        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
-        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
-        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
-        asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
-        sdasdas
-        da
-        sd
-        asd
-        as
-        da
-        sd
-
-        as
-        as
-        dasdasasdasdaskldaskdlkas   asdasdaskdn kdja df jdbfkshdfbgk sjhdfbghsd fbghdskbgsk jhdbgh d
     </string>
     <string name = "shop_item_double_gun_title">Двойная пушка (Не установлено)</string>
     <string name = "shop_item_double_ammo_title">Двойная пушка (Установлено) </string>
@@ -80,7 +64,9 @@
     <string name = "shop_item_shield_description">Создает силовое поле вокруг корабля, которое защищает его от
         повреждений!
     </string>
+    <string name = "shop_item_shield_hp_title">Прочность силового щита %1$s единиц!</string>
+    <string name = "shop_item_shield_hp_description">Определяет количестов повреждений которое может выдержать щит, перед тем как будет отключен.
+    </string>
     <string name = "author_link_title">Разработчик Золотарев Захар</string>
     <string name = "offical_group_link_title">Группа Battle Space Вконтакте</string>
-
 </resources>

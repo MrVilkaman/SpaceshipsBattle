@@ -76,7 +76,10 @@ public class HeroFeatures {
     }
 
     public int getShieldPoint() {
-        // todo заменить на актуальные данные из магазина
-        return 500;
+      //  if (isHaveShield()){
+            return Shop.get().getById(R.string.shop_item_shield_hp_title).getEffect();
+       /* }else{
+            return 0;
+        }*/
     }
 }
