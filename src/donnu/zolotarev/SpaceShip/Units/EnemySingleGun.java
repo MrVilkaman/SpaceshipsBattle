@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
@@ -55,9 +56,26 @@ public class EnemySingleGun extends BaseUnit {
     protected void loadParam(int level) {
         defaultSpeed = 200;
         defaultMaxAngle = 3f;
-        shieldPoint = 200;
+        shieldPoint = 0;
+        int l = Constants.MAX_UNIT_LEVEL - level;
+        switch (l){
+            case 0:
+                shieldPoint = 300;
+                price = 15;
+                break;
+            case 1:
+                shieldPoint = 400;
+                price = 30;
+                break;
+            case 2:
+                shieldPoint = 400;
+                price = 50;
+                break;
+            default:
+                l = level;
+        }
 
-        switch (level){
+        switch (l){
             case 0:
                 defaultHealth = 300;
                 price = 10;
@@ -73,7 +91,6 @@ public class EnemySingleGun extends BaseUnit {
                 defaultMaxAngle = 2f;
                 break;
         }
-
     }
 
     protected static void poolInit() {

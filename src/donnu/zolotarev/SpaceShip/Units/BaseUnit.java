@@ -20,12 +20,24 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     public static final int TYPE_ENEMY_SINGLE_GUN_L_1 = 0;
     public static final int TYPE_ENEMY_SINGLE_GUN_L_2 = TYPE_ENEMY_SINGLE_GUN_L_1 + 1;
     public static final int TYPE_ENEMY_SINGLE_GUN_L_3 = TYPE_ENEMY_SINGLE_GUN_L_2 + 1;
-    public static final int TYPE_ENEMY_MINIGUN_L_1 = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
 
-    public static final int TYPE_ENEMY_ROCKET_L_1 = TYPE_ENEMY_MINIGUN_L_1 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_SINGLE_GUN_SHIELD_L_1 = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2 = TYPE_ENEMY_SINGLE_GUN_L_2 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_SINGLE_GUN_SHIELD_L_3 = TYPE_ENEMY_SINGLE_GUN_L_3 + Constants.MAX_UNIT_LEVEL;
+
+    public static final int TYPE_ENEMY_MINIGUN_L_1 = TYPE_ENEMY_SINGLE_GUN_L_1 + Constants.MAX_UNIT_LEVEL_WITH_SHIELD;
+
+    public static final int TYPE_ENEMY_MINIGUN_SHIELD_L_1 = TYPE_ENEMY_MINIGUN_L_1 +  Constants.MAX_UNIT_LEVEL;
+
+    public static final int TYPE_ENEMY_ROCKET_L_1 = TYPE_ENEMY_MINIGUN_L_1 + Constants.MAX_UNIT_LEVEL_WITH_SHIELD;
     public static final int TYPE_ENEMY_ROCKET_L_2 = TYPE_ENEMY_ROCKET_L_1 + 1;
 
-    public static final int TYPE_ENEMY_METEOR_L_1 = TYPE_ENEMY_ROCKET_L_1 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_ROCKET_SHIELD_L_1 = TYPE_ENEMY_ROCKET_L_2 + Constants.MAX_UNIT_LEVEL;
+    public static final int TYPE_ENEMY_ROCKET_SHIELD_L_2 = TYPE_ENEMY_ROCKET_L_2 + Constants.MAX_UNIT_LEVEL;
+
+    public static final int TYPE_ENEMY_METEOR_L_1 = TYPE_ENEMY_ROCKET_SHIELD_L_1 + Constants.MAX_UNIT_LEVEL_WITH_SHIELD;
+
+
 
     private static final String TAG = "BaseUnit";
 

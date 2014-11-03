@@ -75,7 +75,7 @@ public class MuseumScene extends BaseGameScene implements IAmDie {
     @Override
     public void addEnemy(AddedEnemyParam param) {
 
-        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (param.getKind()/Constants.MAX_UNIT_LEVEL));
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
         Random random = new Random();
         Point point;
         y++;
@@ -88,7 +88,7 @@ public class MuseumScene extends BaseGameScene implements IAmDie {
 
 
         PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point,0, new WaySpecifications(0,0f));
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point,0, new WaySpecifications(0,0f));
 
     }
 

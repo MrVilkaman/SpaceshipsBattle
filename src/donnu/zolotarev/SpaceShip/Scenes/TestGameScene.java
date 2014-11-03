@@ -75,7 +75,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     @Override
     public void addEnemy(AddedEnemyParam param) {
 
-        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL* (param.getKind()/Constants.MAX_UNIT_LEVEL));
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
         Random random = new Random();
         Point point = param.getStartPosition();
         if (point == null){
@@ -87,7 +87,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
             point = new Point(1300, lastRand * 10);
         }
         // todo
-        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL, point, param.getStartAngle(),new WaySpecifications(180,0)/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point, param.getStartAngle(),new WaySpecifications(180,0)/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
         i++;
     }
 
