@@ -35,8 +35,11 @@ public class EnemySingleGun extends BaseUnit {
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
-
-        switch (level){
+        int l = Constants.MAX_UNIT_LEVEL - level;
+        if(0<l){
+            l = level;
+        }
+        switch (l){
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
                 break;
