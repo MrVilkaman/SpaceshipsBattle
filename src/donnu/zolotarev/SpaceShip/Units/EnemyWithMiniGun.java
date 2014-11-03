@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Weapons.Minigun;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
@@ -44,11 +45,29 @@ public class EnemyWithMiniGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
+        boolean haveShield = false;
         price = 60;
-
         defaultHealth = 500;
         defaultSpeed = 200;
         defaultMaxAngle = 3f;
+
+        if(!(level < Constants.MAX_UNIT_LEVEL)){
+            level = level - Constants.MAX_UNIT_LEVEL;
+             haveShield = true;
+        }
+
+        if (haveShield){
+            switch (level){
+                case 0:
+                    shieldPoint = 500;
+                    price = 15;
+                    break;
+                default:
+                    shieldPoint = 0;
+            }
+        }else{
+            shieldPoint = 0;
+        }
     }
 
     protected static void poolInit() {

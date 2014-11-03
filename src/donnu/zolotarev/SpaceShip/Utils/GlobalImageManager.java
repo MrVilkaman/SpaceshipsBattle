@@ -17,11 +17,15 @@ public  class GlobalImageManager {
     }
 
     public static void changeImageView(ImageView imageView){
-        changer.changeImageView(imageView);
-        changer.start();
+        if (changer != null){
+            changer.changeImageView(imageView);
+            changer.start();
+        }
     }
 
     public static void stop(){
-        changer.stop();
+        if (changer != null){
+            changer.stop();
+        }
     }
 }

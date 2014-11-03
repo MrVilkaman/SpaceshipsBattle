@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.RocketAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -34,6 +35,9 @@ public class EnemyRockerGun extends BaseUnit {
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
+        if(!(level < Constants.MAX_UNIT_LEVEL)){
+            level = level - Constants.MAX_UNIT_LEVEL;
+        }
         switch (level){
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_ROCKET,null), 0);
@@ -47,8 +51,13 @@ public class EnemyRockerGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
+        boolean haveShield = false;
         defaultSpeed = 180;
         defaultMaxAngle = 4f;
+        if(!(level < Constants.MAX_UNIT_LEVEL)){
+            level = level - Constants.MAX_UNIT_LEVEL;
+            haveShield = true;
+        }
 
         switch (level){
             case 0:
@@ -59,6 +68,23 @@ public class EnemyRockerGun extends BaseUnit {
                 defaultHealth = 1000;
                 price = 180;
                 break;
+        }
+
+        if (haveShield){
+            switch (level){
+                case 0:
+                    shieldPoint = 800;
+                    price = 160;
+                    break;
+                case 1:
+                    shieldPoint = 1000;
+                    price = 250;
+                    break;
+                default:
+                    shieldPoint = 0;
+            }
+        }else{
+            shieldPoint = 0;
         }
 
     }

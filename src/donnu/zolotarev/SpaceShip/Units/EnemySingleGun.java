@@ -35,11 +35,10 @@ public class EnemySingleGun extends BaseUnit {
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
-        int l = Constants.MAX_UNIT_LEVEL - level;
-        if(0<l){
-            l = level;
+        if(!(level < Constants.MAX_UNIT_LEVEL)){
+            level = level - Constants.MAX_UNIT_LEVEL;
         }
-        switch (l){
+        switch (level){
             case 0:
                 weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,null), 0);
                 break;
@@ -57,28 +56,14 @@ public class EnemySingleGun extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
+        boolean haveShield = false;
         defaultSpeed = 200;
         defaultMaxAngle = 3f;
-        shieldPoint = 0;
-        int l = Constants.MAX_UNIT_LEVEL - level;
-        switch (l){
-            case 0:
-                shieldPoint = 300;
-                price = 15;
-                break;
-            case 1:
-                shieldPoint = 400;
-                price = 30;
-                break;
-            case 2:
-                shieldPoint = 400;
-                price = 50;
-                break;
-            default:
-                l = level;
+        if(!(level < Constants.MAX_UNIT_LEVEL)){
+            level = level - Constants.MAX_UNIT_LEVEL;
+            haveShield = true;
         }
-
-        switch (l){
+        switch (level){
             case 0:
                 defaultHealth = 300;
                 price = 10;
@@ -93,6 +78,27 @@ public class EnemySingleGun extends BaseUnit {
                 defaultSpeed = 180;
                 defaultMaxAngle = 2f;
                 break;
+        }
+
+        if (haveShield){
+            switch (level){
+                case 0:
+                    shieldPoint = 300;
+                    price = 15;
+                    break;
+                case 1:
+                    shieldPoint = 400;
+                    price = 30;
+                    break;
+                case 2:
+                    shieldPoint = 400;
+                    price = 50;
+                    break;
+                default:
+                    shieldPoint = 0;
+            }
+        }else{
+            shieldPoint = 0;
         }
     }
 
