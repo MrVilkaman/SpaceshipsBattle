@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.Effects;
 
-import donnu.zolotarev.SpaceShip.AI.BulletAI.MeteorAI;
+import donnu.zolotarev.SpaceShip.AI.FogAI;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
@@ -9,7 +9,7 @@ import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.util.adt.pool.GenericPool;
 
-public class Fog extends MeteorAI {
+public class Fog extends FogAI {
 
     protected static GenericPool<Fog> fogPool;
     private static WaySpecifications waySpecifications;

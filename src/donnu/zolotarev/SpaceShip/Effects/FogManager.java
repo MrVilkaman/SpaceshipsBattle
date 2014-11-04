@@ -4,11 +4,11 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 
 public class FogManager {
 
-    public static int speed = -50;
+    public static int speed = -200;
 
     public static boolean isActive = false;
 
-    private static float fps = 140;
+    private static float fps = 130;
     private static float maxCounter;
     private static int counter = 0;
     private static boolean flag = true;
@@ -43,11 +43,11 @@ public class FogManager {
     private static void create(){
         if (flag){
             for (int i = 0; i < 3; i++) {
-                Fog.run(100 + i*250,speed);
+                Fog.run(50 + i*250,speed);
             }
         } else {
             for (int i = 0; i < 4; i++) {
-                Fog.run(0 + i*250,speed);
+                Fog.run(-50 + i*250,speed);
             }
         }
         flag = !flag;

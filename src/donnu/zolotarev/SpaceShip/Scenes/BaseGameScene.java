@@ -343,6 +343,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         beforeReturnToParent(statusCode);
         clearItem();
         System.gc();
+        FogManager.fogOff();
         parentScene.returnToParentScene(statusCode);
     }
 

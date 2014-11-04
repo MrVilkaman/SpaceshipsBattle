@@ -1,7 +1,7 @@
 // Definitions for sprite sheet TexturesPack1.png
 // Created with TexturePacker www.codeandweb.com/texturepacker
 
-// $TexturePacker:SmartUpdate:fb29f9c99f6778ee3c6fa829d2f0e3c3:d2abba9374f4be29ef7d20bd8e9f6dea:3553d7cbd670330404a5be1f541e22da$
+// $TexturePacker:SmartUpdate:ca7c4209e70e7b0355352d4d304d5237:10b2483121589cfc33889273ddc82c48:3553d7cbd670330404a5be1f541e22da$
 
 package Texture;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <texture version="1" file="TexturesPack1.png" type="bitmap" width="512" height="1024" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:fb29f9c99f6778ee3c6fa829d2f0e3c3:d2abba9374f4be29ef7d20bd8e9f6dea:3553d7cbd670330404a5be1f541e22da$ -->
+    <!-- $TexturePacker:SmartUpdate:ca7c4209e70e7b0355352d4d304d5237:10b2483121589cfc33889273ddc82c48:3553d7cbd670330404a5be1f541e22da$ -->
     <textureregion id="0" src="Fog.png" x="2" y="2" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
     <textureregion id="1" src="PowerShield.png" x="132" y="2" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
     <textureregion id="2" src="alienblaster.png" x="262" y="2" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
@@ -17,5 +17,5 @@
     <textureregion id="12" src="onscreen_control_knob.png" x="132" y="442" width="64" height="64" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="64" srcheight="64"/>
     <textureregion id="13" src="roket_ammo.png" x="198" y="442" width="32" height="18" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="32" srcheight="18"/>
     <textureregion id="14" src="ship.png" x="232" y="442" width="100" height="112" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
-    <textureregion id="15" src="simpleBullet.png" x="334" y="442" width="15" height="5" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="15" srcheight="5"/>
+    <textureregion id="15" src="simpleBullet.png" x="334" y="442" width="21" height="7" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="21" srcheight="7"/>
 </texture>
