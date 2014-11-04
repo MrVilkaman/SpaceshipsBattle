@@ -4,7 +4,7 @@ import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
-import donnu.zolotarev.SpaceShip.Shield;
+import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.Weapons.*;

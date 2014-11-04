@@ -15,6 +15,7 @@ import org.andengine.opengl.texture.region.TextureRegion;
 import org.andengine.util.color.Color;
 import org.andengine.util.texturepack.TexturePack;
 import org.andengine.util.texturepack.TexturePackLoader;
+import org.andengine.util.texturepack.TexturePackTextureRegion;
 import org.andengine.util.texturepack.TexturePackTextureRegionLibrary;
 import org.andengine.util.texturepack.exception.TexturePackParseException;
 
@@ -55,6 +56,7 @@ public class TextureLoader {
     private static TexturePackTextureRegionLibrary texturePackLibrary2;
     private static BitmapTextureAtlas gameBKTexture;
     private static ITiledTextureRegion shieldTextureRegion;
+    private static TexturePackTextureRegion fogTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -86,6 +88,8 @@ public class TextureLoader {
             menuBackToMainMenuTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_TO_MAINMENU_ID);
             menuRestartTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_RESTART_ID);
 
+            fogTextureRegion = texturePackLibrary.get(TexturesPack1ID.FOG_ID);
+
 
         }
         catch (final TexturePackParseException e)
@@ -95,7 +99,6 @@ public class TextureLoader {
 
         gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
         gameBK = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 0, 0);
-
         gameBKTexture.load();
 
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32,
@@ -220,5 +223,9 @@ public class TextureLoader {
 
     public static ITiledTextureRegion getShieldTextureRegion() {
         return shieldTextureRegion;
+    }
+
+    public static TexturePackTextureRegion getFogTextureRegion() {
+        return fogTextureRegion;
     }
 }

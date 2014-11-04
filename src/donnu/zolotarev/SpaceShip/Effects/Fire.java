@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Effects;
 
 import android.opengl.GLES20;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;

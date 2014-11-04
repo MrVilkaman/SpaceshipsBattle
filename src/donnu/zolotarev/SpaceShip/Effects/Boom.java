@@ -1,4 +1,4 @@
-package donnu.zolotarev.SpaceShip;
+package donnu.zolotarev.SpaceShip.Effects;
 
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;

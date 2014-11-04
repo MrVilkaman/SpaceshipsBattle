@@ -3,7 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.Fire;
+import donnu.zolotarev.SpaceShip.Effects.Fire;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
