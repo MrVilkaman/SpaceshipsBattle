@@ -2,6 +2,8 @@ package donnu.zolotarev.SpaceShip.Levels;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,6 +11,8 @@ import java.util.Map;
 
 public class LevelController {
 
+    private static final String KEY_ITEMS = "KEY_ITEMS";
+    private static final String KEY_EXCESS_COUNTER = "KEY_EXCESS_COUNTER";
     private static transient LevelController instance = new LevelController();
 
     private HashMap<Integer,LevelInfo> levels;
@@ -21,8 +25,15 @@ public class LevelController {
     public void load(String s){
         Gson gson = new Gson();
         excessCounter = 0;
-        levels = gson.fromJson(s,new TypeToken<Map<Integer,LevelInfo>>(){}.getType());
+        try {
+            JSONObject json = new JSONObject(s);
+            excessCounter = json.getInt(KEY_EXCESS_COUNTER);
+            levels = gson.fromJson(json.getString(KEY_ITEMS),new TypeToken<Map<Integer,LevelInfo>>(){}.getType());
+
         changeEnabled();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private LevelController() {
@@ -52,7 +63,13 @@ public class LevelController {
 
     public String toJson(){
         Gson gson = new Gson();
-        return gson.toJson(levels);
+        JSONObject object = new JSONObject();
+        try {
+            object.put(KEY_ITEMS,gson.toJson(levels));
+            object.put(KEY_EXCESS_COUNTER, excessCounter);
+        } catch (JSONException e) {
+        }
+        return object.toString();
     }
 
     public void changeEnabled(){
