@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Waves;
 
 import android.graphics.Point;
+import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 
@@ -37,6 +38,13 @@ public class UnitWave {
         _enemies.add(new WaveObject(kind,count,respawnInterval));
     }
 
+    public void startFog(){
+        _enemies.add(new WaveObject(FogManager.START_FOG));
+    }
+
+    public void stopFog(){
+        _enemies.add(new WaveObject(FogManager.STOP_FOG));
+    }
 
     public void addDelay(float respawnInterval){
         addEnemy(0,0,respawnInterval);

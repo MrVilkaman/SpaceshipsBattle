@@ -28,6 +28,12 @@ public class WaveObject {
         }
     }
 
+    public WaveObject(int kind) {
+        this.unitParam = new IAddedEnemy.AddedEnemyParam(kind);
+        count = 1;
+        wait = false;
+        this.delay = 0.001f;
+    }
 
 
     public IAddedEnemy.AddedEnemyParam getUnitParam() {

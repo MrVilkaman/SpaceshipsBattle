@@ -30,7 +30,11 @@ public interface IAddedEnemy {
             return startAngle;
         }
 
+        public boolean isEnemy(){
+            return  0<=kind;
+        }
+
     }
 
-    public void addEnemy(AddedEnemyParam param);
+    public boolean addEnemy(AddedEnemyParam param);
 }

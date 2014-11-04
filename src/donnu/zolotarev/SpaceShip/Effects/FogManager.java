@@ -4,9 +4,11 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 
 public class FogManager {
 
-    public static int speed = -200;
+    public static final int STOP_FOG = -1;
+    public static final int START_FOG = -2;
+    private static int speed = -200;
 
-    public static boolean isActive = false;
+    private static boolean isActive = false;
 
     private static float fps = 130;
     private static float maxCounter;

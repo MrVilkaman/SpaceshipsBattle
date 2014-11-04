@@ -359,6 +359,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         BaseBullet.resetPool();
         BaseUnit.resetPool();
         Shield.resetPool();
+        FogManager.fogOff();
         System.gc();
     }
 
@@ -485,6 +486,23 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 isActive = false;
                 setChildScene(menuScene, false, true, true);
             }
+        }
+    }
+
+    @Override
+    public boolean addEnemy(AddedEnemyParam param) {
+        if (param.isEnemy()){
+            return true;
+        }else{
+            switch (param.getKind()){
+                case FogManager.START_FOG:
+                    FogManager.fogOn();
+                    break;
+                case FogManager.STOP_FOG:
+                    FogManager.fogOff();
+                    break;
+            }
+            return false;
         }
     }
 }

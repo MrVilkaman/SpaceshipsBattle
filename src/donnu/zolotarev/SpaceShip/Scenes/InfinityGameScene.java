@@ -23,10 +23,13 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
     }
 
     @Override
-    public void addEnemy(AddedEnemyParam param){
-        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
-        Random random = new Random();
-        enemy1.init(param.getKind()%Constants.MAX_UNIT_LEVEL_WITH_SHIELD, new Point(1300, random.nextInt(65) * 10));
+    public boolean addEnemy(AddedEnemyParam param){
+        if (super.addEnemy(param)){
+            BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind() / Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
+            Random random = new Random();
+            enemy1.init(param.getKind() % Constants.MAX_UNIT_LEVEL_WITH_SHIELD, new Point(1300, random.nextInt(65) * 10));
+        }
+            return true;
     }
 
     @Override
