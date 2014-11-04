@@ -1,7 +1,9 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.Effects.Fog;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -22,6 +24,8 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
     public TestGameScene(IParentScene self) {
         super(self);
+
+        Fog.run(new PointF(600,300));
     }
 
     @Override

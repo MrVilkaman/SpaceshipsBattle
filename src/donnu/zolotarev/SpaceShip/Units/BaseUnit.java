@@ -37,8 +37,6 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_ENEMY_METEOR_L_1 = TYPE_ENEMY_ROCKET_L_1 + Constants.MAX_UNIT_LEVEL_WITH_SHIELD;
 
-
-
     private static final String TAG = "BaseUnit";
 
     protected static BaseGameScene mainScene;
@@ -147,6 +145,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected void attachToScene() {
         mainScene.attachChild(sprite);
+        sprite.setZIndex(0);
+        mainScene.sortChildren();
     }
 
     protected void setStartPosition(Point point){

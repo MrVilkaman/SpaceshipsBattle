@@ -216,7 +216,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.getControlKnob().setScale(1.25f);
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
-
+        analogOnScreenControl.setZIndex(1000);
 
         setOnSceneTouchListener(new IOnSceneTouchListener() {
             @Override
@@ -308,7 +308,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             analogOnScreenControl.attachChild(rocketBar);
             rocketBar.setText("0");
-
+            analogOnScreenControl.setZIndex(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -370,19 +370,23 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
             Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
+            text.setZIndex(1000);
             x += text.getWidth();
             healthBar = new Text(x,y,TextureLoader.getFont(),"123456",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             healthBar.setColor(textColor);
             attachChild(healthBar);
+            healthBar.setZIndex(1000);
             final HeroFeatures heroFeatures = HeroFeatures.get();
 
                 x += healthBar.getWidth()+5;
                 text = new Text(x,y,TextureLoader.getFont(),"Щит: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
                 attachChild(text);
                 x += text.getWidth();
+                text.setZIndex(1000);
                 shueldBar = new Text(x,y,TextureLoader.getFont(),"12345",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
                 shueldBar.setColor(textColor);
                 attachChild(shueldBar);
+            shueldBar.setZIndex(1000);
             text.setVisible(heroFeatures.isHaveShield());
             shueldBar.setVisible(heroFeatures.isHaveShield());
             //shueldBar
@@ -398,6 +402,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         final Text fpsText = new Text(0, 0, TextureLoader.getFont(), "FPS:", "FPS: 1234567890.".length(),engine.getVertexBufferObjectManager());
         fpsText.setColor(textColor);
         attachChild(fpsText);
+        fpsText.setZIndex(1000);
         registerUpdateHandler(new TimerHandler(1 / 20.0f, true, new ITimerCallback() {
             @Override
             public void onTimePassed(final TimerHandler pTimerHandler) {
@@ -414,7 +419,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             waveCountBar.setPosition(x,0);
             waveCountBar.setColor(textColor);
             attachChild(waveCountBar);
-
+            waveCountBar.setZIndex(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -427,7 +432,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             scoreBar.setPosition(x,0);
             scoreBar.setColor(textColor);
             attachChild(scoreBar);
-
+            scoreBar.setZIndex(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
