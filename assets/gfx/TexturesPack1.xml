@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <texture version="1" file="TexturesPack1.png" type="bitmap" width="512" height="1024" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:ed948f0fe2c1996113823a5ca6f959dc:8cf0a573e52270b29b4000f014fe8fdd:3553d7cbd670330404a5be1f541e22da$ -->
+    <!-- $TexturePacker:SmartUpdate:fb29f9c99f6778ee3c6fa829d2f0e3c3:d2abba9374f4be29ef7d20bd8e9f6dea:3553d7cbd670330404a5be1f541e22da$ -->
     <textureregion id="0" src="Fog.png" x="2" y="2" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
     <textureregion id="1" src="PowerShield.png" x="132" y="2" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
     <textureregion id="2" src="alienblaster.png" x="262" y="2" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>

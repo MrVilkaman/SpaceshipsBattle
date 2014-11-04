@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
@@ -318,6 +319,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected void onManagedUpdate(float pSecondsElapsed) {
         if (isActive){
             waveController.updateWave(pSecondsElapsed);
+            FogManager.fogUpdate();
         }
         super.onManagedUpdate(pSecondsElapsed);
     }

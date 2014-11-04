@@ -1,9 +1,9 @@
 // Definitions for sprite sheet TexturesPack1.png
 // Created with TexturePacker www.codeandweb.com/texturepacker
 
-// $TexturePacker:SmartUpdate:ec252addde5174d6548cf7111727b27e:8cf0a573e52270b29b4000f014fe8fdd:f3a56462c0d444ca5cf54a84c702f4a4$
+// $TexturePacker:SmartUpdate:fb29f9c99f6778ee3c6fa829d2f0e3c3:d2abba9374f4be29ef7d20bd8e9f6dea:3553d7cbd670330404a5be1f541e22da$
 
-package donnu.zolotarev.SpaceShip.Textures;
+package Texture;
 
 public interface TexturesPack1ID
 {
