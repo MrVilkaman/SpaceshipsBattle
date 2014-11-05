@@ -32,7 +32,19 @@ public  class WaveContainer {
     public static final int LEVEL_17 = LEVEL_16+1;
     public static final int LEVEL_18 = LEVEL_17+1;
     public static final int LEVEL_19 = LEVEL_18+1;
+    public static final int LEVEL_20 = LEVEL_19+1;
+    public static final int LEVEL_21 = LEVEL_20+1;
+    public static final int LEVEL_22 = LEVEL_21+1;
+    public static final int LEVEL_23 = LEVEL_22+1;
+    public static final int LEVEL_24 = LEVEL_23+1;
+    public static final int LEVEL_25 = LEVEL_24+1;
+    public static final int LEVEL_26 = LEVEL_25+1;
+    public static final int LEVEL_27 = LEVEL_26+1;
+    public static final int LEVEL_28 = LEVEL_27+1;
+    public static final int LEVEL_29 = LEVEL_28+1;
 
+    public static final int LEVEL_MIN = LEVEL_1;
+    public static final int LEVEL_MAX = LEVEL_29;
 
     public static IWaveController getWaveControllerById(int id,IAddedEnemy iAddedEnemy){
         return get(id,iAddedEnemy);
@@ -386,19 +398,11 @@ public  class WaveContainer {
                 unitWave.addDelay(2f);
 
                 for (int i = 0;i<2;i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.1f,new Point(1300 - 150*i ,-100), 160);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.1f,new Point(1300 - 150*i ,Constants.CAMERA_HEIGHT + 100), 200);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.01f,new Point(1300 - 150*i ,-100), 90);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.01f,new Point(1300 - 150*i ,Constants.CAMERA_HEIGHT + 100), 270);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 1, 0.1f);
                 }
                 unitWave.waitLastKilled();
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 2, -0.1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 6, 0.1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 2, 1f);
-                unitWave.waitLastKilled();
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,5, 1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.5f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 6, 0.1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.5f);
 
                 waveController.addWave(unitWave);
                 return waveController;
@@ -416,33 +420,30 @@ public  class WaveContainer {
                     }
                 }
 
+                waveController.addWave(unitWave);
+                return waveController;
+            case LEVEL_19:
+                waveController = new SimpleWave();
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addDelay(2f);
+
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 5, 0.3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 5, 1f);
+                for (int i = 0;i<6;i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 2, 0.1f,new Point(100*i ,-100), 0);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 2, 0.1f,new Point(100*i ,Constants.CAMERA_HEIGHT + 100), 200);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 1, 0.1f);
+                }
 
                 waveController.addWave(unitWave);
                 return waveController;
-
             default:
                 waveController = new SimpleWave();
 
                 unitWave = new UnitWave(iAddedEnemy);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1 + id, 1.2f+(id%2/5f));
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 1.3f);
-                unitWave.addDelay(4);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,5 + id,1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
+
                 waveController.addWave(unitWave);
-                int waveCount = (id+1)/3;
-                for (int i = 0; i<waveCount; i++) {
-                    unitWave = new UnitWave(iAddedEnemy);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 2 + i, 1.6f - i/10f);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5*i, 2f - i/10f);
-
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 2 + 2*i, 1.8f - i/10f);
-                    unitWave.addDelay(5f + i);
-                    if (id > 6){
-                        unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2 + i, 1.3f);
-                    }
-                    waveController.addWave(unitWave);
-                }
-
                 return waveController;
             /*default:
                 new Exception("Undefine id of wave controller");*/

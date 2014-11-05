@@ -36,13 +36,17 @@ public class LevelController {
         }
     }
 
-    private LevelController() {
+    public void clear(){
         excessCounter = 0;
         levels = new HashMap<Integer, LevelInfo>();
     }
 
+    private LevelController() {
+        clear();
+    }
+
     public void addLevel(int levelId, boolean isInfinity){
-        if( !(WaveContainer.LEVEL_1 <= levelId && levelId <= WaveContainer.LEVEL_19)){
+        if( !(WaveContainer.LEVEL_MIN <= levelId && levelId <= WaveContainer.LEVEL_MAX)){
             excessCounter++;
         }
         levels.put(levelId, new LevelInfo(levelId, isInfinity)) ;
@@ -78,7 +82,7 @@ public class LevelController {
         while (iter.hasNext()) {
             LevelInfo item = levels.get(iter.next());
             item.setEnabled(isWin);
-            isWin = item.isWin();
+            isWin = true;//item.isWin();
         }
     }
 

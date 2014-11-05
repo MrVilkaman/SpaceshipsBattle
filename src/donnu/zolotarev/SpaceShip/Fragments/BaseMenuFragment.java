@@ -69,12 +69,12 @@ public abstract class BaseMenuFragment extends BaseFragment {
            levels.load(levelsJson);
         } else {
             //       levels.addLevel(WaveContainer.LEVEL_INFINITY, 100, 100, true);
-
-            for (int i = WaveContainer.LEVEL_1; i <= WaveContainer.LEVEL_19; i++) {
+            levels.clear();
+            for (int i = WaveContainer.LEVEL_MIN; i <= WaveContainer.LEVEL_MAX; i++) {
                 levels.addLevel(i, false);
             }
 
-             levels.addLevel(WaveContainer.LEVEL_TEST, true);
+            levels.addLevel(WaveContainer.LEVEL_TEST, true);
             // levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
             levels.changeEnabled();
         }
