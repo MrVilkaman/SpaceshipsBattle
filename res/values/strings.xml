@@ -69,4 +69,8 @@
     </string>
     <string name = "author_link_title">Разработчик Золотарев Захар</string>
     <string name = "offical_group_link_title">Группа Battle Space Вконтакте</string>
+    <string name = "text_strength">Прочность: &#160;</string>
+    <string name = "text_shield">Щит: &#160;</string>
+    <string name = "text_die_money">но ты заработал %1$s$!</string>
+    <string name = "text_win_message">Победа! И ты заработал %1$s$!</string>
 </resources>

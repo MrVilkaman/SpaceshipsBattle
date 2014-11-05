@@ -95,10 +95,11 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         public void heroDie() {
             status = IParentScene.EXIT_DIE;
             beforeReturnToParent(IParentScene.EXIT_DIE);
+            String str = shipActivity.getString(R.string.text_die_money,score);
             dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
                     .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
                             Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
-                    .addedText("но ты заработал "+score+"$",TextureLoader.getFont())
+                    .addedText(str,TextureLoader.getFont())
                     .addedItem(TextureLoader.getMenuRestartTextureRegion(), new ISimpleClick() {
                         @Override
                         public void onClick(int id) {
@@ -372,7 +373,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         try {
             int y = 0;
             int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
-            Text text = new Text(x,y,TextureLoader.getFont(),"Прочность: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            String str = shipActivity.getString(R.string.text_strength);
+            Text text = new Text(x,y,TextureLoader.getFont(),str,new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
             text.setZIndex(1000);
             x += text.getWidth();
@@ -382,14 +384,16 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             healthBar.setZIndex(1000);
             final HeroFeatures heroFeatures = HeroFeatures.get();
 
-                x += healthBar.getWidth()+5;
-                text = new Text(x,y,TextureLoader.getFont(),"Щит: ",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-                attachChild(text);
-                x += text.getWidth();
-                text.setZIndex(1000);
-                shueldBar = new Text(x,y,TextureLoader.getFont(),"12345",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-                shueldBar.setColor(textColor);
-                attachChild(shueldBar);
+            x += healthBar.getWidth()+5;
+            str = shipActivity.getString(R.string.text_shield);
+
+            text = new Text(x,y,TextureLoader.getFont(),str,new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            attachChild(text);
+            x += text.getWidth();
+            text.setZIndex(1000);
+            shueldBar = new Text(x,y,TextureLoader.getFont(),"12345",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
+            shueldBar.setColor(textColor);
+            attachChild(shueldBar);
             shueldBar.setZIndex(1000);
             text.setVisible(heroFeatures.isHaveShield());
             shueldBar.setVisible(heroFeatures.isHaveShield());

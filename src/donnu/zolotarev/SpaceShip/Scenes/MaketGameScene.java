@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
 import android.graphics.PointF;
+import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.Fire;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
@@ -9,6 +10,7 @@ import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
+import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
@@ -57,8 +59,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             @Override
             public void onWinLevel() {
                 returnToParentScene(IParentScene.EXIT_WIN);
-
-                toast("Победа! И ты заработал " + score + "$!");
+                toast(GameActivity.getInstance().getString(R.string.text_win_message,score));
             }
         });
         super.addNewWaveController(controller);
