@@ -1,8 +1,6 @@
 package donnu.zolotarev.SpaceShip.Levels;
 
-import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -77,12 +75,19 @@ public  class WaveContainer {
                 break;
             case LEVEL_1:
 
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, - 1.0f);
+                unitWave.waitLastKilled();
+                unitWave.addDelay(1.0f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, -1.0f);
+                break;
+            case LEVEL_2:
+
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 6, -1.0f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 4, 2.0f);
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 2, 0.2f);
                 break;
-            case LEVEL_2:
+           /* case LEVEL_2:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, -1f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 2, 0.3f);
@@ -374,6 +379,23 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 10, 0.04f);
 
                 break;
+            case LEVEL_21:
+
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_3, 2, 0.6f);
+                for (int i = 0;i<3;i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 20, 0.1f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_SHIELD_L_2, 2, 0.5f);
+                }
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_SHIELD_L_1, 2, 0.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 3, 0.4f);
+                for (int i = 0; i < 5; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1 + i / 4, 0.3f, new Point(
+                            Constants.CAMERA_WIDTH + 50, Constants.CAMERA_HEIGHT_HALF), 180);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1 + i / 4, 0.3f, new Point(Constants.CAMERA_WIDTH_HALF,
+                            Constants.CAMERA_HEIGHT + 100), 270);
+                }
+
+                break;*/
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
         }
