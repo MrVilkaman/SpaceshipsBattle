@@ -25,6 +25,7 @@ public class Settings {
     }
 
     public static void create(String s){
+        instance = null;
         if (!s.isEmpty()){
             try {
                 Gson gson = new Gson();

@@ -178,9 +178,9 @@ public class MainMenuFragment extends BaseMenuFragment {
 
         getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
                 .edit()
-                .putString(PREF_USER_STATS,"")
-                .putString(PREF_HERO_STATS,"")
-                .putString(PREF_SHOP_ITEMS,"")
+                .putString(PREF_USER_STATS, "")
+                .putString(PREF_HERO_STATS, "")
+                .putString(PREF_SHOP_ITEMS, "")
                 .commit();
         getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_LEVELS,"")
@@ -188,6 +188,7 @@ public class MainMenuFragment extends BaseMenuFragment {
         getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE)
                 .edit().putString(PREF_SETTINGS,"")
                 .commit();
+
     }
 
 }
