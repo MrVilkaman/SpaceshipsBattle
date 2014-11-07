@@ -214,8 +214,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.getControlBase().setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         analogOnScreenControl.getControlBase().setAlpha(0.5f);
         analogOnScreenControl.getControlBase().setScaleCenter(0, 128);
-        analogOnScreenControl.getControlBase().setScale(1.25f);
-        analogOnScreenControl.getControlKnob().setScale(1.25f);
+        analogOnScreenControl.getControlBase().setScale(1.5f);
+        analogOnScreenControl.getControlKnob().setScale(1.5f);
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
         analogOnScreenControl.setZIndex(1000);
@@ -270,7 +270,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         if (heroFeatures.isHaveRocketGun()){
 
 
-        final Sprite btnFire2 = new Sprite(GameActivity.getCameraWidth()- 250, GameActivity.getCameraHeight()-150,
+        final Sprite btnFire2 = new Sprite(GameActivity.getCameraWidth()- 300, GameActivity.getCameraHeight()-150,
                 TextureLoader.getBtnFire2(),shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
@@ -295,7 +295,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         };
 
        // btnFire2.setAlpha(0.5f);
-
+            btnFire.setScale(1.25f);
+            btnFire2.setScale(1.25f);
             analogOnScreenControl.attachChild(btnFire2);
             analogOnScreenControl.registerTouchArea(btnFire2);
             createRocketBar();
@@ -305,7 +306,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createRocketBar(){
         try {
-            int x = GameActivity.getCameraWidth()- 185;
+            int x = GameActivity.getCameraWidth()- 235;
             int y = GameActivity.getCameraHeight()- 85;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             analogOnScreenControl.attachChild(rocketBar);
