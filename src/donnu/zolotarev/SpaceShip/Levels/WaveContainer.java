@@ -1,6 +1,8 @@
 package donnu.zolotarev.SpaceShip.Levels;
 
+import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
@@ -97,7 +99,7 @@ public  class WaveContainer {
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 2.5f);
                 break;
-            /*case LEVEL_3:
+            case LEVEL_4:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 3f);
                 unitWave.waitLastKilled();
@@ -110,7 +112,7 @@ public  class WaveContainer {
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 3, 3f);
                 break;
-            case LEVEL_4:
+            case LEVEL_5:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.4f);
                 unitWave.addDelay(2f);
@@ -122,7 +124,19 @@ public  class WaveContainer {
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.3f);
                 break;
-            case LEVEL_5:
+            case LEVEL_6:
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 2f);
+                for (int i = 0; i<3; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1000 -100*i,-110), 150);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1000 -100*i, Constants.CAMERA_HEIGHT+110), 210);
+                    unitWave.waitLastKilled();
+                }
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 1.4f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
+
+            break;
+            case LEVEL_7:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.4f);
                 for (int i = 0; i<3; i++) {
@@ -139,7 +153,7 @@ public  class WaveContainer {
                 unitWave.addDelay(6f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 3, 4f);
                 break;
-            case LEVEL_6:
+            /*case LEVEL_6:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, -0.4f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.5f);
