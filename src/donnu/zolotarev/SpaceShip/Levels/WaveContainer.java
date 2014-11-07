@@ -128,7 +128,7 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 2f);
                 for (int i = 0; i<3; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1000 -100*i,-110), 150);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1000 -100*i, Constants.CAMERA_HEIGHT+110), 210);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1000 -100*i, Constants.CAMERA_HEIGHT+10), 210);
                     unitWave.waitLastKilled();
                 }
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 1.4f);
@@ -141,34 +141,46 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.4f);
                 for (int i = 0; i<3; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i,-110), 150);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+110), 210);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+10), 210);
                 }
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 1.4f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.4f);
                 unitWave.addDelay(6f);
                 for (int i = 0; i<4; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i,-110), 150);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+110), 210);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+10), 210);
                 }
                 unitWave.addDelay(6f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 3, 4f);
                 break;
-            /*case LEVEL_6:
+            case LEVEL_8:
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.4f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, - 0.4f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 5, 0.4f);
+                for (int i = 0; i<6; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.01f, new Point(1100, Constants.CAMERA_HEIGHT+10), 210);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 1.2f, new Point(1100,-100), 150);
+                }
+                unitWave.addDelay(1.3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 0.4f);
+            break;
+            case LEVEL_9:
 
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, -0.4f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1, 1.4f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.5f);
-                unitWave.addDelay(3f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 3.4f);
+                unitWave.addDelay(2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 2.2f);
                 for (int i = 0; i<2; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1200 -100*i,-110), 160);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1200 -100*i, Constants.CAMERA_HEIGHT+110), 200);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.4f, new Point(1200 -100*i, Constants.CAMERA_HEIGHT+10), 200);
                 }
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5, 0.5f);
                 unitWave.addDelay(3f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 4, 4.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 4, 3.2f);
                 break;
-            case LEVEL_7:
+            /*case LEVEL_7:
 
                 for (int j = 0; j<3;j++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 3, 0.3f + j*1.5f);
