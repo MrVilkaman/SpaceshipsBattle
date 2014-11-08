@@ -37,7 +37,7 @@ public class Meteor extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 1500;
+        defaultSpeed = 1800;
         price = 30;
         defaultHealth = 300;
         defaultDamage = 500;
