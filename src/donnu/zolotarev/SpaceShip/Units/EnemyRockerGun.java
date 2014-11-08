@@ -61,11 +61,11 @@ public class EnemyRockerGun extends BaseUnit {
 
         switch (level){
             case 0:
-                defaultHealth = 800;
+                defaultHealth = 1000;
                 price = 120;
                 break;
             case 1:
-                defaultHealth = 1000;
+                defaultHealth = 1500;
                 price = 180;
                 break;
         }
