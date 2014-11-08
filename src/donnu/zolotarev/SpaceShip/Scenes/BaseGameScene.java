@@ -131,7 +131,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         shipActivity = GameActivity.getInstance();
         engine = shipActivity.getEngine();
         final AutoParallaxBackground autoParallaxBackground = new AutoParallaxBackground(0, 0, 0, 5);
-
+        autoParallaxBackground.setColor(Color.BLACK);
         Sprite background =  new Sprite(0,0,TextureLoader.getGameBK(),shipActivity.getVertexBufferObjectManager());
         autoParallaxBackground.attachParallaxEntity(new ParallaxBackground.ParallaxEntity(-20.0f, background));
         setBackground(autoParallaxBackground);

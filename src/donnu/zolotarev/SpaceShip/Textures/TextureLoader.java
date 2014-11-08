@@ -96,8 +96,10 @@ public class TextureLoader {
 
         }
 
-        gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.BILINEAR);
-        gameBK = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 0, 0);
+        gameBKTexture = new BitmapTextureAtlas(tm, 2048, 1024, TextureOptions.NEAREST_PREMULTIPLYALPHA);
+        BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 0, 0);
+        BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 6, 0);
+        gameBK = BitmapTextureAtlasTextureRegionFactory.createFromAsset(gameBKTexture, context, "bk_game.jpg", 3, 0);
         gameBKTexture.load();
 
         font = FontFactory.create(fm, tm, 256, 256, Typeface.create(Typeface.DEFAULT, Typeface.BOLD), 32,

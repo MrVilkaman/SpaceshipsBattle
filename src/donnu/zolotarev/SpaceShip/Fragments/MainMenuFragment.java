@@ -174,21 +174,14 @@ public class MainMenuFragment extends BaseMenuFragment {
         showFragment(new SelectLevelFragment(),true);
     }
 
-    public void clearCurrentGame(){
+    public void clearCurrentGame() {
 
-        getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE)
-                .edit()
-                .putString(PREF_USER_STATS, "")
-                .putString(PREF_HERO_STATS, "")
-                .putString(PREF_SHOP_ITEMS, "")
+        getActivity().getSharedPreferences(FILE_GAME_DATA, Context.MODE_PRIVATE).edit().putString(PREF_USER_STATS, "")
+                .putString(PREF_HERO_STATS, "").putString(PREF_SHOP_ITEMS, "").commit();
+        getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE).edit().putString(PREF_LEVELS, "")
                 .commit();
-        getActivity().getSharedPreferences(FILE_LEVELS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_LEVELS,"")
+        getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE).edit().putString(PREF_SETTINGS, "")
                 .commit();
-        getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE)
-                .edit().putString(PREF_SETTINGS,"")
-                .commit();
-
     }
 
 }
