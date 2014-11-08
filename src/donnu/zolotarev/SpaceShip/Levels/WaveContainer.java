@@ -369,6 +369,27 @@ public  class WaveContainer {
                     }
                 }
                 break;
+            case LEVEL_20:
+
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 10, 0.3f);
+                unitWave.addDelay(1f);
+                for (int i = 0;i<6;i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 1, 0.1f,new Point(400+130*i ,-100), 90);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 1, 0.1f, new Point(400 + 130 * i,
+                            Constants.CAMERA_HEIGHT + 100), 270);
+                }
+                unitWave.addDelay(1f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 3, 0.3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 2, 0.3f);
+
+                unitWave.addDelay(3f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 10, 0.3f);
+                for (int i = 0;i<6;i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, 0.1f,new Point(400+130*i ,-100), 90);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, 0.1f,new Point(400+130*i ,Constants.CAMERA_HEIGHT + 100), 270);
+                }
+                break;
+
 
             /* case LEVEL_15:
 
@@ -391,26 +412,6 @@ public  class WaveContainer {
                     }else{
                         unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, i, 1f);
                     }
-                }
-                break;
-            case LEVEL_19:
-
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 10, 0.3f);
-                unitWave.addDelay(1f);
-                for (int i = 0;i<6;i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 1, 0.1f,new Point(300+130*i ,-100), 90);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 1, 0.1f, new Point(300 + 130 * i,
-                            Constants.CAMERA_HEIGHT + 100), 270);
-                }
-                unitWave.addDelay(1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 3, 0.3f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 2, 0.3f);
-
-                unitWave.addDelay(1f);
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 10, 0.3f);
-                for (int i = 0;i<6;i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, 0.1f,new Point(300+130*i ,-100), 90);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 1, 0.1f,new Point(300+130*i ,Constants.CAMERA_HEIGHT + 100), 270);
                 }
                 break;
             case LEVEL_20:
