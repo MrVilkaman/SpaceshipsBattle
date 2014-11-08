@@ -208,7 +208,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl = new AnalogOnScreenControl(70,
                 GameActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
-                TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 200,
+                TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 100,
                 shipActivity.getEngine().getVertexBufferObjectManager(),
                 hero.getCallback());
         analogOnScreenControl.getControlBase().setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);

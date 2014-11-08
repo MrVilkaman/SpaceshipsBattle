@@ -3,10 +3,11 @@ package donnu.zolotarev.SpaceShip.Units;
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.*;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
@@ -115,7 +116,11 @@ public class Hero extends BaseUnit {
             @Override
             public void onControlChange(final BaseOnScreenControl pBaseOnScreenControl, final float pValueX,
                     final float pValueY) {
-                sprite.getPhysicsHandler().setVelocity(pValueX * SPEED, pValueY * SPEED);
+                float x = 1.5f*pValueX;
+                float y = 1.5f*pValueY;
+                x = ( Math.abs(x) <= 1)? x:  Utils.getSign(x);
+                y = ( Math.abs(y) <= 1)? y:  Utils.getSign(y);
+                sprite.getPhysicsHandler().setVelocity(x * SPEED, y * SPEED);
                // float ang = (pValueY <= 0.5f) ?  pValueY: 0.5f ;
                 sprite.setRotateAngle(pValueY*MAX_ANGLE);
             }
