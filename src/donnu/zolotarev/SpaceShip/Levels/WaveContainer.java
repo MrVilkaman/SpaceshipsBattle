@@ -335,19 +335,28 @@ public  class WaveContainer {
                 }
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 3, 0.3f);
                 break;
-           /* case LEVEL_12:
+           case LEVEL_18:
 
-                for (int i = 0; i < 7; i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 2, 1f);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
-                }
-                unitWave.addDelay(2f);
-                for (int i = 0; i < 5; i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 1.3f);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
-                }
+               for (int i = 0; i < 7; i++) {
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 4, 0.6f);
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+               }
+               unitWave.addDelay(2f);
+               unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 2, 0.5f);
+               unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+               for (int i = 0; i < 2; i++) {
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 1.3f);
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+               }
+               unitWave.addDelay(2f);
+               unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 2, 0.5f);
+               unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+               for (int i = 0; i < 3; i++) {
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 1.3f);
+                   unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.4f);
+               }
                 break;
-            case LEVEL_13:
+           /*  case LEVEL_13:
 
                 for (int i = 0; i < 4; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1+i/2, 0.5f);
