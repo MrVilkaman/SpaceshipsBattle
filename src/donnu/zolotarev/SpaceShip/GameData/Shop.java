@@ -37,7 +37,7 @@ public class Shop {
 
         list.add(new ShopItem(R.string.shop_item_damage_title,R.string.shop_item_damage_description,
                 ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,120,
-                ShopGrowthRates.RatesModels.LINEARLY,0,15));
+                ShopGrowthRates.RatesModels.LINEARLY,0,10));
 
         list.add(new ShopItem(R.string.shop_item_double_gun_title,R.string.shop_item_double_ammo_title,
                 R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,20,1000,300,3,1));

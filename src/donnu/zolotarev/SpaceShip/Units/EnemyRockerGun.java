@@ -52,7 +52,7 @@ public class EnemyRockerGun extends BaseUnit {
     @Override
     protected void loadParam(int level) {
         boolean haveShield = false;
-        defaultSpeed = 180;
+        defaultSpeed = 200;
         defaultMaxAngle = 4f;
         if(!(level < Constants.MAX_UNIT_LEVEL)){
             level = level - Constants.MAX_UNIT_LEVEL;

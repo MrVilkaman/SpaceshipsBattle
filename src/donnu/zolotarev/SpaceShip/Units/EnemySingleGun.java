@@ -57,7 +57,7 @@ public class EnemySingleGun extends BaseUnit {
     @Override
     protected void loadParam(int level) {
         boolean haveShield = false;
-        defaultSpeed = 200;
+        defaultSpeed = 230;
         defaultMaxAngle = 3f;
         if(!(level < Constants.MAX_UNIT_LEVEL)){
             level = level - Constants.MAX_UNIT_LEVEL;
@@ -75,7 +75,7 @@ public class EnemySingleGun extends BaseUnit {
             case 2:
                 price = 40;
                 defaultHealth = 500;
-                defaultSpeed = 180;
+                defaultSpeed = 200;
                 defaultMaxAngle = 2f;
                 break;
         }

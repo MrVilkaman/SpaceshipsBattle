@@ -48,7 +48,7 @@ public class EnemyWithMiniGun extends BaseUnit {
         boolean haveShield = false;
         price = 60;
         defaultHealth = 500;
-        defaultSpeed = 200;
+        defaultSpeed = 220;
         defaultMaxAngle = 3f;
 
         if(!(level < Constants.MAX_UNIT_LEVEL)){

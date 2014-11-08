@@ -254,16 +254,18 @@ public  class WaveContainer {
                 }
                 break;
 
-            /*case LEVEL_9:
+            case LEVEL_13:
 
                 for (int i = 0;i<4;i++) {
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 3+i, 2f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 3+i, 1.4f);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 5+i, 0.1f);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 1+i, 0.1f);
-                    unitWave.addDelay(3f+i);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 0+i, 0.1f*(1+i));
+                    unitWave.addDelay(1f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1,1, 1f);;
+                    unitWave.addDelay(2f+i);
                 }
                 break;
-            case LEVEL_10:
+            /*case LEVEL_10:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,5,1f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3,5,1f);
