@@ -461,7 +461,7 @@ public  class WaveContainer {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 3, 0.4f);
                 break;
 
-            /* case LEVEL_20:
+             case LEVEL_25:
 
                 for (int i = 0;i<5;i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 0.6f);
@@ -486,7 +486,7 @@ public  class WaveContainer {
                 unitWave.addDelay(0.5f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 10, 0.04f);
 
-                break;*/
+                break;
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
         }
