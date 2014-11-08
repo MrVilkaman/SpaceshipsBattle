@@ -82,7 +82,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected IWaveBar textWaveBarCallback = new IWaveBar() {
         @Override
         public void onNextWave(int count) {
-            waveCountBar.setText(String.format("%02d", count));
+            waveCountBar.setText(String.format("%01d", count));
         }
     };
     private int status;
@@ -423,10 +423,11 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     private void createWaveCountBar() {
         try {
-            waveCountBar = new Text(0,0, TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
+            waveCountBar = new Text(0,0, TextureLoader.getFont(),"000",new TextOptions(HorizontalAlign.RIGHT),engine.getVertexBufferObjectManager());
             int x = GameActivity.getCameraWidth() - (int)scoreBar.getWidth() - (int)scoreBar.getWidth() -20;
             waveCountBar.setPosition(x,0);
             waveCountBar.setColor(textColor);
+            waveCountBar.setText("0");
             attachChild(waveCountBar);
             waveCountBar.setZIndex(1000);
         } catch (Exception e) {

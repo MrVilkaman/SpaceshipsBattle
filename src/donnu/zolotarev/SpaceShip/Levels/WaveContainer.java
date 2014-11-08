@@ -287,10 +287,19 @@ public  class WaveContainer {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f,new Point(-100 ,-10), 35);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 2.2f, new Point(Constants.CAMERA_WIDTH_HALF,-50), 90);
 
-
                     unitWave.waitLastKilled();
                 }
                 break;
+            case LEVEL_15:
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,7,0.7f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1,20,0.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,8,0.7f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1,20,0.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,5,1f);
+                unitWave.waitLastKilled();
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 50, 0.3f);
+            break;
             /*case LEVEL_10:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,5,1f);
