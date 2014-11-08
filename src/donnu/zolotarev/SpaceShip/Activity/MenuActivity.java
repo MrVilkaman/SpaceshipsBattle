@@ -48,6 +48,7 @@ public class MenuActivity extends SingleFragmentActivity {
             public void onClick() {
                 GlobalImageManager.stop();
                 self.finish();
+                android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
         fragment.setCancelListener(new ISimpleClick2() {

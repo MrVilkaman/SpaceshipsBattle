@@ -2,19 +2,20 @@ package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
 import android.graphics.PointF;
-import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.Fire;
+import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Levels.LevelInfo;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
+import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
+import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 import org.andengine.entity.particle.emitter.PointParticleEmitter;
@@ -58,8 +59,31 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
             @Override
             public void onWinLevel() {
-                returnToParentScene(IParentScene.EXIT_WIN);
-                toast(GameActivity.getInstance().getString(R.string.text_win_message,score));
+                //todo заставка
+               /* returnToParentScene(IParentScene.EXIT_WIN);
+                toast(GameActivity.getInstance().getString(R.string.text_win_message,score));*/
+                beforeReturnToParent(IParentScene.EXIT_WIN);
+                final String str = shipActivity.getString(R.string.text_win_message,score);
+                shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        isActive = false;
+                        enablePauseMenu = false;
+                        setChildScene(MenuFactory.createMenu(engine, shipActivity.getCamera())
+                                .addedText(str, TextureLoader.getFont())
+                                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
+                                    @Override
+                                    public void onClick(int id) {
+                                        clearItem();
+                                        System.gc();
+                                        FogManager.fogOff();
+                                        returnToParentScene(IParentScene.EXIT_WIN);
+                                    }
+                                })
+                                .enableAnimation()
+                                .build(), false, true, true);
+                    }
+                });
             }
         });
         super.addNewWaveController(controller);

@@ -60,8 +60,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private MenuScene menuScene;
     private MenuScene dieMenuScene;
     private boolean isShowMenuScene = false;
-    private boolean enablePauseMenu = true;
-    private boolean isActive = false;
+    protected boolean enablePauseMenu = true;
+    protected boolean isActive = false;
 
     protected int score;
     protected int waveIndex = 0;
@@ -138,7 +138,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
         enemyController = new ObjectCollisionController<BaseUnit>();
         bulletController = new ObjectCollisionController<BaseBullet>();
-
 
         createFPSBase();
         createHealthBar();
