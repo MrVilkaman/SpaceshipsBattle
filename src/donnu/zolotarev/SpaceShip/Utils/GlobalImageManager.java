@@ -11,7 +11,7 @@ public  class GlobalImageManager {
 
     public static void configuration(int[] images, int del){
         if (changer == null){
-            changer =  new ImageChanger(null, images,del*1000);
+            changer =  new ImageChanger(images);
             changer.needRandom(true);
         }
     }
@@ -25,9 +25,9 @@ public  class GlobalImageManager {
     }
 
     public static void stop(){
-        if (changer != null){
+       /* if (changer != null){
             changer.stop();
-        }
+        }*/
     }
 
     public static void clearImageView(ImageView imageBack) {

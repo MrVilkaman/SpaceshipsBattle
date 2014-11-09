@@ -16,6 +16,7 @@ public class LevelsAdapter extends ArrayAdapter {
 
 
     private final LayoutInflater lInflater;
+    private final Resources resources;
     private LevelController levelController;
     private ISimpleClick clickListener;
 
@@ -23,6 +24,7 @@ public class LevelsAdapter extends ArrayAdapter {
         super(context, R.layout.item_level);
         lInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         levelController = LevelController.getInstance();
+        resources = context.getResources();
     }
 
     @Override
@@ -31,8 +33,8 @@ public class LevelsAdapter extends ArrayAdapter {
             convertView = inflateNewView(parent);
         }
         ViewHolder holder = (ViewHolder)convertView.getTag();
-        final LevelInfo levelInfo =  levelController.getLevelInfoForAdapter(position);
-        Resources resources = parent.getResources();
+        final LevelInfo levelInfo = levelController.getLevelInfoForAdapter(position);
+
 
         //holder.bk.setBackgroundColor(resources.getColor(R.color.item_level_bk_color));
         holder.status.setTextColor(redraw(levelInfo).getARGBPackedInt());
@@ -53,7 +55,6 @@ public class LevelsAdapter extends ArrayAdapter {
         holder.start.setEnabled(levelInfo.isEnabled());
 
         holder.title.setText(resources.getString(R.string.item_level_title_template,levelInfo.getLevelId()));
-
         holder.start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,15 +83,7 @@ public class LevelsAdapter extends ArrayAdapter {
     }
 
     private Color redraw(LevelInfo item) {
-        String name;
         Color color;
-        // todo null pointer eckb kbcnfnm lj egjhf
-//        at donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter.redraw(LevelsAdapter.java:87)
-//        at donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter.getView(LevelsAdapter.java:38)
-//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.fillListRight(HorizontalListView.java:561)
-//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.fillList(HorizontalListView.java:505)
-//        at donnu.zolotarev.SpaceShip.UI.HorizontalListView.onLayout(HorizontalListView.java:472)
-        name = String.valueOf(item.getLevelId());
         if (item.isEnabled()){
             if (item.isNew()){
                 color = Color.WHITE;

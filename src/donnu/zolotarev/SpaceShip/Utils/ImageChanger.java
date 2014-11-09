@@ -4,39 +4,37 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.TransitionDrawable;
 import android.widget.ImageView;
 
 import java.util.Random;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class ImageChanger {
 
     private final Random random;
     private final int[] resurceImageId;
-    private ImageView view;
-    private long delay = 4000;
     private int imageNextId;
-    private Timer timer;
     private boolean needRandom = false;
+    private Timer timer;
 
+  /*  private ImageView view;
+    private long delay = 4000;
     private Drawable[] layers;
-    private Runnable timerRunneble;
+    private Runnable timerRunneble;*/
 
-    public ImageChanger(ImageView view, final int[] resurceImageId, long delay) {
-        this.view = view;
-        this.delay = delay;
+    public ImageChanger(final int[] resurceImageId) {
+        //  this.view = view;
+        //    this.delay = delay;
         imageNextId = 1;
         random = new Random();
-        layers = new Drawable[2];
+        //       layers = new Drawable[2];
         this.resurceImageId = resurceImageId;
-        timerRunneble = new Runnable() {
+        /*timerRunneble = new Runnable() {
             @Override
             public void run() {
             //    changeImage( getNextImage() ) ;
             }
-        };
+        };*/
     }
 
     private Drawable getNextImage(Resources res){
@@ -59,13 +57,13 @@ public class ImageChanger {
             view = newView;
             changeImage(drawable);
         }else{*/
-            view = newView;
-          //  changeImage();
-        view.setImageBitmap(Bitmap.createBitmap(((BitmapDrawable) getNextImage(res)).getBitmap()));
-      //  }
+        //      view = newView;
+        //  changeImage();
+        newView.setImageBitmap(Bitmap.createBitmap(((BitmapDrawable) getNextImage(res)).getBitmap()));
+        //  }
     }
 
-    public void start(){
+ /*   public void start(){
         stop();
         timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -75,9 +73,9 @@ public class ImageChanger {
             }
         }, 0, delay);
 
-    }
+    }*/
 
-    private void changeImage(Drawable drawable){
+   /* private void changeImage(Drawable drawable){
         if (view != null){
             Drawable oldDrawable = view.getDrawable();
 
@@ -93,14 +91,14 @@ public class ImageChanger {
                 view.setImageDrawable(drawable);
             }
         }
-    }
+    }*/
 
-    public void stop(){
+ /*   public void stop(){
         if (timer != null){
             timer.cancel();
             timer = null;
         }
-    }
+    }*/
 
     public void needRandom(boolean needRandom) {
         this.needRandom = needRandom;
