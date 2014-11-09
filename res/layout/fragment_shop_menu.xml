@@ -14,8 +14,7 @@
                                        android:layout_height="wrap_content"
                                        ads:adUnitId="ca-app-pub-3472836589086047/3147495815"
                                        ads:adSize="BANNER"
-
-                                       android:layout_toRightOf = "@+id/select_levels_back"
+                                       android:layout_centerHorizontal="true"
                                        android:layout_alignParentTop = "true"
                                        android:layout_marginTop = "5dp" />
 

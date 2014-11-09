@@ -132,24 +132,26 @@ public abstract class BaseMenuFragment extends BaseFragment {
         }
     }
 
+    private static int adsCounter = 2;
     protected void loadBigBanner(){
-        // Создание межстраничного объявления.
-        final InterstitialAd interstitial = new InterstitialAd(getActivity());
-        interstitial.setAdUnitId(Constants.BANNER_ID);
-        // Создание запроса объявления.
-        AdRequest adRequest = new AdRequest.Builder().build();
+        adsCounter--;
+        if (adsCounter < 0){
+            final InterstitialAd interstitial = new InterstitialAd(getActivity());
+            interstitial.setAdUnitId(Constants.BANNER_ID);
+            AdRequest adRequest = new AdRequest.Builder().build();
 
-        // Запуск загрузки межстраничного объявления.
-        interstitial.loadAd(adRequest);
-        interstitial.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                if (interstitial.isLoaded()) {
-                    interstitial.show();
+            interstitial.loadAd(adRequest);
+            interstitial.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    if (interstitial.isLoaded()) {
+                        interstitial.show();
+                        adsCounter = 3;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
 }

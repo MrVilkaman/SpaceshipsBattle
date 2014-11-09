@@ -137,7 +137,9 @@ public class SelectLevelFragment extends BaseMenuFragment {
                            }
                        case -99:
                          //  GlobalImageManager.changeImageView(imageBack);
-                           loadBigBanner();
+                           if (Constants.IS_ADS_ENABLED){
+                               loadBigBanner();
+                           }
                            break;
                    }
                     levelsAdapter.notifyDataSetInvalidated();
