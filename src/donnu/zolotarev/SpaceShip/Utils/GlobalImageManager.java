@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.Utils;
 
-import android.app.Activity;
+import android.content.Context;
 import android.widget.ImageView;
 
 public  class GlobalImageManager {
@@ -9,17 +9,18 @@ public  class GlobalImageManager {
 
     private GlobalImageManager(){}
 
-    public static void configuration(Activity activities, int[] images,int del ){
+    public static void configuration(int[] images, int del){
         if (changer == null){
-            changer =  new ImageChanger(activities,null, images,del*1000);
+            changer =  new ImageChanger(null, images,del*1000);
             changer.needRandom(true);
         }
     }
 
-    public static void changeImageView(ImageView imageView){
+    public static void changeImageView(Context context, ImageView imageView){
         if (changer != null){
-            changer.changeImageView(imageView);
-            changer.start();
+            changer.changeImageView(context.getResources(), imageView);
+        //    changer.start();
+            System.gc();
         }
     }
 
@@ -27,5 +28,11 @@ public  class GlobalImageManager {
         if (changer != null){
             changer.stop();
         }
+    }
+
+    public static void clearImageView(ImageView imageBack) {
+        AppUtils.clearImageView(imageBack);
+        System.gc();
+
     }
 }

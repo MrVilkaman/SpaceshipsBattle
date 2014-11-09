@@ -2,9 +2,12 @@ package donnu.zolotarev.SpaceShip.Utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.widget.ImageView;
 
 public class AppUtils {
 
@@ -23,5 +26,16 @@ public class AppUtils {
             intent.setData(Uri.parse(Constants.GOOGLE_PLAY_LINK));
             context.startActivity(intent);
         }
+    }
+
+    public static void clearImageView(ImageView imageView) {
+        if (! (imageView.getDrawable() instanceof BitmapDrawable)){
+            return;
+        }
+        Bitmap drawable = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        if (drawable != null && !drawable.isRecycled()){
+            drawable.recycle();
+        }
+        imageView.setImageDrawable(null);
     }
 }

@@ -9,10 +9,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
-import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class ShopFragment extends BaseMenuFragment {
@@ -36,12 +36,16 @@ public class ShopFragment extends BaseMenuFragment {
     };
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        shopAdapter = new ShopAdapter(getActivity(), Shop.get(),moneyUpdateCallback);
+        userData = UserData.get();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
-
-        shopAdapter = new ShopAdapter(getActivity(), Shop.get(),moneyUpdateCallback);
         listView.setAdapter(shopAdapter);
-        userData = UserData.get();
         return view;
     }
 
@@ -51,12 +55,18 @@ public class ShopFragment extends BaseMenuFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        GlobalImageManager.changeImageView(imageBack);
+    public void onStart() {
+        super.onStart();
+        GlobalImageManager.changeImageView(getActivity(), imageBack);
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        GlobalImageManager.clearImageView(imageBack);
+    }
+
+        @Override
     public void onResume() {
         super.onResume();
         gold.setText(String.valueOf(userData.getMoney()));

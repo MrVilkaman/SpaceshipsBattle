@@ -46,14 +46,14 @@ public class MainMenuFragment extends BaseMenuFragment {
         imageBack.setImageDrawable(tr);
         tr.startTransition(2000);*/
 
-        GlobalImageManager.configuration(getActivity(), new int[]{
+        GlobalImageManager.configuration(new int[]{
                 R.drawable.main_wall_1,
                 R.drawable.main_wall_2,
                 R.drawable.main_wall_3,
                 R.drawable.main_wall_4,
                 R.drawable.main_wall_5,
                 R.drawable.main_wall_6
-        },30);
+        },15);
 
         //imageBack.setImageDrawable();
         versionInfoUpdate();
@@ -93,9 +93,15 @@ public class MainMenuFragment extends BaseMenuFragment {
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        GlobalImageManager.changeImageView(imageBack);
+    public void onStart() {
+        super.onStart();
+        GlobalImageManager.changeImageView(getActivity(), imageBack);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        GlobalImageManager.clearImageView(imageBack);
     }
 
     @OnClick(R.id.btn_main_menu_new_game)

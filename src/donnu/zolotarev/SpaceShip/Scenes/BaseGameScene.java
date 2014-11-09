@@ -119,6 +119,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     setChildScene(dieMenuScene, false, true, true);
                 }
             });
+
         }
     };
 

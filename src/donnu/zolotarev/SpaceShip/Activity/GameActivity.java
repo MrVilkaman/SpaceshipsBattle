@@ -78,7 +78,6 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
 
     @Override
     protected Scene onCreateScene() {
-
         mainMenu = new SelectionLevelScene(this,level);
         return mainMenu;
     }

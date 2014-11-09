@@ -24,6 +24,7 @@ import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 public class SelectLevelFragment extends BaseMenuFragment {
 
     private static final int GAME_STOP = 0;
+    private ShopFragment shopFragment;
 
     @InjectView(R.id.select_levels_money_val)
     TextView gold;
@@ -52,28 +53,33 @@ public class SelectLevelFragment extends BaseMenuFragment {
 
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        levelsAdapter = new LevelsAdapter(getActivity());
+        levelsAdapter.setClickListener(startLevelListenet);
 
+        loadGame();
+        userData = UserData.get();
+        settings = Settings.get();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_select_levels,inflater,container);
-        levelsAdapter = new LevelsAdapter(getActivity());
-        levelsAdapter.setClickListener(startLevelListenet);
         listView.setAdapter(levelsAdapter);
-
-        loadGame();
-        userData = UserData.get();
-        settings = Settings.get();
         return view;
     }
 
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        GlobalImageManager.changeImageView(imageBack);
+    public void onStart() {
+        super.onStart();
+        GlobalImageManager.changeImageView(getActivity(), imageBack);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        GlobalImageManager.clearImageView(imageBack);
     }
 
     @Override
@@ -97,7 +103,10 @@ public class SelectLevelFragment extends BaseMenuFragment {
 
     @OnClick(R.id.select_levels_shop)
     public void onShop(){
-        showFragment(new ShopFragment(),true);
+        if (shopFragment == null){
+            shopFragment = new ShopFragment();
+        }
+        showFragment(shopFragment,true);
     }
 
     @Override
@@ -112,7 +121,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
                                startActivityForResult(restartIntent,GAME_STOP);
                            }
                        case -99:
-                           GlobalImageManager.changeImageView(imageBack);
+                         //  GlobalImageManager.changeImageView(imageBack);
                            break;
                    }
                     levelsAdapter.notifyDataSetInvalidated();

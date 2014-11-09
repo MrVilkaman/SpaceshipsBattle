@@ -111,12 +111,9 @@ public class BaseFragment extends Fragment {
         return null;
     }
 
-
     protected void showFragment(BaseFragment fragment, boolean addToBackStack) {
-        Activity activity = getActivity();
-        if (activity != null && activity instanceof MenuActivity) {
-            MenuActivity mainActivity = (MenuActivity) activity;
-            mainActivity.loadRootFragment(fragment, addToBackStack);
+        if (getActivity() != null) {
+            ((MenuActivity) getActivity()).loadRootFragment(fragment, addToBackStack);
         } else {
             logError("Cannot get MainActivity reference... Look for error");
         }

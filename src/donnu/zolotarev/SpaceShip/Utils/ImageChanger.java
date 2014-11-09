@@ -1,7 +1,8 @@
 package donnu.zolotarev.SpaceShip.Utils;
 
-import android.app.Activity;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.widget.ImageView;
@@ -12,63 +13,68 @@ import java.util.TimerTask;
 
 public class ImageChanger {
 
-    private final Activity context;
-    private final int[] resurceImageId;
     private final Random random;
+    private final int[] resurceImageId;
     private ImageView view;
-    private final Resources res;
     private long delay = 4000;
     private int imageNextId;
     private Timer timer;
     private boolean needRandom = false;
 
-    public ImageChanger(Activity context, ImageView view, int[] resurceImageId,long delay) {
-       this.context = context;
-       this.view = view;
-       this.resurceImageId = resurceImageId;
-       res = context.getResources();
-       this.delay = delay;
-       changeImage(res.getDrawable(resurceImageId[0]));
-       imageNextId = 1;
-       random = new Random();
+    private Drawable[] layers;
+    private Runnable timerRunneble;
+
+    public ImageChanger(ImageView view, final int[] resurceImageId, long delay) {
+        this.view = view;
+        this.delay = delay;
+        imageNextId = 1;
+        random = new Random();
+        layers = new Drawable[2];
+        this.resurceImageId = resurceImageId;
+        timerRunneble = new Runnable() {
+            @Override
+            public void run() {
+            //    changeImage( getNextImage() ) ;
+            }
+        };
     }
 
-    public void changeImageView(ImageView newView){
-        if (view != null){
+    private Drawable getNextImage(Resources res){
+        imageNextId++;
+        if (needRandom){
+            int newId = imageNextId;
+            while (newId == imageNextId) {
+                newId = random.nextInt(resurceImageId.length);
+            }
+            imageNextId = newId;
+        } else {
+            imageNextId = (imageNextId < resurceImageId.length) ? imageNextId : 0;
+        }
+        return res.getDrawable(resurceImageId[imageNextId]);
+    }
+
+    public void changeImageView(Resources res, ImageView newView){
+        /*if (view != null){
             Drawable drawable = view.getDrawable();
             view = newView;
             changeImage(drawable);
-        }else{
+        }else{*/
             view = newView;
-        }
+          //  changeImage();
+        view.setImageBitmap(Bitmap.createBitmap(((BitmapDrawable) getNextImage(res)).getBitmap()));
+      //  }
     }
 
     public void start(){
-        if (timer != null){
-            stop();
-        }
-        timer =  new Timer();
+        stop();
+        timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                context.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageNextId++;
-                        if (needRandom){
-                            int newId = imageNextId;
-                            while (newId == imageNextId) {
-                                newId = random.nextInt(resurceImageId.length);
-                            }
-                            imageNextId = newId;
-                        } else {
-                            imageNextId = (imageNextId < resurceImageId.length) ? imageNextId : 0;
-                        }
-                        changeImage( res.getDrawable(resurceImageId[imageNextId])) ;
-                    }
-                });
+              //  context.runOnUiThread(timerRunneble);
             }
         }, 0, delay);
+
     }
 
     private void changeImage(Drawable drawable){
@@ -76,12 +82,12 @@ public class ImageChanger {
             Drawable oldDrawable = view.getDrawable();
 
             if (oldDrawable != null){
-                Drawable[] layers = new Drawable[2];
+
                 layers[0] = oldDrawable;
                 layers[1] = drawable;
-
                 final TransitionDrawable tr = new TransitionDrawable(layers);
                 tr.startTransition(2000);
+             //   clearImageView(view);
                 view.setImageDrawable(tr);
             }else{
                 view.setImageDrawable(drawable);
@@ -90,11 +96,14 @@ public class ImageChanger {
     }
 
     public void stop(){
-        timer.cancel();
-        timer = null;
+        if (timer != null){
+            timer.cancel();
+            timer = null;
+        }
     }
 
     public void needRandom(boolean needRandom) {
         this.needRandom = needRandom;
     }
+
 }
