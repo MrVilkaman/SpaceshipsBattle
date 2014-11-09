@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.view.View;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -11,6 +16,7 @@ import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 
 public abstract class BaseMenuFragment extends BaseFragment {
 
@@ -104,4 +110,46 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
         return (packinfo.versionCode == codeVersion) || codeVersion == 7 || codeVersion == 8;
     }
+
+    protected void showAds(final AdView adView) {
+        if (adView != null){
+            adView.setVisibility(View.GONE);
+            AdRequest adRequest = new AdRequest.Builder().build();
+            adView.loadAd(adRequest);
+            adView.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    adView.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                }
+
+            });
+        }
+    }
+
+    protected void loadBigBanner(){
+        // Создание межстраничного объявления.
+        final InterstitialAd interstitial = new InterstitialAd(getActivity());
+        interstitial.setAdUnitId(Constants.BANNER_ID);
+        // Создание запроса объявления.
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        // Запуск загрузки межстраничного объявления.
+        interstitial.loadAd(adRequest);
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if (interstitial.isLoaded()) {
+                    interstitial.show();
+                }
+            }
+        });
+    }
+
 }

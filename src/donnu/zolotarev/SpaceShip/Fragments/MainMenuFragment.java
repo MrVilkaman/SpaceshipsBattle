@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.android.gms.ads.AdView;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.AppUtils;
@@ -33,6 +34,9 @@ public class MainMenuFragment extends BaseMenuFragment {
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
 
+    @InjectView(R.id.adView)
+    AdView adView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_main_menu, inflater, container);
@@ -45,7 +49,7 @@ public class MainMenuFragment extends BaseMenuFragment {
         TransitionDrawable tr = new TransitionDrawable(layers);
         imageBack.setImageDrawable(tr);
         tr.startTransition(2000);*/
-
+        // to
         GlobalImageManager.configuration(new int[]{
                 R.drawable.main_wall_1,
                 R.drawable.main_wall_2,
@@ -57,6 +61,10 @@ public class MainMenuFragment extends BaseMenuFragment {
 
         //imageBack.setImageDrawable();
         versionInfoUpdate();
+
+        if (Constants.IS_ADS_ENABLED ){
+            showAds(adView);
+        }
 
         PackageInfo packinfo = null;
 
@@ -190,4 +198,15 @@ public class MainMenuFragment extends BaseMenuFragment {
                 .commit();
     }
 
+    @Override
+    public void onPause() {
+        adView.pause();
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adView.resume();
+    }
 }

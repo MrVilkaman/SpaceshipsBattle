@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.android.gms.ads.AdView;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -19,6 +20,7 @@ import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.UI.HorizontalListView;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class SelectLevelFragment extends BaseMenuFragment {
@@ -34,6 +36,9 @@ public class SelectLevelFragment extends BaseMenuFragment {
 
     @InjectView(R.id.image_background)
     ImageView imageBack;
+
+    @InjectView(R.id.adView)
+    AdView adView;
 
     private LevelsAdapter levelsAdapter;
     private Intent restartIntent;
@@ -67,6 +72,9 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_select_levels,inflater,container);
         listView.setAdapter(levelsAdapter);
+        if (Constants.IS_ADS_ENABLED ){
+            showAds(adView);
+        }
         return view;
     }
 
@@ -88,6 +96,13 @@ public class SelectLevelFragment extends BaseMenuFragment {
        gold.setText(String.valueOf(userData.getMoney()));
         saveGameState();
         listView.setSelection(settings.getLastPlayedLevel());
+        adView.resume();
+    }
+
+    @Override
+    public void onPause() {
+        adView.pause();
+        super.onPause();
     }
 
     @OnClick(R.id.select_levels_test_level)
@@ -122,6 +137,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
                            }
                        case -99:
                          //  GlobalImageManager.changeImageView(imageBack);
+                           loadBigBanner();
                            break;
                    }
                     levelsAdapter.notifyDataSetInvalidated();
@@ -130,4 +146,5 @@ public class SelectLevelFragment extends BaseMenuFragment {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

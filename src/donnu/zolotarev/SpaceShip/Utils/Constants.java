@@ -2,6 +2,9 @@ package donnu.zolotarev.SpaceShip.Utils;
 
 public  class Constants {
 
+    public static final boolean IS_ADS_ENABLED = true;
+    public static final String BANNER_ID = "ca-app-pub-3472836589086047/2589092611";
+
     public static final int MAX_UNIT_LEVEL = 4;
     public static final int MAX_UNIT_LEVEL_WITH_SHIELD = 2*MAX_UNIT_LEVEL;
     // Device const

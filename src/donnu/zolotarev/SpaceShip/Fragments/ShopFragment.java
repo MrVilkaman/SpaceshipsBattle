@@ -9,10 +9,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.android.gms.ads.AdView;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class ShopFragment extends BaseMenuFragment {
@@ -27,6 +29,9 @@ public class ShopFragment extends BaseMenuFragment {
 
     @InjectView(R.id.image_background)
     ImageView imageBack;
+
+    @InjectView(R.id.adView)
+    AdView adView;
 
     private ShopAdapter.Callback moneyUpdateCallback = new ShopAdapter.Callback() {
         @Override
@@ -46,6 +51,10 @@ public class ShopFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
         listView.setAdapter(shopAdapter);
+        if (Constants.IS_ADS_ENABLED ){
+            showAds(adView);
+        }
+
         return view;
     }
 
@@ -69,12 +78,15 @@ public class ShopFragment extends BaseMenuFragment {
         @Override
     public void onResume() {
         super.onResume();
-        gold.setText(String.valueOf(userData.getMoney()));
+            adView.resume();
+            gold.setText(String.valueOf(userData.getMoney()));
     }
 
     @Override
     public void onPause() {
         super.onPause();
         saveGameState();
+        adView.pause();
     }
+
 }

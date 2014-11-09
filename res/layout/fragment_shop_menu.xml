@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android = "http://schemas.android.com/apk/res/android"
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
                 android:layout_width = "match_parent"
                 android:layout_height = "match_parent">
     <ImageView android:layout_width = "match_parent"
                android:layout_height = "match_parent"
                android:scaleType="centerCrop"
                android:id = "@+id/image_background" />
+
+    <com.google.android.gms.ads.AdView android:id="@+id/adView"
+                                       android:layout_width="wrap_content"
+                                       android:layout_height="wrap_content"
+                                       ads:adUnitId="ca-app-pub-3472836589086047/3147495815"
+                                       ads:adSize="BANNER"
+
+                                       android:layout_toRightOf = "@+id/select_levels_back"
+                                       android:layout_alignParentTop = "true"
+                                       android:layout_marginTop = "5dp" />
+
 
     <Button
             style="@style/BaseButton"
@@ -25,16 +37,16 @@
               android:gravity = "center"
               android:layout_alignParentTop = "true"
               android:layout_centerHorizontal = "true"
-              android:layout_alignBottom = "@+id/linearLayout" />
+              android:layout_alignBottom = "@+id/linearLayout"
+              android:visibility = "gone" />
     <LinearLayout
             android:orientation = "horizontal"
             android:layout_width = "fill_parent"
             android:layout_height = "fill_parent"
-            android:gravity="center"
-            android:layout_toLeftOf = "@+id/select_levels_shop"
-            android:layout_toRightOf = "@+id/textView"
+            android:gravity="right|center_vertical"
             android:id = "@+id/linearLayout"
-            android:layout_above = "@+id/shop_list_view">
+            android:layout_above = "@+id/shop_list_view"
+            android:layout_alignRight = "@+id/shop_list_view">
         <TextView
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
