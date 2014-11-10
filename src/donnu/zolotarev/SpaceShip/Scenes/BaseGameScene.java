@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
+import android.graphics.Point;
 import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -17,6 +18,7 @@ import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Units.EnemyBoss;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
@@ -37,6 +39,8 @@ import org.andengine.entity.util.FPSCounter;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.util.HorizontalAlign;
 import org.andengine.util.color.Color;
+
+import java.util.Random;
 
 public abstract class BaseGameScene extends MyScene implements IAddedEnemy, IScoreBar {
 
@@ -506,6 +510,12 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     break;
                 case FogManager.STOP_FOG:
                     FogManager.fogOff();
+                    break;
+                case BaseUnit.TYPE_ENEMY_BOSS_1:
+                    EnemyBoss enemyBoss = new EnemyBoss();
+                    Random random = new Random();
+                    int rand = random.nextInt(60);
+                    enemyBoss.init(-1,new Point(1300, rand * 10),135 + 15*random.nextInt(6));
                     break;
             }
             return false;

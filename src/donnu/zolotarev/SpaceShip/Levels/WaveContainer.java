@@ -42,9 +42,10 @@ public  class WaveContainer {
     public static final int LEVEL_27 = LEVEL_26+1;
     public static final int LEVEL_28 = LEVEL_27+1;
     public static final int LEVEL_29 = LEVEL_28+1;
+    private static final int LEVEL_30 = LEVEL_29+1;
 
     public static final int LEVEL_MIN = LEVEL_1;
-    public static final int LEVEL_MAX = LEVEL_29;
+    public static final int LEVEL_MAX = LEVEL_30;
 
     public static IWaveController getWaveControllerById(int id,IAddedEnemy iAddedEnemy){
         return get(id,iAddedEnemy);
@@ -551,6 +552,9 @@ public  class WaveContainer {
                 }
                 unitWave.addDelay(1.5f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 10, 0.9f);
+                break;
+            case LEVEL_30:
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_BOSS_1, 1, 0.9f);
                 break;
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);

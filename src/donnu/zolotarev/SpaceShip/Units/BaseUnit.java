@@ -37,6 +37,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     public static final int TYPE_ENEMY_METEOR_L_1 = TYPE_ENEMY_ROCKET_L_1 + Constants.MAX_UNIT_LEVEL_WITH_SHIELD;
 
+    public static final int TYPE_ENEMY_BOSS_1 = -3;
+
     private static final String TAG = "BaseUnit";
 
     protected static BaseGameScene mainScene;
@@ -51,7 +53,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected WaySpecifications waySpecifications;
     protected Shield shield;
 
-    protected int unitLevel = -1;
+    protected int unitLevel = -2;
     protected int health = 0;
 
     protected int defaultHealth;

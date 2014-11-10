@@ -47,7 +47,6 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
         attachChild(fire);
     }
 
-
     @Override
     public void addNewWaveController(IWaveController controller) {
         ((SimpleWave)controller).addListener(new IStatusGameInfo() {
