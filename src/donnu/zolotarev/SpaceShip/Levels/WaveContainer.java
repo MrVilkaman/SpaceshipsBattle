@@ -523,7 +523,35 @@ public  class WaveContainer {
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_1, 10, 0.2f);
                 break;
-
+            case LEVEL_28:
+                unitWave.startFog();
+                unitWave.addDelay(2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_3, 5, - 0.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 15, 0.8f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 8, 1.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 15, 0.8f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 5, 1.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 8, 1.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 10, 0.9f);
+                break;
+            case LEVEL_29:
+                unitWave.startFog();
+                unitWave.addDelay(2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 3, 0.4f);
+                for (int i = 0; i<4; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.4f, new Point(1100 -100*i,-110), 150);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+10), 210);
+                }
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3, 3, 1.2f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 5, 1.4f);
+                unitWave.addDelay(1.5f);
+                for (int i = 0; i<4; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.4f, new Point(1100 -100*i,-110), 150);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 2, 0.4f, new Point(1100 -100*i, Constants.CAMERA_HEIGHT+10), 210);
+                }
+                unitWave.addDelay(1.5f);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 10, 0.9f);
+                break;
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
         }
