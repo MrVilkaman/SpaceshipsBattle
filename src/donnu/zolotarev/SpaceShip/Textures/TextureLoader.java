@@ -56,6 +56,8 @@ public class TextureLoader {
     private static BitmapTextureAtlas gameBKTexture;
     private static ITiledTextureRegion shieldTextureRegion;
     private static ITiledTextureRegion fogTextureRegion;
+    private static ITiledTextureRegion bossBaseTextureRegion;
+    private static ITiledTextureRegion bossTurelTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -89,6 +91,8 @@ public class TextureLoader {
 
             fogTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.FOG_ID);
 
+            bossBaseTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.BOSS_BASE_ID);
+            bossTurelTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.BOSS_TUREL_ID);
 
         }
         catch (final TexturePackParseException e)
@@ -228,5 +232,13 @@ public class TextureLoader {
 
     public static ITiledTextureRegion getFogTextureRegion() {
         return fogTextureRegion;
+    }
+
+    public static ITiledTextureRegion getBossTurelTextureRegion() {
+        return bossTurelTextureRegion;
+    }
+
+    public static ITiledTextureRegion getBossBaseTextureRegion() {
+        return bossBaseTextureRegion;
     }
 }
