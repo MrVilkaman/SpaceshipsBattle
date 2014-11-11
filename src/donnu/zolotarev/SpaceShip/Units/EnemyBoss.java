@@ -53,9 +53,9 @@ public class EnemyBoss extends BaseUnit {
         weaponController.setShoot(true);
         IWeaponModificator[] modificator = {new SpeedFireModificator(0.25f,IWeaponModificator.Mode.CHANGE)};
         IWeaponModificator[] moR = {
-                new RotateAngleModificator(2f,IWeaponModificator.Mode.PERCENT),
+                new RotateAngleModificator(4f,IWeaponModificator.Mode.PERCENT),
                 new SpeedFireModificator(-3f,IWeaponModificator.Mode.PERCENT),
-                new DamageModificator(0.5f,IWeaponModificator.Mode.PERCENT)};
+                new DamageModificator(0.6f,IWeaponModificator.Mode.PERCENT)};
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 0);
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 1);
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 2);
@@ -65,11 +65,11 @@ public class EnemyBoss extends BaseUnit {
 
     @Override
     protected void loadParam(int level) {
-        defaultSpeed = 150;
-        defaultMaxAngle = 0.7f;
+        defaultSpeed = 230;
+        defaultMaxAngle = 0.5f;
         // todo убрать!
-//        defaultHealth = 35000;
-        defaultHealth = 100;
+        defaultHealth = 75000;
+//        defaultHealth = 100;
         price = 1500;
     }
 

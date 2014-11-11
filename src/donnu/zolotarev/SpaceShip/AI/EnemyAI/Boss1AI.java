@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.AI.EnemyAI;
 
 import donnu.zolotarev.SpaceShip.AI.SimpleAI;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.opengl.texture.region.ITiledTextureRegion;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 
@@ -14,8 +15,9 @@ public class Boss1AI extends SimpleAI {
 
     @Override
     protected void doUpdate() {
-        turnonX();
-        turnonY();
+        reflectionFromX();
+        reflectionFromY();
+        prosecutionHero(0,Constants.CAMERA_WIDTH);
     }
 
 
