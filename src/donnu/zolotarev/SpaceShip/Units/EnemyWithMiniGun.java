@@ -38,7 +38,7 @@ public class EnemyWithMiniGun extends BaseUnit {
                 new WeaponPos(sprite, 40, 14 , 0),
                 new WeaponPos(sprite, 40, 59 , 0)
         });
-        IWeaponModificator mode = new DamageModificator(12, IWeaponModificator.Mode.Change);
+        IWeaponModificator mode = new DamageModificator(12, IWeaponModificator.Mode.CHANGE);
         weaponController.setShoot(true);
         weaponController.loadWeapon(new Minigun(false, BaseBullet.TYPE_SIMPLE_BULLET,mode), 0);
     }

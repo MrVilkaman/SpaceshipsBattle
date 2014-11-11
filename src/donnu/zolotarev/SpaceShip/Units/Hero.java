@@ -49,7 +49,7 @@ public class Hero extends BaseUnit {
                         new WeaponPos(sprite, 35, 30, -2),
                         new WeaponPos(sprite, 35, 70, 2)});
 
-        IWeaponModificator mode = new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.Add);
+        IWeaponModificator mode = new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.ADD);
         IGun gun;
         // todo получаить инко об оружии.
         if (heroFeatures.isHaveDoubleAmmo()){

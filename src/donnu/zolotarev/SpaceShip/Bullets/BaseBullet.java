@@ -97,7 +97,11 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         damage = DEFAULT_DAMAGE;
         if (weaponModificator != null){
-            damage = weaponModificator.addDamage(damage);
+            switch (weaponModificator.getTarget()){
+                case DAMAGE:
+                    damage = (int)weaponModificator.use(damage);
+                    break;
+            }
         }
         this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;
     }

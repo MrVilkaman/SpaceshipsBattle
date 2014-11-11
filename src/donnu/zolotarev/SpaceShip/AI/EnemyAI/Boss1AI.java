@@ -9,6 +9,7 @@ public class Boss1AI extends SimpleAI {
 
     public Boss1AI(ITiledTextureRegion pTextureRegion, VertexBufferObjectManager pVertexBufferObjectManager) {
         super(pTextureRegion, pVertexBufferObjectManager);
+        startTimeScan = 4;
     }
 
     @Override

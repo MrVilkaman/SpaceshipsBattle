@@ -7,13 +7,13 @@ import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.FogManager;
+import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
@@ -513,6 +513,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     break;
                 case BaseUnit.TYPE_ENEMY_BOSS_1:
                     EnemyBoss enemyBoss = new EnemyBoss();
+                  //oss.init(-1,new Point(1000, 400));
                     Random random = new Random();
                     int rand = random.nextInt(60);
                     enemyBoss.init(-1,new Point(1300, rand * 10),135 + 15*random.nextInt(6));

@@ -2,10 +2,17 @@ package donnu.zolotarev.SpaceShip.Weapons.Modificator;
 
 public interface IWeaponModificator {
     public enum Mode{
-        Add,
-        Change
+        ADD,
+        CHANGE,
+        PERCENT
     }
 
-    public int addDamage(int damage);
-    public Mode getMode();
+    public enum Target{
+        DAMAGE,
+        SPEED_FIRE
+    }
+
+    public float use(float damage);
+    public Mode getModificator();
+    public Target getTarget();
 }

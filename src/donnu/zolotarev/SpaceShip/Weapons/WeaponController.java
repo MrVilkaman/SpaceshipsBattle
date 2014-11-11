@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
-import donnu.zolotarev.SpaceShip.Units.BaseUnit;
+import donnu.zolotarev.SpaceShip.Utils.IGetShape;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.entity.sprite.Sprite;
 
@@ -9,12 +9,12 @@ import java.util.Iterator;
 public class WeaponController {
 
     protected final WeaponPos[] weaponPoses;
-    protected final BaseUnit carrier;
+    protected final IGetShape carrier;
     protected IGun[] guns;
     private boolean shoot;
     protected WeaponPos bufferWeaponPos;
 
-    public WeaponController(BaseUnit carrier,WeaponPos[] weaponPoses){
+    public WeaponController(IGetShape carrier,WeaponPos[] weaponPoses){
         if (weaponPoses == null){
             new Exception("weaponPoses не может быть null!");
         }

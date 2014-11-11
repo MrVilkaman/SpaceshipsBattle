@@ -30,6 +30,14 @@ public class SimpleGun extends Guns implements IGun {
                     ATTACK_INTERVAL *= 12 + random.nextInt(5);
             }
         }
+
+        if (modificator != null){
+            switch (modificator.getTarget()){
+                case SPEED_FIRE:
+                    ATTACK_INTERVAL = (int)modificator.use(ATTACK_INTERVAL);
+                    break;
+            }
+        }
     }
 
     @Override

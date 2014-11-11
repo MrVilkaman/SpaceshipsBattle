@@ -2,28 +2,35 @@ package donnu.zolotarev.SpaceShip.Weapons.Modificator;
 
 public class DamageModificator implements IWeaponModificator{
 
-    private final int damage;
-    private final Mode mode;
+    protected int damage;
+    protected final Mode mode;
 
     public DamageModificator(int damage, Mode mode) {
-      this.damage = damage;
+        this.damage = damage;
         this.mode = mode;
     }
 
     @Override
-    public int addDamage(int damage) {
+    public float use(float damage) {
         switch (mode){
-            case Add:
+            case ADD:
                 return damage + this.damage;
-            case Change:
+            case CHANGE:
                 return this.damage;
+            case PERCENT:
+                return this.damage *( 1+ damage) ;
             default:
                 return damage;
         }
     }
 
     @Override
-    public Mode getMode() {
+    public Mode getModificator() {
         return mode;
+    }
+
+    @Override
+    public Target getTarget() {
+        return Target.DAMAGE;
     }
 }
