@@ -242,7 +242,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected void checkHitHero() {
 
         if (hero != null){
-            if (hero.checkHit(this)){
+            if (checkHit(hero)){
                 if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
                     dieListener.heroDie();
                     hero.destroy(true);

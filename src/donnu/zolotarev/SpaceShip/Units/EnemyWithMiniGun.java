@@ -33,12 +33,12 @@ public class EnemyWithMiniGun extends BaseUnit {
 
     @Override
     protected void loadWeapon(int level) {
-        weaponController = new WeaponController(this, new WeaponPos[]{
+        weaponController = new WeaponController(new WeaponPos[]{
                 new WeaponPos(sprite, 110, 37 , 0),
                 new WeaponPos(sprite, 40, 14 , 0),
                 new WeaponPos(sprite, 40, 59 , 0)
         });
-        IWeaponModificator mode = new DamageModificator(12, IWeaponModificator.Mode.CHANGE);
+        IWeaponModificator[] mode = {new DamageModificator(12, IWeaponModificator.Mode.CHANGE)};
         weaponController.setShoot(true);
         weaponController.loadWeapon(new Minigun(false, BaseBullet.TYPE_SIMPLE_BULLET,mode), 0);
     }

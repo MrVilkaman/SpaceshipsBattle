@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 public class RocketController extends WeaponController {
     public RocketController(BaseUnit carrier, WeaponPos[] weaponPoses) {
-        super(carrier, weaponPoses);
+        super(weaponPoses);
     }
 
     private int last = 0;

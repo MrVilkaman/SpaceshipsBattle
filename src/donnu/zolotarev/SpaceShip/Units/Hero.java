@@ -43,13 +43,12 @@ public class Hero extends BaseUnit {
 
     @Override
     protected void loadWeapon(int level) {
-        weaponController = new WeaponController(this,
-                new WeaponPos[]{
+        weaponController = new WeaponController(new WeaponPos[]{
                         new WeaponPos(sprite, 70, 56, 0),
                         new WeaponPos(sprite, 35, 30, -2),
                         new WeaponPos(sprite, 35, 70, 2)});
 
-        IWeaponModificator mode = new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.ADD);
+        IWeaponModificator[] mode = {new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.ADD)};
         IGun gun;
         // todo получаить инко об оружии.
         if (heroFeatures.isHaveDoubleAmmo()){

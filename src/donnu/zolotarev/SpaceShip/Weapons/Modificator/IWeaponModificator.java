@@ -9,7 +9,8 @@ public interface IWeaponModificator {
 
     public enum Target{
         DAMAGE,
-        SPEED_FIRE
+        SPEED_FIRE,
+        ROTATE_ANGLE
     }
 
     public float use(float damage);

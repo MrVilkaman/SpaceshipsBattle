@@ -5,10 +5,11 @@ import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 
 public class Minigun extends Guns implements IGun {
 
-    public Minigun(boolean heroWeapon, int bullitType, IWeaponModificator modificator) {
+    public Minigun(boolean heroWeapon, int bullitType, IWeaponModificator[] modificator) {
         super(heroWeapon,bullitType,modificator);
         ATTACK_INTERVAL = 1;
         i = max;
+        applyModificator(modificator);
     }
     private int i = 0;
     private int max = 20;

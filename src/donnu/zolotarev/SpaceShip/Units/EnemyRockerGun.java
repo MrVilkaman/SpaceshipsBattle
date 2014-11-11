@@ -29,7 +29,7 @@ public class EnemyRockerGun extends BaseUnit {
 
     @Override
     protected void loadWeapon(int level) {
-        weaponController = new WeaponController(this, new WeaponPos[]{
+        weaponController = new WeaponController(new WeaponPos[]{
                 new WeaponPos(sprite, 115, 37 , 0),
                 new WeaponPos(sprite, 40, 14 , 0),
                 new WeaponPos(sprite, 40, 59 , 0)

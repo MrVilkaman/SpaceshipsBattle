@@ -2,10 +2,10 @@ package donnu.zolotarev.SpaceShip.Weapons.Modificator;
 
 public class DamageModificator implements IWeaponModificator{
 
-    protected int damage;
+    protected float damage;
     protected final Mode mode;
 
-    public DamageModificator(int damage, Mode mode) {
+    public DamageModificator(float damage, Mode mode) {
         this.damage = damage;
         this.mode = mode;
     }

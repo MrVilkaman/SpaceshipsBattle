@@ -38,7 +38,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     private int DEFAULT_SPEED;
     private int DEFAULT_DAMAGE;
-    private float DEFAULT_ROTATE_ANGLE;
+    protected float DEFAULT_ROTATE_ANGLE;
     private int damage;
     private boolean targetUnit;
     private float hw;
@@ -79,7 +79,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         attachToScene();
     }
 
-    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator[] weaponModificator) {
 
         sprite.setRotation(direction);
         sprite.setIgnoreUpdate(false);
@@ -97,10 +97,12 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         damage = DEFAULT_DAMAGE;
         if (weaponModificator != null){
-            switch (weaponModificator.getTarget()){
-                case DAMAGE:
-                    damage = (int)weaponModificator.use(damage);
-                    break;
+            for (IWeaponModificator m: weaponModificator) {
+                switch (m.getTarget()){
+                    case DAMAGE:
+                        damage = (int)m.use(damage);
+                        break;
+                }
             }
         }
         this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;

@@ -513,7 +513,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     break;
                 case BaseUnit.TYPE_ENEMY_BOSS_1:
                     EnemyBoss enemyBoss = new EnemyBoss();
-                  //oss.init(-1,new Point(1000, 400));
+                //  enemyBoss.init(-1,new Point(1000, 400));
                     Random random = new Random();
                     int rand = random.nextInt(60);
                     enemyBoss.init(-1,new Point(1300, rand * 10),135 + 15*random.nextInt(6));

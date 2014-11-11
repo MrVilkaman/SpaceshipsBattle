@@ -30,4 +30,8 @@ public class WeaponPos {
 
         return new WeaponPos(sprite,x+xx,y+yy,this.anlge + anlge);
     }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
 }

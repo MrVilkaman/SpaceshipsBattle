@@ -7,8 +7,8 @@ import java.util.Random;
 
 public class SimpleGun extends Guns implements IGun {
 
-    public SimpleGun(boolean heroWeapon, int bullitType,IWeaponModificator modificator) {
-        super(heroWeapon,bullitType,modificator);
+    public SimpleGun(boolean heroWeapon, int bullitType,IWeaponModificator[] modificator) {
+        super(heroWeapon, bullitType, modificator);
         switch (bullitType){
             case BaseBullet.TYPE_ROCKET_AUTO:
                 ATTACK_INTERVAL = 50;
@@ -30,14 +30,7 @@ public class SimpleGun extends Guns implements IGun {
                     ATTACK_INTERVAL *= 12 + random.nextInt(5);
             }
         }
-
-        if (modificator != null){
-            switch (modificator.getTarget()){
-                case SPEED_FIRE:
-                    ATTACK_INTERVAL = (int)modificator.use(ATTACK_INTERVAL);
-                    break;
-            }
-        }
+        applyModificator(modificator);
     }
 
     @Override

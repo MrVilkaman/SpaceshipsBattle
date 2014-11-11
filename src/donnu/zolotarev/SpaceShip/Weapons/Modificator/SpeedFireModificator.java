@@ -1,11 +1,11 @@
 package donnu.zolotarev.SpaceShip.Weapons.Modificator;
 
-public class SpeedModificator extends DamageModificator{
+public class SpeedFireModificator extends DamageModificator{
 
 
     private float parsent;
-    public SpeedModificator(float v) {
-        super(0,Mode.PERCENT);
+    public SpeedFireModificator(float v, Mode m) {
+        super(0,m);
         parsent = -v;
     }
 

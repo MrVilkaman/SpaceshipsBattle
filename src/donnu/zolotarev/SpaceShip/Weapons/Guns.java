@@ -8,7 +8,7 @@ import java.util.Iterator;
 
 public abstract class Guns implements IGun {
     private final int bullitType;
-    private final IWeaponModificator modificator;
+    private final IWeaponModificator[] modificator;
     protected ArrayList<WeaponPos> weaponPosIterator = new ArrayList<WeaponPos>();
 
     protected int ATTACK_INTERVAL;
@@ -16,7 +16,7 @@ public abstract class Guns implements IGun {
     protected boolean isShoot = false;
     private boolean targetUnit;
 
-    public Guns(boolean heroWeapon, int bullitType,IWeaponModificator modificator) {
+    public Guns(boolean heroWeapon, int bullitType,IWeaponModificator[] modificator) {
         targetUnit = heroWeapon;
         this.bullitType = bullitType;
         this.modificator = modificator;
@@ -50,5 +50,17 @@ public abstract class Guns implements IGun {
     @Override
     public void fire(WeaponPos weaponPos) {
         GetNewBullet(weaponPos.x, weaponPos.y, weaponPos.anlge);
+    }
+
+    protected void applyModificator(IWeaponModificator[] modificator) {
+        if (modificator != null){
+            for (IWeaponModificator m :modificator) {
+                switch (m.getTarget()){
+                    case SPEED_FIRE:
+                        ATTACK_INTERVAL = (int)m.use(ATTACK_INTERVAL);
+                        break;
+                }
+            }
+        }
     }
 }

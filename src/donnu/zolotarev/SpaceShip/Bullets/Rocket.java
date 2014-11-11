@@ -41,11 +41,19 @@ public class Rocket extends BaseBullet {
     }
 
     @Override
-    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator weaponModificator) {
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator[] weaponModificator) {
         if (unitTarget){
             initCharacteristics(1600, 800, 10f);
         }else{
             initCharacteristics(1600, 500, 6f);
+        }
+
+        if (weaponModificator != null){
+            for (IWeaponModificator modificator: weaponModificator){
+                if(modificator.getTarget() == IWeaponModificator.Target.ROTATE_ANGLE){
+                    DEFAULT_ROTATE_ANGLE = modificator.use(DEFAULT_ROTATE_ANGLE);
+                }
+            }
         }
 
         if (bullitType == BaseBullet.TYPE_ROCKET_AUTO){

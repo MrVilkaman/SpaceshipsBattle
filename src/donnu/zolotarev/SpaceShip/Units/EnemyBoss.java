@@ -4,7 +4,10 @@ import donnu.zolotarev.SpaceShip.AI.EnemyAI.Boss1AI;
 import donnu.zolotarev.SpaceShip.AI.TurretAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.SpeedModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.RotateAngleModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.SpeedFireModificator;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
@@ -40,26 +43,32 @@ public class EnemyBoss extends BaseUnit {
 
     @Override
     protected void loadWeapon(int level) {
-        weaponController = new WeaponController(turret, new WeaponPos[]{
+        weaponController = new WeaponController(new WeaponPos[]{
                 new WeaponPos(turret, 125, 23 , 0),
                 new WeaponPos(turret, 125, 36 , 0),
                 new WeaponPos(turret, 125, 49 , 0),
-                new WeaponPos(turret, 125, 49 , 0),
-                new WeaponPos(turret, 1, 49 , 0),
+                new WeaponPos(sprite, 215, 25 , -10),
+                new WeaponPos(sprite, 215, 262 , 10),
         });
         weaponController.setShoot(true);
-        SpeedModificator modificator = new SpeedModificator(0.25f);
+        IWeaponModificator[] modificator = {new SpeedFireModificator(0.25f,IWeaponModificator.Mode.CHANGE)};
+        IWeaponModificator[] moR = {
+                new RotateAngleModificator(2f,IWeaponModificator.Mode.PERCENT),
+                new SpeedFireModificator(-3f,IWeaponModificator.Mode.PERCENT),
+                new DamageModificator(0.5f,IWeaponModificator.Mode.PERCENT)};
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 0);
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 1);
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 2);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_ROCKET_AUTO,moR), 3);
+        weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_ROCKET_AUTO,moR), 4);
     }
 
     @Override
     protected void loadParam(int level) {
         defaultSpeed = 150;
         defaultMaxAngle = 0.7f;
-        defaultHealth = 15000;
-        price = 600;
+        defaultHealth = 35000;
+        price = 1500;
     }
 
     @Override
