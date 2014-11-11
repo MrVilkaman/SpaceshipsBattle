@@ -78,4 +78,14 @@ public class EnemyBoss extends BaseUnit {
         turret.setIgnoreUpdate(true);
         turret.restart();
     }
+
+    @Override
+    protected void checkHitHero() {
+        if (hero != null){
+            if (checkHit(hero)){
+                    dieListener.heroDie();
+                    hero.destroy(true);
+            }
+        }
+    }
 }

@@ -240,7 +240,6 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     protected void checkHitHero() {
-
         if (hero != null){
             if (checkHit(hero)){
                 if (hero.addDamageAndCheckDeath(getDamage()) && hero.isAlive()){
