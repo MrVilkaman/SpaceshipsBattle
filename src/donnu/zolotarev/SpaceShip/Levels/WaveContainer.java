@@ -3,10 +3,7 @@ package donnu.zolotarev.SpaceShip.Levels;
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
-import donnu.zolotarev.SpaceShip.Waves.IWaveController;
-import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
-import donnu.zolotarev.SpaceShip.Waves.UnitWave;
+import donnu.zolotarev.SpaceShip.Waves.*;
 
 public  class WaveContainer {
     public static final int LEVEL_INFINITY = 99;
@@ -554,8 +551,17 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 10, 0.9f);
                 break;
             case LEVEL_30:
+
+                BossWave waveBoss = new BossWave();
+                unitWave.addDelay(2f);  // start delay
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_BOSS_1, 1, 0.9f);
-                break;
+                waveBoss.addWave(unitWave);
+
+                unitWave = new UnitWave(iAddedEnemy);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 1, 0.9f);
+                unitWave.addDelay(5f);
+                waveBoss.addWave(unitWave);
+                return waveBoss;
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
         }

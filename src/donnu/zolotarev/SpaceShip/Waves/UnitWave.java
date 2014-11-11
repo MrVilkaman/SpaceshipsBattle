@@ -71,9 +71,9 @@ public class UnitWave {
                         _isStarted = false;
                     }
                 }else{
-                    if (BaseUnit.getEnemiesOnMap() == 0){
+                  //  if (BaseUnit.getEnemiesOnMap() <=1){
                         needWait = false;
-                    }
+                    //}
                 }
 
             }

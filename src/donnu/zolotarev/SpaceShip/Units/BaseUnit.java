@@ -206,6 +206,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         return health < 0;
     }
 
+    public boolean isAlive(){
+        return 0 < health;
+    }
+
     protected abstract void loadWeapon(int level);
 
     protected abstract void loadParam(int level);

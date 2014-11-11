@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
+import donnu.zolotarev.SpaceShip.GameState.IAddListener;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
@@ -12,7 +13,6 @@ import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
-import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 
 import java.util.Random;
 
@@ -26,7 +26,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     public void addNewWaveController(IWaveController controller) {
-        ((SimpleWave)controller).addListener(new IStatusGameInfo() {
+        ((IAddListener)controller).addListener(new IStatusGameInfo() {
             @Override
             public void onNextWave(int count) {
                 waveIndex++;

@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.Fire;
 import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
+import donnu.zolotarev.SpaceShip.GameState.IAddListener;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
@@ -15,9 +16,10 @@ import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Utils.*;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.MenuFactory;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
-import donnu.zolotarev.SpaceShip.Waves.SimpleWave;
 import org.andengine.entity.particle.emitter.PointParticleEmitter;
 
 import java.util.Random;
@@ -49,7 +51,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     public void addNewWaveController(IWaveController controller) {
-        ((SimpleWave)controller).addListener(new IStatusGameInfo() {
+        ((IAddListener)controller).addListener(new IStatusGameInfo() {
             @Override
             public void onNextWave(int count) {
                /* waveIndex++;
