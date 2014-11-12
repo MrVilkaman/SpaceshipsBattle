@@ -122,14 +122,18 @@ public abstract class SimpleAI extends SpriteAI {
         }
     }
 
+    private float reflectionCoef = 1.3f;
+
     protected final void reflectionFromX(){
-        if (this.mX < -this.getWidth() ){
+        if (this.mX < -this.getWidth()*reflectionCoef ){
             if (flagFirstX){
                 mRotation = -Utils.dAngleDegree(mRotation, 180);
+                flagFirstX = false;
             }
-        }else if (this.mX > GameActivity.getCameraWidth()){
+        }else if (this.mX > GameActivity.getCameraWidth()+this.getWidth()*(reflectionCoef-1f)){
             if (flagFirstX){
                 mRotation = 180 - Utils.dAngleDegree(mRotation, 0);
+                flagFirstX = false;
             }
         }else{
             flagFirstX = true;
@@ -137,13 +141,15 @@ public abstract class SimpleAI extends SpriteAI {
     }
 
     protected final void reflectionFromY(){
-        if (this.mY < -this.getHeight()  ){
+        if (this.mY < -this.getHeight()*reflectionCoef  ){
             if (flagFirstY){
                 mRotation = 90 - Utils.dAngleDegree(mRotation, 270);
+                flagFirstY = false;
             }
-        } else if (this.mY > GameActivity.getCameraHeight()){
+        } else if (this.mY > GameActivity.getCameraHeight()+this.getHeight()*(reflectionCoef-1f)){
             if (flagFirstY){
                 mRotation = 270 - Utils.dAngleDegree(mRotation, 90);
+                flagFirstY = false;
             }
         }else{
             flagFirstY = true;

@@ -53,7 +53,7 @@ public class EnemyBoss extends BaseUnit {
         weaponController.setShoot(true);
         IWeaponModificator[] modificator = {new SpeedFireModificator(0.25f,IWeaponModificator.Mode.CHANGE)};
         IWeaponModificator[] moR = {
-                new RotateAngleModificator(4f,IWeaponModificator.Mode.PERCENT),
+                new RotateAngleModificator(1f,IWeaponModificator.Mode.PERCENT),
                 new SpeedFireModificator(-3f,IWeaponModificator.Mode.PERCENT),
                 new DamageModificator(0.6f,IWeaponModificator.Mode.PERCENT)};
         weaponController.loadWeapon(new SimpleGun(false, BaseBullet.TYPE_SIMPLE_BULLET,modificator), 0);

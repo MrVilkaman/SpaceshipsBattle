@@ -565,8 +565,11 @@ public  class WaveContainer {
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2, 8, 0.9f);
                 unitWave.addDelay(13f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_SHIELD_L_1, 3, 0.9f);
+                unitWave.startFog();
                 unitWave.addDelay(13f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 7, 0.9f);
+                unitWave.addDelay(1f);
+                unitWave.stopFog();
                 waveBoss.addWave(unitWave);
                 return waveBoss;
             default:
