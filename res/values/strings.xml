@@ -14,7 +14,7 @@
 
     <string name = "btn_main_menu_continue">Продолжить</string>
     <string name = "btn_main_menu_new_game">Новая игра</string>
-    <string name = "btn_main_menu_about">Об игре</string>
+    <string name = "btn_main_menu_about">Настройки</string>
     <string name = "btn_main_menu_exit">Выход</string>
     <string name = "shop_name">Магазин</string>
     <string name = "txt_back">Назад</string>
@@ -25,7 +25,7 @@
 
     <!--Магазин-->
     <string name = "shop_title">Магазин</string>
-    <string name = "item_shop_title">Купить хуй!</string>
+    <string name = "item_shop_title">Купить!</string>
     <string name = "item_shop_price">$%1s</string>
     <string name = "btn_shop_buy">Купить</string>
     <string name = "btn_shop_max_level">Круче нет!</string>
@@ -54,6 +54,8 @@
     <string name = "txt_status_lose">Миссия провалена!</string>
     <string name = "txt_status_disable">Миссия Закрыта!</string>
 
+    <string name = "setting_label">Настройки</string>
+    <string name = "setting_contlol_lable">Режим управления:</string>
 
     <string name = "item_level_total_coast">Всего получено денег: %1$s</string>
     <string name = "item_level_total_wins">Всего побед: %1$s</string>
@@ -73,4 +75,9 @@
     <string name = "text_shield">Щит: &#160;</string>
     <string name = "text_die_money">но ты заработал %1$s$!</string>
     <string name = "text_win_message">Победа! И ты заработал %1$s$!</string>
+    <string name = "setting_credits_btn">Об игре</string>
+    <string name = "radiogroup_fire_mode_byhold">По удержанию</string>
+    <string name = "radiogroup_fire_mode_always">Всегда</string>
+
+
 </resources>

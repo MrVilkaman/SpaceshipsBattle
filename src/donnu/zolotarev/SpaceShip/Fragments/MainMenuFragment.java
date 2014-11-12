@@ -2,10 +2,8 @@ package donnu.zolotarev.SpaceShip.Fragments;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -144,7 +142,8 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @OnClick(R.id.btn_main_menu_about)
     public void onAbout(){
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.about,null);
+        new FlySettingsFragment().show(getFragmentManager(),"1");
+     /*   View view = LayoutInflater.from(getActivity()).inflate(R.layout.about,null);
         DialogFragment fragment = new DialogFragment();
         fragment.show(getFragmentManager(),"1");
         fragment.setTitle(getActivity().getString(R.string.msg_about));
@@ -170,7 +169,7 @@ public class MainMenuFragment extends BaseMenuFragment {
                 Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                 getActivity().startActivity(openlink);
             }
-        });
+        });*/
 
     }
 

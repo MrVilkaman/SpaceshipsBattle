@@ -5,4 +5,68 @@
               android:layout_width = "match_parent"
               android:layout_height = "match_parent">
 
+    <TextView android:layout_width = "match_parent"
+              android:gravity="center"
+              android:textSize="36dp"
+              android:layout_height = "wrap_content"
+            android:text="@string/setting_label"/>
+    <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation = "horizontal"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_gravity = "center"
+            android:gravity = "left|center">
+        <TextView android:layout_width = "wrap_content"
+                  android:gravity="left"
+                  android:textSize="@dimen/setting_master_text_size"
+                  android:layout_height = "wrap_content"
+                  android:text="@string/setting_contlol_lable"/>
+        <RadioGroup android:layout_width = "wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/radiogroup_fire_mode"
+                    android:layout_height = "wrap_content">
+            <RadioButton android:layout_width = "wrap_content"
+                         android:layout_height = "wrap_content"
+                         android:textSize="@dimen/setting_second_text_size"
+                         android:layout_margin="5dp"
+                         android:id="@+id/radiogroup_fire_mode_byhold"
+                    android:text="@string/radiogroup_fire_mode_byhold"
+                    />
+            <RadioButton android:layout_width = "wrap_content"
+                         android:layout_height = "wrap_content"
+                         android:textSize="@dimen/setting_second_text_size"
+                         android:layout_margin="5dp"
+                         android:id="@+id/radiogroup_fire_mode_always"
+                         android:text="@string/radiogroup_fire_mode_always"
+                    />
+                    </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation = "horizontal"
+            android:layout_width = "match_parent"
+            android:layout_height = "wrap_content"
+            android:layout_gravity = "center"
+            android:gravity = "center">
+        <Button
+                android:layout_marginRight="50dp"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:id = "@+id/setting_sound"
+                android:drawableLeft="@drawable/sound_on"
+                android:background="@null"/>
+        <Button
+                android:layout_marginLeft="50dp"
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:id = "@+id/setting_music"
+                android:background="@null"/>
+    </LinearLayout>
+    <Button  style="@style/MenuButton"
+             android:layout_width = "fill_parent"
+             android:layout_height = "wrap_content"
+             android:text = "@string/setting_credits_btn"
+             android:id = "@+id/setting_credits_btn"
+            />
 </LinearLayout>
