@@ -10,6 +10,8 @@ public class Settings {
     private static Settings instance;
     private int lastPlayedLevel = 0;
     private ControlMode controlMode;
+    private boolean sound;
+    private boolean music;
 
     public int getLastPlayedLevel() {
         return lastPlayedLevel;
@@ -47,5 +49,21 @@ public class Settings {
         } else {
             instance = new Settings();
         }
+    }
+
+    public boolean isSound() {
+        return sound;
+    }
+
+    public void setSound(boolean sound) {
+        this.sound = sound;
+    }
+
+    public boolean isMusic() {
+        return music;
+    }
+
+    public void setMusic(boolean music) {
+        this.music = music;
     }
 }

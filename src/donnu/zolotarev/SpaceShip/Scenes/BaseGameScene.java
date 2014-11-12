@@ -47,6 +47,7 @@ import java.util.Random;
 
 public abstract class BaseGameScene extends MyScene implements IAddedEnemy, IScoreBar {
 
+    private final Settings setting;
     protected Color textColor = Color.WHITE;
 
     protected static BaseGameScene activeScene;
@@ -133,9 +134,11 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     public BaseGameScene(IParentScene self) {
         super(self);
-       // if (!MusicLoader.getSound().isPlaying()){
+        setting = Settings.get();
+
+        if (setting.isMusic() && !MusicLoader.getSound().isPlaying()){
             MusicLoader.getSound().play();
-       // }
+        }
 
         parentScene = self;
         activeScene = this;
@@ -231,7 +234,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.setZIndex(1000);
 
          int i = 0;
-        Settings setting = Settings.get();
         if (setting.getControlMode() == ControlMode.BY_HOLD){
            createFireButton();
             setOnSceneTouchListener(new IOnSceneTouchListener() {

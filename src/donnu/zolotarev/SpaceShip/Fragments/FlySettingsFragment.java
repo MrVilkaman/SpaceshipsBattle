@@ -41,6 +41,8 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     RadioGroup fireModeRadio;
 
     private Settings setting;
+    boolean sound = false;
+    boolean music = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,8 +59,10 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         getDefaultDisplay(getActivity()).getSize(screeSize);
         v.setMinimumWidth(2*screeSize.x/3);
         //  v.setMinimumHeight(screeSize.y);
-        changeSoundIcon(flag);
-        changeMusicIcon(flag2);
+        music = setting.isMusic();
+        sound = setting.isSound();
+        changeSoundIcon(sound);
+        changeMusicIcon(music);
         Dialog dialog = getDialog();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
@@ -81,6 +85,8 @@ public class FlySettingsFragment extends android.app.DialogFragment {
             mode = ControlMode.ALWAIS;
         }
         setting.setControlMode(mode);
+        setting.setMusic(music);
+        setting.setSound(sound);
         Gson gson = new Gson();
         getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
@@ -89,18 +95,16 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     }
 
     //
-    boolean flag = false;
-    boolean flag2 = false;
     @OnClick(R.id.setting_sound)
     void onChangeSoundState(){
-        flag = ! flag;
-        changeSoundIcon(flag);
+        sound = ! sound;
+        changeSoundIcon(sound);
     }
 
     @OnClick(R.id.setting_music)
     void changeMusicIcon(){
-        flag2 = ! flag2;
-        changeMusicIcon(flag2);
+        music = ! music;
+        changeMusicIcon(music);
     }
 
     @OnClick(R.id.cansel)
