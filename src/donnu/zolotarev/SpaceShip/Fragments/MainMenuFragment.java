@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Fragments;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import com.google.android.gms.ads.AdView;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.AppUtils;
@@ -34,6 +36,13 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @InjectView(R.id.adView)
     AdView adView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SharedPreferences pref = getActivity().getSharedPreferences(BaseMenuFragment.FILE_GAME_DATA, Context.MODE_PRIVATE);
+        Settings.create(pref.getString(BaseMenuFragment.PREF_USER_STATS, ""));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

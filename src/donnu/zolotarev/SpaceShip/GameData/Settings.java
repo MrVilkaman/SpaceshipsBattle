@@ -3,11 +3,13 @@ package donnu.zolotarev.SpaceShip.GameData;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import donnu.zolotarev.SpaceShip.UI.ControlMode;
 
 public class Settings {
 
     private static Settings instance;
     private int lastPlayedLevel = 0;
+    private ControlMode controlMode;
 
     public int getLastPlayedLevel() {
         return lastPlayedLevel;
@@ -17,7 +19,16 @@ public class Settings {
         this.lastPlayedLevel = lastPlayedLevel;
     }
 
+    public ControlMode getControlMode() {
+        return controlMode;
+    }
+
+    public void setControlMode(ControlMode controlMode) {
+        this.controlMode = controlMode;
+    }
+
     private Settings() {
+        controlMode = ControlMode.BY_HOLD;
     }
 
     public static Settings get(){

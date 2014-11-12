@@ -10,11 +10,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import donnu.zolotarev.SpaceShip.UI.ControlMode;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.util.color.Color;
 
@@ -26,11 +30,22 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     @InjectView(R.id.setting_music)
     Button musicButton;
 
+    @InjectView(R.id.radiogroup_fire_mode_byhold)
+    RadioButton fireModeRadioByhold;
+
+    @InjectView(R.id.radiogroup_fire_mode_always)
+    RadioButton fireModeRadioAlways;
+
+    @InjectView(R.id.radiogroup_fire_mode)
+    RadioGroup fireModeRadio;
+
+    private Settings setting;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-
+        setting = Settings.get();
     }
 
     @Override
@@ -46,7 +61,25 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         Dialog dialog = getDialog();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
+
+        if (setting.getControlMode() == ControlMode.BY_HOLD){
+            fireModeRadioByhold.setChecked(true);
+        }else{
+            fireModeRadioAlways.setChecked(true);
+        }
         return v;
+    }
+
+    @Override
+    public void onDestroyView() {
+        ControlMode mode = null;
+        super.onDestroyView();
+        if (fireModeRadio.getCheckedRadioButtonId() == R.id.radiogroup_fire_mode_byhold){
+            mode = ControlMode.BY_HOLD;
+        }else {
+            mode = ControlMode.ALWAIS;
+        }
+        setting.setControlMode(mode);
     }
 
     //
