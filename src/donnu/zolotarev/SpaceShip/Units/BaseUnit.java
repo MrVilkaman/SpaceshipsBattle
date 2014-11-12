@@ -195,7 +195,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     public boolean checkHit(IHaveCoords object) {
         float xx = (sprite.getX() + cx) - object.getCenterX();
         float yy = (sprite.getY() + cy) - object.getCenterY();
-        return xx*xx +yy*yy < R;
+        return xx*xx +yy*yy < R + object.getRadiusSqr();
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
@@ -275,5 +275,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     public boolean isHaveShuield() {
         return 0 < shieldPoint;
+    }
+
+    @Override
+    public float getRadiusSqr() {
+        return R;
     }
 }

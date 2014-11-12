@@ -46,6 +46,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     protected static IAmDie iAmDie;
 
     protected WaySpecifications waySpecifications;
+    private float r;
 
     public static void setDieListener(IHeroDieListener listener){
         dieListener = listener;
@@ -89,6 +90,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
         hw = sprite.getWidth()/2;
         hh = sprite.getHeight()/2;
+        r = Math.min(hw,hh);
+        r *= r;
         if (waySpecifications == null){
             waySpecifications = new WaySpecifications(DEFAULT_SPEED, DEFAULT_ROTATE_ANGLE);
         }
@@ -217,4 +220,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         return DEFAULT_DAMAGE;
     }
 
+    @Override
+    public float getRadiusSqr() {
+        return r;
+    }
 }
