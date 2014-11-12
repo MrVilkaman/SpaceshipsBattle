@@ -1,18 +1,14 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.Button;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -20,8 +16,9 @@ import butterknife.OnClick;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import org.andengine.util.color.Color;
 
-public class FlySettingsFragment extends DialogFragment {
+public class FlySettingsFragment extends android.app.DialogFragment {
 
     @InjectView(R.id.setting_sound)
     Button soundButton;
@@ -30,18 +27,26 @@ public class FlySettingsFragment extends DialogFragment {
     Button musicButton;
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = getActivity().getLayoutInflater().inflate(R.layout.fragment_fly_settings, null);
-        ButterKnife.inject(this,v);
+        ButterKnife.inject(this, v);
         Point screeSize = new Point();
         getDefaultDisplay(getActivity()).getSize(screeSize);
         v.setMinimumWidth(2*screeSize.x/3);
-      //  v.setMinimumHeight(screeSize.y);
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity())
-                .setView(v);
+        //  v.setMinimumHeight(screeSize.y);
         changeSoundIcon(flag);
-    changeMusicIcon(flag2);
-        return alertDialog.create();
+        changeMusicIcon(flag2);
+        Dialog dialog = getDialog();
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
+        return v;
     }
 
     //
@@ -57,6 +62,11 @@ public class FlySettingsFragment extends DialogFragment {
     void changeMusicIcon(){
         flag2 = ! flag2;
         changeMusicIcon(flag2);
+    }
+
+    @OnClick(R.id.cansel)
+    void onCancel(){
+        dismiss();
     }
 
     @OnClick(R.id.setting_credits_btn)
