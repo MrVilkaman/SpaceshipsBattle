@@ -41,7 +41,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
         Shop.create(getActivity(), pref.getString(PREF_SHOP_ITEMS, ""));
 
         pref = getActivity().getSharedPreferences(FILE_SETTINGS, Context.MODE_PRIVATE);
-        Settings.create(pref.getString(PREF_USER_STATS, ""));
+   //     Settings.create(pref.getString(PREF_USER_STATS, ""));
         loadLevels();
     }
 

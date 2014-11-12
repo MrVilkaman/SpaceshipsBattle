@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
@@ -80,6 +81,11 @@ public class FlySettingsFragment extends android.app.DialogFragment {
             mode = ControlMode.ALWAIS;
         }
         setting.setControlMode(mode);
+        Gson gson = new Gson();
+        getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE)
+                .edit()
+                .putString(BaseMenuFragment.PREF_USER_STATS,gson.toJson(Settings.get()))
+                .commit();
     }
 
     //

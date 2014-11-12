@@ -40,7 +40,7 @@ public class MainMenuFragment extends BaseMenuFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SharedPreferences pref = getActivity().getSharedPreferences(BaseMenuFragment.FILE_GAME_DATA, Context.MODE_PRIVATE);
+        SharedPreferences pref = getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE);
         Settings.create(pref.getString(BaseMenuFragment.PREF_USER_STATS, ""));
     }
 
@@ -152,34 +152,6 @@ public class MainMenuFragment extends BaseMenuFragment {
     @OnClick(R.id.btn_main_menu_about)
     public void onAbout(){
         new FlySettingsFragment().show(getFragmentManager(),"1");
-     /*   View view = LayoutInflater.from(getActivity()).inflate(R.layout.about,null);
-        DialogFragment fragment = new DialogFragment();
-        fragment.show(getFragmentManager(),"1");
-        fragment.setTitle(getActivity().getString(R.string.msg_about));
-        fragment.setView(view);
-        fragment.setOkListener(new ISimpleClick2() {
-            @Override
-            public void onClick() {
-
-            }
-        });
-        view.findViewById(R.id.author_link_title).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri address = Uri.parse(Constants.VK_AUTHOR_PAGE_LINK);
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                getActivity().startActivity(openlink);
-            }
-        });
-        view.findViewById(R.id.offical_group_link_title).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri address = Uri.parse(Constants.VK_GROUP_LINK);
-                Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                getActivity().startActivity(openlink);
-            }
-        });*/
-
     }
 
     @OnClick(R.id.btn_main_menu_exit)
@@ -217,4 +189,6 @@ public class MainMenuFragment extends BaseMenuFragment {
         super.onResume();
         adView.resume();
     }
+
+
 }

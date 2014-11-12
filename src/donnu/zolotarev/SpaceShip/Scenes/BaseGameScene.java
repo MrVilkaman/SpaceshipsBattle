@@ -9,12 +9,14 @@ import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IWaveBar;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.UI.ControlMode;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
 import donnu.zolotarev.SpaceShip.UI.IScoreBar;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
@@ -128,7 +130,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     };
 
 
-
     public BaseGameScene(IParentScene self) {
         super(self);
         parentScene = self;
@@ -224,57 +225,31 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         setChildScene(analogOnScreenControl);
         analogOnScreenControl.setZIndex(1000);
 
-        setOnSceneTouchListener(new IOnSceneTouchListener() {
-            @Override
-            public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+         int i = 0;
+        Settings setting = Settings.get();
+        if (setting.getControlMode() == ControlMode.BY_HOLD){
+           createFireButton();
+            setOnSceneTouchListener(new IOnSceneTouchListener() {
+                @Override
+                public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
 
-                hero.canFire(flag);
-                flag = false;
-                return false;
-            }
-        });
-
-        final Sprite btnFire = new Sprite(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
-                TextureLoader.getBtnFire1(),shipActivity.getEngine().getVertexBufferObjectManager()){
-
-            public int pId = -1;
-
-            @Override
-            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
-
-              /*  shipActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {*/
-
-                        if(pSceneTouchEvent.isActionDown() || pSceneTouchEvent.isActionMove()){
-                           // hero.canFire(true);
-                            flag = true;
-                        }
-                        if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
-                            if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
-                                flag = false;
-                            }
-
-                        }
+                    hero.canFire( flag);
+                    flag = false;
+                    return false;
+                }
+            });
+            i = 300;
+        } else {
+            hero.canFire(true);
+            i = 130;
+        }
 
 
-                 //   }
-               // });
-
-                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
-            }
-        };
-
-       /* btnFire.setColor(Color.BLACK);
-        btnFire.setAlpha(0.5f);*/
-
-        analogOnScreenControl.attachChild(btnFire);
-        analogOnScreenControl.registerTouchArea(btnFire);
         final HeroFeatures heroFeatures = HeroFeatures.get();
         if (heroFeatures.isHaveRocketGun()){
 
 
-        final Sprite btnFire2 = new Sprite(GameActivity.getCameraWidth()- 300, GameActivity.getCameraHeight()-150,
+        final Sprite btnFire2 = new Sprite(GameActivity.getCameraWidth()- i, GameActivity.getCameraHeight()-150,
                 TextureLoader.getBtnFire2(),shipActivity.getEngine().getVertexBufferObjectManager()){
             boolean flag = false;
             public int pId = -1;
@@ -299,18 +274,60 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         };
 
        // btnFire2.setAlpha(0.5f);
-            btnFire.setScale(1.25f);
+
             btnFire2.setScale(1.25f);
             analogOnScreenControl.attachChild(btnFire2);
             analogOnScreenControl.registerTouchArea(btnFire2);
-            createRocketBar();
+            createRocketBar(i);
             rocketBar.setText(String.valueOf(heroFeatures.getRocketCount()));
         }
     }
 
-    private void createRocketBar(){
+    private void createFireButton() {
+        final Sprite btnFire = new Sprite(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
+                TextureLoader.getBtnFire1(),shipActivity.getEngine().getVertexBufferObjectManager()){
+
+            public int pId = -1;
+
+            @Override
+            public boolean onAreaTouched(final TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+
+              /*  shipActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {*/
+
+                if(pSceneTouchEvent.isActionDown() || pSceneTouchEvent.isActionMove()){
+                    // hero.canFire(true);
+                    flag = true;
+                }
+                if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
+                    if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
+                        flag = false;
+                    }
+
+                }
+
+
+                //   }
+                // });
+
+                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+            }
+        };
+
+       /* btnFire.setColor(Color.BLACK);
+        btnFire.setAlpha(0.5f);*/
+
+        analogOnScreenControl.attachChild(btnFire);
+        analogOnScreenControl.registerTouchArea(btnFire);
+        btnFire.setScale(1.25f);
+
+
+}
+
+    private void createRocketBar(int i){
         try {
-            int x = GameActivity.getCameraWidth()- 235;
+            int x = GameActivity.getCameraWidth()- i+65;
             int y = GameActivity.getCameraHeight()- 85;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             analogOnScreenControl.attachChild(rocketBar);
