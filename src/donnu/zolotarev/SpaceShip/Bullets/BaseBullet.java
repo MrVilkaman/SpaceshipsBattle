@@ -189,6 +189,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         if (type == TYPE_ROCKET_AUTO){
             type = TYPE_ROCKET;
         }
+      //  MusicLoader.getFire().play();
         return ((BaseBullet)bulletsPool.obtainPoolItem(type));
     }
 

@@ -9,8 +9,11 @@ import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Scenes.MyScene;
 import donnu.zolotarev.SpaceShip.Scenes.SelectionLevelScene;
+import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
 import org.andengine.engine.options.EngineOptions;
@@ -73,7 +76,10 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onCreateResources() {
         BitmapTextureAtlasTextureRegionFactory.setAssetBasePath("gfx/");
+        SoundFactory.setAssetBasePath("mfx/");
+        MusicFactory.setAssetBasePath("mfx/");
         TextureLoader.loadTexture(this,getEngine());
+        MusicLoader.loadTexture(this,getEngine());
     }
 
     @Override
@@ -109,6 +115,11 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onResume() {
         super.onResume();
+        if (MusicLoader.getSound()!=null){
+            if (!MusicLoader.getSound().isReleased()){
+                MusicLoader.getSound().resume();
+            }
+        }
         Log.i("XXX", "Its work,SpaceShipActivity onStart" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onResume();
@@ -118,6 +129,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onPause() {
         super.onPause();
+        MusicLoader.getSound().pause();
         Log.i("XXX", "Its work,SpaceShipActivity onStop" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onPause();
@@ -133,6 +145,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public void onDestroyResources() throws Exception {
         super.onDestroyResources();
         TextureLoader.clearMemory();
+        MusicLoader.clear();
     }
 
     @Override
