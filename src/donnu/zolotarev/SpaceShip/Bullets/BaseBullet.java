@@ -5,6 +5,7 @@ import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
+import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
@@ -109,6 +110,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
             }
         }
         this.damage = (int) Utils.random(damage*0.8f,damage*1.2f) ;
+
+        MusicLoader.playFire();
     }
 
     protected void attachToScene() {
@@ -189,7 +192,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         if (type == TYPE_ROCKET_AUTO){
             type = TYPE_ROCKET;
         }
-      //  MusicLoader.getFire().play();
+        //MusicLoader.getFire().play();
         return ((BaseBullet)bulletsPool.obtainPoolItem(type));
     }
 

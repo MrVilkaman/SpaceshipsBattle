@@ -13,7 +13,6 @@ import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.audio.music.MusicFactory;
-import org.andengine.audio.music.exception.MusicReleasedException;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
@@ -105,7 +104,9 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if((keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_BACK ) && event.getAction() == KeyEvent.ACTION_DOWN){
-            mainMenu.onKeyPressed(keyCode, event);
+            if (mainMenu != null){
+                mainMenu.onKeyPressed(keyCode, event);
+            }
             return true;
         }else {
             return super.onKeyDown(keyCode, event);
@@ -116,11 +117,15 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onResume() {
         super.onResume();
-        if (MusicLoader.getSound()!=null){
+      /*  if (MusicLoader.getSound()!=null){
             if (!MusicLoader.getSound().isReleased()){
-                MusicLoader.getSound().resume();
+                try {
+                    MusicLoader.getSound().resume();
+                } catch (MusicReleasedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        }*/
         Log.i("XXX", "Its work,SpaceShipActivity onStart" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onResume();
@@ -130,14 +135,14 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onPause() {
         super.onPause();
-        try {
+        /*try {
             MusicLoader.getSound().pause();
         } catch (MusicReleasedException e) {
-        }
+        }*/
         Log.i("XXX", "Its work,SpaceShipActivity onStop" + (mainMenu != null));
-        if (mainMenu != null){
+       // if (mainMenu != null){
             mainMenu.onPause();
-        }
+       // }
     }
 
     public void exit() {
