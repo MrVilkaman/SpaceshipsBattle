@@ -5,10 +5,11 @@ import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.AI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Effects.Boom;
-import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
+import donnu.zolotarev.SpaceShip.Effects.Shield;
+import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
 import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
@@ -112,6 +113,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
             loadWeapon(unitLevel);
         }else{
         }
+
+        MusicLoader.getFire().play();
 
         health = defaultHealth;
         if (waySpecifications == null){

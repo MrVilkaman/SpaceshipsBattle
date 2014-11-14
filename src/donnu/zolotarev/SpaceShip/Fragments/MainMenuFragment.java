@@ -21,6 +21,7 @@ import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.AppUtils;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
+import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
 
 public class MainMenuFragment extends BaseMenuFragment {
 
@@ -42,6 +43,19 @@ public class MainMenuFragment extends BaseMenuFragment {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE);
         Settings.create(pref.getString(BaseMenuFragment.PREF_USER_STATS, ""));
+
+        if (Settings.get().isMusic() && savedInstanceState == null){
+            SoundHelper.menuSoundOn(getActivity().getApplicationContext());
+        }
+
+        GlobalImageManager.configuration(new int[]{
+                R.drawable.main_wall_1,
+                R.drawable.main_wall_2,
+                R.drawable.main_wall_3,
+                R.drawable.main_wall_4,
+                R.drawable.main_wall_5,
+                R.drawable.main_wall_6
+        },15);
     }
 
     @Override
@@ -57,14 +71,6 @@ public class MainMenuFragment extends BaseMenuFragment {
         imageBack.setImageDrawable(tr);
         tr.startTransition(2000);*/
         // to
-        GlobalImageManager.configuration(new int[]{
-                R.drawable.main_wall_1,
-                R.drawable.main_wall_2,
-                R.drawable.main_wall_3,
-                R.drawable.main_wall_4,
-                R.drawable.main_wall_5,
-                R.drawable.main_wall_6
-        },15);
 
         //imageBack.setImageDrawable();
         versionInfoUpdate();

@@ -21,6 +21,7 @@ import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.UI.ControlMode;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
 import org.andengine.util.color.Color;
 
 public class FlySettingsFragment extends android.app.DialogFragment {
@@ -105,6 +106,15 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     void changeMusicIcon(){
         music = ! music;
         changeMusicIcon(music);
+        changeMusicState(music);
+    }
+
+    private void changeMusicState(boolean music) {
+        if (music){
+            SoundHelper.menuSoundOn(getActivity());
+        }else{
+            SoundHelper.menuSoundOff();
+        }
     }
 
     @OnClick(R.id.cansel)

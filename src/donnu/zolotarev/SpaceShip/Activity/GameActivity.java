@@ -13,6 +13,7 @@ import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import org.andengine.audio.music.MusicFactory;
+import org.andengine.audio.music.exception.MusicReleasedException;
 import org.andengine.audio.sound.SoundFactory;
 import org.andengine.engine.Engine;
 import org.andengine.engine.camera.Camera;
@@ -129,7 +130,10 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     @Override
     protected void onPause() {
         super.onPause();
-        MusicLoader.getSound().pause();
+        try {
+            MusicLoader.getSound().pause();
+        } catch (MusicReleasedException e) {
+        }
         Log.i("XXX", "Its work,SpaceShipActivity onStop" + (mainMenu != null));
         if (mainMenu != null){
             mainMenu.onPause();

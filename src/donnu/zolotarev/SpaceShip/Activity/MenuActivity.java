@@ -5,9 +5,11 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
+import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
 
 public class MenuActivity extends SingleFragmentActivity {
     @Override
@@ -60,5 +62,17 @@ public class MenuActivity extends SingleFragmentActivity {
 
     }
 
-
+   @Override
+    protected void onStop() {
+        super.onStop();
+        SoundHelper.pause();
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Settings settings = Settings.get();
+        if (settings != null && settings.isMusic()){
+            SoundHelper.play();
+        }
+    }
 }
