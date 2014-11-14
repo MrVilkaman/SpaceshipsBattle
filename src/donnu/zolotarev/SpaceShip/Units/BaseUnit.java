@@ -59,7 +59,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected int defaultHealth;
     protected int defaultSpeed;
     protected float defaultMaxAngle;
-    protected int defaultDamage = 200;
+    protected int defaultDamage = 600;
     protected int shieldPoint = 0;
 
     private float R = 0;
