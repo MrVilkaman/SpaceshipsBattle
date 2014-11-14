@@ -72,9 +72,9 @@ public class UnitWave {
                     }
                 }else{
                     //todo для босса нудно закоментить, для обычной игры нет!
-                  //  if (BaseUnit.getEnemiesOnMap() <=1){
+                   if (BaseUnit.getEnemiesOnMap() == 0){
                         needWait = false;
-                    //}
+                   }
                 }
 
             }
