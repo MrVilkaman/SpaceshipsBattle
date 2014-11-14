@@ -63,9 +63,9 @@ public class Hero extends BaseUnit {
                 new WeaponPos[]{
                         new WeaponPos(sprite, 35, 30, -2),
                         new WeaponPos(sprite, 35, 70, 2)});
-        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,null);
         rocketController.loadWeapon(gun, 0);
-        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,mode);
+        gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,null);
         rocketController.loadWeapon(gun, 1);
 
         if (heroFeatures.isHaveShield()){

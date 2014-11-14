@@ -43,9 +43,9 @@ public class Rocket extends BaseBullet {
     @Override
     public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator[] weaponModificator) {
         if (unitTarget){
-            initCharacteristics(1600, 800, 10f);
+            initCharacteristics(1600, 700, 10f);
         }else{
-            initCharacteristics(1600, 500, 6f);
+            initCharacteristics(1600, 450, 6f);
         }
 
         if (weaponModificator != null){
