@@ -71,12 +71,10 @@ public class UnitWave {
                         _isStarted = false;
                     }
                 }else{
-                    //todo для босса нудно закоментить, для обычной игры нет!
                    if (BaseUnit.getEnemiesOnMap() == 0){
                         needWait = false;
                    }
                 }
-
             }
         }
     }
@@ -99,7 +97,6 @@ public class UnitWave {
                 }
             }
             return true;
-
         }
         return false;
     }
