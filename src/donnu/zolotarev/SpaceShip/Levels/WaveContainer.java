@@ -651,13 +651,61 @@ public  class WaveContainer {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1,i*2,0.2f);
                     unitWave.addDelay(1f);
                 }
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 1, 0.01f, new Point(Constants.CAMERA_WIDTH,-100), 155);
+                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2, 1, 0.01f);
                 unitWave.addDelay(1f);
                 for (int i = 1; i < 11; i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_1,i*3,0.2f);
                     unitWave.addDelay(1f);
                 }
 
+                break;
+            case LEVEL_35:
+                int n  = 6;
+                dh = Constants.CAMERA_HEIGHT/(n+2);
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_3,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int j = 0;j<3;j++) {
+                    for (int i = 1; i <= n; i++) {
+                        unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                    }
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_2,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                unitWave.waitLastKilled();
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_2,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
+                for (int i = 1; i <= n; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
+                }
                 break;
             default:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 10, 0.2f);
