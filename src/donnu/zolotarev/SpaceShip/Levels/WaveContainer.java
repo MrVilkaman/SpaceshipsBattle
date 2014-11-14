@@ -707,6 +707,19 @@ public  class WaveContainer {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1,1,0.01f,new Point(Constants.CAMERA_WIDTH+10,dh*i));
                 }
                 break;
+            case LEVEL_40:
+                for (int i = 0; i < 5; i++) {
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_SHIELD_L_1, 1+i/2, 0.5f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_SHIELD_L_3, 10+i, 0.3f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2+i, 0.5f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_SHIELD_L_1, 1+i/2, 0.5f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_SHIELD_L_2, 1, 1.5f);
+
+                    if( i==4 ){
+                        unitWave.waitLastKilled();
+                    }
+                }
+                break;
             case LEVEL_39:
                 n  = 6;
                 dh = Constants.CAMERA_HEIGHT/(n+2);
