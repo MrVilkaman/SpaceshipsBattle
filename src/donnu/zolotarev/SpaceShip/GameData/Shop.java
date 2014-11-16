@@ -44,11 +44,11 @@ public class Shop {
         list = new ArrayList<ShopItem>();
 
         list.add(new ShopItem(SHOP_ARMOR_TITLE,R.string.shop_item_armor_description,
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,200,500
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,200,300
         , ShopGrowthRates.RatesModels.SPECIAL_1,180,0.5f));
 
         list.add(new ShopItem(SHOP_DAMAGE_TITLE,R.string.shop_item_damage_description,
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,300,
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,200,
                 ShopGrowthRates.RatesModels.LINEARLY,0,10));
 
         list.add(new ShopItem(SHOP_DOUBLE_GUN_TITLE,SHOP_DOUBLE_AMMO_TITLE,
@@ -64,7 +64,7 @@ public class Shop {
 
         list.add(new ShopItem(SHOP_SHIELD_HP_TITLE,R.string.shop_item_shield_hp_description,
                 ShopItem.ItemShopType.AMMO,100, ShopGrowthRates.RatesModels.LINEARLY,200,40
-                , ShopGrowthRates.RatesModels.LINEARLY,100,100));
+                , ShopGrowthRates.RatesModels.LINEARLY,500,100));
 
     }
 

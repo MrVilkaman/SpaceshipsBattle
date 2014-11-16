@@ -31,6 +31,7 @@ public class ShopAdapter extends ArrayAdapter{
         }
         return 0;
     }
+
     private int getTextById(int title) {
         switch (title){
             case Shop.SHOP_ARMOR_TITLE:
@@ -57,8 +58,6 @@ public class ShopAdapter extends ArrayAdapter{
         return 0;
     }
 
-
-
     public interface Callback{
         public void updateMoney();
     }
@@ -81,7 +80,7 @@ public class ShopAdapter extends ArrayAdapter{
         ViewHolder viewHolder = (ViewHolder)convertView.getTag();
 
         Resources resources = parent.getContext().getResources();
-       final ShopItem shopItem = shop.getItem(position);
+        final ShopItem shopItem = shop.getItem(position);
 
         boolean hideTitle = !shopItem.isUseAmmo() && shopItem.alreadyBought();
         if (hideTitle){
@@ -99,8 +98,6 @@ public class ShopAdapter extends ArrayAdapter{
         }
 
         boolean needBuyButton = true;//!shopItem.alreadyBought() || shopItem.isUseAmmo();
-
-
 
         if (!shopItem.haveNext()){
             viewHolder.price.setText("");
