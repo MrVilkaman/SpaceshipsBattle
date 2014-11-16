@@ -108,7 +108,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
         //   }
 
-        return (packinfo.versionCode == codeVersion) || codeVersion == 7 || codeVersion == 8;
+        return (packinfo.versionCode == codeVersion);
     }
 
     protected void showAds(final AdView adView) {

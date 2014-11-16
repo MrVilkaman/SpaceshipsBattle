@@ -16,7 +16,7 @@ public class TurretAI extends SimpleAI implements IGetShape {
         super(pTextureRegion, pVertexBufferObjectManager);
         hW = (int) getWidth()/2;
         hH = (int) getHeight()/2;
-        specifications = new WaySpecifications(0,7f);
+        specifications = new WaySpecifications(0,8f);
     }
 
     @Override

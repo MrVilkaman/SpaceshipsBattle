@@ -1,6 +1,7 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAddListener;
@@ -11,7 +12,6 @@ import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
 import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
-import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 
 import java.util.Random;
@@ -72,25 +72,25 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     }
 
     int i = 0;
+    int x = 0;
+    int y = 0;
     @Override
     public boolean addEnemy(AddedEnemyParam param) {
 
-        if (super.addEnemy(param)){
-            BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
-            Random random = new Random();
-            Point point = param.getStartPosition();
-            if (point == null){
-                int rand = random.nextInt(60);
-                if (Utils.equals(lastRand, rand, 10)){
-                    rand = 35 + (int)Utils.random(-10,15);
-                }
-                lastRand = rand;
-                point = new Point(1300, lastRand * 10);
-            }
-            // todo
-            enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point, param.getStartAngle(),new WaySpecifications(180,0)/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
-            i++;
+        BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
+        Random random = new Random();
+        Point point;
+        y++;
+        if(param.getKind() == BaseUnit.TYPE_ENEMY_ROCKET_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1
+                || param.getKind() == BaseUnit.TYPE_ENEMY_MINIGUN_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_METEOR_L_1){
+            y = 0;
+            x++;
         }
+        point = new Point(250*x, 100 + 200*y);
+
+
+        PointF pointF =  activeScene.getHero().getPosition();
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point,0, new WaySpecifications(0,0f));
         return true;
     }
 
