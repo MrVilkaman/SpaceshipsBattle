@@ -20,17 +20,44 @@ public class ShopAdapter extends ArrayAdapter{
     private final UserDataProcessor dataProcessor;
     private final Callback callback;
 
-    public int getShopItemValue(int title) {
+    private int getShopItemValue(int title) {
         switch (title){
-            case R.string.shop_item_armor_title:
+            case Shop.SHOP_ARMOR_TITLE:
                 return HeroFeatures.get().getMaxHealth();
-            case R.string.shop_item_damage_title:
+            case Shop.SHOP_DAMAGE_TITLE:
                 return HeroFeatures.get().getExtraBulletDamege();
-            case R.string.shop_item_shield_hp_title:
+            case Shop.SHOP_SHIELD_HP_TITLE:
             return HeroFeatures.get().getShieldPoint();
         }
         return 0;
     }
+    private int getTextById(int title) {
+        switch (title){
+            case Shop.SHOP_ARMOR_TITLE:
+                return R.string.shop_item_armor_title;
+            case Shop.SHOP_DAMAGE_TITLE:
+                return R.string.shop_item_damage_title;
+            case Shop.SHOP_DAMAGE_DESCRIPTION:
+                return R.string.shop_item_damage_description;
+            case Shop.SHOP_DOUBLE_GUN_TITLE:
+                return R.string.shop_item_double_gun_title;
+            case Shop.SHOP_DOUBLE_AMMO_TITLE:
+                return R.string.shop_item_double_ammo_title;
+            case Shop.SHOP_ROCKET_GUN_TITLE:
+                return R.string.shop_item_rocket_gun_title;
+            case Shop.SHOP_ROCKET_AMMO_TITLE:
+                return R.string.shop_item_rocket_ammo_title;
+            case Shop.SHOP_SHIELD_TITLE:
+                return R.string.shop_item_shield_title;
+            case Shop.SHOP_SHIELD_AMMO_TITLE:
+                return R.string.shop_item_shield_ammo_title;
+            case Shop.SHOP_SHIELD_HP_TITLE:
+                return R.string.shop_item_shield_hp_title;
+        }
+        return 0;
+    }
+
+
 
     public interface Callback{
         public void updateMoney();
@@ -44,6 +71,8 @@ public class ShopAdapter extends ArrayAdapter{
         dataProcessor = UserDataProcessor.get();
     }
 
+
+
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         if (convertView == null){
@@ -56,9 +85,10 @@ public class ShopAdapter extends ArrayAdapter{
 
         boolean hideTitle = !shopItem.isUseAmmo() && shopItem.alreadyBought();
         if (hideTitle){
-            viewHolder.title.setText(resources.getString(shopItem.getTitle(), getShopItemValue(shopItem.getTitle())));
+            viewHolder.title.setText(resources.getString(getTextById(shopItem.getTitle()), getShopItemValue(
+                    shopItem.getTitle())));
         }else{
-            viewHolder.title.setText(resources.getString(shopItem.getTitle()));
+            viewHolder.title.setText(resources.getString(getTextById(shopItem.getTitle())));
         }
         viewHolder.discription.setText(shopItem.getDescriptionResId());
         if (shopItem.getCount()>=0){

@@ -13,6 +13,18 @@ import java.util.Iterator;
 
 public class Shop {
 
+
+    public final static int SHOP_ARMOR_TITLE = 0;
+    public final static int SHOP_DAMAGE_TITLE = 2;
+    public final static int SHOP_DAMAGE_DESCRIPTION = 3;
+    public final static int SHOP_DOUBLE_GUN_TITLE = 4;
+    public final static int SHOP_DOUBLE_AMMO_TITLE = 5;
+    public final static int SHOP_ROCKET_GUN_TITLE = 6;
+    public final static int SHOP_ROCKET_AMMO_TITLE = 7;
+    public final static int SHOP_SHIELD_TITLE = 8;
+    public final static int SHOP_SHIELD_AMMO_TITLE = 9;
+    public final static int SHOP_SHIELD_HP_TITLE = 10;
+
     private static transient Shop instance;
     private ArrayList<ShopItem> list;
 
@@ -31,28 +43,28 @@ public class Shop {
     private Shop(Context context){
         list = new ArrayList<ShopItem>();
 
-        list.add(new ShopItem(R.string.shop_item_armor_title,R.string.shop_item_armor_description,
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,200,75
-        , ShopGrowthRates.RatesModels.SPECIAL_1,150,0.5f));
+        list.add(new ShopItem(SHOP_ARMOR_TITLE,R.string.shop_item_armor_description,
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,200,500
+        , ShopGrowthRates.RatesModels.SPECIAL_1,180,0.5f));
 
-        list.add(new ShopItem(R.string.shop_item_damage_title,R.string.shop_item_damage_description,
-                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,120,
+        list.add(new ShopItem(SHOP_DAMAGE_TITLE,R.string.shop_item_damage_description,
+                ShopItem.ItemShopType.DEFENCE,10, ShopGrowthRates.RatesModels.PARABOLA,250,300,
                 ShopGrowthRates.RatesModels.LINEARLY,0,10));
 
-        list.add(new ShopItem(R.string.shop_item_double_gun_title,R.string.shop_item_double_ammo_title,
-                R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,20,1000,300,3,1));
+        list.add(new ShopItem(SHOP_DOUBLE_GUN_TITLE,SHOP_DOUBLE_AMMO_TITLE,
+                R.string.shop_item_double_gun_description,ShopItem.ItemShopType.AMMO,20,800,250,3,1));
 
-        list.add(new ShopItem(R.string.shop_item_rocket_gun_title,R.string.shop_item_rocket_ammo_title,
-                R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,50,2000,500,10,5));
+        list.add(new ShopItem(SHOP_ROCKET_GUN_TITLE,SHOP_ROCKET_AMMO_TITLE,
+                R.string.shop_item_rocket_gun_description,ShopItem.ItemShopType.AMMO,50,2000,375,10,5));
 
         // todo сделать так, что бы не удалялись сохранения)
 
-        list.add(new ShopItem(R.string.shop_item_shield_title,R.string.shop_item_shield_ammo_title,
-                R.string.shop_item_shield_description,ShopItem.ItemShopType.AMMO,50,1000,300,3,1));
+        list.add(new ShopItem(SHOP_SHIELD_TITLE,SHOP_SHIELD_AMMO_TITLE,
+                R.string.shop_item_shield_description,ShopItem.ItemShopType.AMMO,50,800,250,3,1));
 
-        list.add(new ShopItem(R.string.shop_item_shield_hp_title,R.string.shop_item_shield_hp_description,
-                ShopItem.ItemShopType.AMMO,100, ShopGrowthRates.RatesModels.LINEARLY,200,25
-                , ShopGrowthRates.RatesModels.LINEARLY,0,100));
+        list.add(new ShopItem(SHOP_SHIELD_HP_TITLE,R.string.shop_item_shield_hp_description,
+                ShopItem.ItemShopType.AMMO,100, ShopGrowthRates.RatesModels.LINEARLY,200,40
+                , ShopGrowthRates.RatesModels.LINEARLY,100,100));
 
     }
 

@@ -310,7 +310,7 @@ public  class WaveContainer {
             break;
             case LEVEL_16:
 
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 7, 0.8f);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 7, 0.8f);
                 unitWave.waitLastKilled();
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 2, 2f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 1f);
@@ -323,6 +323,7 @@ public  class WaveContainer {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 2, 0.3f);
                 }
                 unitWave.addDelay(3f);
+
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_METEOR_L_1, 10, 0.17f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_MINIGUN_L_1, 3, 3f);
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2, 4, 1f);

@@ -19,7 +19,7 @@ public class UserDataProcessor {
 
     public int processGold(int score,boolean isWin){
         UserData userData = UserData.get();
-        int money = score/3 *(isWin?2:1);
+        int money = score/3 *(isWin?3:2);
         userData.setMoney(userData.getMoney()+money);
         return money;
     }

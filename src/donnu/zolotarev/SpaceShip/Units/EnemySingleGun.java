@@ -73,7 +73,7 @@ public class EnemySingleGun extends BaseUnit {
                 price = 20;
                 break;
             case 2:
-                price = 40;
+                price = 45;
                 defaultHealth = 500;
                 defaultSpeed = 200;
                 defaultMaxAngle = 2f;
@@ -92,7 +92,7 @@ public class EnemySingleGun extends BaseUnit {
                     break;
                 case 2:
                     shieldPoint = 400;
-                    price = 50;
+                    price = 65;
                     break;
                 default:
                     shieldPoint = 0;

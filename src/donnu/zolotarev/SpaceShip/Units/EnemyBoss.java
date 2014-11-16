@@ -70,7 +70,7 @@ public class EnemyBoss extends BaseUnit {
         // todo убрать!
         defaultHealth = 75000;
 //        defaultHealth = 100;
-        price = 1500;
+        price = 3000;
     }
 
     @Override

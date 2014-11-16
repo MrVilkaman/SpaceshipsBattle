@@ -59,8 +59,8 @@ public class EnemyWithMiniGun extends BaseUnit {
         if (haveShield){
             switch (level){
                 case 0:
-                    shieldPoint = 500;
-                    price = 15;
+                    shieldPoint = 600;
+                    price = 90;
                     break;
                 default:
                     shieldPoint = 0;
