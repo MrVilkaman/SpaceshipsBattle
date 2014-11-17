@@ -155,7 +155,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         enemyController = new ObjectCollisionController<BaseUnit>();
         bulletController = new ObjectCollisionController<BaseBullet>();
 
-        createFPSBase();
+        //createFPSBase();
         createHealthBar();
         createScoreBar();
         createWaveCountBar();
@@ -404,7 +404,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private void createHealthBar(){
         try {
             int y = 0;
-            int x = (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth() + 30 +100;
+            int x = 0;// (int)TextureLoader.getScreenControlBaseTextureRegion().getWidth();
             String str = shipActivity.getString(R.string.text_strength);
             Text text = new Text(x,y,TextureLoader.getFont(),str,new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
             attachChild(text);
