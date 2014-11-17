@@ -4,6 +4,7 @@ public  class Constants {
 
     // todo не забыть включить перед релизом!
     public static final boolean IS_ADS_ENABLED = false;
+    public static final boolean NEED_GOOGLE_ANALISTIC_TRACING = true;
     public static final String BANNER_ID = "ca-app-pub-3472836589086047/2589092611";
 
     public static final int MAX_UNIT_LEVEL = 4;

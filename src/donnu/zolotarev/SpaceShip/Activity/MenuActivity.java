@@ -3,11 +3,14 @@ package donnu.zolotarev.SpaceShip.Activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.os.Bundle;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
 
@@ -15,6 +18,12 @@ public class MenuActivity extends SingleFragmentActivity {
     @Override
     protected Fragment createFragment() {
         return new MainMenuFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        GoogleAnalytics.getInstance(this).enableAutoActivityReports(getApplication());
     }
 
     public void loadRootFragment(Fragment fragment, boolean addToBackStack){
@@ -66,6 +75,7 @@ public class MenuActivity extends SingleFragmentActivity {
     protected void onStop() {
         super.onStop();
         SoundHelper.pause();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
     }
     @Override
     protected void onStart() {
@@ -73,6 +83,9 @@ public class MenuActivity extends SingleFragmentActivity {
         Settings settings = Settings.get();
         if (settings != null && settings.isMusic()){
             SoundHelper.play();
+        }
+        if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
+            GoogleAnalytics.getInstance(this).reportActivityStop(this);
         }
     }
 }

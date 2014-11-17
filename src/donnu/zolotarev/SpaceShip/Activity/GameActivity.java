@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import com.google.android.gms.analytics.GoogleAnalytics;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Scenes.MyScene;
 import donnu.zolotarev.SpaceShip.Scenes.SelectionLevelScene;
@@ -56,6 +57,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
         super.onCreate(savedInstanceState);
         instance = this;
         level = getIntent().getExtras().getInt(EXTRA_LEVEL);
+
     }
 
     @Override
@@ -168,4 +170,18 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     public void restart(int statusCode) {
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
+            GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
+        super.onStop();
+    }
 }
