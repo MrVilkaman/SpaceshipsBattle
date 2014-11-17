@@ -2,7 +2,6 @@ package donnu.zolotarev.SpaceShip.Effects;
 
 import android.opengl.GLES20;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
-import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import org.andengine.entity.particle.SpriteParticleSystem;
 import org.andengine.entity.particle.emitter.IParticleEmitter;
 import org.andengine.entity.particle.initializer.*;
@@ -20,7 +19,7 @@ public class Fire extends SpriteParticleSystem {
 
 
     public Fire(IParticleEmitter pParticleEmitter) {
-        super(pParticleEmitter, RATE_MIN, RATE_MAX, PARTICLES_MAX, TextureLoader.getmParticleTextureRegion(),
+        super(pParticleEmitter, RATE_MIN, RATE_MAX, PARTICLES_MAX, null/*TextureLoader.getmParticleTextureRegion()*/,
                 GameActivity.engine().getVertexBufferObjectManager());
         qwer();
     }

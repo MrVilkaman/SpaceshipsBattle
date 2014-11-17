@@ -67,9 +67,7 @@ public class EnemyBoss extends BaseUnit {
     protected void loadParam(int level) {
         defaultSpeed = 230;
         defaultMaxAngle = 0.5f;
-        // todo убрать!
         defaultHealth = 75000;
-//        defaultHealth = 100;
         price = 3000;
     }
 

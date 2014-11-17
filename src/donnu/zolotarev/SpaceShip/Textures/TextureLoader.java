@@ -31,17 +31,6 @@ public class TextureLoader {
     private static ITiledTextureRegion enemyShipGreen;
 
     private static Font font;
-    private static Font fontBig;
-
-    private static TextureRegion menuResumeTextureRegion;
-    private static TextureRegion menuExitTextureRegion;
-    private static TextureRegion menuNewGameTex1tureRegion;
-    private static TextureRegion menuBackToMainMenuTextureRegion;
-    private static TextureRegion menuRestartTextureRegion;
-    private static TextureRegion menuAboutTextureRegion;
-
-    private static TextureRegion changeLevelLableTextureRegion1;
-    private static TextureRegion changeLevelIconShop;
 
     private static ITiledTextureRegion rocketAmmoTextureRegion;
     private static ITiledTextureRegion simpleBulletTextureRegion;
@@ -50,7 +39,6 @@ public class TextureLoader {
     private static ITiledTextureRegion btnFire1;
     private static ITiledTextureRegion btnFire2;
     private static ITiledTextureRegion mBoomTextureRegion;
-    private static TextureRegion mParticleTextureRegion;
     private static TexturePack texturePack2;
     private static TexturePackTextureRegionLibrary texturePackLibrary2;
     private static BitmapTextureAtlas gameBKTexture;
@@ -58,6 +46,7 @@ public class TextureLoader {
     private static ITiledTextureRegion fogTextureRegion;
     private static ITiledTextureRegion bossBaseTextureRegion;
     private static ITiledTextureRegion bossTurelTextureRegion;
+    private static ITiledTextureRegion menuButtonBackgroundTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -84,15 +73,12 @@ public class TextureLoader {
             btnFire1 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_1_ID);
             btnFire2 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_2_ID);
 
-            menuResumeTextureRegion  = texturePackLibrary.get(TexturesPack1ID.MENU_RESUME_ID);
-            menuExitTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_EXIT_ID);
-            menuBackToMainMenuTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_TO_MAINMENU_ID);
-            menuRestartTextureRegion = texturePackLibrary.get(TexturesPack1ID.MENU_RESTART_ID);
-
             fogTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.FOG_ID);
 
             bossBaseTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.BOSS_BASE_ID);
             bossTurelTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.BOSS_TUREL_ID);
+
+            menuButtonBackgroundTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.MENUBACKGROUND_ID);
 
         }
         catch (final TexturePackParseException e)
@@ -163,42 +149,6 @@ public class TextureLoader {
         return font;
     }
 
-    public static Font getFontBig() {
-        return fontBig;
-    }
-
-    public static TextureRegion getMenuResumeTextureRegion() {
-        return menuResumeTextureRegion;
-    }
-
-    public static TextureRegion getMenuExitTextureRegion() {
-        return menuExitTextureRegion;
-    }
-
-    /*public static TextureRegion getMenuNewGameTextureRegion() {
-        return menuNewGameTextureRegion;
-    }*/
-
-    public static TextureRegion getMenuBackToMainMenuTextureRegion() {
-        return menuBackToMainMenuTextureRegion;
-    }
-
-    public static TextureRegion getMenuRestartTextureRegion() {
-        return menuRestartTextureRegion;
-    }
-
-    public static TextureRegion getChangeLevelLableTextureRegion1() {
-        return changeLevelLableTextureRegion1;
-    }
-
-    public static TextureRegion getChangeLevelIconShop() {
-        return changeLevelIconShop;
-    }
-
-    public static TextureRegion getMenuAboutTextureRegion() {
-        return menuAboutTextureRegion;
-    }
-
     public static ITiledTextureRegion getRocketAmmoTextureRegion() {
         return rocketAmmoTextureRegion;
     }
@@ -214,16 +164,13 @@ public class TextureLoader {
     public static ITiledTextureRegion getBtnFire1() {
         return btnFire1;
     }
+
     public static ITiledTextureRegion getBtnFire2() {
         return btnFire2;
     }
 
     public static ITiledTextureRegion getmBoomTextureRegion() {
         return mBoomTextureRegion;
-    }
-
-    public static TextureRegion getmParticleTextureRegion() {
-        return mParticleTextureRegion;
     }
 
     public static ITiledTextureRegion getShieldTextureRegion() {
@@ -240,5 +187,9 @@ public class TextureLoader {
 
     public static ITiledTextureRegion getBossBaseTextureRegion() {
         return bossBaseTextureRegion;
+    }
+
+    public static ITiledTextureRegion getMenuButtonBackgroundTextureRegion() {
+        return menuButtonBackgroundTextureRegion;
     }
 }

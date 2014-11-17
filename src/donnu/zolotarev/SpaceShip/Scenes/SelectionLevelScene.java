@@ -85,24 +85,6 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
                 ((TestGameScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(TestGameScene)gameScene));
 
                 break;
-          /*  case WaveContainer.LEVEL_19:
-                // todo
-                levels.addLevel(WaveContainer.LEVEL_MUSEUM, 400,600, false);
-
-                shipActivity.runOnUiThread(
-                new Runnable(){
-                    @Override
-                    public void run() {
-                        AlertDialog.Builder builderAbout = new AlertDialog.Builder(shipActivity);
-                        builderAbout.setTitle(R.string.msg_coming_soon)
-                                .setPositiveButton("ОК", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        redrawLevelsUI();
-                                    }
-                                }).show();
-                    }
-                });*/
             case WaveContainer.LEVEL_MUSEUM:
                 gameScene = new MuseumScene(this);
                 ((MuseumScene)gameScene).addNewWaveController( WaveContainer.getWaveControllerById(type,(MuseumScene)gameScene));

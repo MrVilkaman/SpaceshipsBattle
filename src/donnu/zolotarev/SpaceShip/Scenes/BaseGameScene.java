@@ -104,18 +104,20 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             status = IParentScene.EXIT_DIE;
             beforeReturnToParent(IParentScene.EXIT_DIE);
             String str = shipActivity.getString(R.string.text_die_money,score);
-            dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera())
+            dieMenuScene = MenuFactory.createMenu(engine,shipActivity.getCamera(), shipActivity)
                     .addedText(shipActivity.getString(R.string.lose_text),TextureLoader.getFont(),
                             Constants.CAMERA_WIDTH_HALF,100, WALIGMENT.CENTER, HALIGMENT.CENTER)
                     .addedText(str,TextureLoader.getFont())
-                    .addedItem(TextureLoader.getMenuRestartTextureRegion(), new ISimpleClick() {
+                    .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(), R.string.btn_game_restart,
+                            TextureLoader.getFont(), new ISimpleClick() {
                         @Override
                         public void onClick(int id) {
 
                             restart.onClick(id);
                         }
                     }/*restart*/)
-                    .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
+                    .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(),
+                            R.string.btn_game_back_to_main_menu, TextureLoader.getFont(), exit)
                     .enableAnimation()
                     .build();
 
@@ -198,18 +200,18 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             }
         };
 
-        menuScene = MenuFactory.createMenu(engine, shipActivity.getCamera())
-                .addedItem(TextureLoader.getMenuResumeTextureRegion(), new ISimpleClick() {
-                    @Override
-                    public void onClick(int id) {
-                        activeScene.detachChild(menuScene);
-                        activeScene.setChildScene(analogOnScreenControl);
-                        isShowMenuScene = false;
-                        isActive = true;
-                    }
+        menuScene = MenuFactory.createMenu(engine, shipActivity.getCamera(), shipActivity)
+                .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(),R.string.btn_game_resume, TextureLoader.getFont(), new ISimpleClick() {
+                            @Override
+                            public void onClick(int id) {
+                                activeScene.detachChild(menuScene);
+                                activeScene.setChildScene(analogOnScreenControl);
+                                isShowMenuScene = false;
+                                isActive = true;
+                            }
                 })
-                .addedItem(TextureLoader.getMenuRestartTextureRegion(), restart)
-                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), exit)
+                .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(), R.string.btn_game_restart, TextureLoader.getFont(), restart)
+                .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(), R.string.btn_game_back_to_main_menu, TextureLoader.getFont(), exit)
                 .enableAnimation()
                 .build();
     }

@@ -78,6 +78,9 @@
     <string name = "setting_credits_btn">Об игре</string>
     <string name = "radiogroup_fire_mode_byhold">По удержанию</string>
     <string name = "radiogroup_fire_mode_always">Всегда</string>
+    <string name = "btn_game_resume">Продолжить</string>
+    <string name = "btn_game_back_to_main_menu">Вернуться в главное меню</string>
+    <string name = "btn_game_restart">Переиграть</string>
 
 
 </resources>

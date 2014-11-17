@@ -60,9 +60,6 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
             @Override
             public void onWinLevel() {
-                //todo заставка
-               /* returnToParentScene(IParentScene.EXIT_WIN);
-                toast(GameActivity.getInstance().getString(R.string.text_win_message,score));*/
                 beforeReturnToParent(IParentScene.EXIT_WIN);
                 final String str = shipActivity.getString(R.string.text_win_message,score);
                 shipActivity.runOnUiThread(new Runnable() {
@@ -70,17 +67,18 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
                     public void run() {
                         isActive = false;
                         enablePauseMenu = false;
-                        setChildScene(MenuFactory.createMenu(engine, shipActivity.getCamera())
+                        setChildScene(MenuFactory.createMenu(engine, shipActivity.getCamera(), shipActivity)
                                 .addedText(str, TextureLoader.getFont())
-                                .addedItem(TextureLoader.getMenuBackToMainMenuTextureRegion(), new ISimpleClick() {
-                                    @Override
-                                    public void onClick(int id) {
-                                        clearItem();
-                                        System.gc();
-                                        FogManager.fogOff();
-                                        returnToParentScene(IParentScene.EXIT_WIN);
-                                    }
-                                })
+                                .addedItem(TextureLoader.getMenuButtonBackgroundTextureRegion(), R.string.btn_game_back_to_main_menu,
+                                        TextureLoader.getFont(), new ISimpleClick() {
+                                            @Override
+                                            public void onClick(int id) {
+                                                clearItem();
+                                                System.gc();
+                                                FogManager.fogOff();
+                                                returnToParentScene(IParentScene.EXIT_WIN);
+                                            }
+                                        })
                                 .enableAnimation()
                                 .build(), false, true, true);
                     }

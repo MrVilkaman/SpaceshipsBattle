@@ -178,7 +178,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         }else if (getClass().getSimpleName().equals(Meteor.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_METEOR_L_1,(Meteor)this);
         }else {
-           new  Exception("Не известный тип!");
+           //new  Exception("Не известный тип!");
         }
 
         if (withAnimate){

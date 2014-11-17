@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texture version="1" file="TexturesPack1.png" type="bitmap" width="512" height="1024" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+<texture version="1" file="TexturesPack1.png" type="bitmap" width="1024" height="512" pixelformat="RGBA_4444" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:f139dc2175229e27384bce00125b6499:c8763615c887c3f26b910abfea9a4930:3553d7cbd670330404a5be1f541e22da$ -->
-    <textureregion id="0" src="Boss_Base.png" x="2" y="2" width="384" height="287" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="384" srcheight="287"/>
-    <textureregion id="1" src="Boss_Turel.png" x="234" y="499" width="129" height="75" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="129" srcheight="75"/>
-    <textureregion id="2" src="Fog.png" x="2" y="499" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
-    <textureregion id="3" src="PowerShield.png" x="388" y="2" width="113" height="113" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="128" srcheight="128"/>
-    <textureregion id="4" src="alienblaster.png" x="2" y="759" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="5" src="alienblaster_2.png" x="2" y="835" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="6" src="alienblaster_3.png" x="2" y="911" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
-    <textureregion id="7" src="btn_fire_1.png" x="388" y="117" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
-    <textureregion id="8" src="btn_fire_2.png" x="132" y="611" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
-    <textureregion id="9" src="menu_exit.png" x="2" y="291" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="10" src="menu_restart.png" x="2" y="343" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="11" src="menu_resume.png" x="2" y="395" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="12" src="menu_to_mainmenu.png" x="2" y="447" width="400" height="50" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="400" srcheight="50"/>
-    <textureregion id="13" src="onscreen_control_base.png" x="2" y="629" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
-    <textureregion id="14" src="onscreen_control_knob.png" x="234" y="576" width="52" height="52" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="64" srcheight="64"/>
-    <textureregion id="15" src="roket_ammo.png" x="365" y="499" width="32" height="16" rotated="false" trimmed="true" srcx="0" srcy="1" srcwidth="32" srcheight="18"/>
-    <textureregion id="16" src="ship.png" x="132" y="499" width="100" height="110" rotated="false" trimmed="true" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
-    <textureregion id="17" src="simpleBullet.png" x="2" y="987" width="19" height="5" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="21" srcheight="7"/>
+    <!-- $TexturePacker:SmartUpdate:9d4e929fc6a0c9232b544694f9c0972e:9141ff18076a8cb2e889a827d30880c2:3553d7cbd670330404a5be1f541e22da$ -->
+    <textureregion id="0" src="Boss_Base.png" x="2" y="90" width="384" height="287" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="384" srcheight="287"/>
+    <textureregion id="1" src="Boss_Turel.png" x="641" y="2" width="129" height="75" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="129" srcheight="75"/>
+    <textureregion id="2" src="Fog.png" x="2" y="379" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
+    <textureregion id="3" src="MenuBackground.png" x="2" y="2" width="637" height="86" rotated="false" trimmed="true" srcx="1" srcy="3" srcwidth="639" srcheight="90"/>
+    <textureregion id="4" src="PowerShield.png" x="132" y="379" width="113" height="113" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="128" srcheight="128"/>
+    <textureregion id="5" src="alienblaster.png" x="247" y="379" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="6" src="alienblaster_2.png" x="772" y="2" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="7" src="alienblaster_3.png" x="772" y="78" width="128" height="74" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="74"/>
+    <textureregion id="8" src="btn_fire_1.png" x="518" y="90" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
+    <textureregion id="9" src="btn_fire_2.png" x="902" y="2" width="100" height="100" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="100" srcheight="100"/>
+    <textureregion id="10" src="onscreen_control_base.png" x="388" y="90" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
+    <textureregion id="11" src="onscreen_control_knob.png" x="902" y="104" width="52" height="52" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="64" srcheight="64"/>
+    <textureregion id="12" src="roket_ammo.png" x="132" y="494" width="32" height="16" rotated="false" trimmed="true" srcx="0" srcy="1" srcwidth="32" srcheight="18"/>
+    <textureregion id="13" src="ship.png" x="388" y="220" width="100" height="110" rotated="false" trimmed="true" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
+    <textureregion id="14" src="simpleBullet.png" x="388" y="332" width="19" height="5" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="21" srcheight="7"/>
 </texture>

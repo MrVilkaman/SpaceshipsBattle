@@ -3,7 +3,7 @@ package donnu.zolotarev.SpaceShip.Utils;
 public  class Constants {
 
     // todo не забыть включить перед релизом!
-    public static final boolean IS_ADS_ENABLED = true;//false;
+    public static final boolean IS_ADS_ENABLED = false;
     public static final String BANNER_ID = "ca-app-pub-3472836589086047/2589092611";
 
     public static final int MAX_UNIT_LEVEL = 4;
