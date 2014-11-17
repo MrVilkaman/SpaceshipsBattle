@@ -11,7 +11,7 @@ public class Settings {
     private int lastPlayedLevel = 0;
     private ControlMode controlMode;
     private boolean sound;
-    private boolean music;
+    private boolean music = true;
 
     public int getLastPlayedLevel() {
         return lastPlayedLevel;
