@@ -19,6 +19,7 @@ public class UserDataProcessor {
 
     public int processGold(int score,boolean isWin){
         UserData userData = UserData.get();
+        userData.addTotalScore(score);
         int money = score/3 *(isWin?3:2);
         userData.setMoney(userData.getMoney()+money);
         return money;

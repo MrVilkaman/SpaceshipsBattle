@@ -9,6 +9,7 @@ public class UserData {
     private static transient UserData instance;
 
     private int money = 0;
+    private int totalScore = 0;
 
     private UserData() {
     }
@@ -36,5 +37,13 @@ public class UserData {
 
     void setMoney(int money) {
         this.money = money;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    void addTotalScore(int totalScore) {
+        this.totalScore += totalScore;
     }
 }
