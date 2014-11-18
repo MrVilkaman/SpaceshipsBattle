@@ -10,7 +10,7 @@
             android:id = "@+id/author_link_title"
             style="@style/MenuButton"
             android:layout_gravity="center"
-            android:layout_width = "wrap_content"
+            android:layout_width = "fill_parent"
             android:layout_height = "wrap_content"
             android:text = "@string/author_link_title"
             android:textSize = "24dp">
@@ -21,10 +21,21 @@
             android:id = "@+id/offical_group_link_title"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_width = "wrap_content"
+            android:layout_width = "fill_parent"
             android:layout_height = "wrap_content"
             android:text = "@string/offical_group_link_title"
             android:textSize = "24dp">
     </Button>
+
+        <Button
+                style="@style/MenuButton"
+                android:id = "@+id/btn_credits"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_width = "fill_parent"
+                android:layout_height = "wrap_content"
+                android:text = "@string/btn_credits"
+                android:textSize = "24dp">
+        </Button>
 
 </LinearLayout>

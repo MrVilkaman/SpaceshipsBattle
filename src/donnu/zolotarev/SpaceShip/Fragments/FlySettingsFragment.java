@@ -12,6 +12,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
@@ -149,6 +150,26 @@ public class FlySettingsFragment extends android.app.DialogFragment {
                 Uri address = Uri.parse(Constants.VK_GROUP_LINK);
                 Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                 getActivity().startActivity(openlink);
+            }
+        });
+
+        view.findViewById(R.id.btn_credits).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                View view2 = LayoutInflater.from(getActivity()).inflate(R.layout.credits_text,null);
+                donnu.zolotarev.SpaceShip.Fragments.DialogFragment fragment = new donnu.zolotarev.SpaceShip.Fragments.DialogFragment();
+                fragment.show(getFragmentManager(),"1");
+                fragment.setTitle(getActivity().getString(R.string.msg_about));
+                fragment.setView(view2);
+                fragment.setOkListener(new ISimpleClick2() {
+                    @Override
+                    public void onClick() {
+
+                    }
+                });
+                ((TextView)view2.findViewById(R.id.textView)).setText(R.string.credits_text);
             }
         });
 
