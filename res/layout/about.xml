@@ -12,8 +12,7 @@
             android:layout_gravity="center"
             android:layout_width = "fill_parent"
             android:layout_height = "wrap_content"
-            android:text = "@string/author_link_title"
-            android:textSize = "24dp">
+            android:text = "@string/author_link_title">
     </Button>
 
     <Button
@@ -24,7 +23,7 @@
             android:layout_width = "fill_parent"
             android:layout_height = "wrap_content"
             android:text = "@string/offical_group_link_title"
-            android:textSize = "24dp">
+            >
     </Button>
 
         <Button
@@ -34,8 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width = "fill_parent"
                 android:layout_height = "wrap_content"
-                android:text = "@string/btn_credits"
-                android:textSize = "24dp">
+                android:text = "@string/btn_credits">
         </Button>
 
 </LinearLayout>

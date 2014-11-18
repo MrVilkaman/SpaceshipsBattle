@@ -2,17 +2,18 @@
 <resources>
     <style name = "BaseButton">
         <item name = "android:background">@drawable/selector_button</item>
-        <item name = "android:textSize">24dp</item>
-        <item name = "android:padding">5dp</item>
-        <item name = "android:layout_margin">5dp</item>
+        <item name = "android:textSize">@dimen/button_menu_text_size</item>
+        <item name = "android:padding">@dimen/button_menu_padding</item>
+        <item name = "android:layout_margin">@dimen/button_menu_margin</item>
     </style>
 
     <style name="MenuButton" parent = "BaseButton">
-        <item name = "android:layout_width">300dp</item>
+        <item name = "android:layout_width">@dimen/button_width</item>
     </style>
 
     <style name = "LevelItemText">
         <item name = "android:textColor">@android:color/white</item>
-    </style>
+        <item name = "android:textSize"> @dimen/setting_second_text_size</item>
 
+    </style>
 </resources>

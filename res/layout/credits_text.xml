@@ -10,7 +10,7 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:textAppearance = "?android:attr/textAppearanceMedium"
-                android:text = "Medium Text"
+                android:textSize="@dimen/setting_second_text_size"
                 android:id = "@+id/textView"
                 android:layout_gravity = "center_horizontal"
                 android:layout_margin = "5dp" />

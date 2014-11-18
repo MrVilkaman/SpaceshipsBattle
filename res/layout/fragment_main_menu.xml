@@ -10,6 +10,18 @@
             android:id="@+id/image_background"
             android:src = "@drawable/main_wall_4" />
 
+    <ImageView android:layout_width = "wrap_content"
+               android:layout_height = "wrap_content"
+               android:minHeight="150dp"
+               android:scaleType="fitCenter"
+               android:id="@+id/logo"
+               android:src = "@drawable/logo"
+               android:layout_marginRight="@dimen/margin_logo"
+               android:layout_above = "@+id/linearLayout"
+               android:layout_alignParentTop = "true"
+               android:layout_toRightOf = "@+id/google_play_button" />
+
+
     <com.google.android.gms.ads.AdView android:id="@+id/adView"
                                        android:layout_width="wrap_content"
                                        android:layout_height="wrap_content"
@@ -33,8 +45,9 @@
             android:orientation="vertical"
             android:layout_alignBottom = "@+id/txt_main_menu_version"
             android:layout_alignParentRight = "true"
-            android:layout_marginRight = "70dp"
-            android:layout_marginBottom = "70dp">
+            android:layout_marginRight = "@dimen/margin_main_btn_left_buttom"
+            android:layout_marginBottom = "@dimen/margin_main_btn_left_buttom"
+            android:id = "@+id/linearLayout">
         <Button   style="@style/MenuButton"
                 android:layout_height = "wrap_content"
                 android:text = "@string/btn_main_menu_continue"

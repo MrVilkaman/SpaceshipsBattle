@@ -19,6 +19,7 @@
             >
         <TextView android:layout_width = "wrap_content"
                   android:layout_height = "wrap_content"
+                  android:textSize="@dimen/setting_master_text_size"
                 android:text="asdasd"
                 android:textAppearance = "?android:attr/textAppearanceMedium"
                 android:gravity="center"
@@ -32,6 +33,7 @@
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
                 android:textAppearance = "?android:attr/textAppearanceMedium"
+                android:textSize="@dimen/setting_master_text_size"
                 android:text = "0/10"
                 android:id = "@+id/btn_shop_levels_count"
                 android:layout_below = "@+id/btn_shop_buy"
@@ -52,12 +54,13 @@
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceLarge"
             android:id = "@+id/btn_shop_title"
+            android:textSize="@dimen/setting_master_text_size"
             android:text="qwer"
             android:layout_alignParentLeft = "true" />
     <TextView
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
-            android:textSize="18dp"
+            android:textSize="@dimen/setting_second_text_size"
             android:id = "@+id/btn_shop_discription"
             android:textColor="@color/item_shop_discription"
             android:text="@string/shop_item_damage_description_2"
@@ -69,6 +72,7 @@
             android:layout_height = "wrap_content"
             android:textAppearance = "?android:attr/textAppearanceMedium"
             android:text = "Medium Text"
+             android:textSize="@dimen/setting_second_text_size"
             android:id = "@+id/btn_shop_value"
             android:layout_below = "@+id/btn_shop_title"
             android:layout_alignParentLeft = "true" />
