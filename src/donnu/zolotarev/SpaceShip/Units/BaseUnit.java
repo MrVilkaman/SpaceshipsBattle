@@ -6,6 +6,7 @@ import donnu.zolotarev.SpaceShip.AI.SpriteAI;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Effects.Boom;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
+import donnu.zolotarev.SpaceShip.GameState.IAmDie;
 import donnu.zolotarev.SpaceShip.GameState.IHeroDieListener;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
@@ -46,6 +47,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     private static MultiPool unitsPool;
     private static ObjectCollisionController unitsController;
     private static int enemiesOnMap = 0;
+    private static IAmDie iAmDie;
 
     protected SpriteAI sprite;
    // protected PhysicsHandler physicsHandler;
@@ -71,7 +73,9 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected int damage;
 
-
+    public static void setUnitDieListener(IAmDie iAmDie){
+        BaseUnit.iAmDie = iAmDie;
+    }
 
     public static void resetPool(){
         unitsPool = null;
@@ -251,6 +255,9 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
                     hero.destroy(true);
                 }
                 destroy(true);
+                if (iAmDie != null){
+                    iAmDie.destroyed(this);
+                }
             }
         }
     }

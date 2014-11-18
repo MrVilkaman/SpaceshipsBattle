@@ -102,6 +102,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     protected void initBulletsPools() {
         BaseBullet.initPool();
         BaseBullet.setUnitDieListener(this);
+        BaseUnit.setUnitDieListener(this);
     }
 
     @Override
