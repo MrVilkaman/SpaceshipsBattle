@@ -8,6 +8,8 @@ public class HeroFeatures {
     private static transient HeroFeatures instance;
 
     private int maxHealth = 500;
+    private boolean needUseDoubleAmmo = true;
+    private boolean needUseShield = true;
 
     public static HeroFeatures get(){
         return instance;
@@ -80,5 +82,21 @@ public class HeroFeatures {
        /* }else{
             return 0;
         }*/
+    }
+
+    public boolean isNeedUseDoubleAmmo() {
+        return needUseDoubleAmmo;
+    }
+
+    public void setNeedUseDoubleAmmo(boolean needUseDoubleAmmo) {
+        this.needUseDoubleAmmo = needUseDoubleAmmo;
+    }
+
+    public boolean isNeedUseShield() {
+        return needUseShield;
+    }
+
+    public void setNeedUseShield(boolean needUseShield) {
+        this.needUseShield = needUseShield;
     }
 }

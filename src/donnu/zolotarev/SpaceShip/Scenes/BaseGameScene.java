@@ -427,8 +427,10 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             shueldBar.setColor(textColor);
             attachChild(shueldBar);
             shueldBar.setZIndex(1000);
-            text.setVisible(heroFeatures.isHaveShield());
-            shueldBar.setVisible(heroFeatures.isHaveShield());
+
+           boolean useS =  heroFeatures.isHaveShield() && heroFeatures.isNeedUseShield();
+            text.setVisible(useS);
+            shueldBar.setVisible(useS);
             //shueldBar
 
         } catch (Exception e) {

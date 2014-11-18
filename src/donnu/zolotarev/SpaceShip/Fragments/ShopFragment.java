@@ -1,9 +1,11 @@
 package donnu.zolotarev.SpaceShip.Fragments;
 
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,6 +13,7 @@ import butterknife.InjectView;
 import butterknife.OnClick;
 import com.google.android.gms.ads.AdView;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
+import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
@@ -33,18 +36,26 @@ public class ShopFragment extends BaseMenuFragment {
     @InjectView(R.id.adView)
     AdView adView;
 
+    @InjectView(R.id.use_double_gun)
+    CheckBox cbUseGun;
+
+    @InjectView(R.id.use_double_shield)
+    CheckBox cbUseShield;
+
     private ShopAdapter.Callback moneyUpdateCallback = new ShopAdapter.Callback() {
         @Override
         public void updateMoney() {
             gold.setText(String.valueOf(userData.getMoney()));
         }
     };
+    private HeroFeatures heroFeatures;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         shopAdapter = new ShopAdapter(getActivity(), Shop.get(),moneyUpdateCallback);
         userData = UserData.get();
+        heroFeatures =  HeroFeatures.get();
     }
 
     @Override
@@ -54,8 +65,28 @@ public class ShopFragment extends BaseMenuFragment {
         if (Constants.IS_ADS_ENABLED ){
             showAds(adView);
         }
+        shopAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                userDataChechBox();
+            }
+
+            @Override
+            public void onInvalidated() {
+                userDataChechBox();
+            }
+        });
+       userDataChechBox();
+
+        cbUseGun.setChecked(heroFeatures.isNeedUseDoubleAmmo());
+        cbUseShield.setChecked(heroFeatures.isNeedUseShield());
 
         return view;
+    }
+
+    private void userDataChechBox() {
+        cbUseGun.setEnabled(heroFeatures.isHaveDoubleGun());
+        cbUseShield.setEnabled(heroFeatures.isHaveShield());
     }
 
     @OnClick(R.id.select_levels_back)
@@ -73,6 +104,8 @@ public class ShopFragment extends BaseMenuFragment {
     public void onStop() {
         super.onStop();
         GlobalImageManager.clearImageView(imageBack);
+        heroFeatures.setNeedUseDoubleAmmo(cbUseGun.isChecked());
+        heroFeatures.setNeedUseShield(cbUseShield.isChecked());
     }
 
         @Override

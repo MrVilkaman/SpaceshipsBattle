@@ -51,7 +51,8 @@ public class Hero extends BaseUnit {
         IWeaponModificator[] mode = {new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.ADD)};
         IGun gun;
         // todo получаить инко об оружии.
-        if (heroFeatures.isHaveDoubleAmmo()){
+        boolean useD =  heroFeatures.isHaveDoubleAmmo() && heroFeatures.isNeedUseDoubleAmmo();
+        if (useD){
             heroFeatures.useDoubleGun();
             gun =  new DoubleGun(true, BaseBullet.TYPE_SIMPLE_BULLET,mode);
         }else{
@@ -67,8 +68,8 @@ public class Hero extends BaseUnit {
         rocketController.loadWeapon(gun, 0);
         gun =  new SimpleGun(true, BaseBullet.TYPE_ROCKET_AUTO,null);
         rocketController.loadWeapon(gun, 1);
-
-        if (heroFeatures.isHaveShield()){
+        boolean useS =  heroFeatures.isHaveShield() && heroFeatures.isNeedUseShield();
+        if (useS){
             heroFeatures.useShield();
             if (shield == null){
                 shield = Shield.useShield();
