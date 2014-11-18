@@ -42,10 +42,10 @@
             android:orientation = "horizontal"
             android:layout_width = "fill_parent"
             android:layout_height = "fill_parent"
-            android:gravity="right|center_vertical"
+            android:gravity="right"
             android:id = "@+id/linearLayout"
-            android:layout_above = "@+id/shop_list_view"
-            android:layout_alignRight = "@+id/shop_list_view">
+            android:layout_alignRight = "@+id/shop_list_view"
+            android:layout_above = "@+id/shop_list_view">
         <TextView
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
@@ -61,7 +61,35 @@
                 android:text = "0"
                 android:id = "@+id/select_levels_money_val" />
     </LinearLayout>
+    <LinearLayout android:layout_width = "fill_parent"
+                  android:gravity="left|center"
+                  android:orientation="horizontal"
+                  android:id="@+id/linearLayout2"
+                  android:layout_marginLeft="5dp"
+                  android:layout_height = "wrap_content"
+                  android:layout_below = "@+id/adView"
+                  android:layout_toRightOf = "@+id/select_levels_back"
+                  android:layout_alignRight = "@+id/linearLayout">
+        <TextView android:layout_width = "wrap_content"
+                  android:textColor="@color/about_text_color"
+                  android:textSize="@dimen/setting_second_text_size"
+                  android:text="@string/use"
+                  android:layout_height = "wrap_content" />
+            <CheckBox android:layout_width = "wrap_content"
+                      android:textColor="@color/about_text_color"
+                      android:textSize="@dimen/setting_second_text_size"
+                      android:text="@string/use_double_gun"
+                      android:id="@+id/use_double_gun"
+                      android:layout_height = "wrap_content" />
+        <CheckBox android:layout_width = "wrap_content"
+                  android:textColor="@color/about_text_color"
+                  android:textSize="@dimen/setting_second_text_size"
+                  android:text="@string/use_shield"
+                  android:id="@+id/use_double_shield"
+                  android:layout_height = "wrap_content" />
+    </LinearLayout>
     <ListView
+            android:layout_below = "@+id/linearLayout2"
             android:layout_width = "wrap_content"
             android:layout_height = "wrap_content"
             android:id = "@+id/shop_list_view"
@@ -70,6 +98,6 @@
             android:layout_marginRight="10dp"
             android:dividerHeight="5.0sp"
             android:background="@null"
-            android:layout_below = "@+id/select_levels_back" />
+            />
 
 </RelativeLayout>
