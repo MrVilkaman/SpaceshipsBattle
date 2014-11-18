@@ -8,14 +8,13 @@
                android:layout_height = "match_parent"
             android:scaleType="centerCrop"
             android:id="@+id/image_background"
-            android:src = "@drawable/main_wall_4" />
+            />
 
     <ImageView android:layout_width = "wrap_content"
                android:layout_height = "wrap_content"
                android:minHeight="150dp"
                android:scaleType="fitCenter"
                android:id="@+id/logo"
-               android:src = "@drawable/logo"
                android:layout_marginRight="@dimen/margin_logo"
                android:layout_above = "@+id/linearLayout"
                android:layout_alignParentTop = "true"

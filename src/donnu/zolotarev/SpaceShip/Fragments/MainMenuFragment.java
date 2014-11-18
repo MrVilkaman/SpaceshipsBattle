@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,9 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @InjectView(R.id.image_background)
     ImageView imageBack;
+
+    @InjectView(R.id.logo)
+    ImageView imageLogo;
 
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
@@ -117,12 +122,15 @@ public class MainMenuFragment extends BaseMenuFragment {
     public void onStart() {
         super.onStart();
         GlobalImageManager.changeImageView(getActivity(), imageBack);
+        imageLogo.setImageBitmap(Bitmap.createBitmap(((BitmapDrawable) getActivity().getResources().getDrawable(
+                R.drawable.logo)).getBitmap()));
     }
 
     @Override
     public void onStop() {
         super.onStop();
         GlobalImageManager.clearImageView(imageBack);
+        GlobalImageManager.clearImageView(imageLogo);
     }
 
     @OnClick(R.id.btn_main_menu_new_game)
