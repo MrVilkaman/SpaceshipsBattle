@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "app_name">SpaceShip</string>
+    <string name = "lose_text">Твой корабль уничтожен!</string>
+    <string name = "dialog_text_exit_message">Вы уверены, что хотите выйти?</string>
+    <string name = "dialog_text_new_game_message">Вы уверены, что хотите начать игру заново?</string>
+    <string name = "dialog_text_yes">Да</string>
+    <string name = "dialog_text_no">Нет</string>
+    <string name = "msg_about">О программе</string>
+    <string name = "msg_coming_soon">Совсем скоро будут новые уровни) Пожалуйста ожидайте)</string>
+    <string name = "msg_sorry_message">К сожалению, данная версия игры несовместима с предыдущими сохранениями! Поэтому они будут стрерты!</string>
+    <string name = "link"><![CDATA[<a href=\"http://vk.com/space_battle_game\">Google</a>]]></string>
+
+
+    <string name = "btn_main_menu_continue">Продолжить</string>
+    <string name = "btn_main_menu_new_game">Новая игра</string>
+    <string name = "btn_main_menu_about">Настройки</string>
+    <string name = "btn_main_menu_exit">Выход</string>
+    <string name = "shop_name">Магазин</string>
+    <string name = "txt_back">Назад</string>
+    <string name = "select_levels_money">Деньги: </string>
+    <string name = "item_level_title_template">Уровень %1s</string>
+    <string name = "item_level_start">Играть</string>
+
+
+    <!--Магазин-->
+    <string name = "shop_title">Магазин</string>
+    <string name = "item_shop_title">Купить!</string>
+    <string name = "item_shop_price">$%1s</string>
+    <string name = "btn_shop_buy">Купить</string>
+    <string name = "btn_shop_max_level">Круче нет!</string>
+    <string name = "btn_shop_already_bought">Куплено</string>
+
+    <!--    Магазин предметы-->
+    <string name = "shop_item_armor_title">Броня! Текущая прочность  %1$s единиц!</string>
+    <string name = "shop_item_armor_description">Увеличивает максимально количестно урона, который может выдержать
+        корабль.
+    </string>
+    <string name = "shop_item_damage_title">Увеличенный урон на %1$s единиц!</string>
+    <string name = "shop_item_damage_description">Увеличивает наносимый урон от каждой пули.</string>
+    <string name = "shop_item_level_template">%1$s / %2$s</string>
+    <string name = "shop_item_damage_description_2">
+    </string>
+    <string name = "shop_item_double_gun_title">Двойная пушка (Не установлено)</string>
+    <string name = "shop_item_double_ammo_title">Двойная пушка (Установлено) </string>
+    <string name = "shop_item_double_gun_description">Подготавливает основную пушку для выстрела сразу двух патронов за
+        раз. (Нуждается в обслуживании перед каждым вылетом на задание)
+    </string>
+    <string name = "shop_item_rocket_gun_title">Ракетная пушка (Не установлено)</string>
+    <string name = "shop_item_rocket_ammo_title">Ракетная пушка (Установлено)</string>
+    <string name = "shop_item_rocket_gun_description">Мощные самонаводящиеся ракеты.</string>
+
+    <string name = "txt_status_new">Новая миссия!</string>
+    <string name = "txt_status_gone">Миссия пройдена!</string>
+    <string name = "txt_status_lose">Миссия провалена!</string>
+    <string name = "txt_status_disable">Миссия Закрыта!</string>
+
+    <string name = "setting_label">Настройки</string>
+    <string name = "setting_contlol_lable">Режим управления:</string>
+
+    <string name = "item_level_total_coast">Всего получено денег: %1$s</string>
+    <string name = "item_level_total_wins">Всего побед: %1$s</string>
+    <string name = "item_level_total_lose">Всего поражений: %1$s</string>
+    <string name = "item_level_total_games">Всего игр: %1$s</string>
+    <string name = "shop_item_shield_title">Силовой щит</string>
+    <string name = "shop_item_shield_ammo_title">Энегретические элементы для силового щита</string>
+    <string name = "shop_item_shield_description">Создает силовое поле вокруг корабля, которое защищает его от
+        повреждений!
+    </string>
+    <string name = "shop_item_shield_hp_title">Прочность силового щита %1$s единиц!</string>
+    <string name = "shop_item_shield_hp_description">Определяет количестов повреждений которое может выдержать щит, перед тем как будет отключен.
+    </string>
+    <string name = "author_link_title">Страничка разработчика</string>
+    <string name = "offical_group_link_title">Группа Battle Space Вконтакте</string>
+    <string name = "text_strength">Прочность: &#160;</string>
+    <string name = "text_shield">Щит: &#160;</string>
+    <string name = "text_die_money">но ты заработал %1$s$!</string>
+    <string name = "text_win_message">Победа! И ты заработал %1$s$!</string>
+    <string name = "setting_credits_btn">Об игре</string>
+    <string name = "radiogroup_fire_mode_byhold">По удержанию</string>
+    <string name = "radiogroup_fire_mode_always">Всегда</string>
+    <string name = "btn_game_resume">Продолжить</string>
+    <string name = "btn_game_back_to_main_menu">Вернуться в главное меню</string>
+    <string name = "btn_game_restart">Переиграть</string>
+    <string name = "btn_credits">Титры</string>
+    <string name = "credits_text"> Музыка\n
+        "Gonna Start v2", "Ouroboros" \n
+        Kevin MacLeod (incompetech.com) \n
+        Licensed under Creative Commons: By Attribution 3.0  \n
+        http://creativecommons.org/licenses/by/3.0/   \n
+        \n
+        Хочу выразить огромную благодарность Усову Денис, Артемовой Ире, Гончаруку Максиму и Пардабекову Аскару за поддержку и посильную помощь. Без этих людей мне было бы очень тяжело!
+    </string>
+    <string name = "use">Использовать</string>
+    <string name = "use_double_gun">двойные пушки?</string>
+    <string name = "use_shield">щит?</string>
+
+
+</resources>

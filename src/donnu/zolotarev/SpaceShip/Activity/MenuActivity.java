@@ -5,6 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -86,6 +88,12 @@ public class MenuActivity extends SingleFragmentActivity {
             SoundHelper.play();
         }
         if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
+            try {
+                Tracker tracker =  GoogleAnalytics.getInstance(this).newTracker(R.string.ga_trackingId);
+                tracker.setScreenName("MenuActivity");
+                tracker.send(new HitBuilders.AppViewBuilder().build());
+            } catch (Exception e) {
+            }
             GoogleAnalytics.getInstance(this).reportActivityStart(this);
         }
     }

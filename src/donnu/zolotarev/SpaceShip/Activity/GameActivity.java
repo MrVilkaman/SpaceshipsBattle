@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.MyScene;
 import donnu.zolotarev.SpaceShip.Scenes.SelectionLevelScene;
 import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
@@ -175,6 +178,12 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
         super.onStart();
         if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
             GoogleAnalytics.getInstance(this).reportActivityStart(this);
+            try {
+                Tracker tracker =  GoogleAnalytics.getInstance(this).newTracker(R.string.ga_trackingId);
+                tracker.setScreenName("GameActivity");
+                tracker.send(new HitBuilders.AppViewBuilder().build());
+            } catch (Exception e) {
+            }
         }
 
     }
