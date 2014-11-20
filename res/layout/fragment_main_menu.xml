@@ -10,7 +10,7 @@
             android:id="@+id/image_background"
             />
 
-    <ImageView android:layout_width = "wrap_content"
+    <ImageView android:layout_width = "match_parent"
                android:layout_height = "wrap_content"
                android:minHeight="150dp"
                android:scaleType="fitCenter"
@@ -18,7 +18,8 @@
                android:layout_marginRight="@dimen/margin_logo"
                android:layout_above = "@+id/linearLayout"
                android:layout_alignParentTop = "true"
-               android:layout_toRightOf = "@+id/google_play_button" />
+               android:layout_toRightOf = "@+id/google_play_button"
+               android:src = "@drawable/logo" />
 
 
     <com.google.android.gms.ads.AdView android:id="@+id/adView"
