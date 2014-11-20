@@ -24,6 +24,7 @@ public class MenuActivity extends SingleFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GoogleAnalytics.getInstance(this).enableAutoActivityReports(getApplication());
+        GoogleAnalytics.getInstance(this).setDryRun(false);
     }
 
     public void loadRootFragment(Fragment fragment, boolean addToBackStack){
@@ -75,7 +76,7 @@ public class MenuActivity extends SingleFragmentActivity {
     protected void onStop() {
         super.onStop();
         SoundHelper.pause();
-        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
     @Override
     protected void onStart() {
@@ -85,7 +86,7 @@ public class MenuActivity extends SingleFragmentActivity {
             SoundHelper.play();
         }
         if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
-            GoogleAnalytics.getInstance(this).reportActivityStop(this);
+            GoogleAnalytics.getInstance(this).reportActivityStart(this);
         }
     }
 }
