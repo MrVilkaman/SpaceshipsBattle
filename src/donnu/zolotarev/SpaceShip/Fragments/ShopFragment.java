@@ -62,6 +62,7 @@ public class ShopFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
         listView.setAdapter(shopAdapter);
+        adView.setVisibility(View.GONE);
         if (Constants.IS_ADS_ENABLED ){
             showAds(adView);
         }
