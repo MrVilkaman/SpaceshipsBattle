@@ -72,9 +72,6 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflateFragmentView(R.layout.fragment_select_levels,inflater,container);
         listView.setAdapter(levelsAdapter);
-        if (Constants.IS_ADS_ENABLED ){
-            showAds(adView);
-        }
         return view;
     }
 
@@ -82,12 +79,17 @@ public class SelectLevelFragment extends BaseMenuFragment {
     public void onStart() {
         super.onStart();
         GlobalImageManager.changeImageView(getActivity(), imageBack);
+        if (Constants.IS_ADS_ENABLED ){
+            showAds(adView);
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
         GlobalImageManager.clearImageView(imageBack);
+        adView.destroy();
+        adView.removeView(adView);
     }
 
     @Override

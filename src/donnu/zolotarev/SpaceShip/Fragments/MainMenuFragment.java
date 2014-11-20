@@ -131,6 +131,8 @@ public class MainMenuFragment extends BaseMenuFragment {
         super.onStop();
         GlobalImageManager.clearImageView(imageBack);
         GlobalImageManager.clearImageView(imageLogo);
+        adView.destroy();
+        adView.removeView(adView);
     }
 
     @OnClick(R.id.btn_main_menu_new_game)

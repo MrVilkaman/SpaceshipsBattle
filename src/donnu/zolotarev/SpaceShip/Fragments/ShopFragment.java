@@ -106,6 +106,8 @@ public class ShopFragment extends BaseMenuFragment {
         GlobalImageManager.clearImageView(imageBack);
         heroFeatures.setNeedUseDoubleAmmo(cbUseGun.isChecked());
         heroFeatures.setNeedUseShield(cbUseShield.isChecked());
+        adView.destroy();
+        adView.removeView(adView);
     }
 
         @Override
