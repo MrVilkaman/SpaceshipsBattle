@@ -271,28 +271,24 @@ public  class WaveContainer {
                 break;
             case LEVEL_14:
 
-                for (int i = 0;i<2;i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH +10,Constants.CAMERA_HEIGHT_HALF-50), 180);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH+10, Constants.CAMERA_HEIGHT+10), 205);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 2.2f, new Point(Constants.CAMERA_WIDTH+10,-100), 145);
-
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH+10,-100), 145);
+                    unitWave.waitLastKilled();
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f,new Point(-100 ,Constants.CAMERA_HEIGHT_HALF-50), 0);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(-100, Constants.CAMERA_HEIGHT+10), 325);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 2.2f, new Point(-100,-100), 35);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(-100,-100), 35);
                     unitWave.waitLastKilled();
-                }
 
-                for (int i = 0;i<2;i++) {
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH-100, Constants.CAMERA_HEIGHT+10), 205);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(-100, Constants.CAMERA_HEIGHT+10), 325);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 2.2f, new Point(Constants.CAMERA_WIDTH_HALF -50,Constants.CAMERA_HEIGHT +10), 270);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 3f, new Point(Constants.CAMERA_WIDTH_HALF -50,Constants.CAMERA_HEIGHT +10), 270);
 
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH-100,-100), 145);
                     unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f,new Point(-100 ,-10), 35);
-                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 2.2f, new Point(Constants.CAMERA_WIDTH_HALF,-50), 90);
+                    unitWave.addEnemy(BaseUnit.TYPE_ENEMY_ROCKET_L_1, 1, 0.01f, new Point(Constants.CAMERA_WIDTH_HALF,-50), 90);
 
                     unitWave.waitLastKilled();
-                }
                 break;
             case LEVEL_15:
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_2,7,0.7f);

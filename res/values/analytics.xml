@@ -2,7 +2,6 @@
 <resources>
     <string name="ga_trackingId">UA-56368026-3</string>
     <bool name="ga_autoActivityTracking">true</bool>
-    <bool name="ga_debug">true</bool>
     <bool name="ga_reportUncaughtExceptions">true</bool>
     <integer name="ga_dispatchPeriod">20</integer>
 </resources>

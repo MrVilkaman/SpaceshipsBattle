@@ -108,7 +108,7 @@ public abstract class BaseMenuFragment extends BaseFragment {
 
         //   }
 
-        return (packinfo.versionCode == codeVersion || codeVersion == 10 || codeVersion == 11 || codeVersion == 12);
+        return (packinfo.versionCode == codeVersion || codeVersion == 10 || codeVersion == 11 || codeVersion == 12 || codeVersion == 13);
     }
 
     protected void showAds(final AdView adView) {

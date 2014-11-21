@@ -10,7 +10,6 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
-import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.MyScene;
 import donnu.zolotarev.SpaceShip.Scenes.SelectionLevelScene;
 import donnu.zolotarev.SpaceShip.Textures.MusicLoader;
@@ -179,7 +178,7 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
         if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
             GoogleAnalytics.getInstance(this).reportActivityStart(this);
             try {
-                Tracker tracker =  GoogleAnalytics.getInstance(this).newTracker(R.string.ga_trackingId);
+                Tracker tracker =  GoogleAnalytics.getInstance(this).newTracker(Constants.ANALISTYC_TRACER_ID);
                 tracker.setScreenName("GameActivity");
                 tracker.send(new HitBuilders.AppViewBuilder().build());
             } catch (Exception e) {

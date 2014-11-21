@@ -159,7 +159,7 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void turnonY(){
         if (this.mY < -this.getHeight()/2 || this.mY > GameActivity.getCameraHeight()-this.getHeight()/2 ){
             if (flagFirstY){
-                prosecutionHero(0,1500,true,10f);
+                prosecutionHero(0,99999,true,12f);
             }
         }else{
             flagFirstY = true;
@@ -169,7 +169,7 @@ public abstract class SimpleAI extends SpriteAI {
     protected final void turnonX(){
         if (this.mX < -this.getWidth()/2|| this.mX > GameActivity.getCameraWidth() -this.getWidth()/2 ){
             if (flagFirstX){
-                prosecutionHero(0,1500,true,10f);
+                prosecutionHero(0,99999,true,12f);
             }
         }else{
             flagFirstX = true;

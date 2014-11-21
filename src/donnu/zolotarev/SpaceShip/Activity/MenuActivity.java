@@ -26,7 +26,11 @@ public class MenuActivity extends SingleFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         GoogleAnalytics.getInstance(this).enableAutoActivityReports(getApplication());
-        GoogleAnalytics.getInstance(this).setDryRun(false);
+
+        try {
+            GoogleAnalytics.getInstance(this).dispatchLocalHits();
+        } catch (Exception e) {
+        }
     }
 
     public void loadRootFragment(Fragment fragment, boolean addToBackStack){
@@ -89,7 +93,7 @@ public class MenuActivity extends SingleFragmentActivity {
         }
         if (Constants.NEED_GOOGLE_ANALISTIC_TRACING){
             try {
-                Tracker tracker =  GoogleAnalytics.getInstance(this).newTracker(R.string.ga_trackingId);
+                Tracker tracker = GoogleAnalytics.getInstance(this).newTracker(Constants.ANALISTYC_TRACER_ID);
                 tracker.setScreenName("MenuActivity");
                 tracker.send(new HitBuilders.AppViewBuilder().build());
             } catch (Exception e) {
