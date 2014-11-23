@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <texture version="1" file="TexturesPack1.png" type="bitmap" width="1024" height="512" pixelformat="RGBA_4444" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:9d4e929fc6a0c9232b544694f9c0972e:9141ff18076a8cb2e889a827d30880c2:3553d7cbd670330404a5be1f541e22da$ -->
+    <!-- $TexturePacker:SmartUpdate:0293ad96fb3ad0254163fbbd2ae75ce9:edf34d493a6c63c14b85ee9629a23a02:3553d7cbd670330404a5be1f541e22da$ -->
     <textureregion id="0" src="Boss_Base.png" x="2" y="90" width="384" height="287" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="384" srcheight="287"/>
     <textureregion id="1" src="Boss_Turel.png" x="641" y="2" width="129" height="75" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="129" srcheight="75"/>
     <textureregion id="2" src="Fog.png" x="2" y="379" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>
@@ -16,5 +16,9 @@
     <textureregion id="11" src="onscreen_control_knob.png" x="902" y="104" width="52" height="52" rotated="false" trimmed="true" srcx="6" srcy="6" srcwidth="64" srcheight="64"/>
     <textureregion id="12" src="roket_ammo.png" x="132" y="494" width="32" height="16" rotated="false" trimmed="true" srcx="0" srcy="1" srcwidth="32" srcheight="18"/>
     <textureregion id="13" src="ship.png" x="388" y="220" width="100" height="110" rotated="false" trimmed="true" srcx="0" srcy="0" srcwidth="100" srcheight="112"/>
-    <textureregion id="14" src="simpleBullet.png" x="388" y="332" width="19" height="5" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="21" srcheight="7"/>
+    <textureregion id="14" src="simpleBullet_blue.png" x="388" y="332" width="28" height="8" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="30" srcheight="10"/>
+    <textureregion id="15" src="simpleBullet_pink.png" x="247" y="455" width="28" height="8" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="30" srcheight="10"/>
+    <textureregion id="16" src="simpleBullet_red.png" x="518" y="192" width="28" height="8" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="30" srcheight="10"/>
+    <textureregion id="17" src="simpleBullet_whiht.png" x="641" y="79" width="28" height="8" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="30" srcheight="10"/>
+    <textureregion id="18" src="simpleBullet_ylow.png" x="956" y="104" width="28" height="8" rotated="false" trimmed="true" srcx="1" srcy="1" srcwidth="30" srcheight="10"/>
 </texture>

@@ -47,6 +47,11 @@ public class TextureLoader {
     private static ITiledTextureRegion bossBaseTextureRegion;
     private static ITiledTextureRegion bossTurelTextureRegion;
     private static ITiledTextureRegion menuButtonBackgroundTextureRegion;
+    private static ITiledTextureRegion whihtSimpleBulletTextureRegion;
+    private static ITiledTextureRegion redSimpleBulletTextureRegion;
+    private static ITiledTextureRegion blueSimpleBulletTextureRegion;
+    private static ITiledTextureRegion pinkSimpleBulletTextureRegion;
+    private static ITiledTextureRegion ylowSimpleBulletTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -69,8 +74,9 @@ public class TextureLoader {
             shieldTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.POWERSHIELD_ID);
 
             rocketAmmoTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.ROKET_AMMO_ID);
-            simpleBulletTextureRegion  = texturePackLibrary.getTiled(TexturesPack1ID.SIMPLEBULLET_ID);
-            btnFire1 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_1_ID);
+            simpleBulletTextureRegion  = texturePackLibrary.getTiled(TexturesPack1ID.SIMPLEBULLET_WHIHT_ID);
+
+                    btnFire1 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_1_ID);
             btnFire2 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_2_ID);
 
             fogTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.FOG_ID);

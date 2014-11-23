@@ -15,6 +15,7 @@ public abstract class Guns implements IGun {
     protected int shootDelay = 0;
     protected boolean isShoot = false;
     private boolean targetUnit;
+    private int bulletFrameNumber = 0;
 
     public Guns(boolean heroWeapon, int bullitType,IWeaponModificator[] modificator) {
         targetUnit = heroWeapon;
@@ -39,7 +40,7 @@ public abstract class Guns implements IGun {
     }
 
     protected void GetNewBullet(final float x, final float y, final float direction) {
-        BaseBullet.getBullet(bullitType).init(x, y, direction, bullitType, targetUnit,modificator);
+        BaseBullet.getBullet(bullitType).init(x, y, direction, bullitType, targetUnit,modificator,bulletFrameNumber);
     }
 
     @Override
@@ -58,6 +59,9 @@ public abstract class Guns implements IGun {
                 switch (m.getTarget()){
                     case SPEED_FIRE:
                         ATTACK_INTERVAL = (int)m.use(ATTACK_INTERVAL);
+                        break;
+                    case BULLET_FRAME_NUMBER:
+                        bulletFrameNumber = (int)m.use(0);
                         break;
                 }
             }

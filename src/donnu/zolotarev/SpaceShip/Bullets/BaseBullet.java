@@ -81,8 +81,14 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         attachToScene();
     }
 
-    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator[] weaponModificator) {
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget,
+            IWeaponModificator[] weaponModificator){
+        init(x, y, direction, bullitType, unitTarget, weaponModificator,0);
+    }
 
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget,
+            IWeaponModificator[] weaponModificator, int bulletFrameNumber) {
+        sprite.setCurrentTileIndex(bulletFrameNumber);
         sprite.setRotation(direction);
         sprite.setIgnoreUpdate(false);
         sprite.setVisible(true);

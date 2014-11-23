@@ -35,6 +35,7 @@ public class EnemyRockerGun extends BaseUnit {
                 new WeaponPos(sprite, 40, 59 , 0)
         });
         weaponController.setShoot(true);
+        weaponController.reloadWeapons();
         if(!(level < Constants.MAX_UNIT_LEVEL)){
             level = level - Constants.MAX_UNIT_LEVEL;
         }

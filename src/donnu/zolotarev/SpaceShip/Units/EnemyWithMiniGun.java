@@ -40,6 +40,7 @@ public class EnemyWithMiniGun extends BaseUnit {
         });
         IWeaponModificator[] mode = {new DamageModificator(12, IWeaponModificator.Mode.CHANGE)};
         weaponController.setShoot(true);
+        weaponController.reloadWeapons();
         weaponController.loadWeapon(new Minigun(false, BaseBullet.TYPE_SIMPLE_BULLET,mode), 0);
     }
 

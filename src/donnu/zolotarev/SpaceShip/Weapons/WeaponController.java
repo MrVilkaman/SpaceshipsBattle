@@ -55,11 +55,12 @@ public class WeaponController {
 
     public void setShoot(boolean shoot) {
         this.shoot = shoot;
-        if(!shoot){
-            for (IGun gun: guns){
-                if (gun != null){
-                    gun.reload();
-                }
+    }
+
+    public void reloadWeapons(){
+        for (IGun gun: guns){
+            if (gun != null){
+                gun.reload();
             }
         }
     }

@@ -3,6 +3,7 @@ package donnu.zolotarev.SpaceShip.Bullets;
 import donnu.zolotarev.SpaceShip.AI.BulletAI.SimpleBulletAI;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleBullet extends BaseBullet {
@@ -27,6 +28,12 @@ public class SimpleBullet extends BaseBullet {
         settings();
     }
 
+    @Override
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget,
+            IWeaponModificator[] weaponModificator, int bulletFrameNumber) {
+
+        super.init(x, y, direction, bullitType, unitTarget, weaponModificator, bulletFrameNumber);
+    }
 
     protected static void poolInit() {
         isRegistredPool = true;

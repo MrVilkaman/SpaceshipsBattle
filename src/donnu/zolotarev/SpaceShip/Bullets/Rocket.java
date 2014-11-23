@@ -41,7 +41,8 @@ public class Rocket extends BaseBullet {
     }
 
     @Override
-    public void init(float x, float y, float direction, int bullitType, boolean unitTarget, IWeaponModificator[] weaponModificator) {
+    public void init(float x, float y, float direction, int bullitType, boolean unitTarget,
+            IWeaponModificator[] weaponModificator, int bulletFrameNumber) {
         if (unitTarget){
             initCharacteristics(1600, 700, 10f);
         }else{
@@ -61,7 +62,7 @@ public class Rocket extends BaseBullet {
         }else{
             ((AutoguiderRocketAI)sprite).setNoAutoguider();
         }
-        super.init(x, y, direction, bullitType, unitTarget, weaponModificator);
+        super.init(x, y, direction, bullitType, unitTarget, weaponModificator, bulletFrameNumber);
     }
 
     public static void poolInit() {
