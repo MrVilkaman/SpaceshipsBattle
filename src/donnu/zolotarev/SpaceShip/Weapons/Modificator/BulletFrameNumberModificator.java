@@ -20,6 +20,6 @@ public class BulletFrameNumberModificator implements IWeaponModificator {
 
     @Override
     public Target getTarget() {
-        return Target.SPEED_FIRE;
+        return Target.BULLET_FRAME_NUMBER;
     }
 }

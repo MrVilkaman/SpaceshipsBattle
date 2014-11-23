@@ -3,14 +3,14 @@ package donnu.zolotarev.SpaceShip.Units;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.Boss1AI;
 import donnu.zolotarev.SpaceShip.AI.TurretAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.RotateAngleModificator;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.SpeedFireModificator;
+import donnu.zolotarev.SpaceShip.Weapons.Modificator.*;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
+
+import java.util.Random;
 
 public class EnemyBoss extends BaseUnit {
 
@@ -52,7 +52,9 @@ public class EnemyBoss extends BaseUnit {
         });
         weaponController.setShoot(true);
         weaponController.reloadWeapons();
-        IWeaponModificator[] modificator = {new SpeedFireModificator(0.25f,IWeaponModificator.Mode.CHANGE)};
+        Random random = new Random();
+        IWeaponModificator[] modificator = {new SpeedFireModificator(0.25f,IWeaponModificator.Mode.CHANGE),
+                new BulletFrameNumberModificator(random.nextInt(SimpleBullet.BULLET_FRAME_COUNT))};
         IWeaponModificator[] moR = {
                 new RotateAngleModificator(1f,IWeaponModificator.Mode.PERCENT),
                 new SpeedFireModificator(-3f,IWeaponModificator.Mode.PERCENT),

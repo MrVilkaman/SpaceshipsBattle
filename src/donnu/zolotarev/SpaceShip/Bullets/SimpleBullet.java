@@ -8,6 +8,7 @@ import org.andengine.util.adt.pool.GenericPool;
 
 public class SimpleBullet extends BaseBullet {
 
+    public static final int BULLET_FRAME_COUNT = 5;
     private static boolean isRegistredPool = false;
 
     private SimpleBullet() {

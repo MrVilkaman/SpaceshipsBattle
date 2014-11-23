@@ -2,6 +2,7 @@ package donnu.zolotarev.SpaceShip.Textures;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import org.andengine.engine.Engine;
 import org.andengine.opengl.font.Font;
 import org.andengine.opengl.font.FontFactory;
@@ -74,7 +75,7 @@ public class TextureLoader {
             shieldTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.POWERSHIELD_ID);
 
             rocketAmmoTextureRegion = texturePackLibrary.getTiled(TexturesPack1ID.ROKET_AMMO_ID);
-            simpleBulletTextureRegion  = texturePackLibrary.getTiled(TexturesPack1ID.SIMPLEBULLET_WHIHT_ID);
+            simpleBulletTextureRegion  = texturePackLibrary.getTiled(TexturesPack1ID.BULLETS_ID, SimpleBullet.BULLET_FRAME_COUNT,1);
 
                     btnFire1 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_1_ID);
             btnFire2 = texturePackLibrary.getTiled(TexturesPack1ID.BTN_FIRE_2_ID);
