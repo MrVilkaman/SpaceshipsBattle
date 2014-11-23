@@ -54,7 +54,7 @@
     <string name = "txt_status_disable">Mission is closed!</string>
 
     <string name = "setting_label">Settings</string>
-    <string name = "setting_contlol_lable">Control mode:</string>
+    <string name = "setting_contlol_lable">Fire mode:</string>
 
     <string name = "item_level_total_coast">Total money: %1$s</string>
     <string name = "item_level_total_wins">Total wins: %1$s</string>
@@ -62,7 +62,7 @@
     <string name = "item_level_total_games">Total games: %1$s</string>
     <string name = "shop_item_shield_title">Energy shield</string>
     <string name = "shop_item_shield_ammo_title">Buttery for energy shield</string>
-    <string name = "shop_item_shield_description">Creates energy shield around the ship, which protects it from damage!
+    <string name = "shop_item_shield_descriptio1n">Creates energy shield around the ship, which protects it from damage!
     </string>
     <string name = "shop_item_shield_hp_title">Strength of energy shield is %1$s units!</string>
     <string name = "shop_item_shield_hp_description">Determined amounts of damage inflicted to shield before off.

@@ -56,7 +56,7 @@
     <string name = "txt_status_disable">Миссия Закрыта!</string>
 
     <string name = "setting_label">Настройки</string>
-    <string name = "setting_contlol_lable">Режим управления:</string>
+    <string name = "setting_contlol_lable">Режим стрельбы:</string>
 
     <string name = "item_level_total_coast">Всего получено денег: %1$s</string>
     <string name = "item_level_total_wins">Всего побед: %1$s</string>
