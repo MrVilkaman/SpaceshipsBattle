@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name = "app_name">Space Ballte</string>
+    <string name = "app_name">Space Battle</string>
     <string name = "lose_text">Your ship is destroyed!</string>
     <string name = "dialog_text_exit_message">Are you sure you want to quit?</string>
     <string name = "dialog_text_new_game_message">Are you sure you want to start the game again?</string>
