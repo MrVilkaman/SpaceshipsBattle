@@ -90,7 +90,7 @@ public class MainMenuFragment extends BaseMenuFragment {
             packinfo = getActivity().getPackageManager().getPackageInfo("donnu.zolotarev.SpaceShip", PackageManager.GET_ACTIVITIES);
         } catch (PackageManager.NameNotFoundException e) {
         }
-        if (!actualCodeVersion() && haveCurrentGame()){
+       /* if (!actualCodeVersion() && haveCurrentGame()){
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -98,7 +98,7 @@ public class MainMenuFragment extends BaseMenuFragment {
                 }
             });
             clearCurrentGame();
-        }
+        }*/
 
         if (haveCurrentGame()){
             btnContinue.setVisibility(View.VISIBLE);
