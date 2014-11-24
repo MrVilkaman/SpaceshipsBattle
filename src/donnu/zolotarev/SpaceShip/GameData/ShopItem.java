@@ -9,30 +9,26 @@ public class ShopItem {
         DEFENCE
     }
 
-    private int priceItemBuy;
     private int priceBuy;
     // count = -1 - Предмет НЕ куплен
     // count >= 0 = Предмет куплен, Количество оставшихся патронов или уровень, если isHaveAmmo = false.
     private int count;
     private int titleResId;
-    private int descriptionResId;
     private ItemShopType type;
     private boolean isHaveAmmo = false;
     private final int maxLevel;
     private final ShopGrowthRates.RatesModels models;
-    private final int titleAmmoResI;
+    private int titleAmmoResI;
     private final float priceDiff;
 
     private final ShopGrowthRates.RatesModels modelsEffect;
     private final int effectBase;
     private final float effectDiff;
 
-    public ShopItem(int titleResId, int descriptionResId, ItemShopType type,int maxLevel
-            ,ShopGrowthRates.RatesModels models,int priceBuy,float priceDiff
-            ,ShopGrowthRates.RatesModels modelsEffect,int effectBase,float effectDiff) {
+    public ShopItem(int titleResId, ItemShopType type, int maxLevel, ShopGrowthRates.RatesModels models, int priceBuy,
+            float priceDiff, ShopGrowthRates.RatesModels modelsEffect, int effectBase, float effectDiff) {
         this.titleResId = titleResId;
         titleAmmoResI = -1;
-        this.descriptionResId = descriptionResId;
         this.type = type;
         this.priceBuy = priceBuy;
         this.priceDiff = priceDiff;
@@ -44,12 +40,10 @@ public class ShopItem {
         count = 0;
     }
 
-    public ShopItem(int titleResId, int titleAmmoResI, int descriptionResId,ItemShopType type,int maxLevel
-            ,int priceBuy,float priceAmmo
-            ,int ammoCountBase,int ammoCountDiff) {
+    public ShopItem(int titleResId, int titleAmmoResID, ItemShopType type, int maxLevel, int priceBuy, float priceAmmo,
+            int ammoCountBase, int ammoCountDiff) {
         this.titleResId = titleResId;
-        this.titleAmmoResI = titleAmmoResI;
-        this.descriptionResId = descriptionResId;
+        this.titleAmmoResI = titleAmmoResID;
         this.type = type;
         this.priceBuy = priceBuy;
         this.priceDiff = priceAmmo;
@@ -78,7 +72,11 @@ public class ShopItem {
         return count;
     }
 
-    public int getId() {
+    int getId() {
+        return titleResId;
+    }
+
+    int getResID() {
         return titleResId;
     }
 
@@ -88,10 +86,6 @@ public class ShopItem {
         }else{
             return titleAmmoResI;
         }
-    }
-
-    public int getDescriptionResId() {
-        return descriptionResId;
     }
 
     public boolean isUseAmmo() {
@@ -155,5 +149,13 @@ public class ShopItem {
         }else{
             return false;
         }*/
+    }
+
+    void setTitleResId(int titleResId) {
+        this.titleResId = titleResId;
+    }
+
+    void setTitleAmmoResI(int titleAmmoResI) {
+        this.titleAmmoResI = titleAmmoResI;
     }
 }

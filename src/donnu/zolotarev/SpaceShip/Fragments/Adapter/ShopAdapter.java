@@ -58,6 +58,27 @@ public class ShopAdapter extends ArrayAdapter{
         return 0;
     }
 
+    private int getDescriptionById(int title) {
+        switch (title){
+            case Shop.SHOP_ARMOR_TITLE:
+                return R.string.shop_item_armor_description;
+            case Shop.SHOP_DAMAGE_TITLE:
+                return R.string.shop_item_damage_description;
+            case Shop.SHOP_DOUBLE_GUN_TITLE:
+            case Shop.SHOP_DOUBLE_AMMO_TITLE:
+                return R.string.shop_item_double_gun_description;
+            case Shop.SHOP_ROCKET_GUN_TITLE:
+            case Shop.SHOP_ROCKET_AMMO_TITLE:
+                return R.string.shop_item_rocket_gun_description;
+            case Shop.SHOP_SHIELD_TITLE:
+            case Shop.SHOP_SHIELD_AMMO_TITLE:
+                return R.string.shop_item_shield_description;
+            case Shop.SHOP_SHIELD_HP_TITLE:
+                return R.string.shop_item_shield_hp_description;
+        }
+        return 0;
+    }
+
     public interface Callback{
         public void updateMoney();
     }
@@ -87,9 +108,9 @@ public class ShopAdapter extends ArrayAdapter{
             viewHolder.title.setText(resources.getString(getTextById(shopItem.getTitle()), getShopItemValue(
                     shopItem.getTitle())));
         }else{
-            viewHolder.title.setText(resources.getString(getTextById(shopItem.getTitle())));
+            viewHolder.title.setText(getTextById(shopItem.getTitle()));
         }
-        viewHolder.discription.setText(shopItem.getDescriptionResId());
+        viewHolder.discription.setText(getDescriptionById(shopItem.getTitle()));
         if (shopItem.getCount()>=0){
             viewHolder.levels.setText(resources.getString(R.string.shop_item_level_template,shopItem.getCount(),shopItem.getLevelMax()));
             viewHolder.levels.setVisibility(View.VISIBLE);
