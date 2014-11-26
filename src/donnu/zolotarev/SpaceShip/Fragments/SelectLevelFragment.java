@@ -160,23 +160,23 @@ public class SelectLevelFragment extends BaseMenuFragment {
     private static int adsCounter = 2;
     protected void loadBigBanner(){
         adsCounter--;
-            if (adsCounter < 0){
-        final InterstitialAd interstitial = new InterstitialAd(getActivity());
-        interstitial.setAdUnitId(Constants.BANNER_ID);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        if (adsCounter < 0){
+            final InterstitialAd interstitial = new InterstitialAd(getActivity());
+            interstitial.setAdUnitId(Constants.BANNER_ID);
+            AdRequest adRequest = new AdRequest.Builder().build();
 
-        interstitial.loadAd(adRequest);
-        interstitial.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                if (interstitial.isLoaded() && ! isInGame()){
-                    interstitial.show();
-                    adsCounter = 3;
+            interstitial.loadAd(adRequest);
+            interstitial.setAdListener(new AdListener() {
+                @Override
+                public void onAdLoaded() {
+                    super.onAdLoaded();
+                    if (interstitial.isLoaded() && ! isInGame()){
+                        interstitial.show();
+                        adsCounter = 3;
+                    }
                 }
-            }
-        });
-           }
+            });
+        }
     }
 
     public boolean isInGame() {

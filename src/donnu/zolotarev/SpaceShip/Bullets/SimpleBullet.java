@@ -9,10 +9,11 @@ import org.andengine.util.adt.pool.GenericPool;
 public class SimpleBullet extends BaseBullet {
 
     public static final int BULLET_FRAME_COUNT = 5;
+    public static final int NAME_HASH = SimpleBullet.class.getSimpleName().hashCode();
     private static boolean isRegistredPool = false;
 
     private SimpleBullet() {
-
+        super(NAME_HASH);
         initCharacteristics(1100, 40, 0f);
         sprite = new SimpleBulletAI(TextureLoader.getSimpleBulletTextureRegion(),
                 GameActivity.getInstance().getEngine().getVertexBufferObjectManager()){

@@ -12,12 +12,15 @@ import java.util.Iterator;
 
 public class Rocket extends BaseBullet {
 
+    public static final int NAME_HASH = Rocket.class.getSimpleName().hashCode();
+
     private static boolean isRegistredPool = false;
     private final int splushRadiusMax;
     private final int splushRadiusMin;
     private final int splushRadius;
 
     private Rocket() {
+        super(NAME_HASH);
         sprite = new AutoguiderRocketAI(TextureLoader.getRocketAmmoTextureRegion(),
                 GameActivity.getInstance().getEngine().getVertexBufferObjectManager()){
             @Override

@@ -38,9 +38,7 @@ public class Fog extends FogAI {
                 }
             };
         }
-        if (waySpecifications == null){
-            waySpecifications = new WaySpecifications((int) Utils.random(speed*0.9f,speed*1.1f), 180);
-        }
+            waySpecifications.setAll((int) Utils.random(speed*0.9f,speed*1.1f), 180);
 
         Fog fog = fogPool.obtainPoolItem();
         fog.start(waySpecifications);

@@ -66,7 +66,7 @@ public  class WaveContainer {
         switch (id){
             case LEVEL_TEST:
 
-                unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
+                //unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
 
                 break;
             case LEVEL_MUSEUM:

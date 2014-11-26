@@ -52,7 +52,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     protected SpriteAI sprite;
    // protected PhysicsHandler physicsHandler;
     protected WeaponController weaponController;
-    protected WaySpecifications waySpecifications;
+    protected WaySpecifications waySpecifications ;
     protected Shield shield;
 
     protected int unitLevel = -2;
@@ -72,6 +72,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     static Hero hero;
 
     protected int damage;
+
+    public BaseUnit() {
+        waySpecifications = new WaySpecifications();
+    }
 
     public static void setUnitDieListener(IAmDie iAmDie){
         BaseUnit.iAmDie = iAmDie;
@@ -118,8 +122,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         }
 
         health = defaultHealth;
-        if (waySpecifications == null){
-            waySpecifications = new WaySpecifications((int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
+        if (!waySpecifications.isUsed()){
+            waySpecifications.setAll((int)Utils.random(defaultSpeed*0.8f,defaultSpeed*1.2f),defaultMaxAngle);
         }
         damage = (int)Utils.random(defaultDamage*0.8f,defaultDamage*1.2f);
         sprite.setRotation(angle);
@@ -171,7 +175,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         if (shield != null){
             shield.destroy();
         }
-        waySpecifications = null;
+        waySpecifications.setUsed(false);
         // todo УДАЛЯТЬ ДРУГИХ!
         if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
             unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);

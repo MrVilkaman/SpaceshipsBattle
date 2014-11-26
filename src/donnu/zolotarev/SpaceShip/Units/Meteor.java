@@ -56,7 +56,7 @@ public class Meteor extends BaseUnit {
 
         angle = Utils.getAngle(point.x, point.y, pointF.x, pointF.y);
         super.init(level, point, angle /*+ Utils.random(- 10f, 10f)*/);
-        waySpecifications = new WaySpecifications(defaultSpeed,defaultMaxAngle);
+        waySpecifications.setAll(defaultSpeed,defaultMaxAngle);
         sprite.start(waySpecifications);
     }
 

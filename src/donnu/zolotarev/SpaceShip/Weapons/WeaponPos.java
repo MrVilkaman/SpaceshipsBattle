@@ -27,8 +27,10 @@ public class WeaponPos {
     }
 
     public WeaponPos add(float xx, float yy, float anlge){
-
-        return new WeaponPos(sprite,x+xx,y+yy,this.anlge + anlge);
+        this.x +=xx;
+        this.y +=yy;
+        this.anlge +=anlge;
+        return this;
     }
 
     public Sprite getSprite() {

@@ -48,6 +48,12 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
     protected WaySpecifications waySpecifications;
     private float r;
+    protected final int nameHash;
+
+    public BaseBullet(int nameHash) {
+        this.nameHash = nameHash;
+        waySpecifications = new WaySpecifications();
+    }
 
     public static void setDieListener(IHeroDieListener listener){
         dieListener = listener;
@@ -99,8 +105,8 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         hh = sprite.getHeight()/2;
         r = Math.min(hw,hh);
         r *= r;
-        if (waySpecifications == null){
-            waySpecifications = new WaySpecifications(DEFAULT_SPEED, DEFAULT_ROTATE_ANGLE);
+        if (!waySpecifications.isUsed()){
+            waySpecifications.setAll(DEFAULT_SPEED, DEFAULT_ROTATE_ANGLE);
         }
         sprite.start(waySpecifications);
         sprite.setPosition(x - hw, y - hh);
@@ -139,9 +145,14 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
         bulletController.remove(this);
-        waySpecifications = null;
-        if (getClass().getSimpleName().equals(SimpleBullet.class.getSimpleName())){
+        waySpecifications.setUsed(false);
+
+        if (nameHash == SimpleBullet.NAME_HASH){
             bulletsPool.recyclePoolItem(TYPE_SIMPLE_BULLET,(SimpleBullet)this);
+        }else  if (nameHash == Rocket.NAME_HASH){
+            bulletsPool.recyclePoolItem(TYPE_ROCKET,(Rocket)this);
+        }else {
+            throw new RuntimeException("!!");
         }
     }
 
