@@ -101,7 +101,7 @@ public class Shield extends AnimatedSprite {
         return shuieldHealth;
     }
 
-    public static void resetPool(){
+    public static void bulletsPool(){
         bulletsPool = null;
     }
 }

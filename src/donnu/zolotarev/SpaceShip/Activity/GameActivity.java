@@ -143,10 +143,9 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
             MusicLoader.getSound().pause();
         } catch (MusicReleasedException e) {
         }*/
-        Log.i("XXX", "Its work,SpaceShipActivity onStop" + (mainMenu != null));
-       // if (mainMenu != null){
+        if (mainMenu != null){
             mainMenu.onPause();
-       // }
+        }
     }
 
     public void exit() {
@@ -191,5 +190,12 @@ public class GameActivity extends SimpleBaseGameActivity implements IParentScene
     protected void onStop() {
         GoogleAnalytics.getInstance(this).reportActivityStop(this);
         super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        instance = null;
+        mainMenu = null;
     }
 }

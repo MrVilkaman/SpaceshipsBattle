@@ -27,6 +27,14 @@ public class Shop {
     private static transient Shop instance;
     private ArrayList<ShopItem> list;
 
+    public static void clear() {
+        instance.clearList();
+    }
+
+    public void clearList() {
+         list.clear();
+    }
+
     public int getSize(){
         return list.size();
     }
@@ -125,5 +133,6 @@ public class Shop {
         new NoShopItemById();
         return null;
     }
+
 
 }

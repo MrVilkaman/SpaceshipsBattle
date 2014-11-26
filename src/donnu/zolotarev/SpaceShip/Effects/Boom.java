@@ -70,6 +70,9 @@ public class Boom extends AnimatedSprite {
         boom.setVisible(true);
         boom.setIgnoreUpdate(false);
         boom.setRotation(Utils.random(0,360));
+    }
 
+    public static void clear(){
+        bulletsPool = null;
     }
 }

@@ -26,16 +26,17 @@ public class ObjectCollisionController<E extends ICollisionObject> {
         objects.add(object);
     }
 
-    public synchronized void remove(E object){
+    public  void remove(E object){
         objects.remove(object);
     }
 
-    public synchronized void cleer(){
-        iShapes =  (ArrayList<E>)objects.clone();
-        for( E e :iShapes){
-            e.destroy(true);
+    public  void cleer(){
+        for (int i = objects.size()-1; 0<=i;i--) {
+            objects.get(i).destroy(false);
         }
-        iShapes.clear();
+        objects.clear();
+        objects = null;
+        iShapes = null;
     }
 
     public ArrayList<E> haveCollision(IHaveCoords object){

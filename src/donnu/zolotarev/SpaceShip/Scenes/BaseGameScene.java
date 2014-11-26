@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
+import donnu.zolotarev.SpaceShip.Effects.Boom;
+import donnu.zolotarev.SpaceShip.Effects.Fog;
 import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
@@ -375,24 +377,28 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         MusicLoader.getSound().stop();
         beforeReturnToParent(statusCode);
         clearItem();
-        System.gc();
-        FogManager.fogOff();
         parentScene.returnToParentScene(statusCode);
     }
 
     protected void clearItem(){
-        activeScene.clearUpdateHandlers();
-        activeScene.clearChildScene();
-        activeScene.clearEntityModifiers();
-        activeScene.clearTouchAreas();
-        hero.destroy(true);
+        hero.destroy(false);
+        clearUpdateHandlers();
+        clearChildScene();
+        clearEntityModifiers();
+        clearTouchAreas();
         getEnemyController().cleer();
         getBulletController().cleer();
         detachSelf();
-        BaseBullet.resetPool();
-        BaseUnit.resetPool();
-        Shield.resetPool();
+        BaseBullet.clearClass();
+        BaseUnit.clearClass();
+        Shield.bulletsPool();
         FogManager.fogOff();
+        Boom.clear();
+        FogManager.fogOff();
+        Fog.clearClass();
+        activeScene = null;
+        engine = null;
+        waveController = null;
         System.gc();
     }
 
@@ -551,4 +557,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             return false;
         }
     }
+
+
 }

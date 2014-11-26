@@ -46,4 +46,8 @@ public class UserData {
     void addTotalScore(int totalScore) {
         this.totalScore += totalScore;
     }
+
+    public static void clear(){
+        instance = null;
+    }
 }

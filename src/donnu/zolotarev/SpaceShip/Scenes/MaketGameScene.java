@@ -73,9 +73,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
                                         TextureLoader.getFont(), new ISimpleClick() {
                                             @Override
                                             public void onClick(int id) {
-                                                clearItem();
-                                                System.gc();
-                                                FogManager.fogOff();
+
                                                 returnToParentScene(IParentScene.EXIT_WIN);
                                             }
                                         })
@@ -148,6 +146,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
             isAlreadyProcess = true;
 
         }
+        levelInfo = null;
     }
 
     @Override

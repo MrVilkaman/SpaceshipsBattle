@@ -7,7 +7,6 @@ public  class GlobalImageManager {
 
     private static ImageChanger changer;
 
-    private GlobalImageManager(){}
 
     public static void configuration(int[] images, int del){
         if (changer == null){
@@ -34,5 +33,9 @@ public  class GlobalImageManager {
         AppUtils.clearImageView(imageBack);
         System.gc();
 
+    }
+
+    public static void clear(){
+        changer = null;
     }
 }

@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import java.util.Random;
-import java.util.Timer;
 
 public class ImageChanger {
 
@@ -15,7 +14,7 @@ public class ImageChanger {
     private final int[] resurceImageId;
     private int imageNextId;
     private boolean needRandom = false;
-    private Timer timer;
+//    private Timer timer;
 
   /*  private ImageView view;
     private long delay = 4000;

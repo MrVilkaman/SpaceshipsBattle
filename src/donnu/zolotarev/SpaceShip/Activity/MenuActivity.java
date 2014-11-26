@@ -65,8 +65,9 @@ public class MenuActivity extends SingleFragmentActivity {
             @Override
             public void onClick() {
                 GlobalImageManager.stop();
-                self.finish();
-                android.os.Process.killProcess(android.os.Process.myPid());
+                popBackStack();
+                MenuActivity.super.onBackPressed();
+                //android.os.Process.killProcess(android.os.Process.myPid());
             }
         });
         fragment.setCancelListener(new ISimpleClick2() {
@@ -100,5 +101,11 @@ public class MenuActivity extends SingleFragmentActivity {
             }
             GoogleAnalytics.getInstance(this).reportActivityStart(this);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        GlobalImageManager.clear();
     }
 }

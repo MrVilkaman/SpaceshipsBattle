@@ -16,9 +16,9 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
-import donnu.zolotarev.SpaceShip.GameData.Settings;
-import donnu.zolotarev.SpaceShip.GameData.UserData;
+import donnu.zolotarev.SpaceShip.GameData.*;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
+import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
@@ -185,5 +185,16 @@ public class SelectLevelFragment extends BaseMenuFragment {
 
     public void setInGame(boolean inGame) {
         this.inGame = inGame;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        shopFragment = null;
+        HeroFeatures.clear();
+        UserData.clear();
+        UserDataProcessor.clear();
+        Shop.clear();
+        LevelController.clearInstance();
     }
 }

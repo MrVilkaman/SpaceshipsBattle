@@ -14,6 +14,9 @@ public class HeroFeatures {
     public static HeroFeatures get(){
         return instance;
     }
+    public static void clear(){
+        instance = null;
+    }
 
     public static void create(String s){
         if (!s.isEmpty()){

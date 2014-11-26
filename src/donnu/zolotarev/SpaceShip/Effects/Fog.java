@@ -38,10 +38,10 @@ public class Fog extends FogAI {
                 }
             };
         }
-            waySpecifications.setAll((int) Utils.random(speed*0.9f,speed*1.1f), 180);
+       //     waySpecifications.setAll(, 180);
 
         Fog fog = fogPool.obtainPoolItem();
-        fog.start(waySpecifications);
+        fog.start(new WaySpecifications((int) Utils.random(speed*0.9f,speed*1.1f),180));
         fog.setPosition(Constants.CAMERA_WIDTH+170,y);
         fog.setVisible(true);
         fog.setIgnoreUpdate(false);
@@ -51,5 +51,9 @@ public class Fog extends FogAI {
     @Override
     protected void destroyed() {
         destroy();
+    }
+
+    public static void clearClass() {
+        fogPool = null;
     }
 }

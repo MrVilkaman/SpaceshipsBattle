@@ -42,4 +42,8 @@ public class UserDataProcessor {
         }
         return false;
     }
+
+    public static void clear(){
+        instance = null;
+    }
 }

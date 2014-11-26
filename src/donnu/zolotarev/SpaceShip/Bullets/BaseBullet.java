@@ -26,16 +26,18 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     public static final int TYPE_SIMPLE_BULLET = 0;
     public static final int TYPE_ROCKET = TYPE_SIMPLE_BULLET+1;
     public static final int TYPE_ROCKET_AUTO = TYPE_ROCKET+1;
+
     protected static BaseGameScene main;
     private static ObjectCollisionController bulletController;
     protected static ObjectCollisionController enemyController;
     private static Hero hero;
 
+    protected static IAmDie iAmDie;
     private static IHeroDieListener dieListener;
+    protected static MultiPool bulletsPool;
 
     protected SpriteAI sprite;
     private PhysicsHandler physicsHandler;
-    protected static MultiPool bulletsPool;
 
     private int DEFAULT_SPEED;
     private int DEFAULT_DAMAGE;
@@ -44,7 +46,6 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     private boolean targetUnit;
     private float hw;
     private float hh;
-    protected static IAmDie iAmDie;
 
     protected WaySpecifications waySpecifications;
     private float r;
@@ -63,8 +64,15 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
         BaseBullet.iAmDie = iAmDie;
     }
 
-    public static void resetPool(){
+    public static void clearClass(){
+      //  main = null;
+        hero = null;
+        bulletController = null;
+        enemyController = null;
         bulletsPool = null;
+        main = null;
+        bulletController = null;
+        enemyController = null;
     }
 
     protected static void registredPool(Class bulletBase,GenericPool genericPool){

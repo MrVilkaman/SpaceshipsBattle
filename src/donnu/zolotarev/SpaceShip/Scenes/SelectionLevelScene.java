@@ -1,42 +1,24 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.view.KeyEvent;
-import donnu.zolotarev.SpaceShip.Activity.GameActivity;
-import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
-import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick;
-import org.andengine.engine.Engine;
 import org.andengine.entity.scene.background.Background;
-import org.andengine.entity.scene.menu.MenuScene;
-import org.andengine.entity.text.Text;
 import org.andengine.util.color.Color;
 
 public class SelectionLevelScene extends MyScene implements IParentScene {
-    private final GameActivity shipActivity;
-    private final Engine engine;
     private final IParentScene parentScene;
-    private final SelectionLevelScene self;
-    private final UserDataProcessor dataProcessor;
 
     private MyScene  gameScene;
-    private MenuScene menuFactory;
     private int activeLevel;
     private LevelController levels;
     private int lastSceneId;
 
-    private Text goldBar;
-    private ISimpleClick shopListner;
-
     public SelectionLevelScene(IParentScene parentScene,int level) {
         super(parentScene);
-        self = this;
         this.parentScene = parentScene;
-        shipActivity = GameActivity.getInstance();
-       engine = shipActivity.getEngine();
-       setBackground(new Background(Color.WHITE));
-        dataProcessor = UserDataProcessor.get();
+        setBackground(new Background(Color.WHITE));
         initLevels();
         lastSceneId = level;
         createGameScene(lastSceneId);

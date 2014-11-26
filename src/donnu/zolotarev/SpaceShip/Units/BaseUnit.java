@@ -47,6 +47,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     private static MultiPool unitsPool;
     private static ObjectCollisionController unitsController;
     private static int enemiesOnMap = 0;
+    protected static IHeroDieListener dieListener;
     private static IAmDie iAmDie;
 
     protected SpriteAI sprite;
@@ -68,8 +69,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     private float cy;
     private float cx;
     protected int price = 0;
-    protected static IHeroDieListener dieListener;
-    static Hero hero;
+    protected static Hero hero;
 
     protected int damage;
     private PointF myPos;
@@ -85,8 +85,14 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         BaseUnit.iAmDie = iAmDie;
     }
 
-    public static void resetPool(){
+    public static void clearClass(){
+        dieListener = null;
+        mainScene = null;
+        engine = null;
         unitsPool = null;
+        unitsController = null;
+        iAmDie = null;
+        hero = null;
         enemiesOnMap = 0;
     }
 

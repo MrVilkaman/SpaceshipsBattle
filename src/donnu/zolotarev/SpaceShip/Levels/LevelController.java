@@ -22,6 +22,11 @@ public class LevelController {
         return instance;
     }
 
+    public static void clearInstance(){
+        instance.levels.clear();
+        instance = null;
+    }
+
     public void load(String s){
         Gson gson = new Gson();
         excessCounter = 0;
