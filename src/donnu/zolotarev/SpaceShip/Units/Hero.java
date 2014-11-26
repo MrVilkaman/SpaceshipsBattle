@@ -31,7 +31,7 @@ public class Hero extends BaseUnit {
     protected RocketController rocketController;
 
     public Hero(IHealthBar healthBar) {
-        super();
+        super(0);
         this.healthBar = healthBar;
         sprite =  new HeroAI(TextureLoader.getShip(), engine.getVertexBufferObjectManager()){
             @Override

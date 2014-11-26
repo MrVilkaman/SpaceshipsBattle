@@ -17,10 +17,11 @@ import java.util.Random;
 
 public class EnemySingleGun extends BaseUnit {
 
+    public static final int NAME_HASH = EnemySingleGun.class.getSimpleName().hashCode();
     private static boolean isRegistredPool = false;
 
     private EnemySingleGun(){
-        super();
+        super(NAME_HASH);
         sprite = new Enemy1AI(TextureLoader.getEnemyShipLightBlue(), engine.getVertexBufferObjectManager()){
 
             @Override

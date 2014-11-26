@@ -10,12 +10,12 @@ import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class EnemyRockerGun extends BaseUnit {
-
+    public static final int NAME_HASH = EnemyRockerGun.class.getSimpleName().hashCode();
     private static boolean isRegistredPool = false;
 
 
     private EnemyRockerGun(){
-        super();
+        super(NAME_HASH);
         sprite = new RocketAI(TextureLoader.getEnemyShipGreen(), engine.getVertexBufferObjectManager()){
 
             @Override

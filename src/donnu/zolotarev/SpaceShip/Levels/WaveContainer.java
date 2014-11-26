@@ -68,7 +68,7 @@ public  class WaveContainer {
 
                 //unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 3, 0.2f);
 
-                break;
+               // break;
             case LEVEL_MUSEUM:
 
                 unitWave.addEnemy(BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1, 1, 0.2f);

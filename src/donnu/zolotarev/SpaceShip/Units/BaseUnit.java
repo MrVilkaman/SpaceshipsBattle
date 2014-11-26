@@ -73,8 +73,10 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected int damage;
     private PointF myPos;
+    private final int nameHash;
 
-    public BaseUnit() {
+    public BaseUnit(int nameHash) {
+        this.nameHash = nameHash;
         waySpecifications = new WaySpecifications();
         myPos = new PointF();
     }
@@ -179,13 +181,14 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         }
         waySpecifications.setUsed(false);
         // todo УДАЛЯТЬ ДРУГИХ!
-        if (getClass().getSimpleName().equals(EnemySingleGun.class.getSimpleName())){
+
+        if (nameHash == EnemySingleGun.NAME_HASH){
             unitsPool.recyclePoolItem(TYPE_ENEMY_SINGLE_GUN_L_1,(EnemySingleGun)this);
-        }else if (getClass().getSimpleName().equals(EnemyWithMiniGun.class.getSimpleName())){
+        }else if (nameHash == EnemyWithMiniGun.NAME_HASH){
             unitsPool.recyclePoolItem(TYPE_ENEMY_MINIGUN_L_1,(EnemyWithMiniGun)this);
-        }else if (getClass().getSimpleName().equals(EnemyRockerGun.class.getSimpleName())){
+        }else if (nameHash == EnemyRockerGun.NAME_HASH){
             unitsPool.recyclePoolItem(TYPE_ENEMY_ROCKET_L_1,(EnemyRockerGun)this);
-        }else if (getClass().getSimpleName().equals(Meteor.class.getSimpleName())){
+        }else if (nameHash == Meteor.NAME_HASH){
             unitsPool.recyclePoolItem(TYPE_ENEMY_METEOR_L_1,(Meteor)this);
         }else {
            //new  Exception("Не известный тип!");

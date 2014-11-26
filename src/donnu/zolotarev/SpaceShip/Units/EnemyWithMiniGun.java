@@ -16,12 +16,12 @@ import org.andengine.util.adt.pool.GenericPool;
 import java.util.Random;
 
 public class EnemyWithMiniGun extends BaseUnit {
-
+    public static final int NAME_HASH = EnemyWithMiniGun.class.getSimpleName().hashCode();
     private static boolean isRegistredPool = false;
 
 
     private EnemyWithMiniGun(){
-        super();
+        super(NAME_HASH);
 
         sprite = new Enemy1AI(TextureLoader.getEnemyShipOrange(), engine.getVertexBufferObjectManager()){
 

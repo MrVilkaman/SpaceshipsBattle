@@ -17,7 +17,7 @@ public class EnemyBoss extends BaseUnit {
     private TurretAI turret;
 
     public EnemyBoss(){
-        super();
+        super(0);
         turret = new TurretAI(TextureLoader.getBossTurelTextureRegion(), engine.getVertexBufferObjectManager()){
             @Override
             protected void doAfterUpdate() {
