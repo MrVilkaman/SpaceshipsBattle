@@ -10,7 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.LevelsAdapter;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -48,6 +51,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
     private ISimpleClick startLevelListenet = new ISimpleClick() {
         @Override
         public void onClick(int id) {
+            setInGame(true);
             restartIntent = GameActivity.createIntent(getActivity(), id);
             startActivityForResult(restartIntent, GAME_STOP);
             GlobalImageManager.stop();
@@ -55,6 +59,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
             settings.setLastPlayedLevel(id - 2);
         }
     };
+    private boolean inGame = false;
 
 
     @Override
@@ -139,6 +144,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
                            }
                        case -99:
                          //  GlobalImageManager.changeImageView(imageBack);
+                           setInGame(false);
                            if (Constants.IS_ADS_ENABLED){
                                loadBigBanner();
                            }
@@ -151,4 +157,33 @@ public class SelectLevelFragment extends BaseMenuFragment {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private static int adsCounter = 2;
+    protected void loadBigBanner(){
+        adsCounter--;
+            if (adsCounter < 0){
+        final InterstitialAd interstitial = new InterstitialAd(getActivity());
+        interstitial.setAdUnitId(Constants.BANNER_ID);
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        interstitial.loadAd(adRequest);
+        interstitial.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if (interstitial.isLoaded() && ! isInGame()){
+                    interstitial.show();
+                    adsCounter = 3;
+                }
+            }
+        });
+           }
+    }
+
+    public boolean isInGame() {
+        return inGame;
+    }
+
+    public void setInGame(boolean inGame) {
+        this.inGame = inGame;
+    }
 }

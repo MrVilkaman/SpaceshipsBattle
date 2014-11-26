@@ -8,7 +8,6 @@ import android.view.View;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -16,7 +15,6 @@ import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.Levels.LevelController;
 import donnu.zolotarev.SpaceShip.Levels.WaveContainer;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
 
 public abstract class BaseMenuFragment extends BaseFragment {
 
@@ -128,28 +126,6 @@ public abstract class BaseMenuFragment extends BaseFragment {
                     super.onAdClosed();
                 }
 
-            });
-        }
-    }
-
-    private static int adsCounter = 2;
-    protected void loadBigBanner(){
-        adsCounter--;
-        if (adsCounter < 0){
-            final InterstitialAd interstitial = new InterstitialAd(getActivity());
-            interstitial.setAdUnitId(Constants.BANNER_ID);
-            AdRequest adRequest = new AdRequest.Builder().build();
-
-            interstitial.loadAd(adRequest);
-            interstitial.setAdListener(new AdListener() {
-                @Override
-                public void onAdLoaded() {
-                    super.onAdLoaded();
-                    if (interstitial.isLoaded()) {
-                        interstitial.show();
-                        adsCounter = 3;
-                    }
-                }
             });
         }
     }
