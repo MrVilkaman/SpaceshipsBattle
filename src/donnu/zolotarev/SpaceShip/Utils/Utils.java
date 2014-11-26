@@ -2,10 +2,13 @@ package donnu.zolotarev.SpaceShip.Utils;
 
 import android.graphics.PointF;
 
+import java.util.Random;
+
 public class Utils {
     private static float dx;
     private static float dy;
     private static float angle;
+    private static Random random = new Random();
 
     public static double degreeToRad(double degree){
         return (degree* Math.PI)/180;
@@ -109,5 +112,9 @@ public class Utils {
 
     public static double toRadians(float degrees){
         return degrees * Math.PI / 180;
+    }
+
+    public static int getRandom(int i) {
+        return (int)Math.round(Math.random()*i);
     }
 }

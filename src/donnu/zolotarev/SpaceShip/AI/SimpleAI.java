@@ -1,5 +1,6 @@
 package donnu.zolotarev.SpaceShip.AI;
 
+import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
 import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Units.Hero;
@@ -60,7 +61,9 @@ public abstract class SimpleAI extends SpriteAI {
 
     protected final void prosecutionHero(int minDist, int maxDist, boolean flag, float maxAngle){
 
-        float dist = Utils.distance(mX,mY,hero.getPosition().x,hero.getPosition().y);
+        PointF heroPos = hero.getPosition();
+
+        float dist = Utils.distance(mX,mY,heroPos.x,heroPos.y);
         if (flag){
             timeScan2-- ;
             if(timeScan2<0 ){
@@ -79,7 +82,7 @@ public abstract class SimpleAI extends SpriteAI {
         if (minDist <= dist && dist <= maxDist){
             timeScan--;
             if (timeScan<0){
-                float angle =  Utils.getAngle(mX,mY,hero.getPosition().x+dX,hero.getPosition().y+dY);
+                float angle =  Utils.getAngle(mX,mY,heroPos.x+dX,heroPos.y+dY);
                 angle = Utils.dAngleDegree(angle,mRotation);
                 angle = Utils.equals(0,angle,maxAngle)?
                         angle: maxAngle*Utils.getSign(angle) ;

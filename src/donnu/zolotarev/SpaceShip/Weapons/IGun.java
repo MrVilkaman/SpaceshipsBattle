@@ -1,10 +1,10 @@
 package donnu.zolotarev.SpaceShip.Weapons;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public interface IGun  {
     public void fire(WeaponPos weaponPos);
-    public Iterator<WeaponPos> getWeaponPos();
+    public ArrayList<WeaponPos> getWeaponPos();
     public void reload();
     public boolean shoot();
 

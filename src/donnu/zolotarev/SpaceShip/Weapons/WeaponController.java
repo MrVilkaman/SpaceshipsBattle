@@ -3,7 +3,7 @@ package donnu.zolotarev.SpaceShip.Weapons;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import org.andengine.entity.sprite.Sprite;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public class WeaponController {
 
@@ -34,10 +34,9 @@ public class WeaponController {
             IGun gun =  guns[i];
             if(gun !=null){
                 if (gun.shoot()){
-                    Iterator<WeaponPos> it = gun.getWeaponPos();
-                    while (it.hasNext()){
-                        WeaponPos weaponPos = it.next();
-                        changePos(weaponPoses[i].add(weaponPos));
+                    ArrayList<WeaponPos> it = gun.getWeaponPos();
+                    for (int j = it.size()-1;0<=j;j-- ){
+                        changePos(weaponPoses[i].add(it.get(j)));
                         gun.fire(bufferWeaponPos);
                     }
                 }

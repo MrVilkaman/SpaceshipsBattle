@@ -2,7 +2,7 @@ package donnu.zolotarev.SpaceShip.Weapons;
 
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public class RocketController extends WeaponController {
     public RocketController(BaseUnit carrier, WeaponPos[] weaponPoses) {
@@ -16,10 +16,9 @@ public class RocketController extends WeaponController {
             IGun gun =  guns[i];
             if(gun !=null){
                 if (last == i){
-                    Iterator<WeaponPos> it = gun.getWeaponPos();
-                    while (it.hasNext()){
-                        WeaponPos weaponPos = it.next();
-                        changePos(weaponPoses[i].add(weaponPos));
+                    ArrayList<WeaponPos> it = gun.getWeaponPos();
+                    for (int j = it.size()-1;0<=j;j-- ){
+                        changePos(weaponPoses[i].add(it.get(j)));
                         gun.fire(bufferWeaponPos);
                     }
                     inc();

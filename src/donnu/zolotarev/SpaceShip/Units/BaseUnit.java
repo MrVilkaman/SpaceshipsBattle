@@ -72,9 +72,11 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     static Hero hero;
 
     protected int damage;
+    private PointF myPos;
 
     public BaseUnit() {
         waySpecifications = new WaySpecifications();
+        myPos = new PointF();
     }
 
     public static void setUnitDieListener(IAmDie iAmDie){
@@ -233,7 +235,8 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public PointF  getPosition(){
-        return new PointF(sprite.getX()+cx,sprite.getY()+cy);
+        myPos.set(sprite.getX()+cx,sprite.getY()+cy);
+        return myPos;
     }
 
     public static void initPool() {

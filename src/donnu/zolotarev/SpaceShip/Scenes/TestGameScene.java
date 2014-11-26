@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
-import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAddListener;
@@ -89,7 +88,7 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
         point = new Point(250*x, 100 + 200*y);
 
 
-        PointF pointF =  activeScene.getHero().getPosition();
+        //PointF pointF =  activeScene.getHero().getPosition();
         enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point,0, new WaySpecifications(0,0f));
         return true;
     }

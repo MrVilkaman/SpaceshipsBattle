@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
-import android.graphics.PointF;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.Fire;
 import donnu.zolotarev.SpaceShip.Effects.FogManager;
@@ -26,18 +25,19 @@ import java.util.Random;
 
 public class MaketGameScene extends BaseGameScene implements IAmDie {
 
+    private final Random random;
     private LevelInfo levelInfo;
     private boolean isAlreadyProcess = false;
     private int lastRand = 0;
 
-    public MaketGameScene(IParentScene self) {
-        super(self);
-    }
+
+    private Point point;
 
     public MaketGameScene(IParentScene selectionLevelScene, LevelInfo level) {
        super(selectionLevelScene);
        this.levelInfo = level;
-
+        random = new Random();
+        point = new Point();
      //   qwet();
     }
 
@@ -114,17 +114,18 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
     public boolean addEnemy(AddedEnemyParam param) {
         if (super.addEnemy(param)){
             BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind() / Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
-            Random random = new Random();
 
-            Point point = param.getStartPosition();
-            PointF pointF = activeScene.getHero().getPosition();
-            if (point == null){
+
+           // PointF pointF = activeScene.getHero().getPosition();
+            if (param.getStartPosition() == null){
                 int rand = random.nextInt(60);
                 if (Utils.equals(lastRand, rand, 10)){
                     rand = 35 + (int) Utils.random(- 10, 15);
                 }
                 lastRand = rand;
-                point = new Point(1300, lastRand * 10);
+                point.set(1300, lastRand * 10);
+            }else {
+                point = param.getStartPosition();
             }
             // todo
             enemy1.init(param.getKind() % Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);

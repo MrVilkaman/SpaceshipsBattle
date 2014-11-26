@@ -4,12 +4,11 @@ import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public abstract class Guns implements IGun {
     private final int bullitType;
     private final IWeaponModificator[] modificator;
-    protected ArrayList<WeaponPos> weaponPosIterator = new ArrayList<WeaponPos>();
+    protected ArrayList<WeaponPos> weaponPosIterator;
 
     protected int ATTACK_INTERVAL;
     protected int shootDelay = 0;
@@ -21,6 +20,7 @@ public abstract class Guns implements IGun {
         targetUnit = heroWeapon;
         this.bullitType = bullitType;
         this.modificator = modificator;
+        weaponPosIterator = new ArrayList<WeaponPos>();
         initGunPos();
     }
 
@@ -44,8 +44,8 @@ public abstract class Guns implements IGun {
     }
 
     @Override
-    public Iterator<WeaponPos> getWeaponPos() {
-        return weaponPosIterator.iterator();
+    public ArrayList<WeaponPos> getWeaponPos() {
+        return weaponPosIterator;
     }
 
     @Override
