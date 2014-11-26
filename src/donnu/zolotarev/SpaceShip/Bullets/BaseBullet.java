@@ -19,7 +19,7 @@ import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
 
@@ -191,11 +191,13 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     private void checkHitUnit() {
-        Iterator<BaseUnit> col = enemyController.haveCollision(this);
-        while (col.hasNext()){
-            BaseUnit unit = col.next();
+      /*  Iterator<BaseUnit> col = enemyController.haveCollision(this);
+        while (col.hasNext()){*/
+        ArrayList<BaseUnit> objects = enemyController.haveCollision(this);
+        for (int i = objects.size()-1; 0<=i;i--){
+            BaseUnit unit = objects.get(i);
             if (unit.addDamageAndCheckDeath(getDamage())){
-                col.remove();
+                objects.remove(unit);
                 unit.destroy(true);
                 if (iAmDie != null){
                     iAmDie.destroyed(unit);

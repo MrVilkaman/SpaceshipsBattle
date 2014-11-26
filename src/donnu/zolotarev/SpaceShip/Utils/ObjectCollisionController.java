@@ -7,6 +7,7 @@ public class ObjectCollisionController<E extends ICollisionObject> {
 
     private ArrayList<E> objects;
     private ArrayList<E> iShapes;
+    private Iterator<E> it;
 
     public ObjectCollisionController() {
        objects = new ArrayList<E>();
@@ -15,6 +16,10 @@ public class ObjectCollisionController<E extends ICollisionObject> {
 
     public Iterator<E> getObjects() {
         return objects.iterator();
+    }
+
+    public ArrayList<E> get() {
+        return objects;
     }
 
     public void add(E object){
@@ -33,16 +38,17 @@ public class ObjectCollisionController<E extends ICollisionObject> {
         iShapes.clear();
     }
 
-    public Iterator<E> haveCollision(IHaveCoords object){
+    public ArrayList<E> haveCollision(IHaveCoords object){
         iShapes.clear();
-        Iterator<E> it = objects.iterator();
-        while (it.hasNext()){
-            E shape = it.next();
-            if(shape.checkHit(object)&& !shape.getShape().isIgnoreUpdate() ){
-                iShapes.add(shape);
+    //     it = objects.iterator();
+        ;
+       for (int i = objects.size()-1; 0<=i;i--){
+           E it =  objects.get(i);
+            if(it.checkHit(object)&& !it.getShape().isIgnoreUpdate() ){
+                iShapes.add(it);
                 break;
             }
         }
-        return iShapes.iterator();
+        return iShapes;
     }
 }

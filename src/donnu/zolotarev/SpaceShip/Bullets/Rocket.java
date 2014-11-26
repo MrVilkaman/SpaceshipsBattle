@@ -8,7 +8,7 @@ import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.util.adt.pool.GenericPool;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public class Rocket extends BaseBullet {
 
@@ -83,14 +83,18 @@ public class Rocket extends BaseBullet {
         /*Iterator items = enemyController.getObjects();
         items.
         (ICollisionObject)*/
-        Iterator<BaseUnit> col = enemyController.haveCollision(this);
-        while (col.hasNext()){
-            BaseUnit unit = col.next();
+        /*Iterator<BaseUnit> col = enemyController.haveCollision(this);
+        while (col.hasNext()){*/
+        ArrayList<BaseUnit> objects = enemyController.haveCollision(this);
+        for (int i = objects.size()-1; 0<=i;i--){
+            BaseUnit unit = objects.get(i);
 
-            unit.getPosition();
-            Iterator<BaseUnit> items = enemyController.getObjects();
-            while (items.hasNext()) {
-                BaseUnit unit2 = items.next();
+          /*  unit.getPosition();*/
+           /* Iterator<BaseUnit> items = enemyController.getObjects();
+            while (items.hasNext()) {*/
+            ArrayList<BaseUnit> items = enemyController.get();
+            for (int j = items.size()-1; 0<=j;j--){
+                BaseUnit unit2 = items.get(j);
                 float dist =  Utils.distance(unit.getPosition(), unit2.getPosition());
                 // 200 - 250;
                 float splushDist = splushRadiusMax - dist;
@@ -103,7 +107,7 @@ public class Rocket extends BaseBullet {
 
                 if (damage != 0){
                     if (unit.addDamageAndCheckDeath((int)damage)){
-                        items.remove();
+                        items.remove(unit2);
                         unit2.destroy(true);
                         if (iAmDie != null){
                             iAmDie.destroyed(unit2);
