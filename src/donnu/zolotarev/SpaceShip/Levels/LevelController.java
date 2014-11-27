@@ -13,12 +13,15 @@ public class LevelController {
 
     private static final String KEY_ITEMS = "KEY_ITEMS";
     private static final String KEY_EXCESS_COUNTER = "KEY_EXCESS_COUNTER";
-    private static transient LevelController instance = new LevelController();
+    private static transient LevelController instance;
 
     private HashMap<Integer,LevelInfo> levels;
     private int excessCounter = 0;
 
     public static LevelController getInstance() {
+        if (instance == null){
+            instance = new LevelController();
+        }
         return instance;
     }
 

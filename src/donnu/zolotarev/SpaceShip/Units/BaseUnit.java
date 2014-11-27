@@ -13,8 +13,13 @@ import donnu.zolotarev.SpaceShip.Scenes.InfinityGameScene;
 import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import org.andengine.engine.Engine;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.ColorModifier;
+import org.andengine.entity.modifier.IEntityModifier;
 import org.andengine.util.adt.pool.GenericPool;
 import org.andengine.util.adt.pool.MultiPool;
+import org.andengine.util.color.Color;
+import org.andengine.util.modifier.IModifier;
 
 public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
@@ -218,6 +223,19 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
+        sprite.registerEntityModifier( new ColorModifier(0.1f, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+            @Override
+            public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+
+            }
+
+            @Override
+            public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+                pItem.setColor(new Color(Color.WHITE));
+
+            }
+        }));
+
         if (shield != null){
             damage = shield.addDamage(damage);
         }

@@ -15,7 +15,12 @@ import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.ColorModifier;
+import org.andengine.entity.modifier.IEntityModifier;
 import org.andengine.entity.sprite.Sprite;
+import org.andengine.util.color.Color;
+import org.andengine.util.modifier.IModifier;
 
 import java.util.Random;
 
@@ -43,6 +48,8 @@ public class Hero extends BaseUnit {
         attachToScene();
         heroFeatures = HeroFeatures.get();
 
+      /*  Paint myPaint =  new Paint(Paint.ANTI_ALIAS_FLAG);
+        myPaint.setColorFilter(new LightingColorFilter(Color.rgb(120, 176, 209),0));*/
     }
 
     @Override
@@ -140,6 +147,19 @@ public class Hero extends BaseUnit {
 
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
+
+        sprite.registerEntityModifier( new ColorModifier(0.1f, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+            @Override
+            public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+
+            }
+
+            @Override
+            public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+                pItem.setColor(new Color(Color.WHITE));
+
+            }
+        }));
 
         if (shield != null){
             damage = shield.addDamage(damage);
