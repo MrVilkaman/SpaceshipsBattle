@@ -34,7 +34,7 @@ public class Shop {
 
     public void clearList() {
          list.clear();
-        list = null;
+        //list = null;
     }
 
     public int getSize(){

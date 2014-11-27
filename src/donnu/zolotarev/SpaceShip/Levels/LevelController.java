@@ -93,7 +93,7 @@ public class LevelController {
         while (iter.hasNext()) {
             LevelInfo item = levels.get(iter.next());
             item.setEnabled(isWin);
-            isWin = true ;//item.isWin();
+            isWin = item.isWin();
         }
     }
 
