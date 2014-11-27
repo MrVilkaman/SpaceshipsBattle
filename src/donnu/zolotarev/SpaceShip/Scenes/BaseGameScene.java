@@ -382,23 +382,28 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
 
     protected void clearItem(){
         hero.destroy(false);
-        clearUpdateHandlers();
-        clearChildScene();
-        clearEntityModifiers();
-        clearTouchAreas();
-        getEnemyController().cleer();
-        getBulletController().cleer();
-        detachSelf();
-        BaseBullet.clearClass();
-        BaseUnit.clearClass();
+
+        analogOnScreenControl.detachChildren();
         Shield.bulletsPool();
         FogManager.fogOff();
         Boom.clear();
         FogManager.fogOff();
         Fog.clearClass();
+        getEnemyController().cleer();
+        getBulletController().cleer();
+        BaseBullet.clearClass();
+        BaseUnit.clearClass();
+
+        hero = null;
         activeScene = null;
         engine = null;
         waveController = null;
+        detachChildren();
+        clearUpdateHandlers();
+        clearChildScene();
+        clearEntityModifiers();
+        clearTouchAreas();
+        detachSelf();
         System.gc();
     }
 

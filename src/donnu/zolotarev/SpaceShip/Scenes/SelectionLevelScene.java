@@ -122,4 +122,10 @@ public class SelectionLevelScene extends MyScene implements IParentScene {
         createGameScene(activeLevel);
     }
 
+
+    @Override
+    public void onDetached() {
+        super.onDetached();
+        levels.clear();
+    }
 }

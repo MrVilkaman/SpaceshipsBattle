@@ -196,5 +196,7 @@ public class SelectLevelFragment extends BaseMenuFragment {
         UserDataProcessor.clear();
         Shop.clear();
         LevelController.clearInstance();
+        userData = null;
+        settings = null;
     }
 }

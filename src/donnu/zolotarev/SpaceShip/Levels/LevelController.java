@@ -23,7 +23,7 @@ public class LevelController {
     }
 
     public static void clearInstance(){
-        instance.levels.clear();
+        instance.levels = null;
         instance = null;
     }
 
@@ -43,11 +43,13 @@ public class LevelController {
 
     public void clear(){
         excessCounter = 0;
-        levels = new HashMap<Integer, LevelInfo>();
+        levels.clear();
+
     }
 
     private LevelController() {
         clear();
+        levels = new HashMap<Integer, LevelInfo>();
     }
 
     public void addLevel(int levelId, boolean isInfinity){

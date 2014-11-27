@@ -149,7 +149,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     }
 
     @Override
-    public  void destroy(Boolean withAnimate){
+    public void destroy(Boolean withAnimate){
         sprite.setVisible(false);
         sprite.setIgnoreUpdate(true);
         bulletController.remove(this);
@@ -163,6 +163,9 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
             throw new RuntimeException("!!");
         }
     }
+
+
+
 
     @Override
     public Sprite getShape() {

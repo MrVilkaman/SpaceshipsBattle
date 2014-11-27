@@ -48,11 +48,6 @@ public class TextureLoader {
     private static ITiledTextureRegion bossBaseTextureRegion;
     private static ITiledTextureRegion bossTurelTextureRegion;
     private static ITiledTextureRegion menuButtonBackgroundTextureRegion;
-    private static ITiledTextureRegion whihtSimpleBulletTextureRegion;
-    private static ITiledTextureRegion redSimpleBulletTextureRegion;
-    private static ITiledTextureRegion blueSimpleBulletTextureRegion;
-    private static ITiledTextureRegion pinkSimpleBulletTextureRegion;
-    private static ITiledTextureRegion ylowSimpleBulletTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -122,6 +117,32 @@ public class TextureLoader {
         texturePack1.unloadTexture();
         texturePack2.unloadTexture();
         gameBKTexture.unload();
+
+        texturePack1 = null;
+        texturePack2 = null;
+        gameBKTexture = null;
+        rocketAmmoTextureRegion = null;
+        simpleBulletTextureRegion = null;
+        mMeteorite1TextureRegion = null;
+        gameBK = null;
+        btnFire1 = null;
+        btnFire2 = null;
+        mBoomTextureRegion = null;
+        texturePack2 = null;
+        texturePackLibrary2 = null;
+        gameBKTexture = null;
+        shieldTextureRegion = null;
+        fogTextureRegion = null;
+        bossBaseTextureRegion = null;
+        bossTurelTextureRegion = null;
+        menuButtonBackgroundTextureRegion = null;
+        ship = null;
+        screenControlKnobTextureRegion = null;
+        screenControlBaseTextureRegion = null;
+        enemyShipLightBlue = null;
+        enemyShipOrange = null;
+        enemyShipGreen = null;
+        font = null;
     }
 
     public static ITiledTextureRegion getShip() {

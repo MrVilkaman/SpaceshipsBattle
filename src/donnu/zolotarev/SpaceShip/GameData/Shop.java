@@ -29,10 +29,12 @@ public class Shop {
 
     public static void clear() {
         instance.clearList();
+        instance = null;
     }
 
     public void clearList() {
          list.clear();
+        list = null;
     }
 
     public int getSize(){

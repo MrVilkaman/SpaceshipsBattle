@@ -163,6 +163,7 @@ public class Hero extends BaseUnit {
         weaponController.setShoot(false);
         weaponController.reloadWeapons();
         super.destroy(withAnimate);
+
     }
 
     public void fireRocket(){

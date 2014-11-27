@@ -8,7 +8,7 @@ import org.andengine.engine.Engine;
 public class MusicLoader {
 
     private static Music fire;
-    private static  Music sound;
+    private static Music sound;
 
     public static void loadTexture(Context context, Engine engine) {
         try {
@@ -37,5 +37,7 @@ public class MusicLoader {
 
     public static void clear() {
 //        sound.release();
+            fire  = null;
+            sound = null;
     }
 }

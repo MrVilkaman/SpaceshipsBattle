@@ -80,4 +80,5 @@ public abstract class MyScene extends Scene implements IActivityCallback {
         });
         builder.show();
     }
+
 }
