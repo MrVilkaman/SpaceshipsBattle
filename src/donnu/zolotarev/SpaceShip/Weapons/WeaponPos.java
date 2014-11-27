@@ -27,9 +27,11 @@ public class WeaponPos {
     }
 
     public WeaponPos add(float xx, float yy, float anlge){
-        this.x +=xx;
-        this.y +=yy;
-        this.anlge +=anlge;
+        if (sprite!=null){
+            radAngle = Utils.getAngle(sprite.getRotationCenterX(), sprite.getRotationCenterY(),x+xx,y+yy);
+            rad = Utils.distance(sprite.getRotationCenterX(), sprite.getRotationCenterY(),x+xx,y+yy);
+        }
+        this.anlge += anlge;
         return this;
     }
 
