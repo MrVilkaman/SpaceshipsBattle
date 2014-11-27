@@ -23,7 +23,9 @@ public class LevelController {
     }
 
     public static void clearInstance(){
+        instance.levels.clear();
         instance.levels = null;
+
         instance = null;
     }
 
@@ -48,7 +50,6 @@ public class LevelController {
     }
 
     private LevelController() {
-        clear();
         levels = new HashMap<Integer, LevelInfo>();
     }
 
