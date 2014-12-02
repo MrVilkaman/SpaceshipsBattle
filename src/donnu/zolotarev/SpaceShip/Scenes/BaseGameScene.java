@@ -1,7 +1,6 @@
 package donnu.zolotarev.SpaceShip.Scenes;
 
 import android.graphics.Point;
-import android.opengl.GLES20;
 import android.util.Log;
 import android.view.KeyEvent;
 import donnu.zolotarev.SpaceShip.Activity.GameActivity;
@@ -29,7 +28,6 @@ import donnu.zolotarev.SpaceShip.Utils.*;
 import donnu.zolotarev.SpaceShip.Waves.IAddedEnemy;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 import org.andengine.engine.Engine;
-import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.handler.timer.ITimerCallback;
 import org.andengine.engine.handler.timer.TimerHandler;
 import org.andengine.entity.scene.IOnSceneTouchListener;
@@ -59,7 +57,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     private final ObjectCollisionController enemyController;
     private final ObjectCollisionController bulletController;
     private final IParentScene parentScene;
-    private AnalogOnScreenControl analogOnScreenControl;
+   // private AnalogOnScreenControl analogOnScreenControl;
 
     protected Hero hero;
     private Text waveCountBar;
@@ -207,7 +205,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                             @Override
                             public void onClick(int id) {
                                 activeScene.detachChild(menuScene);
-                                activeScene.setChildScene(analogOnScreenControl);
+                                //activeScene.setChildScene(analogOnScreenControl);
                                 isShowMenuScene = false;
                                 isActive = true;
                             }
@@ -222,7 +220,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     boolean flag = false;
 
     protected void addHeroMoveControl() {
-        analogOnScreenControl = new AnalogOnScreenControl(70,
+      /*  analogOnScreenControl = new AnalogOnScreenControl(70,
                 GameActivity.getCameraHeight() - TextureLoader.getScreenControlBaseTextureRegion().getHeight() - 50,
                 shipActivity.getCamera(), TextureLoader.getScreenControlBaseTextureRegion(),
                 TextureLoader.getScreenControlKnobTextureRegion(), 0.1f, 100,
@@ -235,7 +233,18 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
         analogOnScreenControl.getControlKnob().setScale(1.5f);
         analogOnScreenControl.refreshControlKnobPosition();
         setChildScene(analogOnScreenControl);
-        analogOnScreenControl.setZIndex(1000);
+        analogOnScreenControl.setZIndex(1000);*/
+
+        setOnSceneTouchListener(new IOnSceneTouchListener() {
+            @Override
+            public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
+                if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN  || pSceneTouchEvent.getAction() == TouchEvent.ACTION_MOVE){
+                    hero.flyTo(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
+                }
+                return false;
+            }
+        });
+
 
          int i = 0;
         if (setting.getControlMode() == ControlMode.BY_HOLD){
@@ -244,7 +253,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 @Override
                 public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
 
-                    hero.canFire( flag);
+                    hero.canFire(flag);
                     flag = false;
                     return false;
                 }
@@ -287,12 +296,14 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
        // btnFire2.setAlpha(0.5f);
 
             btnFire2.setScale(1.25f);
-            analogOnScreenControl.attachChild(btnFire2);
-            analogOnScreenControl.registerTouchArea(btnFire2);
+            /*analogOnScreenControl.*/attachChild(btnFire2);
+            /*analogOnScreenControl.*/registerTouchArea(btnFire2);
             createRocketBar(i);
             rocketBar.setText(String.valueOf(heroFeatures.getRocketCount()));
         }
     }
+
+
 
     private void createFireButton() {
         final Sprite btnFire = new Sprite(GameActivity.getCameraWidth()-130, GameActivity.getCameraHeight()-150,
@@ -329,8 +340,8 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
        /* btnFire.setColor(Color.BLACK);
         btnFire.setAlpha(0.5f);*/
 
-        analogOnScreenControl.attachChild(btnFire);
-        analogOnScreenControl.registerTouchArea(btnFire);
+        /*analogOnScreenControl.*/attachChild(btnFire);
+        /*analogOnScreenControl.*/registerTouchArea(btnFire);
         btnFire.setScale(1.25f);
 
 
@@ -341,9 +352,9 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
             int x = GameActivity.getCameraWidth()- i+65;
             int y = GameActivity.getCameraHeight()- 85;
             rocketBar = new Text(x,y,TextureLoader.getFont(),"00",new TextOptions(HorizontalAlign.LEFT),engine.getVertexBufferObjectManager());
-            analogOnScreenControl.attachChild(rocketBar);
             rocketBar.setText("0");
-            analogOnScreenControl.setZIndex(1000);
+            /*analogOnScreenControl.*/attachChild(rocketBar);
+            /*analogOnScreenControl.*/setZIndex(1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -368,7 +379,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 isActive = true;
                 isShowMenuScene = false;
                 activeScene.detachChild(menuScene);
-                activeScene.setChildScene(analogOnScreenControl);
+                //activeScene.setChildScene(analogOnScreenControl);
             }
         }
     }
@@ -383,7 +394,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
     protected void clearItem(){
         hero.destroy(false);
 
-        analogOnScreenControl.detachChildren();
+        //analogOnScreenControl.detachChildren();
         Shield.bulletsPool();
         FogManager.fogOff();
         Boom.clear();

@@ -15,6 +15,7 @@ import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
 import org.andengine.engine.camera.hud.controls.BaseOnScreenControl;
+import org.andengine.engine.handler.physics.PhysicsHandler;
 import org.andengine.entity.IEntity;
 import org.andengine.entity.modifier.ColorModifier;
 import org.andengine.entity.modifier.IEntityModifier;
@@ -35,6 +36,12 @@ public class Hero extends BaseUnit {
 
     protected RocketController rocketController;
 
+    private float needX;
+    private float needY;
+
+    private float acceX = 200;
+    private float acceY = 200;
+
     public Hero(IHealthBar healthBar) {
         super(0);
         this.healthBar = healthBar;
@@ -42,6 +49,28 @@ public class Hero extends BaseUnit {
             @Override
             protected void doAfterUpdate() {
                 weaponController.weaponCooldown();
+            }
+
+            @Override
+            protected void doBeforeUpdate() {
+                super.doBeforeUpdate();
+
+                float ang = Utils.getAngle(mX,mY,needX,needY);
+                float dist = Utils.distanceSqr(mX,mY,needX,needY);
+                int R = 900;
+                if ( R < dist ){
+                    physicsHandler.setAccelerationX((float) (SPEED * Math.cos(Utils.degreeToRad(ang))));
+                    physicsHandler.setAccelerationY((float) (SPEED * Math.sin(Utils.degreeToRad(ang))));
+                }else{
+                    if ( 400 < dist ){
+                        physicsHandler.setAccelerationX((float) (-1*SPEED * Math.cos(Utils.degreeToRad(ang))));
+                        physicsHandler.setAccelerationY((float) (-1*SPEED * Math.sin(Utils.degreeToRad(ang))));
+                    } else {
+                        physicsHandler.setVelocity(0,0);
+                        physicsHandler.setAcceleration(0,0);
+                    }
+                }
+
             }
         };
         hero = this;
@@ -106,6 +135,8 @@ public class Hero extends BaseUnit {
     @Override
     public void init(int level, Point point) {
         setStartPosition(point);
+        needX = point.x;
+                needY  = point.y;
         setSize();
         loadWeapon(level);
         loadParam(level);
@@ -191,4 +222,20 @@ public class Hero extends BaseUnit {
     }
 
 
+    private float oldX;
+    private float oldY;
+    public void flyTo(float x, float y) {
+        float xX = x + sprite.getWidth();
+        float yY = y - sprite.getHeight() / 2;
+        float ang = Utils.getAngle(sprite.getX(), sprite.getY(), xX, yY);
+        PhysicsHandler ph = sprite.getPhysicsHandler();
+
+        ph.setVelocityX((float) (SPEED * Math.cos(Utils.degreeToRad(ang)) * (ph.getVelocityX() != 0? 1f:0.4f)));
+        ph.setVelocityY((float) (SPEED * Math.sin(Utils.degreeToRad(ang)) * (ph.getVelocityY() != 0? 1f:0.4f)));
+
+        //ph.setAcceleration(0,0);
+
+        needX = xX;
+        needY = yY;
+    }
 }
