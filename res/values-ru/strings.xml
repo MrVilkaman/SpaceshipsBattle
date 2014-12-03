@@ -95,5 +95,7 @@
     <string name = "use_double_gun">двойные пушки?</string>
     <string name = "use_shield">щит?</string>
 
+    <string name = "setting_flymode_lable">Fly mode:</string>
+    <string name = "radiogroup_fly_mode_analog">Joystick</string>
 
 </resources>

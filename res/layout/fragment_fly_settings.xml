@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android = "http://schemas.android.com/apk/res/android"
               android:orientation = "vertical"
               android:background="@drawable/dialog_background"
+              android:layout_margin="5dp"
               android:layout_width = "match_parent"
               android:layout_height = "match_parent">
 
@@ -13,36 +14,64 @@
             android:text="@string/setting_label"/>
     <TextView android:layout_width = "wrap_content"
               android:gravity="left"
-              android:layout_margin="10dp"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="5dp"
               android:textSize="@dimen/setting_master_text_size"
               android:layout_height = "wrap_content"
               android:text="@string/setting_contlol_lable"/>
+    <RadioGroup android:layout_width = "fill_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/radiogroup_fire_mode"
+                android:layout_height = "wrap_content">
+        <RadioButton android:layout_width = "wrap_content"
+                     android:layout_height = "wrap_content"
+                     android:textSize="@dimen/setting_second_text_size"
+                     android:layout_margin="5dp"
+                     android:id="@+id/radiogroup_fire_mode_byhold"
+                     android:text="@string/radiogroup_fire_mode_byhold"
+                />
+        <RadioButton android:layout_width = "wrap_content"
+                     android:layout_height = "wrap_content"
+                     android:textSize="@dimen/setting_second_text_size"
+                     android:layout_margin="5dp"
+                     android:id="@+id/radiogroup_fire_mode_always"
+                     android:text="@string/radiogroup_fire_mode_always"
+                />
+    </RadioGroup>
+
+    <TextView android:layout_width = "wrap_content"
+              android:gravity="left"
+              android:layout_marginTop="10dp"
+              android:layout_marginBottom="5dp"
+              android:textSize="@dimen/setting_master_text_size"
+              android:layout_height = "wrap_content"
+              android:text="@string/setting_flymode_lable"/>
+
+    <RadioGroup android:layout_width = "fill_parent"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:id="@+id/radiogroup_fly_mode"
+                android:layout_height = "wrap_content">
+        <RadioButton android:layout_width = "wrap_content"
+                     android:layout_height = "wrap_content"
+                     android:textSize="@dimen/setting_second_text_size"
+                     android:layout_margin="5dp"
+                     android:id="@+id/radiogroup_fly_mode_analog"
+                     android:text="@string/radiogroup_fly_mode_analog"
+                />
+        <RadioButton android:layout_width = "wrap_content"
+                     android:layout_height = "wrap_content"
+                     android:textSize="@dimen/setting_second_text_size"
+                     android:layout_margin="5dp"
+                     android:id="@+id/radiogroup_fly_mode_touch"
+                     android:text="@string/radiogroup_fly_mode_touch"
+                />
+    </RadioGroup>
 
 
-        <RadioGroup android:layout_width = "fill_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="10dp"
-                    android:gravity="center"
-                    android:id="@+id/radiogroup_fire_mode"
-                    android:layout_height = "wrap_content">
-            <RadioButton android:layout_width = "wrap_content"
-                         android:layout_height = "wrap_content"
-                         android:textSize="@dimen/setting_second_text_size"
-                         android:layout_margin="5dp"
-                         android:id="@+id/radiogroup_fire_mode_byhold"
-                    android:text="@string/radiogroup_fire_mode_byhold"
-                    />
-            <RadioButton android:layout_width = "wrap_content"
-                         android:layout_height = "wrap_content"
-                         android:textSize="@dimen/setting_second_text_size"
-                         android:layout_margin="5dp"
-                         android:id="@+id/radiogroup_fire_mode_always"
-                         android:text="@string/radiogroup_fire_mode_always"
-                    />
-                    </RadioGroup>
 
     <LinearLayout
-            android:layout_margin="10dp"
             android:orientation = "horizontal"
             android:layout_width = "match_parent"
             android:layout_height = "wrap_content"

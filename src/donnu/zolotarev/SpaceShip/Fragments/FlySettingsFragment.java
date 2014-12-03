@@ -42,6 +42,9 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     @InjectView(R.id.radiogroup_fire_mode)
     RadioGroup fireModeRadio;
 
+    @InjectView(R.id.radiogroup_fly_mode)
+    RadioGroup flyModeRadio;
+
     private Settings setting;
     boolean sound = false;
     boolean music = false;
@@ -70,10 +73,19 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
 
         if (setting.getFileMode() == FileMode.BY_HOLD){
-            fireModeRadioByhold.setChecked(true);
+            fireModeRadio.check(R.id.radiogroup_fire_mode_byhold);
+//            fireModeRadioByhold.setChecked(true);
         }else{
-            fireModeRadioAlways.setChecked(true);
+            fireModeRadio.check(R.id.radiogroup_fire_mode_always);
+            //            fireModeRadioAlways.setChecked(true);
         }
+        if (setting.isAnalogflyControlMode()){
+            flyModeRadio.check(R.id.radiogroup_fly_mode_analog);
+        }else{
+            flyModeRadio.check(R.id.radiogroup_fly_mode_touch);
+        }
+
+
         return v;
     }
 
@@ -86,6 +98,9 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         }else {
             mode = FileMode.ALWAIS;
         }
+
+
+        setting.setAnalogflyControlMode(flyModeRadio.getCheckedRadioButtonId() == R.id.radiogroup_fly_mode_analog);
         setting.setFireMode(mode);
         setting.setMusic(music);
         setting.setSound(sound);
