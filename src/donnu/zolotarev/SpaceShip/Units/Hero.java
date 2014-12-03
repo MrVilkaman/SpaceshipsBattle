@@ -225,7 +225,7 @@ public class Hero extends BaseUnit {
     private float oldX;
     private float oldY;
     public void flyTo(float x, float y) {
-        float xX = x + sprite.getWidth();
+        float xX = x + 50;
         float yY = y - sprite.getHeight() / 2;
         float ang = Utils.getAngle(sprite.getX(), sprite.getY(), xX, yY);
         PhysicsHandler ph = sprite.getPhysicsHandler();

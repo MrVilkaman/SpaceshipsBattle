@@ -241,6 +241,10 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 if (pSceneTouchEvent.getAction() == TouchEvent.ACTION_DOWN  || pSceneTouchEvent.getAction() == TouchEvent.ACTION_MOVE){
                     hero.flyTo(pSceneTouchEvent.getX(), pSceneTouchEvent.getY());
                 }
+                if (setting.getControlMode() == ControlMode.BY_HOLD){
+                    hero.canFire(flag);
+                    flag = false;
+                }
                 return false;
             }
         });
@@ -249,15 +253,6 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
          int i = 0;
         if (setting.getControlMode() == ControlMode.BY_HOLD){
            createFireButton();
-            setOnSceneTouchListener(new IOnSceneTouchListener() {
-                @Override
-                public boolean onSceneTouchEvent(Scene pScene, TouchEvent pSceneTouchEvent) {
-
-                    hero.canFire(flag);
-                    flag = false;
-                    return false;
-                }
-            });
             i = 300;
         } else {
             hero.canFire(true);
@@ -289,7 +284,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     });
                 }
 
-                return flag;
+                return true;
             }
         };
 
@@ -319,13 +314,14 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                     public void run() {*/
 
                 if(pSceneTouchEvent.isActionDown() || pSceneTouchEvent.isActionMove()){
-                    // hero.canFire(true);
+                    hero.canFire(true);
                     flag = true;
                 }
                 if(pSceneTouchEvent.isActionUp() || pSceneTouchEvent.isActionOutside() || pSceneTouchEvent.isActionCancel()){
-                    if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
+                //    if ( Constants.CAMERA_WIDTH_HALF < pSceneTouchEvent.getX()){
                         flag = false;
-                    }
+                        hero.canFire(false);
+                  //  }
 
                 }
 
@@ -333,7 +329,7 @@ public abstract class BaseGameScene extends MyScene implements IAddedEnemy, ISco
                 //   }
                 // });
 
-                return super.onAreaTouched(pSceneTouchEvent, pTouchAreaLocalX, pTouchAreaLocalY);
+                return true;
             }
         };
 
