@@ -5,9 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class LevelController {
 
@@ -15,7 +13,7 @@ public class LevelController {
     private static final String KEY_EXCESS_COUNTER = "KEY_EXCESS_COUNTER";
     private static transient LevelController instance;
 
-    private HashMap<Integer,LevelInfo> levels;
+    private LinkedHashMap<Integer,LevelInfo> levels;
     private int excessCounter = 0;
 
     public static LevelController getInstance() {
@@ -38,7 +36,7 @@ public class LevelController {
         try {
             JSONObject json = new JSONObject(s);
             excessCounter = json.getInt(KEY_EXCESS_COUNTER);
-            levels = gson.fromJson(json.getString(KEY_ITEMS),new TypeToken<Map<Integer,LevelInfo>>(){}.getType());
+            levels = sort((LinkedHashMap<Integer,LevelInfo>)gson.fromJson(json.getString(KEY_ITEMS),new TypeToken<LinkedHashMap<Integer,LevelInfo>>(){}.getType()));
 
         changeEnabled();
         } catch (JSONException e) {
@@ -53,7 +51,7 @@ public class LevelController {
     }
 
     private LevelController() {
-        levels = new HashMap<Integer, LevelInfo>();
+        levels = new LinkedHashMap<Integer, LevelInfo>();
     }
 
     public void addLevel(int levelId, boolean isInfinity){
@@ -95,6 +93,21 @@ public class LevelController {
             item.setEnabled(isWin);
             isWin = item.isWin();
         }
+    }
+
+    private LinkedHashMap<Integer,LevelInfo> sort(LinkedHashMap<Integer,LevelInfo> o) {
+        List<Map.Entry<Integer,LevelInfo>> entries =
+                new ArrayList<Map.Entry<Integer,LevelInfo>>(o.entrySet());
+        Collections.sort(entries, new Comparator<Map.Entry<Integer,LevelInfo>>() {
+            public int compare(Map.Entry<Integer,LevelInfo> a, Map.Entry<Integer,LevelInfo> b) {
+                return a.getKey().compareTo(b.getKey());
+            }
+        });
+        LinkedHashMap<Integer,LevelInfo> sortedMap = new LinkedHashMap<Integer,LevelInfo>();
+        for (Map.Entry<Integer,LevelInfo> entry : entries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedMap;
     }
 
     public LevelInfo getById(int type) {
