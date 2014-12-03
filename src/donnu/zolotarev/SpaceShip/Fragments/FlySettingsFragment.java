@@ -65,7 +65,7 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         v.setMinimumWidth(2*screeSize.x/3);
         //  v.setMinimumHeight(screeSize.y);
         music = setting.isMusic();
-        sound = setting.isSound();
+        sound = setting.needVibro();
         changeSoundIcon(sound);
         changeMusicIcon(music);
         Dialog dialog = getDialog();
@@ -103,7 +103,7 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         setting.setAnalogflyControlMode(flyModeRadio.getCheckedRadioButtonId() == R.id.radiogroup_fly_mode_analog);
         setting.setFireMode(mode);
         setting.setMusic(music);
-        setting.setSound(sound);
+        setting.setNeedVibro(sound);
         Gson gson = new Gson();
         getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE)
                 .edit()

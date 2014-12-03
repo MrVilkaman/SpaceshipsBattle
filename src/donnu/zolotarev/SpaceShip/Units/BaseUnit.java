@@ -223,7 +223,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
-        sprite.registerEntityModifier( new ColorModifier(0.1f, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+        sprite.registerEntityModifier( new ColorModifier(Constants.BLINK_TIME, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
             @Override
             public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
 

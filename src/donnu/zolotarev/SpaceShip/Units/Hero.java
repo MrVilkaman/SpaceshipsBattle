@@ -6,9 +6,12 @@ import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
+import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.UI.IHealthBar;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
+import donnu.zolotarev.SpaceShip.Utils.VibroHelper;
 import donnu.zolotarev.SpaceShip.Weapons.*;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.BulletFrameNumberModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
@@ -28,6 +31,7 @@ import java.util.Random;
 public class Hero extends BaseUnit {
     private final int MAX_ANGLE = 7;
     private final int SPEED = 500;
+    private final Settings settings;
     private int health;
 
     private boolean isAlive = true;
@@ -45,6 +49,7 @@ public class Hero extends BaseUnit {
 
     public Hero(IHealthBar healthBar, final boolean isAnalog) {
         super(0);
+        settings = Settings.get();
         this.healthBar = healthBar;
         sprite =  new HeroAI(TextureLoader.getShip(), engine.getVertexBufferObjectManager()){
             @Override
@@ -182,7 +187,7 @@ public class Hero extends BaseUnit {
     @Override
     public boolean addDamageAndCheckDeath(int damage) {
 
-        sprite.registerEntityModifier( new ColorModifier(0.1f, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+        sprite.registerEntityModifier( new ColorModifier(Constants.BLINK_TIME, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
             @Override
             public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
 
@@ -194,6 +199,10 @@ public class Hero extends BaseUnit {
 
             }
         }));
+
+        if(settings.needVibro()){
+            VibroHelper.vibroGetDamage();
+        }
 
         if (shield != null){
             damage = shield.addDamage(damage);

@@ -13,6 +13,7 @@ public class Settings {
     private boolean isAnalogflyControlMode = false;
     private boolean sound;
     private boolean music = true;
+    private boolean needVibro = true;
 
     public int getLastPlayedLevel() {
         return lastPlayedLevel;
@@ -74,5 +75,13 @@ public class Settings {
 
     public void setAnalogflyControlMode(boolean isAnalogflyControlMode) {
         this.isAnalogflyControlMode = isAnalogflyControlMode;
+    }
+
+    public boolean needVibro() {
+        return needVibro;
+    }
+
+    public void setNeedVibro(boolean needVibro) {
+        this.needVibro = needVibro;
     }
 }

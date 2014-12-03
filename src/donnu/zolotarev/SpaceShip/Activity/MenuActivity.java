@@ -15,6 +15,7 @@ import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
+import donnu.zolotarev.SpaceShip.Utils.VibroHelper;
 
 public class MenuActivity extends SingleFragmentActivity {
     @Override
@@ -31,6 +32,8 @@ public class MenuActivity extends SingleFragmentActivity {
             GoogleAnalytics.getInstance(this).dispatchLocalHits();
         } catch (Exception e) {
         }
+
+        VibroHelper.launch(this);
     }
 
     public void loadRootFragment(Fragment fragment, boolean addToBackStack){
@@ -107,5 +110,6 @@ public class MenuActivity extends SingleFragmentActivity {
     protected void onDestroy() {
         super.onDestroy();
         GlobalImageManager.clear();
+        VibroHelper.clear();
     }
 }

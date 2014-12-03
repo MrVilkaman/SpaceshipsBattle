@@ -10,6 +10,8 @@ public  class Constants {
     public static final int MAX_UNIT_LEVEL = 4;
     public static final int MAX_UNIT_LEVEL_WITH_SHIELD = 2*MAX_UNIT_LEVEL;
     public static final String ANALISTYC_TRACER_ID = "UA-56368026-3";
+
+    public static final float BLINK_TIME = 0.12f;
     // Device const
     public static int CAMERA_WIDTH = 1280;
     public static int CAMERA_HEIGHT = 720;
