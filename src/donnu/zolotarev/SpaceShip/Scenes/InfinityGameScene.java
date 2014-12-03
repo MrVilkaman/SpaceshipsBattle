@@ -65,7 +65,7 @@ public class InfinityGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initHero() {
-        hero = new Hero(textHealthBarCallback);
+        hero = new Hero(textHealthBarCallback, setting.isAnalogflyControlMode());
         hero.init(0, new Point(0, 250));
     }
 

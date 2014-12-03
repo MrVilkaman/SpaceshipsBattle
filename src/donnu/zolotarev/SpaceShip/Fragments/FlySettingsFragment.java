@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
-import donnu.zolotarev.SpaceShip.UI.ControlMode;
+import donnu.zolotarev.SpaceShip.UI.FileMode;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.SoundHelper;
 import org.andengine.util.color.Color;
@@ -69,7 +69,7 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT_ARGB_PACKED_INT));
 
-        if (setting.getControlMode() == ControlMode.BY_HOLD){
+        if (setting.getFileMode() == FileMode.BY_HOLD){
             fireModeRadioByhold.setChecked(true);
         }else{
             fireModeRadioAlways.setChecked(true);
@@ -79,14 +79,14 @@ public class FlySettingsFragment extends android.app.DialogFragment {
 
     @Override
     public void onDestroyView() {
-        ControlMode mode = null;
+        FileMode mode = null;
         super.onDestroyView();
         if (fireModeRadio.getCheckedRadioButtonId() == R.id.radiogroup_fire_mode_byhold){
-            mode = ControlMode.BY_HOLD;
+            mode = FileMode.BY_HOLD;
         }else {
-            mode = ControlMode.ALWAIS;
+            mode = FileMode.ALWAIS;
         }
-        setting.setControlMode(mode);
+        setting.setFireMode(mode);
         setting.setMusic(music);
         setting.setSound(sound);
         Gson gson = new Gson();

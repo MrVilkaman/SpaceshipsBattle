@@ -42,7 +42,8 @@ public class Hero extends BaseUnit {
     private float acceX = 200;
     private float acceY = 200;
 
-    public Hero(IHealthBar healthBar) {
+
+    public Hero(IHealthBar healthBar, final boolean isAnalog) {
         super(0);
         this.healthBar = healthBar;
         sprite =  new HeroAI(TextureLoader.getShip(), engine.getVertexBufferObjectManager()){
@@ -55,19 +56,21 @@ public class Hero extends BaseUnit {
             protected void doBeforeUpdate() {
                 super.doBeforeUpdate();
 
-                float ang = Utils.getAngle(mX,mY,needX,needY);
-                float dist = Utils.distanceSqr(mX,mY,needX,needY);
-                int R = 900;
-                if ( R < dist ){
-                    physicsHandler.setAccelerationX((float) (SPEED * Math.cos(Utils.degreeToRad(ang))));
-                    physicsHandler.setAccelerationY((float) (SPEED * Math.sin(Utils.degreeToRad(ang))));
-                }else{
-                    if ( 400 < dist ){
-                        physicsHandler.setAccelerationX((float) (-1*SPEED * Math.cos(Utils.degreeToRad(ang))));
-                        physicsHandler.setAccelerationY((float) (-1*SPEED * Math.sin(Utils.degreeToRad(ang))));
-                    } else {
-                        physicsHandler.setVelocity(0,0);
-                        physicsHandler.setAcceleration(0,0);
+                if (!isAnalog){
+                    float ang = Utils.getAngle(mX,mY,needX,needY);
+                    float dist = Utils.distanceSqr(mX,mY,needX,needY);
+                    int R = 900;
+                    if ( R < dist ){
+                        physicsHandler.setAccelerationX((float) (SPEED * Math.cos(Utils.degreeToRad(ang))));
+                        physicsHandler.setAccelerationY((float) (SPEED * Math.sin(Utils.degreeToRad(ang))));
+                    }else{
+                        if ( 400 < dist ){
+                            physicsHandler.setAccelerationX((float) (-1*SPEED * Math.cos(Utils.degreeToRad(ang))));
+                            physicsHandler.setAccelerationY((float) (-1*SPEED * Math.sin(Utils.degreeToRad(ang))));
+                        } else {
+                            physicsHandler.setVelocity(0,0);
+                            physicsHandler.setAcceleration(0,0);
+                        }
                     }
                 }
 
@@ -221,9 +224,6 @@ public class Hero extends BaseUnit {
         rocketController.fire();
     }
 
-
-    private float oldX;
-    private float oldY;
     public void flyTo(float x, float y) {
         float xX = x + 50;
         float yY = y - sprite.getHeight() / 2;

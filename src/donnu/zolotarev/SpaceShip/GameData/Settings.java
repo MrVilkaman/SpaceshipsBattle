@@ -3,13 +3,14 @@ package donnu.zolotarev.SpaceShip.GameData;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import donnu.zolotarev.SpaceShip.UI.ControlMode;
+import donnu.zolotarev.SpaceShip.UI.FileMode;
 
 public class Settings {
 
     private static Settings instance;
     private int lastPlayedLevel = 0;
-    private ControlMode controlMode;
+    private FileMode fireMode;
+    private boolean isAnalogflyControlMode = false;
     private boolean sound;
     private boolean music = true;
 
@@ -21,16 +22,16 @@ public class Settings {
         this.lastPlayedLevel = lastPlayedLevel;
     }
 
-    public ControlMode getControlMode() {
-        return controlMode;
+    public FileMode getFileMode() {
+        return fireMode;
     }
 
-    public void setControlMode(ControlMode controlMode) {
-        this.controlMode = controlMode;
+    public void setFireMode(FileMode fireMode) {
+        this.fireMode = fireMode;
     }
 
     private Settings() {
-        controlMode = ControlMode.BY_HOLD;
+        fireMode = FileMode.BY_HOLD;
     }
 
     public static Settings get(){
@@ -65,5 +66,13 @@ public class Settings {
 
     public void setMusic(boolean music) {
         this.music = music;
+    }
+
+    public boolean isAnalogflyControlMode() {
+        return isAnalogflyControlMode;
+    }
+
+    public void setAnalogflyControlMode(boolean isAnalogflyControlMode) {
+        this.isAnalogflyControlMode = isAnalogflyControlMode;
     }
 }

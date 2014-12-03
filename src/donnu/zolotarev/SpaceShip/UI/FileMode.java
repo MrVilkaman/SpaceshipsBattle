@@ -1,6 +1,6 @@
 package donnu.zolotarev.SpaceShip.UI;
 
-public enum  ControlMode {
+public enum FileMode {
     ALWAIS,
     BY_HOLD,
 }

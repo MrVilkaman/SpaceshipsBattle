@@ -3,7 +3,6 @@ package donnu.zolotarev.SpaceShip.Scenes;
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Effects.Fire;
-import donnu.zolotarev.SpaceShip.Effects.FogManager;
 import donnu.zolotarev.SpaceShip.GameData.UserDataProcessor;
 import donnu.zolotarev.SpaceShip.GameState.IAddListener;
 import donnu.zolotarev.SpaceShip.GameState.IAmDie;
@@ -92,7 +91,7 @@ public class MaketGameScene extends BaseGameScene implements IAmDie {
 
     @Override
     protected void initHero() {
-        hero = new Hero(textHealthBarCallback);
+        hero = new Hero(textHealthBarCallback, setting.isAnalogflyControlMode());
         hero.init(0, new Point(600, 300));
     }
 
