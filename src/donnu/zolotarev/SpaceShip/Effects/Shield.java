@@ -5,6 +5,7 @@ import donnu.zolotarev.SpaceShip.Scenes.BaseGameScene;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import org.andengine.entity.sprite.AnimatedSprite;
+import org.andengine.entity.sprite.Sprite;
 import org.andengine.util.adt.pool.GenericPool;
 
 public class Shield extends AnimatedSprite {
@@ -12,6 +13,9 @@ public class Shield extends AnimatedSprite {
     protected static GenericPool<Shield> bulletsPool;
     private final int cx;
     private final int cy;
+    private final Sprite sprite;
+    private final int cx2;
+    private final int cy2;
     private BaseUnit unit;
     private int shuieldHealthDefault = 0;
     private int shuieldHealth = 0;
@@ -19,13 +23,21 @@ public class Shield extends AnimatedSprite {
 
     private Shield() {
         super(0, 0, TextureLoader.getShieldAnimationTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
-        BaseGameScene.getActiveScene().attachChild(this);
-        setZIndex(3);
-        BaseGameScene.getActiveScene().sortChildren();
-        cx =  (int)getWidth()/2;
-        cy =  (int)getHeight()/2;
+        sprite = new Sprite(0,0,TextureLoader.getShieldTextureRegion(),GameActivity.engine().getVertexBufferObjectManager());
+        BaseGameScene scene = BaseGameScene.getActiveScene();
+        scene.attachChild(this);
+        scene.attachChild(sprite);
+        setZIndex(4);
+        sprite.setZIndex(3);
+        sprite.setScale(1.1f);
+        scene.sortChildren();
+        cx =  (int)sprite.getWidth()/2;
+        cy =  (int)sprite.getHeight()/2;
+        cx2 =  (int)getWidth()/2;
+        cy2 =  (int)getHeight()/2;
         setVisible(false);
         setIgnoreUpdate(true);
+        sprite.setIgnoreUpdate(true);
         setRotation(180);
     }
 
@@ -37,6 +49,7 @@ public class Shield extends AnimatedSprite {
         }
         setVisible(false);
         setIgnoreUpdate(true);
+        sprite.setIgnoreUpdate(true);
 
     }
 
@@ -44,7 +57,8 @@ public class Shield extends AnimatedSprite {
     protected void onManagedUpdate(float pSecondsElapsed) {
         super.onManagedUpdate(pSecondsElapsed);
         if (isAlive){
-            setPosition(unit.getCenterX() - cx, unit.getCenterY() - cy);
+            sprite.setPosition(unit.getCenterX() - cx, unit.getCenterY() - cy);
+            setPosition(unit.getCenterX() - cx2, unit.getCenterY() - cy2);
         }
     }
 
@@ -55,10 +69,12 @@ public class Shield extends AnimatedSprite {
         shuieldHealthDefault = shuieldHealth;
        // setVisible(true);
         setRotation(unit.getShape().getRotation()-180);
+        sprite.setIgnoreUpdate(false);
         setIgnoreUpdate(false);
         stopAnimation(0);
         changeVisibility();
-        setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
+        sprite.setPosition(unit.getCenterX() - cx, unit.getCenterY() - cy);
+        setPosition(unit.getCenterX() - cx2, unit.getCenterY() - cy2);
     }
 
     public static Shield useShield(){
@@ -76,8 +92,8 @@ public class Shield extends AnimatedSprite {
 
     public int addDamage(int damage) {
         shuieldHealth -= damage;
-        //changeVisibility();
-        if (0 < shuieldHealth){
+        changeVisibility();
+        if (0 < shuieldHealth){;
             animate();
             return 0;
         }else{
@@ -134,7 +150,7 @@ public class Shield extends AnimatedSprite {
         }else{
             v = 0.0f;
         }
-        setAlpha(v);
+        sprite.setAlpha(v);
     }
 
     public int getHealth() {
