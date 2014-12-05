@@ -31,12 +31,12 @@ public class Shield extends AnimatedSprite {
 
     public void destroy() {
 
-            isAlive = false;
+        isAlive = false;
         if (isAlive){
             bulletsPool.recyclePoolItem(this);
         }
-            setVisible(false);
-            setIgnoreUpdate(true);
+        setVisible(false);
+        setIgnoreUpdate(true);
 
     }
 
@@ -54,7 +54,7 @@ public class Shield extends AnimatedSprite {
         shuieldHealth = unit.getShieldPoint();
         shuieldHealthDefault = shuieldHealth;
        // setVisible(true);
-        setRotation(unit.getShape().getRotation());
+        setRotation(unit.getShape().getRotation()-180);
         setIgnoreUpdate(false);
         stopAnimation(0);
         changeVisibility();
@@ -77,8 +77,8 @@ public class Shield extends AnimatedSprite {
     public int addDamage(int damage) {
         shuieldHealth -= damage;
         //changeVisibility();
-        animate();
         if (0 < shuieldHealth){
+            animate();
             return 0;
         }else{
             int i = -shuieldHealth;
@@ -89,6 +89,8 @@ public class Shield extends AnimatedSprite {
 
     public void animate() {
         setVisible(true);
+        if (!isAnimationRunning() || 4 < getCurrentTileIndex()){
+
         super.animate(30, new IAnimationListener() {
             @Override
             public void onAnimationStarted(AnimatedSprite pAnimatedSprite, int pInitialLoopCount) {
@@ -114,6 +116,8 @@ public class Shield extends AnimatedSprite {
 
             }
         });
+        }
+
     }
 
 

@@ -9,8 +9,8 @@ import donnu.zolotarev.SpaceShip.GameState.IParentScene;
 import donnu.zolotarev.SpaceShip.GameState.IStatusGameInfo;
 import donnu.zolotarev.SpaceShip.Units.BaseUnit;
 import donnu.zolotarev.SpaceShip.Units.Hero;
-import donnu.zolotarev.SpaceShip.Units.WaySpecifications;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
+import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Waves.IWaveController;
 
 import java.util.Random;
@@ -77,9 +77,9 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
     public boolean addEnemy(AddedEnemyParam param) {
 
         BaseUnit enemy1 = BaseUnit.getEnemy(Constants.MAX_UNIT_LEVEL_WITH_SHIELD * (param.getKind()/Constants.MAX_UNIT_LEVEL_WITH_SHIELD));
-        Random random = new Random();
-        Point point;
-        y++;
+       Random random = new Random();
+        Point point = new Point();
+        /* y++;
         if(param.getKind() == BaseUnit.TYPE_ENEMY_ROCKET_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_SINGLE_GUN_L_1
                 || param.getKind() == BaseUnit.TYPE_ENEMY_MINIGUN_L_1 || param.getKind() == BaseUnit.TYPE_ENEMY_METEOR_L_1){
             y = 0;
@@ -89,7 +89,21 @@ public class TestGameScene extends BaseGameScene implements IAmDie {
 
 
         //PointF pointF =  activeScene.getHero().getPosition();
-        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point,0, new WaySpecifications(0,0f));
+        enemy1.init(param.getKind()% Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point,0);*/
+        // PointF pointF = activeScene.getHero().getPosition();
+        if (param.getStartPosition() == null){
+            int rand = random.nextInt(60);
+            if (Utils.equals(lastRand, rand, 10)){
+                rand = 35 + (int) Utils.random(- 10, 15);
+            }
+            lastRand = rand;
+            point.set(1300, lastRand * 10);
+        }else {
+            point = param.getStartPosition();
+        }
+        // todo
+        enemy1.init(param.getKind() % Constants.MAX_UNIT_LEVEL_WITH_SHIELD, point, param.getStartAngle()/*Utils.getAngle(point.x, point.y, pointF.x, pointF.y)*/);
+
         return true;
     }
 

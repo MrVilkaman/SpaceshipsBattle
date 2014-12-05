@@ -151,13 +151,12 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
         enemiesOnMap++;
 
 
-        if (shield == null){
-            shield = Shield.useShield();
-        }
+
             if (isHaveShuield()){
+                if (shield == null){
+                    shield = Shield.useShield();
+                }
                 shield.start(this);
-            }else{
-                shield.destroy();
             }
 
     }
@@ -223,22 +222,27 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
     }
 
     public boolean addDamageAndCheckDeath(int damage) {
-        sprite.registerEntityModifier( new ColorModifier(Constants.BLINK_TIME, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
-            @Override
-            public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
 
-            }
-
-            @Override
-            public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
-                pItem.setColor(new Color(Color.WHITE));
-
-            }
-        }));
 
         if (shield != null){
             damage = shield.addDamage(damage);
         }
+        if (damage != 0){
+            sprite.registerEntityModifier( new ColorModifier(Constants.BLINK_TIME, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+                @Override
+                public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+
+                }
+
+                @Override
+                public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+                    pItem.setColor(new Color(Color.WHITE));
+
+                }
+            }));
+        }
+
+
         health -= damage;
         return health < 0;
     }
