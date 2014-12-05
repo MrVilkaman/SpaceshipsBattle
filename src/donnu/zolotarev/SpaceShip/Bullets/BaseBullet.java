@@ -137,7 +137,7 @@ public abstract class BaseBullet implements ICollisionObject, IHaveCoords {
     protected void attachToScene() {
         BaseGameScene scene = InfinityGameScene.getActiveScene();
         scene.attachChild(sprite);
-        sprite.setZIndex(1);
+        sprite.setZIndex(0);
         scene.sortChildren();
     }
 

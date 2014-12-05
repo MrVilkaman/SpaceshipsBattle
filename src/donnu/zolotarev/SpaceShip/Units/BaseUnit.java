@@ -170,7 +170,7 @@ public abstract class BaseUnit implements ICollisionObject, IHaveCoords {
 
     protected void attachToScene() {
         mainScene.attachChild(sprite);
-        sprite.setZIndex(0);
+        sprite.setZIndex(1);
         mainScene.sortChildren();
     }
 

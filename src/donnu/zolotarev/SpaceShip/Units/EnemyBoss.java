@@ -5,10 +5,16 @@ import donnu.zolotarev.SpaceShip.AI.TurretAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
 import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
+import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.*;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponPos;
+import org.andengine.entity.IEntity;
+import org.andengine.entity.modifier.ColorModifier;
+import org.andengine.entity.modifier.IEntityModifier;
+import org.andengine.util.color.Color;
+import org.andengine.util.modifier.IModifier;
 
 import java.util.Random;
 
@@ -37,8 +43,27 @@ public class EnemyBoss extends BaseUnit {
         turret.setScaleCenter(53,37);
         turret.setRotation(180);
         mainScene.attachChild(turret);
-        turret.setZIndex(1);
+        turret.setZIndex(2);
         attachToScene();
+        sprite.setZIndex(-1);
+        mainScene.sortChildren();
+    }
+
+    @Override
+    public boolean addDamageAndCheckDeath(int damage) {
+        turret.registerEntityModifier( new ColorModifier(Constants.BLINK_TIME, new Color(Color.WHITE), new Color(1f, 0.5f, 0.5f), new IEntityModifier.IEntityModifierListener() {
+            @Override
+            public void onModifierStarted(IModifier<IEntity> pModifier, IEntity pItem) {
+
+            }
+
+            @Override
+            public void onModifierFinished(IModifier<IEntity> pModifier, IEntity pItem) {
+                pItem.setColor(new Color(Color.WHITE));
+
+            }
+        }));
+        return super.addDamageAndCheckDeath(damage);
     }
 
     @Override
