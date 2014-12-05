@@ -94,7 +94,7 @@
 
     <string name = "setting_flymode_lable">Fly mode:</string>
     <string name = "radiogroup_fly_mode_analog">Joystick</string>
-    <string name = "radiogroup_fly_mode_touch">Touch</string>
+    <string name = "radiogroup_fly_mode_touch">Touching</string>
 
 
 </resources>

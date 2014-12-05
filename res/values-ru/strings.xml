@@ -83,7 +83,7 @@
     <string name = "btn_game_back_to_main_menu">Вернуться в главное меню</string>
     <string name = "btn_game_restart">Переиграть</string>
     <string name = "btn_credits">Титры</string>
-    <string name = "credits_text"> Музыка\n
+    <string name = "credits_text">Музыка\n
         "Gonna Start v2", "Ouroboros" \n
         Kevin MacLeod (incompetech.com) \n
         Licensed under Creative Commons: By Attribution 3.0  \n
@@ -95,7 +95,8 @@
     <string name = "use_double_gun">двойные пушки?</string>
     <string name = "use_shield">щит?</string>
 
-    <string name = "setting_flymode_lable">Fly mode:</string>
-    <string name = "radiogroup_fly_mode_analog">Joystick</string>
+    <string name = "setting_flymode_lable">Режим управления:</string>
+    <string name = "radiogroup_fly_mode_analog">Джойстик</string>
+    <string name = "radiogroup_fly_mode_touch">Касание</string>
 
 </resources>
