@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<texture version="1" file="ShieldAnim.png" type="bitmap" width="508" height="384" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+    <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
+    <!-- $TexturePacker:SmartUpdate:abfa56c890b3914f8452cc6463f599d3:8e8fc333bff5ae1a59da618716088371:fb220f5836aa3430350f0a7c47c9cc48$ -->
+    <textureregion id="0" src="shuildAnim.png" x="2" y="2" width="504" height="380" rotated="false" trimmed="true" srcx="8" srcy="4" srcwidth="512" srcheight="384"/>
+</texture>

@@ -47,6 +47,8 @@ public class TextureLoader {
     private static ITiledTextureRegion bossBaseTextureRegion;
     private static ITiledTextureRegion bossTurelTextureRegion;
     private static ITiledTextureRegion menuButtonBackgroundTextureRegion;
+    private static TexturePack texturePackShield;
+    private static ITiledTextureRegion shieldAnimationTextureRegion;
 
     public static void loadTexture(Context context, Engine engine) {
 
@@ -110,11 +112,23 @@ public class TextureLoader {
         {
 
         }
+        try
+        {
+            texturePackShield = new TexturePackLoader(context.getAssets(),tm).loadFromAsset("gfx/ShieldAnim.xml", "gfx/");
+            texturePackShield.loadTexture();
+            TexturePackTextureRegionLibrary lib = texturePackShield.getTexturePackTextureRegionLibrary();
+            shieldAnimationTextureRegion = lib.getTiled(ShieldAnim.SHUILDANIM_ID, 4, 3);
+        }
+        catch (final TexturePackParseException e)
+        {
+
+        }
     }
 
     public static void clearMemory(){
         texturePack1.unloadTexture();
         texturePack2.unloadTexture();
+        texturePackShield.unloadTexture();
         gameBKTexture.unload();
 
         texturePack1 = null;
@@ -218,5 +232,9 @@ public class TextureLoader {
 
     public static ITiledTextureRegion getMenuButtonBackgroundTextureRegion() {
         return menuButtonBackgroundTextureRegion;
+    }
+
+    public static ITiledTextureRegion getShieldAnimationTextureRegion() {
+        return shieldAnimationTextureRegion;
     }
 }

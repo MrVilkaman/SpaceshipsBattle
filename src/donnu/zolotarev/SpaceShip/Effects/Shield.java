@@ -18,12 +18,15 @@ public class Shield extends AnimatedSprite {
     private boolean isAlive = false;
 
     private Shield() {
-        super(0, 0, TextureLoader.getShieldTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
+        super(0, 0, TextureLoader.getShieldAnimationTextureRegion(), GameActivity.engine().getVertexBufferObjectManager());
         BaseGameScene.getActiveScene().attachChild(this);
+        setZIndex(3);
+        BaseGameScene.getActiveScene().sortChildren();
         cx =  (int)getWidth()/2;
         cy =  (int)getHeight()/2;
         setVisible(false);
         setIgnoreUpdate(true);
+        setRotation(180);
     }
 
     public void destroy() {
@@ -50,8 +53,10 @@ public class Shield extends AnimatedSprite {
         isAlive = true;
         shuieldHealth = unit.getShieldPoint();
         shuieldHealthDefault = shuieldHealth;
-        setVisible(true);
+       // setVisible(true);
+        setRotation(unit.getShape().getRotation());
         setIgnoreUpdate(false);
+        stopAnimation(0);
         changeVisibility();
         setPosition(unit.getCenterX()-cx,unit.getCenterY()-cy);
     }
@@ -71,7 +76,8 @@ public class Shield extends AnimatedSprite {
 
     public int addDamage(int damage) {
         shuieldHealth -= damage;
-        changeVisibility();
+        //changeVisibility();
+        animate();
         if (0 < shuieldHealth){
             return 0;
         }else{
@@ -80,6 +86,36 @@ public class Shield extends AnimatedSprite {
             return i;
         }
     }
+
+    public void animate() {
+        setVisible(true);
+        super.animate(30, new IAnimationListener() {
+            @Override
+            public void onAnimationStarted(AnimatedSprite pAnimatedSprite, int pInitialLoopCount) {
+
+            }
+
+            @Override
+            public void onAnimationFrameChanged(AnimatedSprite pAnimatedSprite, int pOldFrameIndex,
+                    int pNewFrameIndex) {
+
+            }
+
+            @Override
+            public void onAnimationLoopFinished(AnimatedSprite pAnimatedSprite, int pRemainingLoopCount,
+                    int pInitialLoopCount) {
+                stopAnimation(0);
+                setVisible(false);
+               //destroy();
+            }
+
+            @Override
+            public void onAnimationFinished(AnimatedSprite pAnimatedSprite) {
+
+            }
+        });
+    }
+
 
     private void changeVisibility() {
         float v = 1.0f*shuieldHealth/shuieldHealthDefault;
