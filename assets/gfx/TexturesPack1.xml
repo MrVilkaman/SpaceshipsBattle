@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<texture version="1" file="TexturesPack1.png" type="bitmap" width="1024" height="512" pixelformat="RGBA_4444" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
+<texture version="1" file="TexturesPack1.png" type="bitmap" width="1024" height="512" pixelformat="RGBA_8888" minfilter="linear" magfilter="linear" wrapt="clamp" wraps="clamp" premultiplyalpha="false">
     <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker -->
-    <!-- $TexturePacker:SmartUpdate:2f9ef0ccebc740f195b48ca65f6162df:3c60b38ebd9626dd988aad996005c470:3553d7cbd670330404a5be1f541e22da$ -->
+    <!-- $TexturePacker:SmartUpdate:749a452dd10de17fbf1f0a84604b8f75:3c60b38ebd9626dd988aad996005c470:3553d7cbd670330404a5be1f541e22da$ -->
     <textureregion id="0" src="Boss_Base.png" x="2" y="90" width="384" height="287" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="384" srcheight="287"/>
     <textureregion id="1" src="Boss_Turel.png" x="247" y="379" width="129" height="75" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="129" srcheight="75"/>
     <textureregion id="2" src="Fog.png" x="2" y="379" width="128" height="128" rotated="false" trimmed="false" srcx="0" srcy="0" srcwidth="128" srcheight="128"/>

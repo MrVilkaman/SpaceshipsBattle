@@ -105,7 +105,7 @@ public class Shield extends AnimatedSprite {
 
     public void animate() {
         setVisible(true);
-        if (!isAnimationRunning() || 4 < getCurrentTileIndex()){
+        if (!isAnimationRunning() || 6   < getCurrentTileIndex()){
 
         super.animate(30, new IAnimationListener() {
             @Override

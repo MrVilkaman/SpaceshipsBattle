@@ -2,11 +2,10 @@ package donnu.zolotarev.SpaceShip.Units;
 
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.Enemy1AI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
+import donnu.zolotarev.SpaceShip.Bullets.BulletColorRandomizer;
 import donnu.zolotarev.SpaceShip.Textures.TextureLoader;
 import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Weapons.DoubleGun;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.BulletFrameNumberModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import donnu.zolotarev.SpaceShip.Weapons.SimpleGun;
 import donnu.zolotarev.SpaceShip.Weapons.WeaponController;
@@ -48,7 +47,7 @@ public class EnemySingleGun extends BaseUnit {
 
         Random random = new Random();
         IWeaponModificator[] mod = {
-        new BulletFrameNumberModificator(random.nextInt(SimpleBullet.BULLET_FRAME_COUNT))
+                BulletColorRandomizer.getNextColorForEmeny(),
         };
         switch (level){
             case 0:

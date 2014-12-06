@@ -3,7 +3,7 @@ package donnu.zolotarev.SpaceShip.Units;
 import android.graphics.Point;
 import donnu.zolotarev.SpaceShip.AI.EnemyAI.HeroAI;
 import donnu.zolotarev.SpaceShip.Bullets.BaseBullet;
-import donnu.zolotarev.SpaceShip.Bullets.SimpleBullet;
+import donnu.zolotarev.SpaceShip.Bullets.BulletColorRandomizer;
 import donnu.zolotarev.SpaceShip.Effects.Shield;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -13,7 +13,6 @@ import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.Utils;
 import donnu.zolotarev.SpaceShip.Utils.VibroHelper;
 import donnu.zolotarev.SpaceShip.Weapons.*;
-import donnu.zolotarev.SpaceShip.Weapons.Modificator.BulletFrameNumberModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.DamageModificator;
 import donnu.zolotarev.SpaceShip.Weapons.Modificator.IWeaponModificator;
 import org.andengine.engine.camera.hud.controls.AnalogOnScreenControl;
@@ -97,7 +96,7 @@ public class Hero extends BaseUnit {
 
         Random random = new Random();
         IWeaponModificator[] mode = {new DamageModificator(heroFeatures.getExtraBulletDamege(), IWeaponModificator.Mode.ADD),
-        new BulletFrameNumberModificator(random.nextInt(SimpleBullet.BULLET_FRAME_COUNT))};
+                BulletColorRandomizer.getNextColorForHero()};
         IGun gun;
         // todo получаить инко об оружии.
         boolean useD =  heroFeatures.isHaveDoubleAmmo() && heroFeatures.isNeedUseDoubleAmmo();
