@@ -36,6 +36,7 @@ public class Shield extends AnimatedSprite {
         cx2 =  (int)getWidth()/2;
         cy2 =  (int)getHeight()/2;
         setVisible(false);
+        sprite.setVisible(false);
         setIgnoreUpdate(true);
         sprite.setIgnoreUpdate(true);
         setRotation(180);
@@ -50,6 +51,7 @@ public class Shield extends AnimatedSprite {
         setVisible(false);
         setIgnoreUpdate(true);
         sprite.setIgnoreUpdate(true);
+        sprite.setVisible(false);
 
     }
 
@@ -70,6 +72,7 @@ public class Shield extends AnimatedSprite {
        // setVisible(true);
         setRotation(unit.getShape().getRotation()-180);
         sprite.setIgnoreUpdate(false);
+        sprite.setVisible(true);
         setIgnoreUpdate(false);
         stopAnimation(0);
         changeVisibility();
@@ -92,13 +95,15 @@ public class Shield extends AnimatedSprite {
 
     public int addDamage(int damage) {
         shuieldHealth -= damage;
-        changeVisibility();
-        if (0 < shuieldHealth){;
+
+        if (0 < shuieldHealth){
+            changeVisibility();
             animate();
             return 0;
         }else{
             int i = -shuieldHealth;
             shuieldHealth = 0;
+            changeVisibility();
             return i;
         }
     }
