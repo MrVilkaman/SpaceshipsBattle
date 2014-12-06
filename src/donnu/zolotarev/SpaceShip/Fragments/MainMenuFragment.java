@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import com.google.android.gms.ads.AdView;
+import com.purplebrain.adbuddiz.sdk.AdBuddiz;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
 import donnu.zolotarev.SpaceShip.R;
 import donnu.zolotarev.SpaceShip.Scenes.Interfaces.ISimpleClick2;
@@ -39,9 +39,6 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @InjectView(R.id.txt_main_menu_version)
     TextView versionInfoView;
-
-    @InjectView(R.id.adView)
-    AdView adView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -79,10 +76,6 @@ public class MainMenuFragment extends BaseMenuFragment {
 
         //imageBack.setImageDrawable();
         versionInfoUpdate();
-
-        if (Constants.IS_ADS_ENABLED ){
-            showAds(adView);
-        }
 
         PackageInfo packinfo = null;
 
@@ -131,8 +124,6 @@ public class MainMenuFragment extends BaseMenuFragment {
         super.onStop();
         GlobalImageManager.clearImageView(imageBack);
         GlobalImageManager.clearImageView(imageLogo);
-        adView.destroy();
-        adView.removeView(adView);
     }
 
     @OnClick(R.id.btn_main_menu_new_game)
@@ -172,6 +163,9 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @OnClick(R.id.btn_main_menu_exit)
     public void onExit(){
+        if (Constants.IS_ADS_ENABLED){
+            AdBuddiz.showAd(getActivity());
+        }
         getMainActivity().showExitDialog();
     }
 
@@ -196,14 +190,12 @@ public class MainMenuFragment extends BaseMenuFragment {
 
     @Override
     public void onPause() {
-        adView.pause();
         super.onPause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        adView.resume();
     }
 
 

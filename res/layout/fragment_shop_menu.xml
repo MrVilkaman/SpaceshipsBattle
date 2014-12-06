@@ -9,15 +9,6 @@
                android:scaleType="centerCrop"
                android:id = "@+id/image_background" />
 
-    <com.google.android.gms.ads.AdView android:id="@+id/adView"
-                                       android:layout_width="wrap_content"
-                                       android:layout_height="wrap_content"
-                                       ads:adUnitId="ca-app-pub-3472836589086047/3147495815"
-                                       ads:adSize="BANNER"
-                                       android:layout_centerHorizontal="true"
-                                       android:layout_alignParentTop = "true"
-                                       android:layout_marginTop = "5dp" />
-
 
     <Button
             style="@style/BaseButton"
@@ -36,40 +27,19 @@
               android:gravity = "center"
               android:layout_alignParentTop = "true"
               android:layout_centerHorizontal = "true"
-              android:layout_alignBottom = "@+id/linearLayout"
-              android:visibility = "gone" />
-    <LinearLayout
-            android:orientation = "horizontal"
-            android:layout_width = "fill_parent"
-            android:layout_height = "fill_parent"
-            android:gravity="right"
-            android:id = "@+id/linearLayout"
-            android:layout_alignRight = "@+id/shop_list_view"
-            android:layout_above = "@+id/shop_list_view">
-        <TextView
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:textSize="@dimen/setting_master_text_size"
-                android:textAppearance = "?android:attr/textAppearanceLarge"
-                android:text = "@string/select_levels_money"
-                android:id = "@+id/select_levels_money" />
-        <TextView
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:textAppearance = "?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/setting_master_text_size"
-                android:text = "0"
-                android:id = "@+id/select_levels_money_val" />
-    </LinearLayout>
+              android:visibility = "gone"
+              android:layout_above = "@+id/shop_list_view" />
     <LinearLayout android:layout_width = "fill_parent"
                   android:gravity="left|center"
                   android:orientation="horizontal"
                   android:id="@+id/linearLayout2"
                   android:layout_marginLeft="5dp"
                   android:layout_height = "wrap_content"
-                  android:layout_below = "@+id/adView"
                   android:layout_toRightOf = "@+id/select_levels_back"
-                  android:layout_alignRight = "@+id/linearLayout">
+                  android:layout_alignBottom = "@+id/select_levels_back"
+                  android:layout_alignTop = "@+id/select_levels_back"
+                  android:layout_alignRight = "@+id/shop_list_view"
+                  android:layout_marginRight = "5dp">
         <TextView android:layout_width = "wrap_content"
                   android:textColor="@color/LevelItemText"
                   android:textSize="@dimen/setting_second_text_size"
@@ -87,6 +57,25 @@
                   android:text="@string/use_shield"
                   android:id="@+id/use_double_shield"
                   android:layout_height = "wrap_content" />
+        <View android:layout_width = "0dp"
+              android:layout_weight="1"
+              android:layout_height = "wrap_content"/>
+        <TextView
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:textSize="@dimen/setting_master_text_size"
+                android:textAppearance = "?android:attr/textAppearanceLarge"
+                android:text = "@string/select_levels_money"
+                android:id = "@+id/select_levels_money"
+                android:layout_marginLeft = "5dp" />
+        <TextView
+                android:layout_width = "wrap_content"
+                android:layout_height = "wrap_content"
+                android:textAppearance = "?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/setting_master_text_size"
+                android:text = "0"
+                android:id = "@+id/select_levels_money_val"
+                android:layout_marginLeft = "3dp" />
     </LinearLayout>
     <ListView
             android:layout_below = "@+id/linearLayout2"
@@ -98,6 +87,6 @@
             android:layout_marginRight="10dp"
             android:dividerHeight="5.0sp"
             android:background="@null"
-            />
+            android:layout_marginTop = "3dp" />
 
 </RelativeLayout>

@@ -11,13 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
-import com.google.android.gms.ads.AdView;
 import donnu.zolotarev.SpaceShip.Fragments.Adapter.ShopAdapter;
 import donnu.zolotarev.SpaceShip.GameData.HeroFeatures;
 import donnu.zolotarev.SpaceShip.GameData.Shop;
 import donnu.zolotarev.SpaceShip.GameData.UserData;
 import donnu.zolotarev.SpaceShip.R;
-import donnu.zolotarev.SpaceShip.Utils.Constants;
 import donnu.zolotarev.SpaceShip.Utils.GlobalImageManager;
 
 public class ShopFragment extends BaseMenuFragment {
@@ -32,9 +30,6 @@ public class ShopFragment extends BaseMenuFragment {
 
     @InjectView(R.id.image_background)
     ImageView imageBack;
-
-    @InjectView(R.id.adView)
-    AdView adView;
 
     @InjectView(R.id.use_double_gun)
     CheckBox cbUseGun;
@@ -62,10 +57,6 @@ public class ShopFragment extends BaseMenuFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view =  inflateFragmentView(R.layout.fragment_shop_menu,inflater,container);
         listView.setAdapter(shopAdapter);
-        adView.setVisibility(View.GONE);
-        if (Constants.IS_ADS_ENABLED ){
-            showAds(adView);
-        }
         shopAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
@@ -107,14 +98,11 @@ public class ShopFragment extends BaseMenuFragment {
         GlobalImageManager.clearImageView(imageBack);
         heroFeatures.setNeedUseDoubleAmmo(cbUseGun.isChecked());
         heroFeatures.setNeedUseShield(cbUseShield.isChecked());
-        adView.destroy();
-        adView.removeView(adView);
     }
 
         @Override
     public void onResume() {
         super.onResume();
-            adView.resume();
             gold.setText(String.valueOf(userData.getMoney()));
     }
 
@@ -122,7 +110,6 @@ public class ShopFragment extends BaseMenuFragment {
     public void onPause() {
         super.onPause();
         saveGameState();
-        adView.pause();
     }
 
 }

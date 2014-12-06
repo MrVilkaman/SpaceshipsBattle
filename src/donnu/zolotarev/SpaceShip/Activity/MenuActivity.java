@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.purplebrain.adbuddiz.sdk.AdBuddiz;
+import com.purplebrain.adbuddiz.sdk.AdBuddizDelegate;
+import com.purplebrain.adbuddiz.sdk.AdBuddizError;
 import donnu.zolotarev.SpaceShip.Fragments.DialogFragment;
 import donnu.zolotarev.SpaceShip.Fragments.MainMenuFragment;
 import donnu.zolotarev.SpaceShip.GameData.Settings;
@@ -32,6 +38,55 @@ public class MenuActivity extends SingleFragmentActivity {
             GoogleAnalytics.getInstance(this).dispatchLocalHits();
         } catch (Exception e) {
         }
+
+        AdBuddiz.setPublisherKey(Constants.ADBUDDIZ_PUBLISHER_KEY);
+        AdBuddiz.cacheAds(this);
+        final Activity activity = this;
+        AdBuddiz.setDelegate(new AdBuddizDelegate() {
+            @Override
+            public void didCacheAd() {
+
+            }
+
+            @Override
+            public void didShowAd() {
+
+            }
+
+            @Override
+            public void didFailToShowAd(AdBuddizError adBuddizError) {
+                if (adBuddizError == AdBuddizError.NO_MORE_AVAILABLE_ADS || adBuddizError == AdBuddizError.NO_MORE_AVAILABLE_CACHED_ADS){
+
+                    final InterstitialAd interstitial = new InterstitialAd(activity);
+                    interstitial.setAdUnitId(Constants.BANNER2_ID);
+                    AdRequest adRequest = new AdRequest.Builder().build();
+
+                    interstitial.loadAd(adRequest);
+                    interstitial.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdLoaded() {
+                            super.onAdLoaded();
+                            if (interstitial.isLoaded()  ){
+                                try {
+                                    interstitial.show();
+                                } catch (Exception e) {
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void didClick() {
+
+            }
+
+            @Override
+            public void didHideAd() {
+
+            }
+        });
 
         VibroHelper.launch(this);
     }

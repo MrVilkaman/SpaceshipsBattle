@@ -22,14 +22,6 @@
                android:src = "@drawable/logo" />
 
 
-    <com.google.android.gms.ads.AdView android:id="@+id/adView"
-                                       android:layout_width="wrap_content"
-                                       android:layout_height="wrap_content"
-                                       ads:adUnitId="ca-app-pub-3472836589086047/7717296212"
-                                       ads:adSize="BANNER"
-                                       android:layout_centerHorizontal = "true"
-                                       android:layout_alignParentBottom = "true"  />
-
     <ImageButton
             android:id="@+id/google_play_button"
                  android:layout_width = "64dp"
