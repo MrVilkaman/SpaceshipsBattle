@@ -61,21 +61,26 @@ public class Hero extends BaseUnit {
                 super.doBeforeUpdate();
 
                 if (!isAnalog){
-                    float ang = Utils.getAngle(mX,mY,needX,needY);
+                    float ang = (float)Utils.degreeToRad(Utils.getAngle(mX, mY, needX, needY));
                     float dist = Utils.distanceSqr(mX,mY,needX,needY);
                     int R = 900;
+                    float angR = (float)(MAX_ANGLE*Math.sin(ang));
                     if ( R < dist ){
-                        physicsHandler.setAccelerationX((float) (SPEED * Math.cos(Utils.degreeToRad(ang))));
-                        physicsHandler.setAccelerationY((float) (SPEED * Math.sin(Utils.degreeToRad(ang))));
+                        physicsHandler.setAccelerationX((float) (SPEED * Math.cos(ang)));
+                        physicsHandler.setAccelerationY((float) (SPEED * Math.sin(ang)));
                     }else{
                         if ( 400 < dist ){
-                            physicsHandler.setAccelerationX((float) (-1*SPEED * Math.cos(Utils.degreeToRad(ang))));
-                            physicsHandler.setAccelerationY((float) (-1*SPEED * Math.sin(Utils.degreeToRad(ang))));
+                            physicsHandler.setAccelerationX((float) (-1*SPEED * Math.cos(ang)));
+                            physicsHandler.setAccelerationY((float) (-1*SPEED * Math.sin(ang)));
+                            angR /= 2;
                         } else {
+                            angR = 0;
                             physicsHandler.setVelocity(0,0);
                             physicsHandler.setAcceleration(0,0);
                         }
                     }
+
+                    sprite.setRotateAngle(angR);
                 }
 
             }
