@@ -12,85 +12,99 @@
               android:textSize="@dimen/setting_text_size_title"
               android:layout_height = "wrap_content"
             android:text="@string/setting_label"/>
-    <TextView android:layout_width = "wrap_content"
-              android:gravity="left"
-              android:layout_marginTop="10dp"
-              android:layout_marginBottom="5dp"
-              android:textSize="@dimen/setting_master_text_size"
-              android:layout_height = "wrap_content"
-              android:text="@string/setting_contlol_lable"/>
-    <RadioGroup android:layout_width = "fill_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/radiogroup_fire_mode"
-                android:layout_height = "wrap_content">
-        <RadioButton android:layout_width = "wrap_content"
-                     android:layout_height = "wrap_content"
-                     android:textSize="@dimen/setting_second_text_size"
-                     android:layout_margin="5dp"
-                     android:id="@+id/radiogroup_fire_mode_byhold"
-                     android:text="@string/radiogroup_fire_mode_byhold"
-                />
-        <RadioButton android:layout_width = "wrap_content"
-                     android:layout_height = "wrap_content"
-                     android:textSize="@dimen/setting_second_text_size"
-                     android:layout_margin="5dp"
-                     android:id="@+id/radiogroup_fire_mode_always"
-                     android:text="@string/radiogroup_fire_mode_always"
-                />
-    </RadioGroup>
+    <RelativeLayout android:layout_height = "wrap_content"
+            android:layout_width="fill_parent"
+            >
+        <LinearLayout
+                android:layout_height = "wrap_content"
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_weight = "1"
+                android:layout_toLeftOf = "@+id/linearLayout3">
+            <TextView android:layout_width = "wrap_content"
+                      android:gravity = "left"
+                      android:layout_marginTop = "10dp"
+                      android:layout_marginBottom = "5dp"
+                      android:textSize = "@dimen/setting_master_text_size"
+                      android:layout_height = "wrap_content"
+                      android:text = "@string/setting_contlol_lable" />
+            <RadioGroup android:layout_width = "fill_parent"
+                        android:orientation = "horizontal"
+                        android:gravity = "center"
+                        android:id = "@+id/radiogroup_fire_mode"
+                        android:layout_height = "wrap_content">
+                <RadioButton android:layout_width = "wrap_content"
+                             android:layout_height = "wrap_content"
+                             android:textSize = "@dimen/setting_second_text_size"
+                             android:layout_margin = "5dp"
+                             android:id = "@+id/radiogroup_fire_mode_byhold"
+                             android:text = "@string/radiogroup_fire_mode_byhold"
+                        />
+                <RadioButton android:layout_width = "wrap_content"
+                             android:layout_height = "wrap_content"
+                             android:textSize = "@dimen/setting_second_text_size"
+                             android:layout_margin = "5dp"
+                             android:id = "@+id/radiogroup_fire_mode_always"
+                             android:text = "@string/radiogroup_fire_mode_always"
+                        />
+            </RadioGroup>
 
-    <TextView android:layout_width = "wrap_content"
-              android:gravity="left"
-              android:layout_marginTop="10dp"
-              android:layout_marginBottom="5dp"
-              android:textSize="@dimen/setting_master_text_size"
-              android:layout_height = "wrap_content"
-              android:text="@string/setting_flymode_lable"/>
+            <TextView android:layout_width = "wrap_content"
+                      android:gravity = "left"
+                      android:layout_marginTop = "10dp"
+                      android:layout_marginBottom = "5dp"
+                      android:textSize = "@dimen/setting_master_text_size"
+                      android:layout_height = "wrap_content"
+                      android:text = "@string/setting_flymode_lable" />
 
-    <RadioGroup android:layout_width = "fill_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:id="@+id/radiogroup_fly_mode"
-                android:layout_height = "wrap_content">
-        <RadioButton android:layout_width = "wrap_content"
-                     android:layout_height = "wrap_content"
-                     android:textSize="@dimen/setting_second_text_size"
-                     android:layout_margin="5dp"
-                     android:id="@+id/radiogroup_fly_mode_analog"
-                     android:text="@string/radiogroup_fly_mode_analog"
-                />
-        <RadioButton android:layout_width = "wrap_content"
-                     android:layout_height = "wrap_content"
-                     android:textSize="@dimen/setting_second_text_size"
-                     android:layout_margin="5dp"
-                     android:id="@+id/radiogroup_fly_mode_touch"
-                     android:text="@string/radiogroup_fly_mode_touch"
-                />
-    </RadioGroup>
-
-
-
-    <LinearLayout
-            android:orientation = "horizontal"
-            android:layout_width = "match_parent"
-            android:layout_height = "wrap_content"
-            android:layout_gravity = "center"
-            android:gravity = "center">
-        <Button
-                android:layout_marginRight="50dp"
+            <RadioGroup android:layout_width = "fill_parent"
+                        android:orientation = "horizontal"
+                        android:gravity = "center"
+                        android:id = "@+id/radiogroup_fly_mode"
+                        android:layout_height = "wrap_content">
+                <RadioButton android:layout_width = "wrap_content"
+                             android:layout_height = "wrap_content"
+                             android:textSize = "@dimen/setting_second_text_size"
+                             android:layout_margin = "5dp"
+                             android:id = "@+id/radiogroup_fly_mode_analog"
+                             android:text = "@string/radiogroup_fly_mode_analog"
+                        />
+                <RadioButton android:layout_width = "wrap_content"
+                             android:layout_height = "wrap_content"
+                             android:textSize = "@dimen/setting_second_text_size"
+                             android:layout_margin = "5dp"
+                             android:id = "@+id/radiogroup_fly_mode_touch"
+                             android:text = "@string/radiogroup_fly_mode_touch"
+                        />
+            </RadioGroup>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation = "vertical"
                 android:layout_width = "wrap_content"
                 android:layout_height = "wrap_content"
-                android:id = "@+id/setting_sound"
-                android:drawableLeft="@drawable/sound_on"
-                android:background="@null"/>
-        <Button
-                android:layout_marginLeft="50dp"
-                android:layout_width = "wrap_content"
-                android:layout_height = "wrap_content"
-                android:id = "@+id/setting_music"
-                android:background="@null"/>
-    </LinearLayout>
+                android:layout_gravity = "center"
+                android:gravity = "center"
+                android:id = "@+id/linearLayout3"
+                android:layout_centerVertical = "true"
+                android:layout_alignParentRight = "true">
+            <Button
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:id = "@+id/setting_sound"
+                    android:drawableLeft="@drawable/sound_on"
+                    android:background="@null"/>
+
+            <Button
+                    android:layout_width = "wrap_content"
+                    android:layout_height = "wrap_content"
+                    android:drawableLeft="@drawable/sound_on"
+                    android:id = "@+id/setting_music"
+                    android:background="@null"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+
     <Button  style="@style/MenuButton"
              android:layout_width = "fill_parent"
              android:layout_height = "wrap_content"

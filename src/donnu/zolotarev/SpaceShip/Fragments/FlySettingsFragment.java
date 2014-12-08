@@ -28,7 +28,7 @@ import org.andengine.util.color.Color;
 public class FlySettingsFragment extends android.app.DialogFragment {
 
     @InjectView(R.id.setting_sound)
-    Button soundButton;
+    Button vibroButton;
 
     @InjectView(R.id.setting_music)
     Button musicButton;
@@ -46,7 +46,7 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     RadioGroup flyModeRadio;
 
     private Settings setting;
-    boolean sound = false;
+    boolean vibro = false;
     boolean music = false;
 
     @Override
@@ -65,8 +65,8 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         v.setMinimumWidth(2*screeSize.x/3);
         //  v.setMinimumHeight(screeSize.y);
         music = setting.isMusic();
-        sound = setting.needVibro();
-        changeSoundIcon(sound);
+        vibro = setting.needVibro();
+        changeVibroIcon(vibro);
         changeMusicIcon(music);
         Dialog dialog = getDialog();
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -103,7 +103,7 @@ public class FlySettingsFragment extends android.app.DialogFragment {
         setting.setAnalogflyControlMode(flyModeRadio.getCheckedRadioButtonId() == R.id.radiogroup_fly_mode_analog);
         setting.setFireMode(mode);
         setting.setMusic(music);
-        setting.setNeedVibro(sound);
+        setting.setNeedVibro(vibro);
         Gson gson = new Gson();
         getActivity().getSharedPreferences(BaseMenuFragment.FILE_SETTINGS, Context.MODE_PRIVATE)
                 .edit()
@@ -114,8 +114,8 @@ public class FlySettingsFragment extends android.app.DialogFragment {
     //
     @OnClick(R.id.setting_sound)
     void onChangeSoundState(){
-        sound = ! sound;
-        changeSoundIcon(sound);
+        vibro = ! vibro;
+        changeVibroIcon(vibro);
     }
 
     @OnClick(R.id.setting_music)
@@ -190,23 +190,23 @@ public class FlySettingsFragment extends android.app.DialogFragment {
 
     }
 
-    private void changeSoundIcon(boolean isEnable){
+    private void changeVibroIcon(boolean isEnable){
         Drawable icon = null;
         if (isEnable){
-            icon = getResources().getDrawable(R.drawable.sound_on);
+            icon = getResources().getDrawable(R.drawable.vibro_on);
         } else  {
-            icon = getResources().getDrawable(R.drawable.sound_off);
+            icon = getResources().getDrawable(R.drawable.vibro_off);
         }
 
-        soundButton.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null);
+        vibroButton.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null);
     }
 
     private void changeMusicIcon(boolean isEnable){
         Drawable icon = null;
         if (isEnable){
-            icon = getResources().getDrawable(R.drawable.music_on);
+            icon = getResources().getDrawable(R.drawable.sound_on);
         } else  {
-            icon = getResources().getDrawable(R.drawable.music_off);
+            icon = getResources().getDrawable(R.drawable.sound_off);
         }
 
         musicButton.setCompoundDrawablesWithIntrinsicBounds(null, null, icon, null);

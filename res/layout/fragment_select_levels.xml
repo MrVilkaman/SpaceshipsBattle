@@ -42,6 +42,7 @@
             android:id = "@+id/select_levels_test_level"
             android:layout_gravity = "center_horizontal"
             android:layout_alignParentBottom="true"
+            android:visibility="invisible"
             android:layout_marginRight="10dp"
             android:layout_alignRight = "@+id/select_levels_shop"
              />
